@@ -1892,7 +1892,7 @@ function buildEstimatedSquadStats(squad = RCB_SQUAD_BASE) {
 }
 
 async function fetchCricbuzzRecentRcbStats(squad) {
-  const cacheKey = 'cricbuzz_rcb_recent_stats_v2';
+  const cacheKey = 'cricbuzz_rcb_recent_stats_v3';
   const cached = cacheGet(cacheKey, DAILY_CACHE_TTL);
   if (cached) return cached;
 
@@ -1964,6 +1964,7 @@ async function fetchCricbuzzRecentRcbStats(squad) {
   finalizeCricbuzzStats(statsMap);
   statsMap._hasCricbuzzStats = Object.keys(statsMap).some(key => !key.startsWith('_'));
   statsMap._cricbuzzMatches = rcbMatchIds.length;
+  statsMap._isPartialSample = rcbMatchIds.length < 4;
   cacheSet(cacheKey, statsMap);
   return statsMap;
 }
@@ -1975,7 +1976,7 @@ async function fetchCricbuzzRecentRcbStats(squad) {
 // Returns a map: playerName -> { apps, stats }, plus _squad when live squad loads.
 // ═══════════════════════════════════════════════════════
 async function fetchSquadStats() {
-  const cacheKey = 'rcb_squad_stats_v5';
+  const cacheKey = 'rcb_squad_stats_v6';
   const cached = cacheGet(cacheKey, DAILY_CACHE_TTL);
   if (cached) return cached;
 
@@ -2048,15 +2049,19 @@ async function fetchSquadStats() {
 
   try {
     const cricbuzzStats = await fetchCricbuzzRecentRcbStats(statsMap._squad || RCB_SQUAD_BASE);
-    Object.keys(cricbuzzStats || {}).forEach(key => {
-      if (key.startsWith('_')) {
-        statsMap[key] = cricbuzzStats[key];
-        return;
-      }
-      if (!statsMap[key]) statsMap[key] = {};
-      if (cricbuzzStats[key].bat) statsMap[key].bat = cricbuzzStats[key].bat;
-      if (cricbuzzStats[key].bowl) statsMap[key].bowl = cricbuzzStats[key].bowl;
-    });
+    if (!cricbuzzStats._isPartialSample) {
+      Object.keys(cricbuzzStats || {}).forEach(key => {
+        if (key.startsWith('_')) {
+          statsMap[key] = cricbuzzStats[key];
+          return;
+        }
+        if (!statsMap[key]) statsMap[key] = {};
+        if (cricbuzzStats[key].bat) statsMap[key].bat = cricbuzzStats[key].bat;
+        if (cricbuzzStats[key].bowl) statsMap[key].bowl = cricbuzzStats[key].bowl;
+      });
+    } else {
+      statsMap._partialCricbuzzMatches = cricbuzzStats._cricbuzzMatches || 0;
+    }
   } catch(e) {
     console.warn('Cricbuzz recent stats fetch failed:', e.message);
   }
@@ -2342,6 +2347,8 @@ function renderSquadContent(statsMap = {}) {
 
   const dataLabel = statsMap._hasCricbuzzStats
     ? `<div class="last-updated" style="color:var(--green);margin-bottom:20px;">RECENT MATCH STATS · ${statsMap._cricbuzzMatches || 0} CRICBUZZ SCORECARDS</div>`
+    : statsMap._partialCricbuzzMatches
+      ? `<div class="last-updated" style="color:var(--gold);margin-bottom:20px;">ESTIMATED STATS · CRICBUZZ SAMPLE TOO SMALL (${statsMap._partialCricbuzzMatches} MATCH)</div>`
     : statsMap._hasEstimatedStats
       ? `<div class="last-updated" style="color:var(--gold);margin-bottom:20px;">ESTIMATED STATS · API UNAVAILABLE — DATA IS APPROXIMATE</div>`
     : hasLiveStats
