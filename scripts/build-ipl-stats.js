@@ -110,11 +110,18 @@ function round(value, digits = 2) {
   return Math.round((value + Number.EPSILON) * factor) / factor;
 }
 
+function sampleAdjustedScore(score, sample, fullSample) {
+  if (score === null || score === undefined) return null;
+  if (score <= 0) return 0;
+  return Math.round(score * Math.min(1, sample / fullSample));
+}
+
 function inferRole(player) {
   if (ROLE_OVERRIDES[player.name]) return ROLE_OVERRIDES[player.name];
   if (WK_HINTS.has(player.name)) return 'wk';
   if (player.bowlBalls >= 48 && (player.balls >= 36 || player.runs >= 80)) return 'ar';
   if (player.bowlBalls >= 36 && player.runs >= 120) return 'ar';
+  if (player.bowlBalls >= 24 && player.balls === 0) return 'bowl';
   if (player.bowlBalls >= 36) return 'bowl';
   return 'bat';
 }
@@ -182,8 +189,10 @@ function buildStats(player, role) {
     wkts_per_match: round(wktsPerMatch, 2),
     dot_pct: round(dotPct, 2),
   };
-  const batScore = player.balls ? calcFormScore('bat', batStats) : null;
-  const bowlScore = player.bowlBalls ? calcFormScore('bowl', bowlStats) : null;
+  const rawBatScore = player.balls ? calcFormScore('bat', batStats) : null;
+  const rawBowlScore = player.bowlBalls ? calcFormScore('bowl', bowlStats) : null;
+  const batScore = sampleAdjustedScore(rawBatScore, player.balls, 36);
+  const bowlScore = sampleAdjustedScore(rawBowlScore, player.bowlBalls, 48);
   const fieldScore = Math.min(100, Math.round(((player.catches + player.runouts) * 10 + player.stumpings * 16) / Math.max(player.matches.size, 1)));
   const weights = {
     bat: [0.85, 0.10, 0.05],
@@ -209,6 +218,7 @@ function buildStats(player, role) {
       fifties: player.fifties,
       hundreds: player.hundreds,
       score: batScore,
+      raw_score: rawBatScore,
     },
     bowl: {
       ...bowlStats,
@@ -216,6 +226,7 @@ function buildStats(player, role) {
       runs: player.bowlRuns,
       wickets: player.wickets,
       score: bowlScore,
+      raw_score: rawBowlScore,
     },
     field: {
       catches: player.catches,
