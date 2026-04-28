@@ -1,6 +1,6 @@
 {
   "source": "Cricsheet ball-by-ball",
-  "generatedAt": "2026-04-28T11:15:01.641Z",
+  "generatedAt": "2026-04-28T11:33:18.216Z",
   "season": "2026",
   "matchesProcessed": 39,
   "lastMatchDate": "2026-04-27",
@@ -400,7 +400,7 @@
         {
           "num": 15,
           "name": "B Sai Sudharsan",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -418,49 +418,9 @@
           "wickets": 0
         },
         {
-          "num": 43,
-          "name": "Washington Sundar",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 148.11,
-            "avg": 31.4,
-            "boundary_pct": 61.15,
-            "impact": 0.125,
-            "source": "cricsheet"
-          },
-          "score": 93,
-          "detail": "SR 148 · Avg 31.4",
-          "matches": 8,
-          "runs": 157,
-          "wickets": 1
-        },
-        {
-          "num": 26,
-          "name": "M Shahrukh Khan",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 140,
-            "avg": 17.5,
-            "boundary_pct": 57.14,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 73,
-          "detail": "SR 140 · Avg 17.5",
-          "matches": 8,
-          "runs": 35,
-          "wickets": 0
-        },
-        {
           "num": 81,
           "name": "Shubman Gill",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -478,49 +438,29 @@
           "wickets": 0
         },
         {
-          "num": 57,
-          "name": "R Tewatia",
-          "nat": "",
+          "num": 26,
+          "name": "M Shahrukh Khan",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 7,
-            "sr": 116.67,
-            "avg": 24.5,
-            "boundary_pct": 44.9,
+            "apps": 8,
+            "sr": 140,
+            "avg": 17.5,
+            "boundary_pct": 57.14,
             "impact": 0,
             "source": "cricsheet"
           },
-          "score": 72,
-          "detail": "SR 117 · Avg 24.5",
-          "matches": 7,
-          "runs": 49,
-          "wickets": 0
-        },
-        {
-          "num": 55,
-          "name": "GD Phillips",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 6,
-            "sr": 124.07,
-            "avg": 16.75,
-            "boundary_pct": 41.79,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 66,
-          "detail": "SR 124 · Avg 16.8",
-          "matches": 6,
-          "runs": 67,
+          "score": 73,
+          "detail": "SR 140 · Avg 17.5",
+          "matches": 8,
+          "runs": 35,
           "wickets": 0
         },
         {
           "num": 2,
           "name": "MJ Suthar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -538,29 +478,9 @@
           "wickets": 2
         },
         {
-          "num": 87,
-          "name": "Kumar Kushagra",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 1,
-            "sr": 128.57,
-            "avg": 18,
-            "boundary_pct": 66.67,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 70,
-          "detail": "SR 129 · Avg 18.0",
-          "matches": 1,
-          "runs": 18,
-          "wickets": 0
-        },
-        {
           "num": 18,
           "name": "Arshad Khan",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -582,7 +502,7 @@
         {
           "num": 54,
           "name": "JC Buttler",
-          "nat": "",
+          "nat": "ENG",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -598,14 +518,127 @@
           "matches": 8,
           "runs": 270,
           "wickets": 0
+        },
+        {
+          "num": 87,
+          "name": "Kumar Kushagra",
+          "nat": "IND",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 1,
+            "sr": 128.57,
+            "avg": 18,
+            "boundary_pct": 66.67,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 70,
+          "detail": "SR 129 · Avg 18.0",
+          "matches": 1,
+          "runs": 18,
+          "wickets": 0
+        },
+        {
+          "num": 55,
+          "name": "GD Phillips",
+          "nat": "NZ",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 6,
+            "sr": 124.07,
+            "avg": 16.75,
+            "boundary_pct": 41.79,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 66,
+          "detail": "SR 124 · Avg 16.8",
+          "matches": 6,
+          "runs": 67,
+          "wickets": 0
         }
       ],
-      "allRounders": [],
+      "allRounders": [
+        {
+          "num": 95,
+          "name": "Rashid Khan",
+          "nat": "AFG",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 121.74,
+            "batAvg": 14,
+            "boundary_pct": 42.86,
+            "impact": 0,
+            "bowlEcon": 8.79,
+            "bowlAvg": 31.88,
+            "wktsPerMatch": 1,
+            "dot_pct": 29.31,
+            "source": "cricsheet"
+          },
+          "score": 61,
+          "detail": "14.0 avg · Econ 8.8",
+          "matches": 8,
+          "runs": 28,
+          "wickets": 8
+        },
+        {
+          "num": 43,
+          "name": "Washington Sundar",
+          "nat": "IND",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 148.11,
+            "batAvg": 31.4,
+            "boundary_pct": 61.15,
+            "impact": 0.125,
+            "bowlEcon": 9.87,
+            "bowlAvg": 51,
+            "wktsPerMatch": 0.13,
+            "dot_pct": 25.81,
+            "source": "cricsheet"
+          },
+          "score": 58,
+          "detail": "31.4 avg · Econ 9.9",
+          "matches": 8,
+          "runs": 157,
+          "wickets": 1
+        },
+        {
+          "num": 57,
+          "name": "R Tewatia",
+          "nat": "IND",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 7,
+            "batSr": 116.67,
+            "batAvg": 24.5,
+            "boundary_pct": 44.9,
+            "impact": 0,
+            "bowlEcon": 12,
+            "bowlAvg": 50,
+            "wktsPerMatch": 0,
+            "dot_pct": 0,
+            "source": "cricsheet"
+          },
+          "score": 36,
+          "detail": "24.5 avg · Econ 12.0",
+          "matches": 7,
+          "runs": 49,
+          "wickets": 0
+        }
+      ],
       "bowlers": [
         {
           "num": 32,
           "name": "K Rabada",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -625,7 +658,7 @@
         {
           "num": 47,
           "name": "Mohammed Siraj",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -643,29 +676,9 @@
           "wickets": 8
         },
         {
-          "num": 95,
-          "name": "Rashid Khan",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 8,
-            "econ": 8.79,
-            "bowling_avg": 31.88,
-            "wkts_per_match": 1,
-            "dot_pct": 29.31,
-            "source": "cricsheet"
-          },
-          "score": 58,
-          "detail": "1.0 wkt/m · Econ 8.8",
-          "matches": 8,
-          "runs": 28,
-          "wickets": 8
-        },
-        {
           "num": 34,
           "name": "M Prasidh Krishna",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -683,29 +696,9 @@
           "wickets": 12
         },
         {
-          "num": 80,
-          "name": "Ashok Sharma",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 6,
-            "econ": 10.86,
-            "bowling_avg": 38,
-            "wkts_per_match": 1,
-            "dot_pct": 38.1,
-            "source": "cricsheet"
-          },
-          "score": 37,
-          "detail": "1.0 wkt/m · Econ 10.9",
-          "matches": 6,
-          "runs": 1,
-          "wickets": 6
-        },
-        {
           "num": 15,
           "name": "JO Holder",
-          "nat": "",
+          "nat": "WI",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -721,6 +714,26 @@
           "matches": 2,
           "runs": 23,
           "wickets": 1
+        },
+        {
+          "num": 80,
+          "name": "Ashok Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 6,
+            "econ": 10.86,
+            "bowling_avg": 38,
+            "wkts_per_match": 1,
+            "dot_pct": 38.1,
+            "source": "cricsheet"
+          },
+          "score": 37,
+          "detail": "1.0 wkt/m · Econ 10.9",
+          "matches": 6,
+          "runs": 1,
+          "wickets": 6
         }
       ]
     },
@@ -729,7 +742,7 @@
         {
           "num": 44,
           "name": "D Padikkal",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -749,7 +762,7 @@
         {
           "num": 1,
           "name": "RM Patidar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -769,7 +782,7 @@
         {
           "num": 43,
           "name": "TH David",
-          "nat": "",
+          "nat": "AUS",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -789,7 +802,7 @@
         {
           "num": 87,
           "name": "V Kohli",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -807,29 +820,9 @@
           "wickets": 0
         },
         {
-          "num": 60,
-          "name": "JG Bethell",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 2,
-            "sr": 161.9,
-            "avg": 17,
-            "boundary_pct": 82.35,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 78,
-          "detail": "SR 162 · Avg 17.0",
-          "matches": 2,
-          "runs": 34,
-          "wickets": 0
-        },
-        {
           "num": 63,
           "name": "VR Iyer",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -849,29 +842,9 @@
       ],
       "wicketKeepers": [
         {
-          "num": 29,
-          "name": "JM Sharma",
-          "nat": "",
-          "tag": "",
-          "role": "wk",
-          "stats": {
-            "apps": 8,
-            "sr": 116.98,
-            "avg": 10.33,
-            "boundary_pct": 61.29,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 60,
-          "detail": "SR 117 · Avg 10.3",
-          "matches": 8,
-          "runs": 62,
-          "wickets": 0
-        },
-        {
           "num": 61,
           "name": "PD Salt",
-          "nat": "",
+          "nat": "ENG",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -887,14 +860,107 @@
           "matches": 6,
           "runs": 202,
           "wickets": 0
+        },
+        {
+          "num": 29,
+          "name": "JM Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 8,
+            "sr": 116.98,
+            "avg": 10.33,
+            "boundary_pct": 61.29,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 60,
+          "detail": "SR 117 · Avg 10.3",
+          "matches": 8,
+          "runs": 62,
+          "wickets": 0
         }
       ],
-      "allRounders": [],
+      "allRounders": [
+        {
+          "num": 91,
+          "name": "KH Pandya",
+          "nat": "IND",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 128.57,
+            "batAvg": 36,
+            "boundary_pct": 66.67,
+            "impact": 0,
+            "bowlEcon": 8.85,
+            "bowlAvg": 26.56,
+            "wktsPerMatch": 1.13,
+            "dot_pct": 26.54,
+            "source": "cricsheet"
+          },
+          "score": 77,
+          "detail": "36.0 avg · Econ 8.8",
+          "matches": 8,
+          "runs": 36,
+          "wickets": 9
+        },
+        {
+          "num": 98,
+          "name": "R Shepherd",
+          "nat": "WI",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 156,
+            "batAvg": 19.5,
+            "boundary_pct": 61.54,
+            "impact": 0,
+            "bowlEcon": 14.5,
+            "bowlAvg": 58,
+            "wktsPerMatch": 0.38,
+            "dot_pct": 13.89,
+            "source": "cricsheet"
+          },
+          "score": 44,
+          "detail": "19.5 avg · Econ 14.5",
+          "matches": 8,
+          "runs": 39,
+          "wickets": 3
+        },
+        {
+          "num": 60,
+          "name": "JG Bethell",
+          "nat": "ENG",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 2,
+            "batSr": 161.9,
+            "batAvg": 17,
+            "boundary_pct": 82.35,
+            "impact": 0,
+            "bowlEcon": 12,
+            "bowlAvg": 50,
+            "wktsPerMatch": 0,
+            "dot_pct": 0,
+            "source": "cricsheet"
+          },
+          "score": 39,
+          "detail": "17.0 avg · Econ 12.0",
+          "matches": 2,
+          "runs": 34,
+          "wickets": 0
+        }
+      ],
       "bowlers": [
         {
           "num": 46,
           "name": "B Kumar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -912,69 +978,9 @@
           "wickets": 14
         },
         {
-          "num": 91,
-          "name": "KH Pandya",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 8,
-            "econ": 8.85,
-            "bowling_avg": 26.56,
-            "wkts_per_match": 1.13,
-            "dot_pct": 26.54,
-            "source": "cricsheet"
-          },
-          "score": 66,
-          "detail": "1.1 wkt/m · Econ 8.8",
-          "matches": 8,
-          "runs": 36,
-          "wickets": 9
-        },
-        {
-          "num": 98,
-          "name": "R Shepherd",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 8,
-            "econ": 14.5,
-            "bowling_avg": 58,
-            "wkts_per_match": 0.38,
-            "dot_pct": 13.89,
-            "source": "cricsheet"
-          },
-          "score": 9,
-          "detail": "0.4 wkt/m · Econ 14.5",
-          "matches": 8,
-          "runs": 39,
-          "wickets": 3
-        },
-        {
-          "num": 49,
-          "name": "Suyash Sharma",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 7,
-            "econ": 7.85,
-            "bowling_avg": 34,
-            "wkts_per_match": 0.86,
-            "dot_pct": 34.62,
-            "source": "cricsheet"
-          },
-          "score": 61,
-          "detail": "0.9 wkt/m · Econ 7.8",
-          "matches": 7,
-          "runs": 0,
-          "wickets": 6
-        },
-        {
           "num": 3,
           "name": "JR Hazlewood",
-          "nat": "",
+          "nat": "AUS",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -994,7 +1000,7 @@
         {
           "num": 85,
           "name": "Rasikh Salam",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1014,7 +1020,7 @@
         {
           "num": 20,
           "name": "JA Duffy",
-          "nat": "",
+          "nat": "NZ",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1032,9 +1038,29 @@
           "wickets": 6
         },
         {
+          "num": 49,
+          "name": "Suyash Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 7,
+            "econ": 7.85,
+            "bowling_avg": 34,
+            "wkts_per_match": 0.86,
+            "dot_pct": 34.62,
+            "source": "cricsheet"
+          },
+          "score": 61,
+          "detail": "0.9 wkt/m · Econ 7.8",
+          "matches": 7,
+          "runs": 0,
+          "wickets": 6
+        },
+        {
           "num": 31,
           "name": "Abhinandan Singh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1058,7 +1084,7 @@
         {
           "num": 77,
           "name": "Tilak Varma",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1076,9 +1102,29 @@
           "wickets": 0
         },
         {
+          "num": 17,
+          "name": "RG Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 4,
+            "sr": 165.06,
+            "avg": 45.67,
+            "boundary_pct": 72.99,
+            "impact": 0.25,
+            "source": "cricsheet"
+          },
+          "score": 100,
+          "detail": "SR 165 · Avg 45.7",
+          "matches": 4,
+          "runs": 137,
+          "wickets": 0
+        },
+        {
           "num": 10,
           "name": "SE Rutherford",
-          "nat": "",
+          "nat": "WI",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1098,7 +1144,7 @@
         {
           "num": 57,
           "name": "Naman Dhir",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1118,7 +1164,7 @@
         {
           "num": 39,
           "name": "SA Yadav",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1136,69 +1182,9 @@
           "wickets": 0
         },
         {
-          "num": 32,
-          "name": "RD Rickelton",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 5,
-            "sr": 155.68,
-            "avg": 34.25,
-            "boundary_pct": 78.83,
-            "impact": 0.2,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 156 · Avg 34.3",
-          "matches": 5,
-          "runs": 137,
-          "wickets": 0
-        },
-        {
-          "num": 17,
-          "name": "RG Sharma",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 4,
-            "sr": 165.06,
-            "avg": 45.67,
-            "boundary_pct": 72.99,
-            "impact": 0.25,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 165 · Avg 45.7",
-          "matches": 4,
-          "runs": 137,
-          "wickets": 0
-        },
-        {
-          "num": 70,
-          "name": "M Markande",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 3,
-            "sr": 0,
-            "avg": 0,
-            "boundary_pct": 0,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 0,
-          "detail": "SR 0 · Avg 0.0",
-          "matches": 3,
-          "runs": 0,
-          "wickets": 0
-        },
-        {
           "num": 30,
           "name": "Krish Bhagat",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1218,7 +1204,7 @@
         {
           "num": 59,
           "name": "DV Malewar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1236,29 +1222,29 @@
           "wickets": 0
         },
         {
-          "num": 23,
-          "name": "C Bosch",
-          "nat": "",
+          "num": 70,
+          "name": "M Markande",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 1,
-            "sr": 275,
-            "avg": 11,
-            "boundary_pct": 72.73,
+            "apps": 3,
+            "sr": 0,
+            "avg": 0,
+            "boundary_pct": 0,
             "impact": 0,
             "source": "cricsheet"
           },
-          "score": 77,
-          "detail": "SR 275 · Avg 11.0",
-          "matches": 1,
-          "runs": 11,
-          "wickets": 1
+          "score": 0,
+          "detail": "SR 0 · Avg 0.0",
+          "matches": 3,
+          "runs": 0,
+          "wickets": 0
         },
         {
           "num": 43,
           "name": "Mayank Rawat",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1278,9 +1264,29 @@
       ],
       "wicketKeepers": [
         {
+          "num": 32,
+          "name": "RD Rickelton",
+          "nat": "RSA",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 5,
+            "sr": 155.68,
+            "avg": 34.25,
+            "boundary_pct": 78.83,
+            "impact": 0.2,
+            "source": "cricsheet"
+          },
+          "score": 100,
+          "detail": "SR 156 · Avg 34.3",
+          "matches": 5,
+          "runs": 137,
+          "wickets": 0
+        },
+        {
           "num": 55,
           "name": "Q de Kock",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -1300,9 +1306,57 @@
       ],
       "allRounders": [
         {
+          "num": 30,
+          "name": "MJ Santner",
+          "nat": "NZ",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 4,
+            "batSr": 136.84,
+            "batAvg": 26,
+            "boundary_pct": 46.15,
+            "impact": 0,
+            "bowlEcon": 8.93,
+            "bowlAvg": 25,
+            "wktsPerMatch": 1.25,
+            "dot_pct": 36.9,
+            "source": "cricsheet"
+          },
+          "score": 77,
+          "detail": "26.0 avg · Econ 8.9",
+          "matches": 4,
+          "runs": 26,
+          "wickets": 5
+        },
+        {
+          "num": 23,
+          "name": "C Bosch",
+          "nat": "RSA",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 1,
+            "batSr": 275,
+            "batAvg": 11,
+            "boundary_pct": 72.73,
+            "impact": 0,
+            "bowlEcon": 12.32,
+            "bowlAvg": 39,
+            "wktsPerMatch": 1,
+            "dot_pct": 31.58,
+            "source": "cricsheet"
+          },
+          "score": 53,
+          "detail": "11.0 avg · Econ 12.3",
+          "matches": 1,
+          "runs": 11,
+          "wickets": 1
+        },
+        {
           "num": 21,
           "name": "HH Pandya",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "ar",
           "stats": {
@@ -1322,53 +1376,57 @@
           "matches": 6,
           "runs": 97,
           "wickets": 3
-        }
-      ],
-      "bowlers": [
-        {
-          "num": 70,
-          "name": "JJ Bumrah",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 7,
-            "econ": 8.08,
-            "bowling_avg": 105,
-            "wkts_per_match": 0.29,
-            "dot_pct": 36.54,
-            "source": "cricsheet"
-          },
-          "score": 39,
-          "detail": "0.3 wkt/m · Econ 8.1",
-          "matches": 7,
-          "runs": 7,
-          "wickets": 2
         },
         {
           "num": 26,
           "name": "SN Thakur",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
-          "role": "bowl",
+          "role": "ar",
           "stats": {
             "apps": 6,
-            "econ": 13.57,
-            "bowling_avg": 31.67,
-            "wkts_per_match": 1,
+            "batSr": 73.68,
+            "batAvg": 7,
+            "boundary_pct": 28.57,
+            "impact": 0,
+            "bowlEcon": 13.57,
+            "bowlAvg": 31.67,
+            "wktsPerMatch": 1,
             "dot_pct": 20.24,
             "source": "cricsheet"
           },
-          "score": 36,
-          "detail": "1.0 wkt/m · Econ 13.6",
+          "score": 37,
+          "detail": "7.0 avg · Econ 13.6",
           "matches": 6,
           "runs": 14,
+          "wickets": 6
+        }
+      ],
+      "bowlers": [
+        {
+          "num": 14,
+          "name": "Ashwani Kumar",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 2,
+            "econ": 7.63,
+            "bowling_avg": 10.17,
+            "wkts_per_match": 3,
+            "dot_pct": 45.83,
+            "source": "cricsheet"
+          },
+          "score": 100,
+          "detail": "3.0 wkt/m · Econ 7.6",
+          "matches": 2,
+          "runs": 1,
           "wickets": 6
         },
         {
           "num": 57,
           "name": "AM Ghazanfar",
-          "nat": "",
+          "nat": "AFG",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1386,29 +1444,29 @@
           "wickets": 8
         },
         {
-          "num": 30,
-          "name": "MJ Santner",
-          "nat": "",
+          "num": 70,
+          "name": "JJ Bumrah",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
-            "apps": 4,
-            "econ": 8.93,
-            "bowling_avg": 25,
-            "wkts_per_match": 1.25,
-            "dot_pct": 36.9,
+            "apps": 7,
+            "econ": 8.08,
+            "bowling_avg": 105,
+            "wkts_per_match": 0.29,
+            "dot_pct": 36.54,
             "source": "cricsheet"
           },
-          "score": 73,
-          "detail": "1.3 wkt/m · Econ 8.9",
-          "matches": 4,
-          "runs": 26,
-          "wickets": 5
+          "score": 39,
+          "detail": "0.3 wkt/m · Econ 8.1",
+          "matches": 7,
+          "runs": 7,
+          "wickets": 2
         },
         {
           "num": 35,
           "name": "DL Chahar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1428,7 +1486,7 @@
         {
           "num": 69,
           "name": "TA Boult",
-          "nat": "",
+          "nat": "NZ",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1444,26 +1502,6 @@
           "matches": 3,
           "runs": 1,
           "wickets": 1
-        },
-        {
-          "num": 14,
-          "name": "Ashwani Kumar",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 2,
-            "econ": 7.63,
-            "bowling_avg": 10.17,
-            "wkts_per_match": 3,
-            "dot_pct": 45.83,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "3.0 wkt/m · Econ 7.6",
-          "matches": 2,
-          "runs": 1,
-          "wickets": 6
         }
       ]
     },
@@ -1472,7 +1510,7 @@
         {
           "num": 17,
           "name": "A Raghuvanshi",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1492,7 +1530,7 @@
         {
           "num": 10,
           "name": "RK Singh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1510,49 +1548,9 @@
           "wickets": 0
         },
         {
-          "num": 41,
-          "name": "AM Rahane",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 135,
-            "avg": 23.14,
-            "boundary_pct": 56.79,
-            "impact": 0.125,
-            "source": "cricsheet"
-          },
-          "score": 81,
-          "detail": "SR 135 · Avg 23.1",
-          "matches": 8,
-          "runs": 162,
-          "wickets": 0
-        },
-        {
-          "num": 91,
-          "name": "Ramandeep Singh",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 120.59,
-            "avg": 16.4,
-            "boundary_pct": 53.66,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 67,
-          "detail": "SR 121 · Avg 16.4",
-          "matches": 8,
-          "runs": 82,
-          "wickets": 1
-        },
-        {
           "num": 2,
           "name": "R Powell",
-          "nat": "",
+          "nat": "WI",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1572,7 +1570,7 @@
         {
           "num": 92,
           "name": "FH Allen",
-          "nat": "",
+          "nat": "NZ",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1590,29 +1588,29 @@
           "wickets": 0
         },
         {
-          "num": 70,
-          "name": "TL Seifert",
-          "nat": "",
+          "num": 41,
+          "name": "AM Rahane",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 3,
-            "sr": 105.56,
-            "avg": 6.33,
-            "boundary_pct": 73.68,
-            "impact": 0,
+            "apps": 8,
+            "sr": 135,
+            "avg": 23.14,
+            "boundary_pct": 56.79,
+            "impact": 0.125,
             "source": "cricsheet"
           },
-          "score": 52,
-          "detail": "SR 106 · Avg 6.3",
-          "matches": 3,
-          "runs": 19,
+          "score": 81,
+          "detail": "SR 135 · Avg 23.1",
+          "matches": 8,
+          "runs": 162,
           "wickets": 0
         },
         {
           "num": 33,
           "name": "Navdeep Saini",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1630,12 +1628,57 @@
           "wickets": 0
         }
       ],
-      "wicketKeepers": [],
+      "wicketKeepers": [
+        {
+          "num": 70,
+          "name": "TL Seifert",
+          "nat": "NZ",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 3,
+            "sr": 105.56,
+            "avg": 6.33,
+            "boundary_pct": 73.68,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 52,
+          "detail": "SR 106 · Avg 6.3",
+          "matches": 3,
+          "runs": 19,
+          "wickets": 0
+        }
+      ],
       "allRounders": [
+        {
+          "num": 58,
+          "name": "SP Narine",
+          "nat": "WI",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 7,
+            "batSr": 125,
+            "batAvg": 13.33,
+            "boundary_pct": 80,
+            "impact": 0,
+            "bowlEcon": 6.58,
+            "bowlAvg": 20.11,
+            "wktsPerMatch": 1.29,
+            "dot_pct": 41.21,
+            "source": "cricsheet"
+          },
+          "score": 82,
+          "detail": "13.3 avg · Econ 6.6",
+          "matches": 7,
+          "runs": 40,
+          "wickets": 9
+        },
         {
           "num": 36,
           "name": "C Green",
-          "nat": "",
+          "nat": "AUS",
           "tag": "",
           "role": "ar",
           "stats": {
@@ -1655,13 +1698,77 @@
           "matches": 8,
           "runs": 196,
           "wickets": 2
+        },
+        {
+          "num": 91,
+          "name": "Ramandeep Singh",
+          "nat": "IND",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 120.59,
+            "batAvg": 16.4,
+            "boundary_pct": 53.66,
+            "impact": 0,
+            "bowlEcon": 11.63,
+            "bowlAvg": 31,
+            "wktsPerMatch": 0.13,
+            "dot_pct": 6.25,
+            "source": "cricsheet"
+          },
+          "score": 46,
+          "detail": "16.4 avg · Econ 11.6",
+          "matches": 8,
+          "runs": 82,
+          "wickets": 1
         }
       ],
       "bowlers": [
         {
+          "num": 68,
+          "name": "B Muzarabani",
+          "nat": "ZIM",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 2,
+            "econ": 10.71,
+            "bowling_avg": 18.75,
+            "wkts_per_match": 2,
+            "dot_pct": 28.57,
+            "source": "cricsheet"
+          },
+          "score": 74,
+          "detail": "2.0 wkt/m · Econ 10.7",
+          "matches": 2,
+          "runs": 0,
+          "wickets": 4
+        },
+        {
+          "num": 91,
+          "name": "CV Varun",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 6,
+            "econ": 8.86,
+            "bowling_avg": 26.57,
+            "wkts_per_match": 1.17,
+            "dot_pct": 30.95,
+            "source": "cricsheet"
+          },
+          "score": 68,
+          "detail": "1.2 wkt/m · Econ 8.9",
+          "matches": 6,
+          "runs": 0,
+          "wickets": 7
+        },
+        {
           "num": 93,
           "name": "Kartik Tyagi",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1681,7 +1788,7 @@
         {
           "num": 30,
           "name": "AS Roy",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1701,7 +1808,7 @@
         {
           "num": 25,
           "name": "VG Arora",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -1717,115 +1824,15 @@
           "matches": 8,
           "runs": 1,
           "wickets": 9
-        },
-        {
-          "num": 58,
-          "name": "SP Narine",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 7,
-            "econ": 6.58,
-            "bowling_avg": 20.11,
-            "wkts_per_match": 1.29,
-            "dot_pct": 41.21,
-            "source": "cricsheet"
-          },
-          "score": 99,
-          "detail": "1.3 wkt/m · Econ 6.6",
-          "matches": 7,
-          "runs": 40,
-          "wickets": 9
-        },
-        {
-          "num": 91,
-          "name": "CV Varun",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 6,
-            "econ": 8.86,
-            "bowling_avg": 26.57,
-            "wkts_per_match": 1.17,
-            "dot_pct": 30.95,
-            "source": "cricsheet"
-          },
-          "score": 68,
-          "detail": "1.2 wkt/m · Econ 8.9",
-          "matches": 6,
-          "runs": 0,
-          "wickets": 7
-        },
-        {
-          "num": 68,
-          "name": "B Muzarabani",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 2,
-            "econ": 10.71,
-            "bowling_avg": 18.75,
-            "wkts_per_match": 2,
-            "dot_pct": 28.57,
-            "source": "cricsheet"
-          },
-          "score": 74,
-          "detail": "2.0 wkt/m · Econ 10.7",
-          "matches": 2,
-          "runs": 0,
-          "wickets": 4
         }
       ]
     },
     "srh": {
       "batters": [
         {
-          "num": 44,
-          "name": "Abhishek Sharma",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 212.29,
-            "avg": 54.29,
-            "boundary_pct": 82.11,
-            "impact": 0.625,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 212 · Avg 54.3",
-          "matches": 8,
-          "runs": 380,
-          "wickets": 0
-        },
-        {
-          "num": 35,
-          "name": "H Klaasen",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 149.79,
-            "avg": 49.86,
-            "boundary_pct": 52.72,
-            "impact": 0.375,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 150 · Avg 49.9",
-          "matches": 8,
-          "runs": 349,
-          "wickets": 0
-        },
-        {
           "num": 64,
           "name": "Aniket Verma",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1845,7 +1852,7 @@
         {
           "num": 18,
           "name": "TM Head",
-          "nat": "",
+          "nat": "AUS",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1865,7 +1872,7 @@
         {
           "num": 17,
           "name": "S Arora",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1883,29 +1890,9 @@
           "wickets": 0
         },
         {
-          "num": 80,
-          "name": "LS Livingstone",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 2,
-            "sr": 60,
-            "avg": 7.5,
-            "boundary_pct": 40,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 39,
-          "detail": "SR 60 · Avg 7.5",
-          "matches": 2,
-          "runs": 15,
-          "wickets": 0
-        },
-        {
           "num": 9,
           "name": "DA Payne",
-          "nat": "",
+          "nat": "ENG",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1925,27 +1912,7 @@
         {
           "num": 24,
           "name": "D Madushanka",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 1,
-            "sr": 0,
-            "avg": 0,
-            "boundary_pct": 0,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 0,
-          "detail": "SR 0 · Avg 0.0",
-          "matches": 1,
-          "runs": 0,
-          "wickets": 1
-        },
-        {
-          "num": 24,
-          "name": "PJ Cummins",
-          "nat": "",
+          "nat": "SL",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -1965,9 +1932,29 @@
       ],
       "wicketKeepers": [
         {
+          "num": 35,
+          "name": "H Klaasen",
+          "nat": "RSA",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 8,
+            "sr": 149.79,
+            "avg": 49.86,
+            "boundary_pct": 52.72,
+            "impact": 0.375,
+            "source": "cricsheet"
+          },
+          "score": 100,
+          "detail": "SR 150 · Avg 49.9",
+          "matches": 8,
+          "runs": 349,
+          "wickets": 0
+        },
+        {
           "num": 18,
           "name": "Ishan Kishan",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -1989,7 +1976,7 @@
         {
           "num": 71,
           "name": "Nithish Kumar Reddy",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "ar",
           "stats": {
@@ -2009,53 +1996,61 @@
           "matches": 8,
           "runs": 172,
           "wickets": 5
+        },
+        {
+          "num": 44,
+          "name": "Abhishek Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 212.29,
+            "batAvg": 54.29,
+            "boundary_pct": 82.11,
+            "impact": 0.625,
+            "bowlEcon": 12.35,
+            "bowlAvg": 35,
+            "wktsPerMatch": 0,
+            "dot_pct": 11.76,
+            "source": "cricsheet"
+          },
+          "score": 59,
+          "detail": "54.3 avg · Econ 12.3",
+          "matches": 8,
+          "runs": 380,
+          "wickets": 0
+        },
+        {
+          "num": 80,
+          "name": "LS Livingstone",
+          "nat": "ENG",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 2,
+            "batSr": 60,
+            "batAvg": 7.5,
+            "boundary_pct": 40,
+            "impact": 0,
+            "bowlEcon": 12,
+            "bowlAvg": 50,
+            "wktsPerMatch": 0,
+            "dot_pct": 0,
+            "source": "cricsheet"
+          },
+          "score": 20,
+          "detail": "7.5 avg · Econ 12.0",
+          "matches": 2,
+          "runs": 15,
+          "wickets": 0
         }
       ],
       "bowlers": [
         {
-          "num": 87,
-          "name": "E Malinga",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 8,
-            "econ": 9.44,
-            "bowling_avg": 18.21,
-            "wkts_per_match": 1.75,
-            "dot_pct": 36.42,
-            "source": "cricsheet"
-          },
-          "score": 85,
-          "detail": "1.8 wkt/m · Econ 9.4",
-          "matches": 8,
-          "runs": 0,
-          "wickets": 14
-        },
-        {
-          "num": 24,
-          "name": "Shivang Kumar",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 7,
-            "econ": 9.5,
-            "bowling_avg": 41.8,
-            "wkts_per_match": 0.71,
-            "dot_pct": 28.03,
-            "source": "cricsheet"
-          },
-          "score": 33,
-          "detail": "0.7 wkt/m · Econ 9.5",
-          "matches": 7,
-          "runs": 21,
-          "wickets": 5
-        },
-        {
           "num": 37,
           "name": "Harsh Dubey",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2073,9 +2068,49 @@
           "wickets": 8
         },
         {
+          "num": 24,
+          "name": "PJ Cummins",
+          "nat": "AUS",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 1,
+            "econ": 6.75,
+            "bowling_avg": 27,
+            "wkts_per_match": 1,
+            "dot_pct": 50,
+            "source": "cricsheet"
+          },
+          "score": 86,
+          "detail": "1.0 wkt/m · Econ 6.8",
+          "matches": 1,
+          "runs": 0,
+          "wickets": 1
+        },
+        {
+          "num": 87,
+          "name": "E Malinga",
+          "nat": "SL",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 8,
+            "econ": 9.44,
+            "bowling_avg": 18.21,
+            "wkts_per_match": 1.75,
+            "dot_pct": 36.42,
+            "source": "cricsheet"
+          },
+          "score": 85,
+          "detail": "1.8 wkt/m · Econ 9.4",
+          "matches": 8,
+          "runs": 0,
+          "wickets": 14
+        },
+        {
           "num": 40,
           "name": "Sakib Hussain",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2093,29 +2128,9 @@
           "wickets": 7
         },
         {
-          "num": 30,
-          "name": "JD Unadkat",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 4,
-            "econ": 10.91,
-            "bowling_avg": 35,
-            "wkts_per_match": 1,
-            "dot_pct": 27.27,
-            "source": "cricsheet"
-          },
-          "score": 37,
-          "detail": "1.0 wkt/m · Econ 10.9",
-          "matches": 4,
-          "runs": 4,
-          "wickets": 4
-        },
-        {
           "num": 38,
           "name": "PP Hinge",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2133,9 +2148,49 @@
           "wickets": 6
         },
         {
+          "num": 30,
+          "name": "JD Unadkat",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 4,
+            "econ": 10.91,
+            "bowling_avg": 35,
+            "wkts_per_match": 1,
+            "dot_pct": 27.27,
+            "source": "cricsheet"
+          },
+          "score": 37,
+          "detail": "1.0 wkt/m · Econ 10.9",
+          "matches": 4,
+          "runs": 4,
+          "wickets": 4
+        },
+        {
+          "num": 24,
+          "name": "Shivang Kumar",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 7,
+            "econ": 9.5,
+            "bowling_avg": 41.8,
+            "wkts_per_match": 0.71,
+            "dot_pct": 28.03,
+            "source": "cricsheet"
+          },
+          "score": 33,
+          "detail": "0.7 wkt/m · Econ 9.5",
+          "matches": 7,
+          "runs": 21,
+          "wickets": 5
+        },
+        {
           "num": 51,
           "name": "HV Patel",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2157,69 +2212,9 @@
     "csk": {
       "batters": [
         {
-          "num": 42,
-          "name": "SN Khan",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 169.47,
-            "avg": 23,
-            "boundary_pct": 79.5,
-            "impact": 0.143,
-            "source": "cricsheet"
-          },
-          "score": 91,
-          "detail": "SR 169 · Avg 23.0",
-          "matches": 8,
-          "runs": 161,
-          "wickets": 0
-        },
-        {
-          "num": 65,
-          "name": "S Dube",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 140.19,
-            "avg": 30,
-            "boundary_pct": 61.33,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 85,
-          "detail": "SR 140 · Avg 30.0",
-          "matches": 8,
-          "runs": 150,
-          "wickets": 1
-        },
-        {
-          "num": 69,
-          "name": "RD Gaikwad",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 121.09,
-            "avg": 25.43,
-            "boundary_pct": 58.43,
-            "impact": 0.125,
-            "source": "cricsheet"
-          },
-          "score": 80,
-          "detail": "SR 121 · Avg 25.4",
-          "matches": 8,
-          "runs": 178,
-          "wickets": 0
-        },
-        {
           "num": 79,
           "name": "A Mhatre",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2237,9 +2232,69 @@
           "wickets": 0
         },
         {
+          "num": 27,
+          "name": "PR Veer",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 2,
+            "sr": 136.11,
+            "avg": 49,
+            "boundary_pct": 69.39,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 98,
+          "detail": "SR 136 · Avg 49.0",
+          "matches": 2,
+          "runs": 49,
+          "wickets": 0
+        },
+        {
+          "num": 42,
+          "name": "SN Khan",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 8,
+            "sr": 169.47,
+            "avg": 23,
+            "boundary_pct": 79.5,
+            "impact": 0.143,
+            "source": "cricsheet"
+          },
+          "score": 91,
+          "detail": "SR 169 · Avg 23.0",
+          "matches": 8,
+          "runs": 161,
+          "wickets": 0
+        },
+        {
+          "num": 69,
+          "name": "RD Gaikwad",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 8,
+            "sr": 121.09,
+            "avg": 25.43,
+            "boundary_pct": 58.43,
+            "impact": 0.125,
+            "source": "cricsheet"
+          },
+          "score": 80,
+          "detail": "SR 121 · Avg 25.4",
+          "matches": 8,
+          "runs": 178,
+          "wickets": 0
+        },
+        {
           "num": 33,
           "name": "D Brevis",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2259,7 +2314,7 @@
         {
           "num": 24,
           "name": "Kartik Sharma",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2277,49 +2332,9 @@
           "wickets": 0
         },
         {
-          "num": 27,
-          "name": "PR Veer",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 2,
-            "sr": 136.11,
-            "avg": 49,
-            "boundary_pct": 69.39,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 98,
-          "detail": "SR 136 · Avg 49.0",
-          "matches": 2,
-          "runs": 49,
-          "wickets": 0
-        },
-        {
-          "num": 70,
-          "name": "MW Short",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 2,
-            "sr": 97.3,
-            "avg": 18,
-            "boundary_pct": 33.33,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 56,
-          "detail": "SR 97 · Avg 18.0",
-          "matches": 2,
-          "runs": 36,
-          "wickets": 0
-        },
-        {
           "num": 9,
           "name": "Urvil Patel",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2337,9 +2352,29 @@
           "wickets": 0
         },
         {
+          "num": 70,
+          "name": "MW Short",
+          "nat": "AUS",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 2,
+            "sr": 97.3,
+            "avg": 18,
+            "boundary_pct": 33.33,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 56,
+          "detail": "SR 97 · Avg 18.0",
+          "matches": 2,
+          "runs": 36,
+          "wickets": 0
+        },
+        {
           "num": 46,
           "name": "RD Chahar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2361,7 +2396,7 @@
         {
           "num": 65,
           "name": "SV Samson",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -2383,7 +2418,7 @@
         {
           "num": 89,
           "name": "J Overton",
-          "nat": "",
+          "nat": "ENG",
           "tag": "",
           "role": "ar",
           "stats": {
@@ -2403,13 +2438,61 @@
           "matches": 7,
           "runs": 136,
           "wickets": 9
+        },
+        {
+          "num": 77,
+          "name": "AJ Hosein",
+          "nat": "WI",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 4,
+            "batSr": 100,
+            "batAvg": 2,
+            "boundary_pct": 0,
+            "impact": 0,
+            "bowlEcon": 7.98,
+            "bowlAvg": 18.17,
+            "wktsPerMatch": 1.5,
+            "dot_pct": 40.24,
+            "source": "cricsheet"
+          },
+          "score": 62,
+          "detail": "2.0 avg · Econ 8.0",
+          "matches": 4,
+          "runs": 2,
+          "wickets": 6
+        },
+        {
+          "num": 65,
+          "name": "S Dube",
+          "nat": "IND",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 140.19,
+            "batAvg": 30,
+            "boundary_pct": 61.33,
+            "impact": 0,
+            "bowlEcon": 12.33,
+            "bowlAvg": 37,
+            "wktsPerMatch": 0.13,
+            "dot_pct": 22.22,
+            "source": "cricsheet"
+          },
+          "score": 53,
+          "detail": "30.0 avg · Econ 12.3",
+          "matches": 8,
+          "runs": 150,
+          "wickets": 1
         }
       ],
       "bowlers": [
         {
           "num": 54,
           "name": "A Kamboj",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2427,9 +2510,29 @@
           "wickets": 14
         },
         {
+          "num": 19,
+          "name": "Mukesh Choudhary",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 2,
+            "econ": 8.67,
+            "bowling_avg": 17.33,
+            "wkts_per_match": 1.5,
+            "dot_pct": 44.44,
+            "source": "cricsheet"
+          },
+          "score": 91,
+          "detail": "1.5 wkt/m · Econ 8.7",
+          "matches": 2,
+          "runs": 0,
+          "wickets": 3
+        },
+        {
           "num": 41,
           "name": "Noor Ahmad",
-          "nat": "",
+          "nat": "AFG",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2449,7 +2552,7 @@
         {
           "num": 63,
           "name": "KK Ahmed",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2469,7 +2572,7 @@
         {
           "num": 6,
           "name": "Gurjapneet Singh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2487,29 +2590,9 @@
           "wickets": 3
         },
         {
-          "num": 77,
-          "name": "AJ Hosein",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 4,
-            "econ": 7.98,
-            "bowling_avg": 18.17,
-            "wkts_per_match": 1.5,
-            "dot_pct": 40.24,
-            "source": "cricsheet"
-          },
-          "score": 94,
-          "detail": "1.5 wkt/m · Econ 8.0",
-          "matches": 4,
-          "runs": 2,
-          "wickets": 6
-        },
-        {
           "num": 34,
           "name": "MJ Henry",
-          "nat": "",
+          "nat": "NZ",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2525,26 +2608,6 @@
           "matches": 3,
           "runs": 7,
           "wickets": 2
-        },
-        {
-          "num": 19,
-          "name": "Mukesh Choudhary",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 2,
-            "econ": 8.67,
-            "bowling_avg": 17.33,
-            "wkts_per_match": 1.5,
-            "dot_pct": 44.44,
-            "source": "cricsheet"
-          },
-          "score": 91,
-          "detail": "1.5 wkt/m · Econ 8.7",
-          "matches": 2,
-          "runs": 0,
-          "wickets": 3
         }
       ]
     },
@@ -2553,7 +2616,7 @@
         {
           "num": 71,
           "name": "V Suryavanshi",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2573,7 +2636,7 @@
         {
           "num": 9,
           "name": "YBK Jaiswal",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2591,29 +2654,9 @@
           "wickets": 0
         },
         {
-          "num": 4,
-          "name": "R Parag",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 112.82,
-            "avg": 12.57,
-            "boundary_pct": 61.36,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 61,
-          "detail": "SR 113 · Avg 12.6",
-          "matches": 8,
-          "runs": 88,
-          "wickets": 2
-        },
-        {
           "num": 42,
           "name": "D Ferreira",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2631,29 +2674,9 @@
           "wickets": 1
         },
         {
-          "num": 72,
-          "name": "SO Hetmyer",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 7,
-            "sr": 116.13,
-            "avg": 14.4,
-            "boundary_pct": 47.22,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 63,
-          "detail": "SR 116 · Avg 14.4",
-          "matches": 7,
-          "runs": 72,
-          "wickets": 0
-        },
-        {
           "num": 8,
           "name": "SB Dubey",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2671,9 +2694,49 @@
           "wickets": 0
         },
         {
+          "num": 72,
+          "name": "SO Hetmyer",
+          "nat": "WI",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 7,
+            "sr": 116.13,
+            "avg": 14.4,
+            "boundary_pct": 47.22,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 63,
+          "detail": "SR 116 · Avg 14.4",
+          "matches": 7,
+          "runs": 72,
+          "wickets": 0
+        },
+        {
+          "num": 4,
+          "name": "R Parag",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 8,
+            "sr": 112.82,
+            "avg": 12.57,
+            "boundary_pct": 61.36,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 61,
+          "detail": "SR 113 · Avg 12.6",
+          "matches": 8,
+          "runs": 88,
+          "wickets": 2
+        },
+        {
           "num": 96,
           "name": "LG Pretorius",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2693,7 +2756,7 @@
         {
           "num": 2,
           "name": "Yash Raj Punja",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2715,7 +2778,7 @@
         {
           "num": 89,
           "name": "Dhruv Jurel",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -2737,7 +2800,7 @@
         {
           "num": 56,
           "name": "RA Jadeja",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "ar",
           "stats": {
@@ -2763,7 +2826,7 @@
         {
           "num": 85,
           "name": "JC Archer",
-          "nat": "",
+          "nat": "ENG",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2781,9 +2844,29 @@
           "wickets": 13
         },
         {
+          "num": 19,
+          "name": "Brijesh Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 5,
+            "econ": 8.74,
+            "bowling_avg": 19.57,
+            "wkts_per_match": 1.4,
+            "dot_pct": 34.04,
+            "source": "cricsheet"
+          },
+          "score": 84,
+          "detail": "1.4 wkt/m · Econ 8.7",
+          "matches": 5,
+          "runs": 1,
+          "wickets": 7
+        },
+        {
           "num": 25,
           "name": "Ravi Bishnoi",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2803,7 +2886,7 @@
         {
           "num": 70,
           "name": "N Burger",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2821,29 +2904,9 @@
           "wickets": 8
         },
         {
-          "num": 19,
-          "name": "Brijesh Sharma",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 5,
-            "econ": 8.74,
-            "bowling_avg": 19.57,
-            "wkts_per_match": 1.4,
-            "dot_pct": 34.04,
-            "source": "cricsheet"
-          },
-          "score": 84,
-          "detail": "1.4 wkt/m · Econ 8.7",
-          "matches": 5,
-          "runs": 1,
-          "wickets": 7
-        },
-        {
           "num": 8,
           "name": "Sandeep Sharma",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2863,7 +2926,7 @@
         {
           "num": 70,
           "name": "TU Deshpande",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -2885,69 +2948,9 @@
     "pbks": {
       "batters": [
         {
-          "num": 56,
-          "name": "C Connolly",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 7,
-            "sr": 164.38,
-            "avg": 48,
-            "boundary_pct": 74.17,
-            "impact": 0.333,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 164 · Avg 48.0",
-          "matches": 7,
-          "runs": 240,
-          "wickets": 0
-        },
-        {
-          "num": 19,
-          "name": "MP Stoinis",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 7,
-            "sr": 184.62,
-            "avg": 48,
-            "boundary_pct": 75,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 185 · Avg 48.0",
-          "matches": 7,
-          "runs": 48,
-          "wickets": 0
-        },
-        {
-          "num": 49,
-          "name": "P Simran Singh",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 7,
-            "sr": 192.62,
-            "avg": 71.75,
-            "boundary_pct": 76.66,
-            "impact": 0.5,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 193 · Avg 71.8",
-          "matches": 7,
-          "runs": 287,
-          "wickets": 0
-        },
-        {
           "num": 38,
           "name": "Shashank Singh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2967,7 +2970,7 @@
         {
           "num": 34,
           "name": "SS Iyer",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -2987,7 +2990,7 @@
         {
           "num": 82,
           "name": "Priyansh Arya",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3007,7 +3010,7 @@
         {
           "num": 11,
           "name": "N Wadhera",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3025,13 +3028,107 @@
           "wickets": 0
         }
       ],
-      "wicketKeepers": [],
-      "allRounders": [],
+      "wicketKeepers": [
+        {
+          "num": 49,
+          "name": "P Simran Singh",
+          "nat": "IND",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 7,
+            "sr": 192.62,
+            "avg": 71.75,
+            "boundary_pct": 76.66,
+            "impact": 0.5,
+            "source": "cricsheet"
+          },
+          "score": 100,
+          "detail": "SR 193 · Avg 71.8",
+          "matches": 7,
+          "runs": 287,
+          "wickets": 0
+        }
+      ],
+      "allRounders": [
+        {
+          "num": 19,
+          "name": "MP Stoinis",
+          "nat": "AUS",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 7,
+            "batSr": 184.62,
+            "batAvg": 48,
+            "boundary_pct": 75,
+            "impact": 0,
+            "bowlEcon": 14,
+            "bowlAvg": 28,
+            "wktsPerMatch": 0,
+            "dot_pct": 25,
+            "source": "cricsheet"
+          },
+          "score": 67,
+          "detail": "48.0 avg · Econ 14.0",
+          "matches": 7,
+          "runs": 48,
+          "wickets": 0
+        },
+        {
+          "num": 56,
+          "name": "C Connolly",
+          "nat": "AUS",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 7,
+            "batSr": 164.38,
+            "batAvg": 48,
+            "boundary_pct": 74.17,
+            "impact": 0.333,
+            "bowlEcon": 12,
+            "bowlAvg": 50,
+            "wktsPerMatch": 0,
+            "dot_pct": 0,
+            "source": "cricsheet"
+          },
+          "score": 50,
+          "detail": "48.0 avg · Econ 12.0",
+          "matches": 7,
+          "runs": 240,
+          "wickets": 0
+        },
+        {
+          "num": 30,
+          "name": "M Jansen",
+          "nat": "RSA",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 7,
+            "batSr": 90.91,
+            "batAvg": 10,
+            "boundary_pct": 60,
+            "impact": 0,
+            "bowlEcon": 8.96,
+            "bowlAvg": 43,
+            "wktsPerMatch": 0.71,
+            "dot_pct": 29.86,
+            "source": "cricsheet"
+          },
+          "score": 44,
+          "detail": "10.0 avg · Econ 9.0",
+          "matches": 7,
+          "runs": 10,
+          "wickets": 5
+        }
+      ],
       "bowlers": [
         {
           "num": 36,
           "name": "Arshdeep Singh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3049,29 +3146,9 @@
           "wickets": 7
         },
         {
-          "num": 30,
-          "name": "M Jansen",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 7,
-            "econ": 8.96,
-            "bowling_avg": 43,
-            "wkts_per_match": 0.71,
-            "dot_pct": 29.86,
-            "source": "cricsheet"
-          },
-          "score": 35,
-          "detail": "0.7 wkt/m · Econ 9.0",
-          "matches": 7,
-          "runs": 10,
-          "wickets": 5
-        },
-        {
           "num": 84,
           "name": "Vijaykumar Vyshak",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3091,7 +3168,7 @@
         {
           "num": 87,
           "name": "YS Chahal",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3111,7 +3188,7 @@
         {
           "num": 59,
           "name": "XC Bartlett",
-          "nat": "",
+          "nat": "AUS",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3135,7 +3212,7 @@
         {
           "num": 50,
           "name": "Sameer Rizvi",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3155,7 +3232,7 @@
         {
           "num": 34,
           "name": "T Stubbs",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3173,9 +3250,29 @@
           "wickets": 0
         },
         {
+          "num": 53,
+          "name": "N Rana",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 6,
+            "sr": 155.05,
+            "avg": 33.8,
+            "boundary_pct": 78.11,
+            "impact": 0.333,
+            "source": "cricsheet"
+          },
+          "score": 100,
+          "detail": "SR 155 · Avg 33.8",
+          "matches": 6,
+          "runs": 169,
+          "wickets": 0
+        },
+        {
           "num": 16,
           "name": "DA Miller",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3195,7 +3292,7 @@
         {
           "num": 43,
           "name": "P Nissanka",
-          "nat": "",
+          "nat": "SL",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3213,29 +3310,9 @@
           "wickets": 0
         },
         {
-          "num": 53,
-          "name": "N Rana",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 6,
-            "sr": 155.05,
-            "avg": 33.8,
-            "boundary_pct": 78.11,
-            "impact": 0.333,
-            "source": "cricsheet"
-          },
-          "score": 100,
-          "detail": "SR 155 · Avg 33.8",
-          "matches": 6,
-          "runs": 169,
-          "wickets": 0
-        },
-        {
           "num": 33,
           "name": "Ashutosh Sharma",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3253,29 +3330,9 @@
           "wickets": 0
         },
         {
-          "num": 5,
-          "name": "KA Jamieson",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 1,
-            "sr": 92.31,
-            "avg": 12,
-            "boundary_pct": 83.33,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 55,
-          "detail": "SR 92 · Avg 12.0",
-          "matches": 1,
-          "runs": 12,
-          "wickets": 1
-        },
-        {
           "num": 49,
           "name": "KK Nair",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3295,7 +3352,7 @@
         {
           "num": 50,
           "name": "PVD Chameera",
-          "nat": "",
+          "nat": "SL",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3315,7 +3372,7 @@
         {
           "num": 47,
           "name": "SU Parakh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3337,7 +3394,7 @@
         {
           "num": 78,
           "name": "KL Rahul",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -3357,7 +3414,7 @@
         {
           "num": 74,
           "name": "Abishek Porel",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -3375,72 +3432,61 @@
           "wickets": 0
         }
       ],
-      "allRounders": [],
-      "bowlers": [
+      "allRounders": [
         {
           "num": 46,
           "name": "AR Patel",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
-          "role": "bowl",
+          "role": "ar",
           "stats": {
             "apps": 8,
-            "econ": 8.33,
-            "bowling_avg": 28.57,
-            "wkts_per_match": 0.88,
+            "batSr": 100,
+            "batAvg": 6.2,
+            "boundary_pct": 38.71,
+            "impact": 0,
+            "bowlEcon": 8.33,
+            "bowlAvg": 28.57,
+            "wktsPerMatch": 0.88,
             "dot_pct": 25.69,
             "source": "cricsheet"
           },
-          "score": 64,
-          "detail": "0.9 wkt/m · Econ 8.3",
+          "score": 56,
+          "detail": "6.2 avg · Econ 8.3",
           "matches": 8,
           "runs": 31,
           "wickets": 7
         },
         {
-          "num": 42,
-          "name": "Kuldeep Yadav",
-          "nat": "",
+          "num": 5,
+          "name": "KA Jamieson",
+          "nat": "NZ",
           "tag": "",
-          "role": "bowl",
+          "role": "ar",
           "stats": {
-            "apps": 8,
-            "econ": 10.26,
-            "bowling_avg": 33.71,
-            "wkts_per_match": 0.88,
-            "dot_pct": 23.91,
+            "apps": 1,
+            "batSr": 92.31,
+            "batAvg": 12,
+            "boundary_pct": 83.33,
+            "impact": 0,
+            "bowlEcon": 14,
+            "bowlAvg": 42,
+            "wktsPerMatch": 1,
+            "dot_pct": 33.33,
             "source": "cricsheet"
           },
-          "score": 42,
-          "detail": "0.9 wkt/m · Econ 10.3",
-          "matches": 8,
-          "runs": 9,
-          "wickets": 7
-        },
-        {
-          "num": 8,
-          "name": "T Natarajan",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 8,
-            "econ": 10.38,
-            "bowling_avg": 65.75,
-            "wkts_per_match": 0.5,
-            "dot_pct": 21.71,
-            "source": "cricsheet"
-          },
-          "score": 21,
-          "detail": "0.5 wkt/m · Econ 10.4",
-          "matches": 8,
-          "runs": 1,
-          "wickets": 4
-        },
+          "score": 40,
+          "detail": "12.0 avg · Econ 14.0",
+          "matches": 1,
+          "runs": 12,
+          "wickets": 1
+        }
+      ],
+      "bowlers": [
         {
           "num": 50,
           "name": "L Ngidi",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3458,9 +3504,29 @@
           "wickets": 7
         },
         {
+          "num": 42,
+          "name": "Kuldeep Yadav",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 8,
+            "econ": 10.26,
+            "bowling_avg": 33.71,
+            "wkts_per_match": 0.88,
+            "dot_pct": 23.91,
+            "source": "cricsheet"
+          },
+          "score": 42,
+          "detail": "0.9 wkt/m · Econ 10.3",
+          "matches": 8,
+          "runs": 9,
+          "wickets": 7
+        },
+        {
           "num": 44,
           "name": "Mukesh Kumar",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3480,7 +3546,7 @@
         {
           "num": 95,
           "name": "V Nigam",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3498,9 +3564,29 @@
           "wickets": 2
         },
         {
+          "num": 8,
+          "name": "T Natarajan",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 8,
+            "econ": 10.38,
+            "bowling_avg": 65.75,
+            "wkts_per_match": 0.5,
+            "dot_pct": 21.71,
+            "source": "cricsheet"
+          },
+          "score": 21,
+          "detail": "0.5 wkt/m · Econ 10.4",
+          "matches": 8,
+          "runs": 1,
+          "wickets": 4
+        },
+        {
           "num": 25,
           "name": "Auqib Nabi",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3524,7 +3610,7 @@
         {
           "num": 28,
           "name": "MD Choudhary",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3544,7 +3630,7 @@
         {
           "num": 36,
           "name": "A Badoni",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3562,29 +3648,9 @@
           "wickets": 0
         },
         {
-          "num": 61,
-          "name": "MR Marsh",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 133.33,
-            "avg": 26.5,
-            "boundary_pct": 65.09,
-            "impact": 0.125,
-            "source": "cricsheet"
-          },
-          "score": 84,
-          "detail": "SR 133 · Avg 26.5",
-          "matches": 8,
-          "runs": 212,
-          "wickets": 0
-        },
-        {
           "num": 7,
           "name": "AK Markram",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3602,49 +3668,9 @@
           "wickets": 0
         },
         {
-          "num": 50,
-          "name": "N Pooran",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 80.39,
-            "avg": 10.25,
-            "boundary_pct": 53.66,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 50,
-          "detail": "SR 80 · Avg 10.3",
-          "matches": 8,
-          "runs": 82,
-          "wickets": 0
-        },
-        {
-          "num": 43,
-          "name": "Abdul Samad",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 5,
-            "sr": 110.77,
-            "avg": 14.4,
-            "boundary_pct": 47.22,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 62,
-          "detail": "SR 111 · Avg 14.4",
-          "matches": 5,
-          "runs": 72,
-          "wickets": 0
-        },
-        {
           "num": 37,
           "name": "Himmat Singh",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3662,9 +3688,29 @@
           "wickets": 0
         },
         {
+          "num": 43,
+          "name": "Abdul Samad",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 5,
+            "sr": 110.77,
+            "avg": 14.4,
+            "boundary_pct": 47.22,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 62,
+          "detail": "SR 111 · Avg 14.4",
+          "matches": 5,
+          "runs": 72,
+          "wickets": 0
+        },
+        {
           "num": 78,
           "name": "MP Yadav",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bat",
           "stats": {
@@ -3680,53 +3726,13 @@
           "matches": 1,
           "runs": 5,
           "wickets": 0
-        },
-        {
-          "num": 51,
-          "name": "Shahbaz Ahmed",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 1,
-            "sr": 93.75,
-            "avg": 15,
-            "boundary_pct": 26.67,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 50,
-          "detail": "SR 94 · Avg 15.0",
-          "matches": 1,
-          "runs": 15,
-          "wickets": 0
-        },
-        {
-          "num": 73,
-          "name": "A Nortje",
-          "nat": "",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 1,
-            "sr": 0,
-            "avg": 0,
-            "boundary_pct": 0,
-            "impact": 0,
-            "source": "cricsheet"
-          },
-          "score": 0,
-          "detail": "SR 0 · Avg 0.0",
-          "matches": 1,
-          "runs": 0,
-          "wickets": 0
         }
       ],
       "wicketKeepers": [
         {
           "num": 46,
           "name": "RR Pant",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "wk",
           "stats": {
@@ -3742,94 +3748,83 @@
           "matches": 8,
           "runs": 190,
           "wickets": 0
+        },
+        {
+          "num": 50,
+          "name": "N Pooran",
+          "nat": "WI",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 8,
+            "sr": 80.39,
+            "avg": 10.25,
+            "boundary_pct": 53.66,
+            "impact": 0,
+            "source": "cricsheet"
+          },
+          "score": 50,
+          "detail": "SR 80 · Avg 10.3",
+          "matches": 8,
+          "runs": 82,
+          "wickets": 0
         }
       ],
-      "allRounders": [],
-      "bowlers": [
+      "allRounders": [
         {
-          "num": 29,
-          "name": "Prince Yadav",
-          "nat": "",
+          "num": 51,
+          "name": "Shahbaz Ahmed",
+          "nat": "IND",
           "tag": "",
-          "role": "bowl",
+          "role": "ar",
           "stats": {
-            "apps": 8,
-            "econ": 8.15,
-            "bowling_avg": 18.92,
-            "wkts_per_match": 1.63,
-            "dot_pct": 40.33,
-            "source": "cricsheet"
-          },
-          "score": 94,
-          "detail": "1.6 wkt/m · Econ 8.2",
-          "matches": 8,
-          "runs": 0,
-          "wickets": 13
-        },
-        {
-          "num": 41,
-          "name": "Mohammed Shami",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 8,
-            "econ": 8.06,
-            "bowling_avg": 35.71,
-            "wkts_per_match": 0.88,
-            "dot_pct": 46.24,
-            "source": "cricsheet"
-          },
-          "score": 61,
-          "detail": "0.9 wkt/m · Econ 8.1",
-          "matches": 8,
-          "runs": 31,
-          "wickets": 7
-        },
-        {
-          "num": 19,
-          "name": "DS Rathi",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 6,
-            "econ": 9.38,
-            "bowling_avg": 75,
-            "wkts_per_match": 0.5,
-            "dot_pct": 25,
-            "source": "cricsheet"
-          },
-          "score": 29,
-          "detail": "0.5 wkt/m · Econ 9.4",
-          "matches": 6,
-          "runs": 2,
-          "wickets": 3
-        },
-        {
-          "num": 40,
-          "name": "Avesh Khan",
-          "nat": "",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 5,
-            "econ": 10.18,
-            "bowling_avg": 34.6,
-            "wkts_per_match": 1,
-            "dot_pct": 32.35,
+            "apps": 1,
+            "batSr": 93.75,
+            "batAvg": 15,
+            "boundary_pct": 26.67,
+            "impact": 0,
+            "bowlEcon": 16,
+            "bowlAvg": 16,
+            "wktsPerMatch": 0,
+            "dot_pct": 0,
             "source": "cricsheet"
           },
           "score": 45,
-          "detail": "1.0 wkt/m · Econ 10.2",
-          "matches": 5,
-          "runs": 6,
-          "wickets": 5
+          "detail": "15.0 avg · Econ 16.0",
+          "matches": 1,
+          "runs": 15,
+          "wickets": 0
         },
+        {
+          "num": 61,
+          "name": "MR Marsh",
+          "nat": "AUS",
+          "tag": "",
+          "role": "ar",
+          "stats": {
+            "apps": 8,
+            "batSr": 133.33,
+            "batAvg": 26.5,
+            "boundary_pct": 65.09,
+            "impact": 0.125,
+            "bowlEcon": 12,
+            "bowlAvg": 50,
+            "wktsPerMatch": 0,
+            "dot_pct": 0,
+            "source": "cricsheet"
+          },
+          "score": 42,
+          "detail": "26.5 avg · Econ 12.0",
+          "matches": 8,
+          "runs": 212,
+          "wickets": 0
+        }
+      ],
+      "bowlers": [
         {
           "num": 96,
           "name": "Mohsin Khan",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3847,9 +3842,29 @@
           "wickets": 9
         },
         {
+          "num": 29,
+          "name": "Prince Yadav",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 8,
+            "econ": 8.15,
+            "bowling_avg": 18.92,
+            "wkts_per_match": 1.63,
+            "dot_pct": 40.33,
+            "source": "cricsheet"
+          },
+          "score": 94,
+          "detail": "1.6 wkt/m · Econ 8.2",
+          "matches": 8,
+          "runs": 0,
+          "wickets": 13
+        },
+        {
           "num": 9,
           "name": "M Siddharth",
-          "nat": "",
+          "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3867,9 +3882,49 @@
           "wickets": 4
         },
         {
+          "num": 41,
+          "name": "Mohammed Shami",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 8,
+            "econ": 8.06,
+            "bowling_avg": 35.71,
+            "wkts_per_match": 0.88,
+            "dot_pct": 46.24,
+            "source": "cricsheet"
+          },
+          "score": 61,
+          "detail": "0.9 wkt/m · Econ 8.1",
+          "matches": 8,
+          "runs": 31,
+          "wickets": 7
+        },
+        {
+          "num": 40,
+          "name": "Avesh Khan",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 5,
+            "econ": 10.18,
+            "bowling_avg": 34.6,
+            "wkts_per_match": 1,
+            "dot_pct": 32.35,
+            "source": "cricsheet"
+          },
+          "score": 45,
+          "detail": "1.0 wkt/m · Econ 10.2",
+          "matches": 5,
+          "runs": 6,
+          "wickets": 5
+        },
+        {
           "num": 31,
           "name": "GF Linde",
-          "nat": "",
+          "nat": "RSA",
           "tag": "",
           "role": "bowl",
           "stats": {
@@ -3885,6 +3940,46 @@
           "matches": 3,
           "runs": 31,
           "wickets": 1
+        },
+        {
+          "num": 19,
+          "name": "DS Rathi",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 6,
+            "econ": 9.38,
+            "bowling_avg": 75,
+            "wkts_per_match": 0.5,
+            "dot_pct": 25,
+            "source": "cricsheet"
+          },
+          "score": 29,
+          "detail": "0.5 wkt/m · Econ 9.4",
+          "matches": 6,
+          "runs": 2,
+          "wickets": 3
+        },
+        {
+          "num": 73,
+          "name": "A Nortje",
+          "nat": "RSA",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 1,
+            "econ": 9.75,
+            "bowling_avg": 39,
+            "wkts_per_match": 0,
+            "dot_pct": 29.17,
+            "source": "cricsheet"
+          },
+          "score": 29,
+          "detail": "0.0 wkt/m · Econ 9.8",
+          "matches": 1,
+          "runs": 0,
+          "wickets": 0
         }
       ]
     }

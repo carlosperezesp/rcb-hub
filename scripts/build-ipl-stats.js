@@ -27,7 +27,33 @@ const WK_HINTS = new Set([
   'KL Rahul', 'JM Sharma', 'JC Buttler', 'SV Samson', 'MS Dhoni', 'Abishek Porel',
   'Ishan Kishan', 'RR Pant', 'Q de Kock', 'Nicholas Pooran', 'PD Salt', 'Phil Salt',
   'JC Buttler', 'Dhruv Jurel', 'Prabhsimran Singh', 'Ryan Rickelton', 'Heinrich Klaasen',
+  'P Simran Singh', 'H Klaasen', 'N Pooran', 'TL Seifert', 'Kumar Kushagra', 'RD Rickelton',
 ]);
+
+const ROLE_OVERRIDES = {
+  'Washington Sundar': 'ar', 'R Tewatia': 'ar', 'Rashid Khan': 'ar', 'GD Phillips': 'wk',
+  'KH Pandya': 'ar', 'R Shepherd': 'ar', 'JG Bethell': 'ar', 'LS Livingstone': 'ar',
+  'HH Pandya': 'ar', 'MJ Santner': 'ar', 'SN Thakur': 'ar', 'C Bosch': 'ar',
+  'SP Narine': 'ar', 'C Green': 'ar', 'Ramandeep Singh': 'ar', 'TL Seifert': 'wk',
+  'Abhishek Sharma': 'ar', 'H Klaasen': 'wk', 'PJ Cummins': 'bowl',
+  'S Dube': 'ar', 'RA Jadeja': 'ar', 'AJ Hosein': 'ar', 'J Overton': 'ar',
+  'MP Stoinis': 'ar', 'C Connolly': 'ar', 'M Jansen': 'ar', 'P Simran Singh': 'wk',
+  'AR Patel': 'ar', 'KA Jamieson': 'ar', 'MR Marsh': 'ar', 'N Pooran': 'wk',
+  'Shahbaz Ahmed': 'ar', 'A Nortje': 'bowl',
+};
+
+const PLAYER_NATIONS = {
+  'JC Buttler': 'ENG', 'K Rabada': 'RSA', 'Rashid Khan': 'AFG', 'GD Phillips': 'NZ', 'JO Holder': 'WI',
+  'PD Salt': 'ENG', 'JG Bethell': 'ENG', 'TH David': 'AUS', 'R Shepherd': 'WI', 'JR Hazlewood': 'AUS', 'JA Duffy': 'NZ',
+  'SE Rutherford': 'WI', 'RD Rickelton': 'RSA', 'Q de Kock': 'RSA', 'HH Pandya': 'IND', 'AM Ghazanfar': 'AFG', 'MJ Santner': 'NZ', 'TA Boult': 'NZ', 'C Bosch': 'RSA',
+  'R Powell': 'WI', 'FH Allen': 'NZ', 'TL Seifert': 'NZ', 'C Green': 'AUS', 'SP Narine': 'WI', 'B Muzarabani': 'ZIM',
+  'H Klaasen': 'RSA', 'TM Head': 'AUS', 'LS Livingstone': 'ENG', 'DA Payne': 'ENG', 'D Madushanka': 'SL', 'PJ Cummins': 'AUS', 'E Malinga': 'SL',
+  'D Brevis': 'RSA', 'MW Short': 'AUS', 'Noor Ahmad': 'AFG', 'AJ Hosein': 'WI', 'MJ Henry': 'NZ', 'J Overton': 'ENG',
+  'D Ferreira': 'RSA', 'SO Hetmyer': 'WI', 'LG Pretorius': 'RSA', 'RA Jadeja': 'IND', 'JC Archer': 'ENG', 'N Burger': 'RSA',
+  'C Connolly': 'AUS', 'MP Stoinis': 'AUS', 'M Jansen': 'RSA', 'XC Bartlett': 'AUS',
+  'T Stubbs': 'RSA', 'DA Miller': 'RSA', 'P Nissanka': 'SL', 'KA Jamieson': 'NZ', 'PVD Chameera': 'SL', 'L Ngidi': 'RSA',
+  'AK Markram': 'RSA', 'MR Marsh': 'AUS', 'N Pooran': 'WI', 'A Nortje': 'RSA', 'GF Linde': 'RSA',
+};
 
 function normName(name = '') {
   return name.toLowerCase().replace(/[^a-z]/g, '');
@@ -85,6 +111,7 @@ function round(value, digits = 2) {
 }
 
 function inferRole(player) {
+  if (ROLE_OVERRIDES[player.name]) return ROLE_OVERRIDES[player.name];
   if (WK_HINTS.has(player.name)) return 'wk';
   if (player.bowlBalls >= 48 && (player.balls >= 36 || player.runs >= 80)) return 'ar';
   if (player.bowlBalls >= 36 && player.runs >= 120) return 'ar';
@@ -275,7 +302,7 @@ function buildOutput(players, matches) {
     const row = {
       num: Number.parseInt(player.id.slice(0, 2), 16) % 99 || 1,
       name: player.name,
-      nat: '',
+      nat: PLAYER_NATIONS[player.name] || 'IND',
       tag: '',
       role,
       stats,
@@ -290,7 +317,7 @@ function buildOutput(players, matches) {
 
   Object.values(squads).forEach(squad => {
     Object.values(squad).forEach(group => {
-      group.sort((a, b) => (b.matches - a.matches) || (b.score - a.score) || a.name.localeCompare(b.name));
+      group.sort((a, b) => (b.score - a.score) || (b.matches - a.matches) || a.name.localeCompare(b.name));
     });
   });
 
