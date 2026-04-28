@@ -168,45 +168,101 @@ function buildStats(player, role) {
   const bowlingAvg = player.wickets ? player.bowlRuns / player.wickets : player.bowlRuns || 50;
   const wktsPerMatch = player.matches.size ? player.wickets / player.matches.size : 0;
   const dotPct = player.bowlBalls ? (player.dotBalls / player.bowlBalls) * 100 : 0;
-
-  if (role === 'bowl') {
-    return {
-      apps: player.matches.size,
-      econ: round(econ, 2),
-      bowling_avg: round(bowlingAvg, 2),
-      wkts_per_match: round(wktsPerMatch, 2),
-      dot_pct: round(dotPct, 2),
-      source: 'cricsheet',
-    };
-  }
-  if (role === 'ar') {
-    return {
-      apps: player.matches.size,
-      batSr: round(sr, 2),
-      batAvg: round(battingAvg, 2),
-      boundary_pct: round(boundaryPct, 2),
-      impact: round(impact, 3),
-      bowlEcon: round(econ, 2),
-      bowlAvg: round(bowlingAvg, 2),
-      wktsPerMatch: round(wktsPerMatch, 2),
-      dot_pct: round(dotPct, 2),
-      source: 'cricsheet',
-    };
-  }
-  return {
+  const batStats = {
     apps: player.matches.size,
     sr: round(sr, 2),
     avg: round(battingAvg, 2),
     boundary_pct: round(boundaryPct, 2),
     impact: round(impact, 3),
+  };
+  const bowlStats = {
+    apps: player.matches.size,
+    econ: round(econ, 2),
+    bowling_avg: round(bowlingAvg, 2),
+    wkts_per_match: round(wktsPerMatch, 2),
+    dot_pct: round(dotPct, 2),
+  };
+  const batScore = player.balls ? calcFormScore('bat', batStats) : null;
+  const bowlScore = player.bowlBalls ? calcFormScore('bowl', bowlStats) : null;
+  const fieldScore = Math.min(100, Math.round(((player.catches + player.runouts) * 10 + player.stumpings * 16) / Math.max(player.matches.size, 1)));
+  const weights = {
+    bat: [0.85, 0.10, 0.05],
+    wk: [0.72, 0.03, 0.25],
+    ar: [0.48, 0.47, 0.05],
+    bowl: [0.18, 0.77, 0.05],
+  }[role] || [0.7, 0.2, 0.1];
+  const weightedParts = [
+    [batScore, weights[0]],
+    [bowlScore, weights[1]],
+    [fieldScore || null, weights[2]],
+  ].filter(([score]) => score !== null && score !== undefined);
+  const weightTotal = weightedParts.reduce((total, [, weight]) => total + weight, 0) || 1;
+  const overall = Math.round(weightedParts.reduce((total, [score, weight]) => total + score * weight, 0) / weightTotal);
+
+  return {
+    apps: player.matches.size,
+    bat: {
+      ...batStats,
+      runs: player.runs,
+      balls: player.balls,
+      outs: player.outs,
+      fifties: player.fifties,
+      hundreds: player.hundreds,
+      score: batScore,
+    },
+    bowl: {
+      ...bowlStats,
+      balls: player.bowlBalls,
+      runs: player.bowlRuns,
+      wickets: player.wickets,
+      score: bowlScore,
+    },
+    field: {
+      catches: player.catches,
+      stumpings: player.stumpings,
+      runouts: player.runouts,
+      score: fieldScore,
+    },
+    overall,
     source: 'cricsheet',
   };
 }
 
+function legacyStats(stats, role) {
+  if (role === 'bowl') return {
+    apps: stats.apps,
+    econ: stats.bowl.econ,
+    bowling_avg: stats.bowl.bowling_avg,
+    wkts_per_match: stats.bowl.wkts_per_match,
+    dot_pct: stats.bowl.dot_pct,
+    source: stats.source,
+  };
+  if (role === 'ar') return {
+    apps: stats.apps,
+    batSr: stats.bat.sr,
+    batAvg: stats.bat.avg,
+    boundary_pct: stats.bat.boundary_pct,
+    impact: stats.bat.impact,
+    bowlEcon: stats.bowl.econ,
+    bowlAvg: stats.bowl.bowling_avg,
+    wktsPerMatch: stats.bowl.wkts_per_match,
+    dot_pct: stats.bowl.dot_pct,
+    source: stats.source,
+  };
+  return {
+    apps: stats.apps,
+    sr: stats.bat.sr,
+    avg: stats.bat.avg,
+    boundary_pct: stats.bat.boundary_pct,
+    impact: stats.bat.impact,
+    source: stats.source,
+  };
+}
+
 function statLine(player, role, stats) {
-  if (role === 'bowl') return `${stats.wkts_per_match.toFixed(1)} wkt/m · Econ ${stats.econ.toFixed(1)}`;
-  if (role === 'ar') return `${stats.batAvg.toFixed(1)} avg · Econ ${stats.bowlEcon.toFixed(1)}`;
-  return `SR ${stats.sr.toFixed(0)} · Avg ${stats.avg.toFixed(1)}`;
+  if (role === 'bowl') return `${stats.bowl.wkts_per_match.toFixed(1)} wkt/m · Econ ${stats.bowl.econ.toFixed(1)}`;
+  if (role === 'ar') return `${stats.bat.avg.toFixed(1)} avg · Econ ${stats.bowl.econ.toFixed(1)}`;
+  return `SR ${stats.bat.sr.toFixed(0)} · Avg ${stats.bat.avg.toFixed(1)}`;
 }
 
 function processMatch(filePath, seasonPlayers, matches) {
@@ -298,14 +354,14 @@ function buildOutput(players, matches) {
     if (!slug) return;
     const role = inferRole(player);
     const stats = buildStats(player, role);
-    const score = calcFormScore(role, stats);
+    const score = stats.overall;
     const row = {
       num: Number.parseInt(player.id.slice(0, 2), 16) % 99 || 1,
       name: player.name,
       nat: PLAYER_NATIONS[player.name] || 'IND',
       tag: '',
       role,
-      stats,
+      stats: { ...legacyStats(stats, role), profile: stats },
       score,
       detail: statLine(player, role, stats),
       matches: player.matches.size,

@@ -537,7 +537,7 @@
     border-radius: 8px;
     display: flex;
     gap: 12px;
-    min-height: 96px;
+    min-height: 132px;
     overflow: hidden;
     padding: 16px;
     position: relative;
@@ -597,6 +597,44 @@
     font-size: 11px;
     font-weight: 700;
     line-height: 1.35;
+  }
+  .player-body {
+    min-width: 0;
+    width: 100%;
+  }
+  .skill-grid {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 10px;
+  }
+  .skill-pill {
+    background: rgba(19,25,21,.05);
+    border-radius: 7px;
+    padding: 6px 7px;
+  }
+  .skill-pill strong {
+    color: var(--ink);
+    display: block;
+    font: 800 14px/1 'Manrope', sans-serif;
+    margin-bottom: 3px;
+  }
+  .skill-pill span {
+    color: var(--ink-mute);
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .split-lines {
+    color: var(--ink-soft);
+    display: grid;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 10px;
   }
   .form-score {
     border-radius: 999px;
@@ -1779,6 +1817,45 @@ function formTier(score) {
   return 'poor';
 }
 
+function playerProfile(player) {
+  if (player.stats?.profile) return player.stats.profile;
+  const s = player.stats || {};
+  const bat = {
+    runs: 0,
+    balls: 0,
+    sr: s.sr || s.batSr || 0,
+    avg: s.avg || s.batAvg || 0,
+    score: player.role === 'bowl' ? null : player.score,
+  };
+  const bowl = {
+    wickets: 0,
+    balls: 0,
+    econ: s.econ || s.bowlEcon || 0,
+    wkts_per_match: s.wkts_per_match || s.wktsPerMatch || 0,
+    score: player.role === 'bat' || player.role === 'wk' ? null : player.score,
+  };
+  return { apps: s.apps || player.matches || 0, bat, bowl, field: { catches: 0, stumpings: 0, runouts: 0, score: 0 }, overall: player.score };
+}
+
+function scoreText(score) {
+  return score === null || score === undefined || Number.isNaN(score) ? '—' : String(score);
+}
+
+function playerLines(profile) {
+  const lines = [];
+  if (profile.bat?.balls || profile.bat?.runs) {
+    lines.push(`Bat ${profile.bat.runs} runs · SR ${profile.bat.sr.toFixed(0)} · Avg ${profile.bat.avg.toFixed(1)}`);
+  }
+  if (profile.bowl?.balls || profile.bowl?.wickets) {
+    lines.push(`Bowl ${profile.bowl.wickets} wkts · Econ ${profile.bowl.econ.toFixed(1)} · ${profile.bowl.wkts_per_match.toFixed(1)} w/m`);
+  }
+  const fieldTotal = (profile.field?.catches || 0) + (profile.field?.stumpings || 0) + (profile.field?.runouts || 0);
+  if (fieldTotal) {
+    lines.push(`Field ${profile.field.catches} c · ${profile.field.stumpings} st · ${profile.field.runouts} ro`);
+  }
+  return lines.length ? lines : ['No season contribution yet'];
+}
+
 function renderSquadContent(slug = currentRoute().detail || 'rcb') {
   const el = document.getElementById(`squad-content-${slug}`);
   if (!el) return;
@@ -1797,15 +1874,22 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
       <div class="role-title"><span class="role-dot ${dot}"></span>${title}</div>
       <div class="players-grid">
         ${sortByScore(squad[key]).map(p => {
+          const profile = playerProfile(p);
           const tier = formTier(p.score);
           const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
           const apps = p.matches || p.stats?.apps || 0;
           return `<div class="player-card card-${tier}">
             <div class="player-num">${p.num}</div>
-            <div>
+            <div class="player-body">
               <div class="player-name">${p.name}</div>
               <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
-              <div class="player-meta">${apps} matches${p.tag ? ` · ${p.tag}` : ''}<br>${p.detail}</div>
+              <div class="player-meta">${apps} matches${p.tag ? ` · ${p.tag}` : ''}</div>
+              <div class="skill-grid">
+                <div class="skill-pill"><span>Overall</span><strong>${scoreText(p.score)}</strong></div>
+                <div class="skill-pill"><span>Bat</span><strong>${scoreText(profile.bat?.score)}</strong></div>
+                <div class="skill-pill"><span>Bowl</span><strong>${scoreText(profile.bowl?.score)}</strong></div>
+              </div>
+              <div class="split-lines">${playerLines(profile).map(line => `<div>${line}</div>`).join('')}</div>
               <span class="form-score ${tier}">${tier} · ${p.score} · ${source}</span>
             </div>
           </div>`;
