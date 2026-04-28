@@ -310,9 +310,15 @@ if (!fs.existsSync(inputDir)) {
   process.exit(1);
 }
 
-const files = fs.readdirSync(inputDir)
-  .filter(file => file.endsWith('.json'))
-  .map(file => path.join(inputDir, file));
+function jsonFiles(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return jsonFiles(fullPath);
+    return entry.isFile() && entry.name.endsWith('.json') ? [fullPath] : [];
+  });
+}
+
+const files = jsonFiles(inputDir);
 
 const players = {};
 const matches = [];
