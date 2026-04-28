@@ -1636,9 +1636,9 @@ function renderFixtures(target, fixtures) {
         <div class="mono" style="font-size:10px;margin-top:8px;color:var(--ink-soft)">${m.t}</div>
       </div>
       <div class="fixture-main">
-        <div class="fixture-team">${flag(m.af, m.aa || m.a)} ${m.a}</div>
+        <div class="fixture-team">${flag(m.af, fixtureAbbr(m, 'a'))} ${m.a}</div>
         <div class="eyebrow" style="color:var(--ink-mute);margin-left:46px">vs</div>
-        <div class="fixture-team">${flag(m.bf, m.ba || m.b)} ${m.b}</div>
+        <div class="fixture-team">${flag(m.bf, fixtureAbbr(m, 'b'))} ${m.b}</div>
       </div>
       <div class="fixture-info">
         ${m.tag ? `<span class="chip chip-gold">${m.tag}</span>` : ''}
@@ -1646,6 +1646,18 @@ function renderFixtures(target, fixtures) {
       </div>
     </div>
   `).join('');
+}
+
+function fixtureAbbr(match, side) {
+  const explicit = match[`${side}a`];
+  if (explicit && explicit.length <= 5) return explicit;
+  const slug = match[`${side}f`];
+  const bySlug = {
+    gt: 'GT', rcb: 'RCB', mi: 'MI', kkr: 'KKR', srh: 'SRH',
+    csk: 'CSK', rr: 'RR', pbks: 'PBKS', dc: 'DC', lsg: 'LSG',
+  };
+  if (bySlug[slug]) return bySlug[slug];
+  return String(match[side] || '').split(/\s+/).map(word => word[0]).join('').slice(0, 5).toUpperCase();
 }
 
 function formatIplFixture(matchInfo) {
@@ -1678,7 +1690,7 @@ function formatIplFixture(matchInfo) {
 }
 
 async function fetchIplFixtures() {
-  const cached = cacheGet('global_ipl_fixtures_v1');
+  const cached = cacheGet('global_ipl_fixtures_v2');
   if (cached) return cached;
   try {
     const data = await cricbuzzFetch(`series/v1/${CRICBUZZ_IPL_SERIES_ID}`);
@@ -1691,7 +1703,7 @@ async function fetchIplFixtures() {
       .slice(0, 6)
       .map(formatIplFixture);
     if (fixtures.length) {
-      cacheSet('global_ipl_fixtures_v1', fixtures);
+      cacheSet('global_ipl_fixtures_v2', fixtures);
       return fixtures;
     }
   } catch(e) {}
