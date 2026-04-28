@@ -1134,16 +1134,16 @@ const testTeams = [
 ];
 
 const iplFallback = [
-  { pos:1, abbr:'GT', full:'Gujarat Titans', flag:'gt', m:8, w:6, l:2, pts:12, nrr:+0.731 },
-  { pos:2, abbr:'RCB', full:'Royal Challengers Bengaluru', flag:'rcb', m:8, w:5, l:3, pts:10, nrr:+0.412, rcb:true },
-  { pos:3, abbr:'MI', full:'Mumbai Indians', flag:'mi', m:8, w:5, l:3, pts:10, nrr:+0.287 },
-  { pos:4, abbr:'KKR', full:'Kolkata Knight Riders', flag:'kkr', m:8, w:5, l:3, pts:10, nrr:+0.104 },
-  { pos:5, abbr:'SRH', full:'Sunrisers Hyderabad', flag:'srh', m:8, w:4, l:4, pts:8, nrr:+0.061 },
-  { pos:6, abbr:'CSK', full:'Chennai Super Kings', flag:'csk', m:8, w:3, l:5, pts:6, nrr:-0.133 },
-  { pos:7, abbr:'RR', full:'Rajasthan Royals', flag:'rr', m:8, w:3, l:5, pts:6, nrr:-0.298 },
-  { pos:8, abbr:'PBKS', full:'Punjab Kings', flag:'pbks', m:8, w:3, l:5, pts:6, nrr:-0.344 },
-  { pos:9, abbr:'DC', full:'Delhi Capitals', flag:'dc', m:8, w:2, l:6, pts:4, nrr:-0.487 },
-  { pos:10, abbr:'LSG', full:'Lucknow Super Giants', flag:'lsg', m:8, w:1, l:7, pts:2, nrr:-0.933 },
+  { pos:1, abbr:'PBKS', full:'Punjab Kings', flag:'pbks', m:7, w:6, l:0, pts:13, nrr:+1.333 },
+  { pos:2, abbr:'RCB', full:'Royal Challengers Bengaluru', flag:'rcb', m:8, w:6, l:2, pts:12, nrr:+1.919, rcb:true },
+  { pos:3, abbr:'SRH', full:'Sunrisers Hyderabad', flag:'srh', m:8, w:5, l:3, pts:10, nrr:+0.815 },
+  { pos:4, abbr:'RR', full:'Rajasthan Royals', flag:'rr', m:8, w:5, l:3, pts:10, nrr:+0.602 },
+  { pos:5, abbr:'GT', full:'Gujarat Titans', flag:'gt', m:8, w:4, l:4, pts:8, nrr:-0.475 },
+  { pos:6, abbr:'CSK', full:'Chennai Super Kings', flag:'csk', m:8, w:3, l:5, pts:6, nrr:-0.121 },
+  { pos:7, abbr:'DC', full:'Delhi Capitals', flag:'dc', m:8, w:3, l:5, pts:6, nrr:-1.060 },
+  { pos:8, abbr:'KKR', full:'Kolkata Knight Riders', flag:'kkr', m:8, w:2, l:5, pts:5, nrr:-0.751 },
+  { pos:9, abbr:'MI', full:'Mumbai Indians', flag:'mi', m:7, w:2, l:5, pts:4, nrr:-0.736 },
+  { pos:10, abbr:'LSG', full:'Lucknow Super Giants', flag:'lsg', m:8, w:2, l:6, pts:4, nrr:-1.106 },
 ];
 
 const iplFixtures = [
@@ -1169,6 +1169,7 @@ const IPL_TEAM_ALIASES = {
 
 let IPL_SQUADS = {};
 let IPL_SQUAD_SOURCE = 'Estimated formula model';
+let IPL_STANDINGS_SOURCE = 'Verified fallback table';
 
 function loadCricsheetSquads() {
   const data = window.CRICSHEET_IPL_STATS;
@@ -1739,6 +1740,24 @@ function renderStandingsTable(rows, type) {
   return `${html}</tbody>`;
 }
 
+function isIplTableBehindCurrentBaseline(rows = []) {
+  const rcb = rows.find(row => row.abbr?.toUpperCase() === 'RCB' || /royal challengers/i.test(row.full || ''));
+  const pbks = rows.find(row => row.abbr?.toUpperCase() === 'PBKS' || /punjab kings/i.test(row.full || ''));
+  const totalPoints = rows.reduce((total, row) => total + (row.pts || 0), 0);
+  return rows.length < 10 || (rcb?.pts || 0) < 12 || (pbks?.pts || 0) < 13 || totalPoints < 78;
+}
+
+function cricsheetStandingsRows() {
+  const data = window.CRICSHEET_IPL_STATS || globalThis.CRICSHEET_IPL_STATS;
+  if (!Array.isArray(data?.standings) || !data.standings.length) return null;
+  IPL_STANDINGS_SOURCE = `${data.source} standings · ${data.matchesProcessed} matches · updated ${data.lastMatchDate || 'today'}`;
+  return data.standings.map(row => ({
+    ...row,
+    flag: row.flag || teamFlag(row.abbr),
+    rcb: row.rcb || row.abbr?.toUpperCase() === 'RCB',
+  }));
+}
+
 function renderTeamGrid(target, teams, mode) {
   document.getElementById(target).innerHTML = teams.map(team => `
     ${(() => {
@@ -1895,8 +1914,14 @@ function formatRecentResults() {
 }
 
 async function fetchIplStandings() {
-  const cached = cacheGet('global_ipl_standings_v1');
-  if (cached) return cached;
+  const cricsheetRows = cricsheetStandingsRows();
+  if (cricsheetRows) return cricsheetRows;
+
+  const cached = cacheGet('global_ipl_standings_v3', 60 * 60 * 1000);
+  if (cached?.rows) {
+    IPL_STANDINGS_SOURCE = cached.source || IPL_STANDINGS_SOURCE;
+    return cached.rows;
+  }
   try {
     const data = await apiFetch('series_points_table', { id: IPL_SERIES_ID });
     const table = data.data?.pointsTable?.[0]?.teamPoints || [];
@@ -1916,10 +1941,14 @@ async function fetchIplStandings() {
         rcb: abbr.toUpperCase() === 'RCB' || /royal challengers/i.test(t.teamName || ''),
       };
     });
-    cacheSet('global_ipl_standings_v1', rows);
-    return rows;
+    const isBehind = isIplTableBehindCurrentBaseline(rows);
+    const currentRows = isBehind ? iplFallback : rows;
+    IPL_STANDINGS_SOURCE = isBehind ? 'Verified fallback table · Cricbuzz/Rediff baseline' : 'Live CricAPI table';
+    cacheSet('global_ipl_standings_v3', { rows: currentRows, source: IPL_STANDINGS_SOURCE });
+    return currentRows;
   } catch(e) {
-    cacheSet('global_ipl_standings_v1', iplFallback);
+    IPL_STANDINGS_SOURCE = 'Verified fallback table · Cricbuzz/Rediff baseline';
+    cacheSet('global_ipl_standings_v3', { rows: iplFallback, source: IPL_STANDINGS_SOURCE });
     return iplFallback;
   }
 }
@@ -2051,9 +2080,64 @@ function fmt(value, digits = 0) {
   return Number(value).toFixed(digits);
 }
 
-function statTier(metric, value) {
+function valueAtPercentile(values, pct) {
+  if (!values.length) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  const index = Math.min(sorted.length - 1, Math.max(0, Math.ceil((pct / 100) * sorted.length) - 1));
+  return sorted[index];
+}
+
+function leagueStatBenchmarks(players) {
+  const buckets = {
+    runs: [], wickets: [], sr: [], avg: [], boundary: [], econ: [], bowlAvg: [], wpm: [], dot: [], field: [],
+  };
+  players.forEach(player => {
+    const profile = playerProfile(player);
+    const bat = profile.bat || {};
+    const bowl = profile.bowl || {};
+    const field = profile.field || {};
+    const fieldTotal = (field.catches || 0) + (field.stumpings || 0) + (field.runouts || 0);
+    if ((bat.balls || 0) > 0 || (bat.runs || 0) > 0) {
+      buckets.runs.push(bat.runs || 0);
+      if ((bat.balls || 0) >= 12) buckets.sr.push(bat.sr || 0);
+      if ((bat.balls || 0) >= 12 || (bat.outs || 0) > 0) buckets.avg.push(bat.avg || 0);
+      if ((bat.runs || 0) > 0) buckets.boundary.push(bat.boundary_pct || 0);
+    }
+    if ((bowl.balls || 0) > 0 || (bowl.wickets || 0) > 0) {
+      buckets.wickets.push(bowl.wickets || 0);
+      if ((bowl.balls || 0) >= 12) {
+        buckets.econ.push(bowl.econ || 0);
+        buckets.bowlAvg.push(bowl.bowling_avg || 0);
+        buckets.wpm.push(bowl.wkts_per_match || 0);
+        buckets.dot.push(bowl.dot_pct || 0);
+      }
+    }
+    if (fieldTotal > 0) buckets.field.push(fieldTotal);
+  });
+  return Object.fromEntries(Object.entries(buckets).map(([metric, values]) => {
+    const lowerIsBetter = metric === 'econ' || metric === 'bowlAvg';
+    return [metric, {
+      good: valueAtPercentile(values, lowerIsBetter ? 35 : 65),
+      elite: valueAtPercentile(values, lowerIsBetter ? 15 : 85),
+      lowerIsBetter,
+    }];
+  }));
+}
+
+function statTier(metric, value, benchmarks = null) {
   if (value === null || value === undefined || Number.isNaN(value)) return '';
   const v = Number(value);
+  const benchmark = benchmarks?.[metric];
+  if (benchmark?.good !== null && benchmark?.elite !== null) {
+    if (benchmark.lowerIsBetter) {
+      if (v <= benchmark.elite) return 'stat-elite';
+      if (v <= benchmark.good) return 'stat-good';
+      return '';
+    }
+    if (v >= benchmark.elite) return 'stat-elite';
+    if (v >= benchmark.good) return 'stat-good';
+    return '';
+  }
   const thresholds = {
     runs: [180, 260],
     wickets: [7, 11],
@@ -2077,36 +2161,36 @@ function statTier(metric, value) {
   return '';
 }
 
-function statChip(label, value, metric, digits = 0, limited = false) {
+function statChip(label, value, metric, digits = 0, limited = false, benchmarks = null) {
   if (value === null || value === undefined || Number.isNaN(value)) return '';
-  const cls = ['stat-chip', statTier(metric, value), limited ? 'stat-limited' : ''].filter(Boolean).join(' ');
+  const cls = ['stat-chip', statTier(metric, value, benchmarks), limited ? 'stat-limited' : ''].filter(Boolean).join(' ');
   return `<span class="${cls}"><span>${label}</span><strong>${fmt(value, digits)}</strong></span>`;
 }
 
-function battingStats(profile) {
+function battingStats(profile, benchmarks) {
   const bat = profile.bat || {};
   const lowSample = (bat.balls || 0) > 0 && (bat.balls || 0) < 24;
   return [
-    statChip('Runs', bat.runs || 0, 'runs', 0, false),
-    statChip('SR', bat.sr || 0, 'sr', 0, lowSample),
-    statChip('Avg', bat.avg || 0, 'avg', 1, lowSample),
-    statChip('Bnd%', bat.boundary_pct || 0, 'boundary', 0, lowSample),
+    statChip('Runs', bat.runs || 0, 'runs', 0, false, benchmarks),
+    statChip('SR', bat.sr || 0, 'sr', 0, lowSample, benchmarks),
+    statChip('Avg', bat.avg || 0, 'avg', 1, lowSample, benchmarks),
+    statChip('Bnd%', bat.boundary_pct || 0, 'boundary', 0, lowSample, benchmarks),
   ].join('');
 }
 
-function bowlingStats(profile) {
+function bowlingStats(profile, benchmarks) {
   const bowl = profile.bowl || {};
   const lowSample = (bowl.balls || 0) > 0 && (bowl.balls || 0) < 24;
   return [
-    statChip('Wkts', bowl.wickets || 0, 'wickets', 0, false),
-    statChip('Econ', bowl.econ || 0, 'econ', 1, lowSample),
-    statChip('Avg', bowl.bowling_avg || 0, 'bowlAvg', 1, lowSample),
-    statChip('W/M', bowl.wkts_per_match || 0, 'wpm', 1, lowSample),
-    statChip('Dot%', bowl.dot_pct || 0, 'dot', 0, lowSample),
+    statChip('Wkts', bowl.wickets || 0, 'wickets', 0, false, benchmarks),
+    statChip('Econ', bowl.econ || 0, 'econ', 1, lowSample, benchmarks),
+    statChip('Avg', bowl.bowling_avg || 0, 'bowlAvg', 1, lowSample, benchmarks),
+    statChip('W/M', bowl.wkts_per_match || 0, 'wpm', 1, lowSample, benchmarks),
+    statChip('Dot%', bowl.dot_pct || 0, 'dot', 0, lowSample, benchmarks),
   ].join('');
 }
 
-function fieldStats(profile) {
+function fieldStats(profile, benchmarks) {
   const field = profile.field || {};
   const items = [
     ['C', field.catches],
@@ -2114,7 +2198,7 @@ function fieldStats(profile) {
     ['RO', field.runouts],
   ].filter(([, value]) => value > 0);
   if (!items.length) return '';
-  return `<div class="stat-strip field-strip">${items.map(([label, value]) => statChip(label, value, 'field')).join('')}</div>`;
+  return `<div class="stat-strip field-strip">${items.map(([label, value]) => statChip(label, value, 'field', 0, false, benchmarks)).join('')}</div>`;
 }
 
 function hasSkillSample(player, mode) {
@@ -2144,13 +2228,13 @@ function bindSquadTabs(slug) {
   });
 }
 
-function renderPlayerCard(p, mode) {
+function renderPlayerCard(p, mode, benchmarks) {
   const profile = playerProfile(p);
   const score = skillScore(p, mode);
   const tier = formTier(score);
   const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
   const apps = p.matches || p.stats?.apps || profile.apps || 0;
-  const statHtml = mode === 'bat' ? battingStats(profile) : bowlingStats(profile);
+  const statHtml = mode === 'bat' ? battingStats(profile, benchmarks) : bowlingStats(profile, benchmarks);
   return `<div class="player-card card-${tier}">
     <div class="player-num">${p.num}</div>
     <div class="player-body">
@@ -2161,7 +2245,7 @@ function renderPlayerCard(p, mode) {
         <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
       </div>
       <div class="stat-strip">${statHtml}</div>
-      ${fieldStats(profile)}
+      ${fieldStats(profile, benchmarks)}
       <span class="form-score ${tier}">${source}</span>
     </div>
   </div>`;
@@ -2172,6 +2256,8 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
   if (!el) return;
   const squad = IPL_SQUADS[slug] || buildFallbackSquads()[slug] || { batters: [], wicketKeepers: [], allRounders: [], bowlers: [] };
   const players = Object.values(squad).flat();
+  const leaguePlayers = Object.values(IPL_SQUADS || {}).flatMap(teamSquad => Object.values(teamSquad || {}).flat());
+  const benchmarks = leagueStatBenchmarks(leaguePlayers.length ? leaguePlayers : players);
   const sortBySkill = mode => players
     .filter(player => hasSkillSample(player, mode))
     .sort((a, b) => (skillScore(b, mode) || -1) - (skillScore(a, mode) || -1)
@@ -2193,7 +2279,7 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
         <div class="role-title"><span class="role-dot ${dot}"></span>${title}</div>
       </div>
       <div class="players-grid">
-        ${sortBySkill(mode).map(p => renderPlayerCard(p, mode)).join('')}
+        ${sortBySkill(mode).map(p => renderPlayerCard(p, mode, benchmarks)).join('')}
       </div>
     </section>
   `).join('')}
@@ -2217,9 +2303,8 @@ function initStaticViews() {
 async function initIpl() {
   const rows = await fetchIplStandings();
   document.getElementById('ipl-standings-content').outerHTML = `<table>${renderStandingsTable(rows, 'ipl')}</table>`;
-  document.getElementById('ipl-data-label').textContent = cacheGet('global_ipl_standings_v1')
-    ? `Live/cached IPL data · refreshed at ${new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}`
-    : 'Static fallback data shown because the live points-table endpoint is unavailable.';
+  document.getElementById('ipl-data-label').textContent =
+    `${IPL_STANDINGS_SOURCE} · refreshed at ${new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}`;
   await fetchIplSquadModel();
   renderIplSpotlight(rows);
   renderTeamGrid('ipl-team-grid', rows, 'ipl');

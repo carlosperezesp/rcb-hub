@@ -110,6 +110,13 @@ function round(value, digits = 2) {
   return Math.round((value + Number.EPSILON) * factor) / factor;
 }
 
+function ensureTeamMatchStats(matchStats, team) {
+  if (!matchStats[team]) {
+    matchStats[team] = { runsFor: 0, ballsFor: 0, runsAgainst: 0, ballsAgainst: 0 };
+  }
+  return matchStats[team];
+}
+
 function sampleAdjustedScore(score, sample, fullSample) {
   if (score === null || score === undefined) return null;
   if (score <= 0) return 0;
@@ -289,6 +296,8 @@ function processMatch(filePath, seasonPlayers, matches) {
   const matchId = path.basename(filePath, '.json');
   const registry = info.registry?.people || {};
   const teamByPlayer = {};
+  const matchStats = {};
+  const maxBalls = (info.overs || 20) * 6;
 
   Object.entries(info.players || {}).forEach(([team, names]) => {
     names.forEach(name => {
@@ -297,11 +306,15 @@ function processMatch(filePath, seasonPlayers, matches) {
     });
   });
 
-  (raw.innings || []).forEach(innings => {
+  (raw.innings || []).forEach((innings, inningsIndex) => {
+    if (inningsIndex >= teams.length) return;
     const battingTeam = innings.team;
     const bowlingTeam = teams.find(team => team !== battingTeam);
     const inningsBatters = new Set();
     const inningsRuns = {};
+    let inningsTotal = 0;
+    let inningsBalls = 0;
+    let inningsWickets = 0;
 
     (innings.overs || []).forEach(over => {
       (over.deliveries || []).forEach(delivery => {
@@ -314,6 +327,7 @@ function processMatch(filePath, seasonPlayers, matches) {
         }
 
         batter.runs += delivery.runs?.batter || 0;
+        inningsTotal += delivery.runs?.total || 0;
         inningsRuns[batter.id] = (inningsRuns[batter.id] || 0) + (delivery.runs?.batter || 0);
         if (countsForBatterBall(delivery)) batter.balls += 1;
         if ((delivery.runs?.batter || 0) === 4) batter.fours += 1;
@@ -322,10 +336,12 @@ function processMatch(filePath, seasonPlayers, matches) {
         bowler.bowlRuns += bowlerRuns(delivery);
         if (isLegalBall(delivery)) {
           bowler.bowlBalls += 1;
+          inningsBalls += 1;
           if (delivery.runs?.total === 0) bowler.dotBalls += 1;
         }
 
         (delivery.wickets || []).forEach(wicket => {
+          inningsWickets += 1;
           const out = ensurePlayer(seasonPlayers, wicket.player_out, teamByPlayer[wicket.player_out] || battingTeam, registry);
           if (!NON_BATTER_OUTS.has(wicket.kind)) out.outs += 1;
           if (BOWLER_WICKET_KINDS.has(wicket.kind)) bowler.wickets += 1;
@@ -343,6 +359,14 @@ function processMatch(filePath, seasonPlayers, matches) {
       if (runs >= 100) seasonPlayers[id].hundreds += 1;
       else if (runs >= 50) seasonPlayers[id].fifties += 1;
     });
+
+    const ballsForNrr = inningsWickets >= 10 ? maxBalls : inningsBalls;
+    const battingStats = ensureTeamMatchStats(matchStats, battingTeam);
+    const bowlingStats = ensureTeamMatchStats(matchStats, bowlingTeam);
+    battingStats.runsFor += inningsTotal;
+    battingStats.ballsFor += ballsForNrr;
+    bowlingStats.runsAgainst += inningsTotal;
+    bowlingStats.ballsAgainst += ballsForNrr;
   });
 
   matches.push({
@@ -350,8 +374,85 @@ function processMatch(filePath, seasonPlayers, matches) {
     date: info.dates?.[0],
     matchNumber: info.event?.match_number,
     teams,
-    winner: info.outcome?.winner,
+    winner: info.outcome?.winner || info.outcome?.eliminator,
+    result: info.outcome?.result,
+    teamStats: matchStats,
   });
+}
+
+function buildStandings(matches) {
+  const teamSeeds = Object.entries(TEAM_SLUGS).reduce((items, [team, slug]) => {
+    if (!items.some(item => item.slug === slug)) items.push({ team, slug });
+    return items;
+  }, []);
+  const table = Object.fromEntries(teamSeeds.map(({ team, slug }) => [slug, {
+    abbr: slug.toUpperCase(),
+    full: team,
+    flag: slug,
+    m: 0,
+    w: 0,
+    l: 0,
+    nr: 0,
+    pts: 0,
+    runsFor: 0,
+    ballsFor: 0,
+    runsAgainst: 0,
+    ballsAgainst: 0,
+  }]));
+
+  matches.forEach(match => {
+    const teams = match.teams || [];
+    const countsForNrr = !!match.winner || match.result === 'tie';
+    teams.forEach(team => {
+      const slug = TEAM_SLUGS[team];
+      if (!table[slug]) return;
+      table[slug].m += 1;
+      if (!countsForNrr) return;
+      const stats = match.teamStats?.[team] || {};
+      table[slug].runsFor += stats.runsFor || 0;
+      table[slug].ballsFor += stats.ballsFor || 0;
+      table[slug].runsAgainst += stats.runsAgainst || 0;
+      table[slug].ballsAgainst += stats.ballsAgainst || 0;
+    });
+
+    const winnerSlug = TEAM_SLUGS[match.winner];
+    if (winnerSlug && table[winnerSlug]) {
+      table[winnerSlug].w += 1;
+      table[winnerSlug].pts += 2;
+      teams.filter(team => team !== match.winner).forEach(team => {
+        const slug = TEAM_SLUGS[team];
+        if (table[slug]) table[slug].l += 1;
+      });
+    } else {
+      teams.forEach(team => {
+        const slug = TEAM_SLUGS[team];
+        if (!table[slug]) return;
+        table[slug].nr += 1;
+        table[slug].pts += 1;
+      });
+    }
+  });
+
+  return Object.values(table)
+    .map(row => {
+      const forRate = row.ballsFor ? row.runsFor / (row.ballsFor / 6) : 0;
+      const againstRate = row.ballsAgainst ? row.runsAgainst / (row.ballsAgainst / 6) : 0;
+      return {
+        pos: 0,
+        abbr: row.abbr,
+        full: row.full,
+        flag: row.flag,
+        m: row.m,
+        w: row.w,
+        l: row.l,
+        nr: row.nr,
+        pts: row.pts,
+        nrr: round(forRate - againstRate, 3),
+        rcb: row.flag === 'rcb',
+      };
+    })
+    .sort((a, b) => (b.pts - a.pts) || (b.nrr - a.nrr) || (b.w - a.w) || a.full.localeCompare(b.full))
+    .map((row, index) => ({ ...row, pos: index + 1 }));
 }
 
 function buildOutput(players, matches) {
@@ -395,6 +496,7 @@ function buildOutput(players, matches) {
     matchesProcessed: matches.length,
     lastMatchDate: matches.map(m => m.date).sort().at(-1) || null,
     matches: matches.sort((a, b) => String(a.date).localeCompare(String(b.date))),
+    standings: buildStandings(matches),
     squads,
   };
 }

@@ -1,6 +1,6 @@
 {
   "source": "Cricsheet ball-by-ball",
-  "generatedAt": "2026-04-28T12:21:52.237Z",
+  "generatedAt": "2026-04-28T17:28:36.212Z",
   "season": "2026",
   "matchesProcessed": 39,
   "lastMatchDate": "2026-04-27",
@@ -13,7 +13,21 @@
         "Sunrisers Hyderabad",
         "Royal Challengers Bengaluru"
       ],
-      "winner": "Royal Challengers Bengaluru"
+      "winner": "Royal Challengers Bengaluru",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 201,
+          "ballsFor": 120,
+          "runsAgainst": 203,
+          "ballsAgainst": 94
+        },
+        "Royal Challengers Bengaluru": {
+          "runsFor": 203,
+          "ballsFor": 94,
+          "runsAgainst": 201,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527675",
@@ -23,7 +37,21 @@
         "Kolkata Knight Riders",
         "Mumbai Indians"
       ],
-      "winner": "Mumbai Indians"
+      "winner": "Mumbai Indians",
+      "teamStats": {
+        "Kolkata Knight Riders": {
+          "runsFor": 220,
+          "ballsFor": 120,
+          "runsAgainst": 224,
+          "ballsAgainst": 115
+        },
+        "Mumbai Indians": {
+          "runsFor": 224,
+          "ballsFor": 115,
+          "runsAgainst": 220,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527676",
@@ -33,7 +61,21 @@
         "Chennai Super Kings",
         "Rajasthan Royals"
       ],
-      "winner": "Rajasthan Royals"
+      "winner": "Rajasthan Royals",
+      "teamStats": {
+        "Chennai Super Kings": {
+          "runsFor": 127,
+          "ballsFor": 120,
+          "runsAgainst": 128,
+          "ballsAgainst": 73
+        },
+        "Rajasthan Royals": {
+          "runsFor": 128,
+          "ballsFor": 73,
+          "runsAgainst": 127,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527677",
@@ -43,7 +85,21 @@
         "Gujarat Titans",
         "Punjab Kings"
       ],
-      "winner": "Punjab Kings"
+      "winner": "Punjab Kings",
+      "teamStats": {
+        "Gujarat Titans": {
+          "runsFor": 162,
+          "ballsFor": 120,
+          "runsAgainst": 165,
+          "ballsAgainst": 115
+        },
+        "Punjab Kings": {
+          "runsFor": 165,
+          "ballsFor": 115,
+          "runsAgainst": 162,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527678",
@@ -53,7 +109,21 @@
         "Lucknow Super Giants",
         "Delhi Capitals"
       ],
-      "winner": "Delhi Capitals"
+      "winner": "Delhi Capitals",
+      "teamStats": {
+        "Lucknow Super Giants": {
+          "runsFor": 141,
+          "ballsFor": 120,
+          "runsAgainst": 145,
+          "ballsAgainst": 103
+        },
+        "Delhi Capitals": {
+          "runsFor": 145,
+          "ballsFor": 103,
+          "runsAgainst": 141,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527679",
@@ -63,7 +133,21 @@
         "Sunrisers Hyderabad",
         "Kolkata Knight Riders"
       ],
-      "winner": "Sunrisers Hyderabad"
+      "winner": "Sunrisers Hyderabad",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 226,
+          "ballsFor": 120,
+          "runsAgainst": 161,
+          "ballsAgainst": 120
+        },
+        "Kolkata Knight Riders": {
+          "runsFor": 161,
+          "ballsFor": 120,
+          "runsAgainst": 226,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527680",
@@ -73,7 +157,21 @@
         "Chennai Super Kings",
         "Punjab Kings"
       ],
-      "winner": "Punjab Kings"
+      "winner": "Punjab Kings",
+      "teamStats": {
+        "Chennai Super Kings": {
+          "runsFor": 209,
+          "ballsFor": 120,
+          "runsAgainst": 210,
+          "ballsAgainst": 112
+        },
+        "Punjab Kings": {
+          "runsFor": 210,
+          "ballsFor": 112,
+          "runsAgainst": 209,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527681",
@@ -83,7 +181,21 @@
         "Mumbai Indians",
         "Delhi Capitals"
       ],
-      "winner": "Delhi Capitals"
+      "winner": "Delhi Capitals",
+      "teamStats": {
+        "Mumbai Indians": {
+          "runsFor": 162,
+          "ballsFor": 120,
+          "runsAgainst": 164,
+          "ballsAgainst": 109
+        },
+        "Delhi Capitals": {
+          "runsFor": 164,
+          "ballsFor": 109,
+          "runsAgainst": 162,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527682",
@@ -93,7 +205,21 @@
         "Rajasthan Royals",
         "Gujarat Titans"
       ],
-      "winner": "Rajasthan Royals"
+      "winner": "Rajasthan Royals",
+      "teamStats": {
+        "Rajasthan Royals": {
+          "runsFor": 210,
+          "ballsFor": 120,
+          "runsAgainst": 204,
+          "ballsAgainst": 120
+        },
+        "Gujarat Titans": {
+          "runsFor": 204,
+          "ballsFor": 120,
+          "runsAgainst": 210,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527683",
@@ -103,7 +229,21 @@
         "Sunrisers Hyderabad",
         "Lucknow Super Giants"
       ],
-      "winner": "Lucknow Super Giants"
+      "winner": "Lucknow Super Giants",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 156,
+          "ballsFor": 120,
+          "runsAgainst": 160,
+          "ballsAgainst": 119
+        },
+        "Lucknow Super Giants": {
+          "runsFor": 160,
+          "ballsFor": 119,
+          "runsAgainst": 156,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527684",
@@ -113,7 +253,21 @@
         "Royal Challengers Bengaluru",
         "Chennai Super Kings"
       ],
-      "winner": "Royal Challengers Bengaluru"
+      "winner": "Royal Challengers Bengaluru",
+      "teamStats": {
+        "Royal Challengers Bengaluru": {
+          "runsFor": 250,
+          "ballsFor": 120,
+          "runsAgainst": 207,
+          "ballsAgainst": 120
+        },
+        "Chennai Super Kings": {
+          "runsFor": 207,
+          "ballsFor": 120,
+          "runsAgainst": 250,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527685",
@@ -122,7 +276,22 @@
       "teams": [
         "Kolkata Knight Riders",
         "Punjab Kings"
-      ]
+      ],
+      "result": "no result",
+      "teamStats": {
+        "Kolkata Knight Riders": {
+          "runsFor": 25,
+          "ballsFor": 22,
+          "runsAgainst": 0,
+          "ballsAgainst": 0
+        },
+        "Punjab Kings": {
+          "runsFor": 0,
+          "ballsFor": 0,
+          "runsAgainst": 25,
+          "ballsAgainst": 22
+        }
+      }
     },
     {
       "id": "1527686",
@@ -132,7 +301,21 @@
         "Rajasthan Royals",
         "Mumbai Indians"
       ],
-      "winner": "Rajasthan Royals"
+      "winner": "Rajasthan Royals",
+      "teamStats": {
+        "Rajasthan Royals": {
+          "runsFor": 150,
+          "ballsFor": 66,
+          "runsAgainst": 123,
+          "ballsAgainst": 66
+        },
+        "Mumbai Indians": {
+          "runsFor": 123,
+          "ballsFor": 66,
+          "runsAgainst": 150,
+          "ballsAgainst": 66
+        }
+      }
     },
     {
       "id": "1527687",
@@ -142,7 +325,21 @@
         "Gujarat Titans",
         "Delhi Capitals"
       ],
-      "winner": "Gujarat Titans"
+      "winner": "Gujarat Titans",
+      "teamStats": {
+        "Gujarat Titans": {
+          "runsFor": 210,
+          "ballsFor": 120,
+          "runsAgainst": 209,
+          "ballsAgainst": 120
+        },
+        "Delhi Capitals": {
+          "runsFor": 209,
+          "ballsFor": 120,
+          "runsAgainst": 210,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527688",
@@ -152,7 +349,21 @@
         "Kolkata Knight Riders",
         "Lucknow Super Giants"
       ],
-      "winner": "Lucknow Super Giants"
+      "winner": "Lucknow Super Giants",
+      "teamStats": {
+        "Kolkata Knight Riders": {
+          "runsFor": 181,
+          "ballsFor": 120,
+          "runsAgainst": 182,
+          "ballsAgainst": 120
+        },
+        "Lucknow Super Giants": {
+          "runsFor": 182,
+          "ballsFor": 120,
+          "runsAgainst": 181,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527689",
@@ -162,7 +373,21 @@
         "Royal Challengers Bengaluru",
         "Rajasthan Royals"
       ],
-      "winner": "Rajasthan Royals"
+      "winner": "Rajasthan Royals",
+      "teamStats": {
+        "Royal Challengers Bengaluru": {
+          "runsFor": 201,
+          "ballsFor": 120,
+          "runsAgainst": 202,
+          "ballsAgainst": 108
+        },
+        "Rajasthan Royals": {
+          "runsFor": 202,
+          "ballsFor": 108,
+          "runsAgainst": 201,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527690",
@@ -172,7 +397,21 @@
         "Sunrisers Hyderabad",
         "Punjab Kings"
       ],
-      "winner": "Punjab Kings"
+      "winner": "Punjab Kings",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 219,
+          "ballsFor": 120,
+          "runsAgainst": 223,
+          "ballsAgainst": 113
+        },
+        "Punjab Kings": {
+          "runsFor": 223,
+          "ballsFor": 113,
+          "runsAgainst": 219,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527691",
@@ -182,7 +421,21 @@
         "Chennai Super Kings",
         "Delhi Capitals"
       ],
-      "winner": "Chennai Super Kings"
+      "winner": "Chennai Super Kings",
+      "teamStats": {
+        "Chennai Super Kings": {
+          "runsFor": 212,
+          "ballsFor": 120,
+          "runsAgainst": 189,
+          "ballsAgainst": 120
+        },
+        "Delhi Capitals": {
+          "runsFor": 189,
+          "ballsFor": 120,
+          "runsAgainst": 212,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527692",
@@ -192,7 +445,21 @@
         "Lucknow Super Giants",
         "Gujarat Titans"
       ],
-      "winner": "Gujarat Titans"
+      "winner": "Gujarat Titans",
+      "teamStats": {
+        "Lucknow Super Giants": {
+          "runsFor": 164,
+          "ballsFor": 120,
+          "runsAgainst": 165,
+          "ballsAgainst": 112
+        },
+        "Gujarat Titans": {
+          "runsFor": 165,
+          "ballsFor": 112,
+          "runsAgainst": 164,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1527693",
@@ -202,7 +469,21 @@
         "Royal Challengers Bengaluru",
         "Mumbai Indians"
       ],
-      "winner": "Royal Challengers Bengaluru"
+      "winner": "Royal Challengers Bengaluru",
+      "teamStats": {
+        "Royal Challengers Bengaluru": {
+          "runsFor": 240,
+          "ballsFor": 120,
+          "runsAgainst": 222,
+          "ballsAgainst": 120
+        },
+        "Mumbai Indians": {
+          "runsFor": 222,
+          "ballsFor": 120,
+          "runsAgainst": 240,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529264",
@@ -212,7 +493,21 @@
         "Sunrisers Hyderabad",
         "Rajasthan Royals"
       ],
-      "winner": "Sunrisers Hyderabad"
+      "winner": "Sunrisers Hyderabad",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 216,
+          "ballsFor": 120,
+          "runsAgainst": 159,
+          "ballsAgainst": 120
+        },
+        "Rajasthan Royals": {
+          "runsFor": 159,
+          "ballsFor": 120,
+          "runsAgainst": 216,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529265",
@@ -222,7 +517,21 @@
         "Chennai Super Kings",
         "Kolkata Knight Riders"
       ],
-      "winner": "Chennai Super Kings"
+      "winner": "Chennai Super Kings",
+      "teamStats": {
+        "Chennai Super Kings": {
+          "runsFor": 192,
+          "ballsFor": 120,
+          "runsAgainst": 160,
+          "ballsAgainst": 120
+        },
+        "Kolkata Knight Riders": {
+          "runsFor": 160,
+          "ballsFor": 120,
+          "runsAgainst": 192,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529266",
@@ -232,7 +541,21 @@
         "Lucknow Super Giants",
         "Royal Challengers Bengaluru"
       ],
-      "winner": "Royal Challengers Bengaluru"
+      "winner": "Royal Challengers Bengaluru",
+      "teamStats": {
+        "Lucknow Super Giants": {
+          "runsFor": 146,
+          "ballsFor": 120,
+          "runsAgainst": 149,
+          "ballsAgainst": 91
+        },
+        "Royal Challengers Bengaluru": {
+          "runsFor": 149,
+          "ballsFor": 91,
+          "runsAgainst": 146,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529267",
@@ -242,7 +565,21 @@
         "Mumbai Indians",
         "Punjab Kings"
       ],
-      "winner": "Punjab Kings"
+      "winner": "Punjab Kings",
+      "teamStats": {
+        "Mumbai Indians": {
+          "runsFor": 195,
+          "ballsFor": 120,
+          "runsAgainst": 198,
+          "ballsAgainst": 99
+        },
+        "Punjab Kings": {
+          "runsFor": 198,
+          "ballsFor": 99,
+          "runsAgainst": 195,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529268",
@@ -252,7 +589,21 @@
         "Kolkata Knight Riders",
         "Gujarat Titans"
       ],
-      "winner": "Gujarat Titans"
+      "winner": "Gujarat Titans",
+      "teamStats": {
+        "Kolkata Knight Riders": {
+          "runsFor": 180,
+          "ballsFor": 120,
+          "runsAgainst": 181,
+          "ballsAgainst": 118
+        },
+        "Gujarat Titans": {
+          "runsFor": 181,
+          "ballsFor": 118,
+          "runsAgainst": 180,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529269",
@@ -262,7 +613,21 @@
         "Royal Challengers Bengaluru",
         "Delhi Capitals"
       ],
-      "winner": "Delhi Capitals"
+      "winner": "Delhi Capitals",
+      "teamStats": {
+        "Royal Challengers Bengaluru": {
+          "runsFor": 175,
+          "ballsFor": 120,
+          "runsAgainst": 179,
+          "ballsAgainst": 119
+        },
+        "Delhi Capitals": {
+          "runsFor": 179,
+          "ballsFor": 119,
+          "runsAgainst": 175,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529270",
@@ -272,7 +637,21 @@
         "Sunrisers Hyderabad",
         "Chennai Super Kings"
       ],
-      "winner": "Sunrisers Hyderabad"
+      "winner": "Sunrisers Hyderabad",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 194,
+          "ballsFor": 120,
+          "runsAgainst": 184,
+          "ballsAgainst": 120
+        },
+        "Chennai Super Kings": {
+          "runsFor": 184,
+          "ballsFor": 120,
+          "runsAgainst": 194,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529271",
@@ -282,7 +661,21 @@
         "Rajasthan Royals",
         "Kolkata Knight Riders"
       ],
-      "winner": "Kolkata Knight Riders"
+      "winner": "Kolkata Knight Riders",
+      "teamStats": {
+        "Rajasthan Royals": {
+          "runsFor": 155,
+          "ballsFor": 120,
+          "runsAgainst": 161,
+          "ballsAgainst": 118
+        },
+        "Kolkata Knight Riders": {
+          "runsFor": 161,
+          "ballsFor": 118,
+          "runsAgainst": 155,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529272",
@@ -292,7 +685,21 @@
         "Punjab Kings",
         "Lucknow Super Giants"
       ],
-      "winner": "Punjab Kings"
+      "winner": "Punjab Kings",
+      "teamStats": {
+        "Punjab Kings": {
+          "runsFor": 254,
+          "ballsFor": 120,
+          "runsAgainst": 200,
+          "ballsAgainst": 120
+        },
+        "Lucknow Super Giants": {
+          "runsFor": 200,
+          "ballsFor": 120,
+          "runsAgainst": 254,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529273",
@@ -302,7 +709,21 @@
         "Mumbai Indians",
         "Gujarat Titans"
       ],
-      "winner": "Mumbai Indians"
+      "winner": "Mumbai Indians",
+      "teamStats": {
+        "Mumbai Indians": {
+          "runsFor": 199,
+          "ballsFor": 120,
+          "runsAgainst": 100,
+          "ballsAgainst": 120
+        },
+        "Gujarat Titans": {
+          "runsFor": 100,
+          "ballsFor": 120,
+          "runsAgainst": 199,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529274",
@@ -312,7 +733,21 @@
         "Sunrisers Hyderabad",
         "Delhi Capitals"
       ],
-      "winner": "Sunrisers Hyderabad"
+      "winner": "Sunrisers Hyderabad",
+      "teamStats": {
+        "Sunrisers Hyderabad": {
+          "runsFor": 242,
+          "ballsFor": 120,
+          "runsAgainst": 195,
+          "ballsAgainst": 120
+        },
+        "Delhi Capitals": {
+          "runsFor": 195,
+          "ballsFor": 120,
+          "runsAgainst": 242,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529275",
@@ -322,7 +757,21 @@
         "Rajasthan Royals",
         "Lucknow Super Giants"
       ],
-      "winner": "Rajasthan Royals"
+      "winner": "Rajasthan Royals",
+      "teamStats": {
+        "Rajasthan Royals": {
+          "runsFor": 159,
+          "ballsFor": 120,
+          "runsAgainst": 119,
+          "ballsAgainst": 120
+        },
+        "Lucknow Super Giants": {
+          "runsFor": 119,
+          "ballsFor": 120,
+          "runsAgainst": 159,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529276",
@@ -332,7 +781,21 @@
         "Chennai Super Kings",
         "Mumbai Indians"
       ],
-      "winner": "Chennai Super Kings"
+      "winner": "Chennai Super Kings",
+      "teamStats": {
+        "Chennai Super Kings": {
+          "runsFor": 207,
+          "ballsFor": 120,
+          "runsAgainst": 104,
+          "ballsAgainst": 120
+        },
+        "Mumbai Indians": {
+          "runsFor": 104,
+          "ballsFor": 120,
+          "runsAgainst": 207,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529277",
@@ -342,7 +805,21 @@
         "Gujarat Titans",
         "Royal Challengers Bengaluru"
       ],
-      "winner": "Royal Challengers Bengaluru"
+      "winner": "Royal Challengers Bengaluru",
+      "teamStats": {
+        "Gujarat Titans": {
+          "runsFor": 205,
+          "ballsFor": 120,
+          "runsAgainst": 206,
+          "ballsAgainst": 113
+        },
+        "Royal Challengers Bengaluru": {
+          "runsFor": 206,
+          "ballsFor": 113,
+          "runsAgainst": 205,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529278",
@@ -352,7 +829,21 @@
         "Delhi Capitals",
         "Punjab Kings"
       ],
-      "winner": "Punjab Kings"
+      "winner": "Punjab Kings",
+      "teamStats": {
+        "Delhi Capitals": {
+          "runsFor": 264,
+          "ballsFor": 120,
+          "runsAgainst": 265,
+          "ballsAgainst": 113
+        },
+        "Punjab Kings": {
+          "runsFor": 265,
+          "ballsFor": 113,
+          "runsAgainst": 264,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529279",
@@ -362,7 +853,21 @@
         "Rajasthan Royals",
         "Sunrisers Hyderabad"
       ],
-      "winner": "Sunrisers Hyderabad"
+      "winner": "Sunrisers Hyderabad",
+      "teamStats": {
+        "Rajasthan Royals": {
+          "runsFor": 228,
+          "ballsFor": 120,
+          "runsAgainst": 229,
+          "ballsAgainst": 111
+        },
+        "Sunrisers Hyderabad": {
+          "runsFor": 229,
+          "ballsFor": 111,
+          "runsAgainst": 228,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529280",
@@ -372,7 +877,21 @@
         "Chennai Super Kings",
         "Gujarat Titans"
       ],
-      "winner": "Gujarat Titans"
+      "winner": "Gujarat Titans",
+      "teamStats": {
+        "Chennai Super Kings": {
+          "runsFor": 158,
+          "ballsFor": 120,
+          "runsAgainst": 162,
+          "ballsAgainst": 100
+        },
+        "Gujarat Titans": {
+          "runsFor": 162,
+          "ballsFor": 100,
+          "runsAgainst": 158,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529281",
@@ -381,7 +900,23 @@
       "teams": [
         "Kolkata Knight Riders",
         "Lucknow Super Giants"
-      ]
+      ],
+      "winner": "Kolkata Knight Riders",
+      "result": "tie",
+      "teamStats": {
+        "Kolkata Knight Riders": {
+          "runsFor": 155,
+          "ballsFor": 120,
+          "runsAgainst": 155,
+          "ballsAgainst": 120
+        },
+        "Lucknow Super Giants": {
+          "runsFor": 155,
+          "ballsFor": 120,
+          "runsAgainst": 155,
+          "ballsAgainst": 120
+        }
+      }
     },
     {
       "id": "1529282",
@@ -391,7 +926,153 @@
         "Delhi Capitals",
         "Royal Challengers Bengaluru"
       ],
-      "winner": "Royal Challengers Bengaluru"
+      "winner": "Royal Challengers Bengaluru",
+      "teamStats": {
+        "Delhi Capitals": {
+          "runsFor": 75,
+          "ballsFor": 120,
+          "runsAgainst": 77,
+          "ballsAgainst": 39
+        },
+        "Royal Challengers Bengaluru": {
+          "runsFor": 77,
+          "ballsFor": 39,
+          "runsAgainst": 75,
+          "ballsAgainst": 120
+        }
+      }
+    }
+  ],
+  "standings": [
+    {
+      "pos": 1,
+      "abbr": "PBKS",
+      "full": "Punjab Kings",
+      "flag": "pbks",
+      "m": 7,
+      "w": 6,
+      "l": 0,
+      "nr": 1,
+      "pts": 13,
+      "nrr": 1.333,
+      "rcb": false
+    },
+    {
+      "pos": 2,
+      "abbr": "RCB",
+      "full": "Royal Challengers Bengaluru",
+      "flag": "rcb",
+      "m": 8,
+      "w": 6,
+      "l": 2,
+      "nr": 0,
+      "pts": 12,
+      "nrr": 1.919,
+      "rcb": true
+    },
+    {
+      "pos": 3,
+      "abbr": "SRH",
+      "full": "Sunrisers Hyderabad",
+      "flag": "srh",
+      "m": 8,
+      "w": 5,
+      "l": 3,
+      "nr": 0,
+      "pts": 10,
+      "nrr": 0.815,
+      "rcb": false
+    },
+    {
+      "pos": 4,
+      "abbr": "RR",
+      "full": "Rajasthan Royals",
+      "flag": "rr",
+      "m": 8,
+      "w": 5,
+      "l": 3,
+      "nr": 0,
+      "pts": 10,
+      "nrr": 0.602,
+      "rcb": false
+    },
+    {
+      "pos": 5,
+      "abbr": "GT",
+      "full": "Gujarat Titans",
+      "flag": "gt",
+      "m": 8,
+      "w": 4,
+      "l": 4,
+      "nr": 0,
+      "pts": 8,
+      "nrr": -0.475,
+      "rcb": false
+    },
+    {
+      "pos": 6,
+      "abbr": "CSK",
+      "full": "Chennai Super Kings",
+      "flag": "csk",
+      "m": 8,
+      "w": 3,
+      "l": 5,
+      "nr": 0,
+      "pts": 6,
+      "nrr": -0.121,
+      "rcb": false
+    },
+    {
+      "pos": 7,
+      "abbr": "DC",
+      "full": "Delhi Capitals",
+      "flag": "dc",
+      "m": 8,
+      "w": 3,
+      "l": 5,
+      "nr": 0,
+      "pts": 6,
+      "nrr": -1.06,
+      "rcb": false
+    },
+    {
+      "pos": 8,
+      "abbr": "KKR",
+      "full": "Kolkata Knight Riders",
+      "flag": "kkr",
+      "m": 8,
+      "w": 2,
+      "l": 5,
+      "nr": 1,
+      "pts": 5,
+      "nrr": -0.751,
+      "rcb": false
+    },
+    {
+      "pos": 9,
+      "abbr": "MI",
+      "full": "Mumbai Indians",
+      "flag": "mi",
+      "m": 7,
+      "w": 2,
+      "l": 5,
+      "nr": 0,
+      "pts": 4,
+      "nrr": -0.736,
+      "rcb": false
+    },
+    {
+      "pos": 10,
+      "abbr": "LSG",
+      "full": "Lucknow Super Giants",
+      "flag": "lsg",
+      "m": 8,
+      "w": 2,
+      "l": 6,
+      "nr": 0,
+      "pts": 4,
+      "nrr": -1.106,
+      "rcb": false
     }
   ],
   "squads": {
@@ -3496,21 +4177,21 @@
           "role": "bat",
           "stats": {
             "apps": 8,
-            "sr": 143.14,
-            "avg": 54.75,
-            "boundary_pct": 60.27,
-            "impact": 0.25,
+            "sr": 141.45,
+            "avg": 53.75,
+            "boundary_pct": 59.53,
+            "impact": 0.286,
             "source": "cricsheet",
             "profile": {
               "apps": 8,
               "bat": {
                 "apps": 8,
-                "sr": 143.14,
-                "avg": 54.75,
-                "boundary_pct": 60.27,
-                "impact": 0.25,
-                "runs": 219,
-                "balls": 153,
+                "sr": 141.45,
+                "avg": 53.75,
+                "boundary_pct": 59.53,
+                "impact": 0.286,
+                "runs": 215,
+                "balls": 152,
                 "outs": 4,
                 "fifties": 2,
                 "hundreds": 0,
@@ -3530,19 +4211,19 @@
                 "raw_score": null
               },
               "field": {
-                "catches": 10,
+                "catches": 9,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 13
+                "score": 11
               },
               "overall": 95,
               "source": "cricsheet"
             }
           },
           "score": 95,
-          "detail": "SR 143 · Avg 54.8",
+          "detail": "SR 141 · Avg 53.8",
           "matches": 8,
-          "runs": 219,
+          "runs": 215,
           "wickets": 0
         },
         {
@@ -3846,10 +4527,10 @@
             "batAvg": 13.33,
             "boundary_pct": 80,
             "impact": 0,
-            "bowlEcon": 6.58,
-            "bowlAvg": 20.11,
-            "wktsPerMatch": 1.29,
-            "dot_pct": 41.21,
+            "bowlEcon": 6.67,
+            "bowlAvg": 25.71,
+            "wktsPerMatch": 1,
+            "dot_pct": 40.74,
             "source": "cricsheet",
             "profile": {
               "apps": 7,
@@ -3869,15 +4550,15 @@
               },
               "bowl": {
                 "apps": 7,
-                "econ": 6.58,
-                "bowling_avg": 20.11,
-                "wkts_per_match": 1.29,
-                "dot_pct": 41.21,
-                "balls": 165,
-                "runs": 181,
-                "wickets": 9,
-                "score": 99,
-                "raw_score": 99
+                "econ": 6.67,
+                "bowling_avg": 25.71,
+                "wkts_per_match": 1,
+                "dot_pct": 40.74,
+                "balls": 162,
+                "runs": 180,
+                "wickets": 7,
+                "score": 86,
+                "raw_score": 86
               },
               "field": {
                 "catches": 1,
@@ -3885,15 +4566,15 @@
                 "runouts": 0,
                 "score": 1
               },
-              "overall": 74,
+              "overall": 68,
               "source": "cricsheet"
             }
           },
-          "score": 74,
-          "detail": "13.3 avg · Econ 6.6",
+          "score": 68,
+          "detail": "13.3 avg · Econ 6.7",
           "matches": 7,
           "runs": 40,
-          "wickets": 9
+          "wickets": 7
         },
         {
           "num": 36,
@@ -9316,8 +9997,8 @@
           "role": "bat",
           "stats": {
             "apps": 8,
-            "sr": 142.96,
-            "avg": 21.44,
+            "sr": 144.03,
+            "avg": 24.13,
             "boundary_pct": 70.47,
             "impact": 0,
             "source": "cricsheet",
@@ -9325,17 +10006,17 @@
               "apps": 8,
               "bat": {
                 "apps": 8,
-                "sr": 142.96,
-                "avg": 21.44,
+                "sr": 144.03,
+                "avg": 24.13,
                 "boundary_pct": 70.47,
                 "impact": 0,
                 "runs": 193,
-                "balls": 135,
-                "outs": 9,
+                "balls": 134,
+                "outs": 8,
                 "fifties": 0,
                 "hundreds": 0,
-                "score": 78,
-                "raw_score": 78
+                "score": 81,
+                "raw_score": 81
               },
               "bowl": {
                 "apps": 8,
@@ -9355,12 +10036,12 @@
                 "runouts": 0,
                 "score": 6
               },
-              "overall": 67,
+              "overall": 70,
               "source": "cricsheet"
             }
           },
-          "score": 67,
-          "detail": "SR 143 · Avg 21.4",
+          "score": 70,
+          "detail": "SR 144 · Avg 24.1",
           "matches": 8,
           "runs": 193,
           "wickets": 0
@@ -9546,21 +10227,21 @@
           "role": "wk",
           "stats": {
             "apps": 8,
-            "sr": 126.67,
-            "avg": 31.67,
-            "boundary_pct": 56.84,
-            "impact": 0.111,
+            "sr": 126.85,
+            "avg": 31.5,
+            "boundary_pct": 57.14,
+            "impact": 0.125,
             "source": "cricsheet",
             "profile": {
               "apps": 8,
               "bat": {
                 "apps": 8,
-                "sr": 126.67,
-                "avg": 31.67,
-                "boundary_pct": 56.84,
-                "impact": 0.111,
-                "runs": 190,
-                "balls": 150,
+                "sr": 126.85,
+                "avg": 31.5,
+                "boundary_pct": 57.14,
+                "impact": 0.125,
+                "runs": 189,
+                "balls": 149,
                 "outs": 6,
                 "fifties": 1,
                 "hundreds": 0,
@@ -9590,9 +10271,9 @@
             }
           },
           "score": 67,
-          "detail": "SR 127 · Avg 31.7",
+          "detail": "SR 127 · Avg 31.5",
           "matches": 8,
-          "runs": 190,
+          "runs": 189,
           "wickets": 0
         },
         {
@@ -9603,8 +10284,8 @@
           "role": "wk",
           "stats": {
             "apps": 8,
-            "sr": 80.39,
-            "avg": 10.25,
+            "sr": 81.19,
+            "avg": 11.71,
             "boundary_pct": 53.66,
             "impact": 0,
             "source": "cricsheet",
@@ -9612,17 +10293,17 @@
               "apps": 8,
               "bat": {
                 "apps": 8,
-                "sr": 80.39,
-                "avg": 10.25,
+                "sr": 81.19,
+                "avg": 11.71,
                 "boundary_pct": 53.66,
                 "impact": 0,
                 "runs": 82,
-                "balls": 102,
-                "outs": 8,
+                "balls": 101,
+                "outs": 7,
                 "fifties": 0,
                 "hundreds": 0,
-                "score": 50,
-                "raw_score": 50
+                "score": 51,
+                "raw_score": 51
               },
               "bowl": {
                 "apps": 8,
@@ -9642,12 +10323,12 @@
                 "runouts": 1,
                 "score": 5
               },
-              "overall": 38,
+              "overall": 39,
               "source": "cricsheet"
             }
           },
-          "score": 38,
-          "detail": "SR 80 · Avg 10.3",
+          "score": 39,
+          "detail": "SR 81 · Avg 11.7",
           "matches": 8,
           "runs": 82,
           "wickets": 0
@@ -9843,10 +10524,10 @@
           "role": "bowl",
           "stats": {
             "apps": 8,
-            "econ": 8.15,
-            "bowling_avg": 18.92,
+            "econ": 8.07,
+            "bowling_avg": 18.62,
             "wkts_per_match": 1.63,
-            "dot_pct": 40.33,
+            "dot_pct": 40.56,
             "source": "cricsheet",
             "profile": {
               "apps": 8,
@@ -9866,12 +10547,12 @@
               },
               "bowl": {
                 "apps": 8,
-                "econ": 8.15,
-                "bowling_avg": 18.92,
+                "econ": 8.07,
+                "bowling_avg": 18.62,
                 "wkts_per_match": 1.63,
-                "dot_pct": 40.33,
-                "balls": 181,
-                "runs": 246,
+                "dot_pct": 40.56,
+                "balls": 180,
+                "runs": 242,
                 "wickets": 13,
                 "score": 94,
                 "raw_score": 94
@@ -9887,7 +10568,7 @@
             }
           },
           "score": 73,
-          "detail": "1.6 wkt/m · Econ 8.2",
+          "detail": "1.6 wkt/m · Econ 8.1",
           "matches": 8,
           "runs": 0,
           "wickets": 13
