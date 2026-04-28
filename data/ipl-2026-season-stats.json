@@ -1,6 +1,6 @@
 {
   "source": "Cricsheet ball-by-ball",
-  "generatedAt": "2026-04-28T17:28:36.212Z",
+  "generatedAt": "2026-04-28T19:39:59.304Z",
   "season": "2026",
   "matchesProcessed": 39,
   "lastMatchDate": "2026-04-27",
@@ -14,6 +14,25 @@
         "Royal Challengers Bengaluru"
       ],
       "winner": "Royal Challengers Bengaluru",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 201,
+          "wickets": 9,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 203,
+          "wickets": 4,
+          "balls": 94,
+          "overs": "15.4"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 201,
@@ -38,6 +57,25 @@
         "Mumbai Indians"
       ],
       "winner": "Mumbai Indians",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 220,
+          "wickets": 4,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Mumbai Indians",
+          "runs": 224,
+          "wickets": 4,
+          "balls": 115,
+          "overs": "19.1"
+        }
+      ],
       "teamStats": {
         "Kolkata Knight Riders": {
           "runsFor": 220,
@@ -62,6 +100,25 @@
         "Rajasthan Royals"
       ],
       "winner": "Rajasthan Royals",
+      "margin": {
+        "wickets": 8
+      },
+      "scores": [
+        {
+          "team": "Chennai Super Kings",
+          "runs": 127,
+          "wickets": 10,
+          "balls": 118,
+          "overs": "19.4"
+        },
+        {
+          "team": "Rajasthan Royals",
+          "runs": 128,
+          "wickets": 2,
+          "balls": 73,
+          "overs": "12.1"
+        }
+      ],
       "teamStats": {
         "Chennai Super Kings": {
           "runsFor": 127,
@@ -86,6 +143,25 @@
         "Punjab Kings"
       ],
       "winner": "Punjab Kings",
+      "margin": {
+        "wickets": 3
+      },
+      "scores": [
+        {
+          "team": "Gujarat Titans",
+          "runs": 162,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Punjab Kings",
+          "runs": 165,
+          "wickets": 7,
+          "balls": 115,
+          "overs": "19.1"
+        }
+      ],
       "teamStats": {
         "Gujarat Titans": {
           "runsFor": 162,
@@ -110,6 +186,25 @@
         "Delhi Capitals"
       ],
       "winner": "Delhi Capitals",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 141,
+          "wickets": 10,
+          "balls": 112,
+          "overs": "18.4"
+        },
+        {
+          "team": "Delhi Capitals",
+          "runs": 145,
+          "wickets": 4,
+          "balls": 103,
+          "overs": "17.1"
+        }
+      ],
       "teamStats": {
         "Lucknow Super Giants": {
           "runsFor": 141,
@@ -134,6 +229,25 @@
         "Kolkata Knight Riders"
       ],
       "winner": "Sunrisers Hyderabad",
+      "margin": {
+        "runs": 65
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 226,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 161,
+          "wickets": 10,
+          "balls": 96,
+          "overs": "16.0"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 226,
@@ -158,6 +272,25 @@
         "Punjab Kings"
       ],
       "winner": "Punjab Kings",
+      "margin": {
+        "wickets": 5
+      },
+      "scores": [
+        {
+          "team": "Chennai Super Kings",
+          "runs": 209,
+          "wickets": 5,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Punjab Kings",
+          "runs": 210,
+          "wickets": 5,
+          "balls": 112,
+          "overs": "18.4"
+        }
+      ],
       "teamStats": {
         "Chennai Super Kings": {
           "runsFor": 209,
@@ -182,6 +315,25 @@
         "Delhi Capitals"
       ],
       "winner": "Delhi Capitals",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Mumbai Indians",
+          "runs": 162,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Delhi Capitals",
+          "runs": 164,
+          "wickets": 4,
+          "balls": 109,
+          "overs": "18.1"
+        }
+      ],
       "teamStats": {
         "Mumbai Indians": {
           "runsFor": 162,
@@ -206,6 +358,25 @@
         "Gujarat Titans"
       ],
       "winner": "Rajasthan Royals",
+      "margin": {
+        "runs": 6
+      },
+      "scores": [
+        {
+          "team": "Rajasthan Royals",
+          "runs": 210,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Gujarat Titans",
+          "runs": 204,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Rajasthan Royals": {
           "runsFor": 210,
@@ -230,6 +401,25 @@
         "Lucknow Super Giants"
       ],
       "winner": "Lucknow Super Giants",
+      "margin": {
+        "wickets": 5
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 156,
+          "wickets": 9,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 160,
+          "wickets": 5,
+          "balls": 119,
+          "overs": "19.5"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 156,
@@ -254,6 +444,25 @@
         "Chennai Super Kings"
       ],
       "winner": "Royal Challengers Bengaluru",
+      "margin": {
+        "runs": 43
+      },
+      "scores": [
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 250,
+          "wickets": 3,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Chennai Super Kings",
+          "runs": 207,
+          "wickets": 10,
+          "balls": 118,
+          "overs": "19.4"
+        }
+      ],
       "teamStats": {
         "Royal Challengers Bengaluru": {
           "runsFor": 250,
@@ -278,6 +487,16 @@
         "Punjab Kings"
       ],
       "result": "no result",
+      "margin": null,
+      "scores": [
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 25,
+          "wickets": 2,
+          "balls": 22,
+          "overs": "3.4"
+        }
+      ],
       "teamStats": {
         "Kolkata Knight Riders": {
           "runsFor": 25,
@@ -302,6 +521,25 @@
         "Mumbai Indians"
       ],
       "winner": "Rajasthan Royals",
+      "margin": {
+        "runs": 27
+      },
+      "scores": [
+        {
+          "team": "Rajasthan Royals",
+          "runs": 150,
+          "wickets": 3,
+          "balls": 66,
+          "overs": "11.0"
+        },
+        {
+          "team": "Mumbai Indians",
+          "runs": 123,
+          "wickets": 9,
+          "balls": 66,
+          "overs": "11.0"
+        }
+      ],
       "teamStats": {
         "Rajasthan Royals": {
           "runsFor": 150,
@@ -326,6 +564,25 @@
         "Delhi Capitals"
       ],
       "winner": "Gujarat Titans",
+      "margin": {
+        "runs": 1
+      },
+      "scores": [
+        {
+          "team": "Gujarat Titans",
+          "runs": 210,
+          "wickets": 4,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Delhi Capitals",
+          "runs": 209,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Gujarat Titans": {
           "runsFor": 210,
@@ -350,6 +607,25 @@
         "Lucknow Super Giants"
       ],
       "winner": "Lucknow Super Giants",
+      "margin": {
+        "wickets": 3
+      },
+      "scores": [
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 181,
+          "wickets": 4,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 182,
+          "wickets": 7,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Kolkata Knight Riders": {
           "runsFor": 181,
@@ -374,6 +650,25 @@
         "Rajasthan Royals"
       ],
       "winner": "Rajasthan Royals",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 201,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Rajasthan Royals",
+          "runs": 202,
+          "wickets": 4,
+          "balls": 108,
+          "overs": "18.0"
+        }
+      ],
       "teamStats": {
         "Royal Challengers Bengaluru": {
           "runsFor": 201,
@@ -398,6 +693,25 @@
         "Punjab Kings"
       ],
       "winner": "Punjab Kings",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 219,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Punjab Kings",
+          "runs": 223,
+          "wickets": 4,
+          "balls": 113,
+          "overs": "18.5"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 219,
@@ -422,6 +736,25 @@
         "Delhi Capitals"
       ],
       "winner": "Chennai Super Kings",
+      "margin": {
+        "runs": 23
+      },
+      "scores": [
+        {
+          "team": "Chennai Super Kings",
+          "runs": 212,
+          "wickets": 2,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Delhi Capitals",
+          "runs": 189,
+          "wickets": 10,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Chennai Super Kings": {
           "runsFor": 212,
@@ -446,6 +779,25 @@
         "Gujarat Titans"
       ],
       "winner": "Gujarat Titans",
+      "margin": {
+        "wickets": 7
+      },
+      "scores": [
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 164,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Gujarat Titans",
+          "runs": 165,
+          "wickets": 3,
+          "balls": 112,
+          "overs": "18.4"
+        }
+      ],
       "teamStats": {
         "Lucknow Super Giants": {
           "runsFor": 164,
@@ -470,6 +822,25 @@
         "Mumbai Indians"
       ],
       "winner": "Royal Challengers Bengaluru",
+      "margin": {
+        "runs": 18
+      },
+      "scores": [
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 240,
+          "wickets": 4,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Mumbai Indians",
+          "runs": 222,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Royal Challengers Bengaluru": {
           "runsFor": 240,
@@ -494,6 +865,25 @@
         "Rajasthan Royals"
       ],
       "winner": "Sunrisers Hyderabad",
+      "margin": {
+        "runs": 57
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 216,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Rajasthan Royals",
+          "runs": 159,
+          "wickets": 10,
+          "balls": 114,
+          "overs": "19.0"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 216,
@@ -518,6 +908,25 @@
         "Kolkata Knight Riders"
       ],
       "winner": "Chennai Super Kings",
+      "margin": {
+        "runs": 32
+      },
+      "scores": [
+        {
+          "team": "Chennai Super Kings",
+          "runs": 192,
+          "wickets": 5,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 160,
+          "wickets": 7,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Chennai Super Kings": {
           "runsFor": 192,
@@ -542,6 +951,25 @@
         "Royal Challengers Bengaluru"
       ],
       "winner": "Royal Challengers Bengaluru",
+      "margin": {
+        "wickets": 5
+      },
+      "scores": [
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 146,
+          "wickets": 10,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 149,
+          "wickets": 5,
+          "balls": 91,
+          "overs": "15.1"
+        }
+      ],
       "teamStats": {
         "Lucknow Super Giants": {
           "runsFor": 146,
@@ -566,6 +994,25 @@
         "Punjab Kings"
       ],
       "winner": "Punjab Kings",
+      "margin": {
+        "wickets": 7
+      },
+      "scores": [
+        {
+          "team": "Mumbai Indians",
+          "runs": 195,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Punjab Kings",
+          "runs": 198,
+          "wickets": 3,
+          "balls": 99,
+          "overs": "16.3"
+        }
+      ],
       "teamStats": {
         "Mumbai Indians": {
           "runsFor": 195,
@@ -590,6 +1037,25 @@
         "Gujarat Titans"
       ],
       "winner": "Gujarat Titans",
+      "margin": {
+        "wickets": 5
+      },
+      "scores": [
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 180,
+          "wickets": 10,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Gujarat Titans",
+          "runs": 181,
+          "wickets": 5,
+          "balls": 118,
+          "overs": "19.4"
+        }
+      ],
       "teamStats": {
         "Kolkata Knight Riders": {
           "runsFor": 180,
@@ -614,6 +1080,25 @@
         "Delhi Capitals"
       ],
       "winner": "Delhi Capitals",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 175,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Delhi Capitals",
+          "runs": 179,
+          "wickets": 5,
+          "balls": 119,
+          "overs": "19.5"
+        }
+      ],
       "teamStats": {
         "Royal Challengers Bengaluru": {
           "runsFor": 175,
@@ -638,6 +1123,25 @@
         "Chennai Super Kings"
       ],
       "winner": "Sunrisers Hyderabad",
+      "margin": {
+        "runs": 10
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 194,
+          "wickets": 9,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Chennai Super Kings",
+          "runs": 184,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 194,
@@ -662,6 +1166,25 @@
         "Kolkata Knight Riders"
       ],
       "winner": "Kolkata Knight Riders",
+      "margin": {
+        "wickets": 4
+      },
+      "scores": [
+        {
+          "team": "Rajasthan Royals",
+          "runs": 155,
+          "wickets": 9,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 161,
+          "wickets": 6,
+          "balls": 118,
+          "overs": "19.4"
+        }
+      ],
       "teamStats": {
         "Rajasthan Royals": {
           "runsFor": 155,
@@ -686,6 +1209,25 @@
         "Lucknow Super Giants"
       ],
       "winner": "Punjab Kings",
+      "margin": {
+        "runs": 54
+      },
+      "scores": [
+        {
+          "team": "Punjab Kings",
+          "runs": 254,
+          "wickets": 7,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 200,
+          "wickets": 5,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Punjab Kings": {
           "runsFor": 254,
@@ -710,6 +1252,25 @@
         "Gujarat Titans"
       ],
       "winner": "Mumbai Indians",
+      "margin": {
+        "runs": 99
+      },
+      "scores": [
+        {
+          "team": "Mumbai Indians",
+          "runs": 199,
+          "wickets": 5,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Gujarat Titans",
+          "runs": 100,
+          "wickets": 10,
+          "balls": 95,
+          "overs": "15.5"
+        }
+      ],
       "teamStats": {
         "Mumbai Indians": {
           "runsFor": 199,
@@ -734,6 +1295,25 @@
         "Delhi Capitals"
       ],
       "winner": "Sunrisers Hyderabad",
+      "margin": {
+        "runs": 47
+      },
+      "scores": [
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 242,
+          "wickets": 2,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Delhi Capitals",
+          "runs": 195,
+          "wickets": 9,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Sunrisers Hyderabad": {
           "runsFor": 242,
@@ -758,6 +1338,25 @@
         "Lucknow Super Giants"
       ],
       "winner": "Rajasthan Royals",
+      "margin": {
+        "runs": 40
+      },
+      "scores": [
+        {
+          "team": "Rajasthan Royals",
+          "runs": 159,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 119,
+          "wickets": 10,
+          "balls": 108,
+          "overs": "18.0"
+        }
+      ],
       "teamStats": {
         "Rajasthan Royals": {
           "runsFor": 159,
@@ -782,6 +1381,25 @@
         "Mumbai Indians"
       ],
       "winner": "Chennai Super Kings",
+      "margin": {
+        "runs": 103
+      },
+      "scores": [
+        {
+          "team": "Chennai Super Kings",
+          "runs": 207,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Mumbai Indians",
+          "runs": 104,
+          "wickets": 10,
+          "balls": 114,
+          "overs": "19.0"
+        }
+      ],
       "teamStats": {
         "Chennai Super Kings": {
           "runsFor": 207,
@@ -806,6 +1424,25 @@
         "Royal Challengers Bengaluru"
       ],
       "winner": "Royal Challengers Bengaluru",
+      "margin": {
+        "wickets": 5
+      },
+      "scores": [
+        {
+          "team": "Gujarat Titans",
+          "runs": 205,
+          "wickets": 3,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 206,
+          "wickets": 5,
+          "balls": 113,
+          "overs": "18.5"
+        }
+      ],
       "teamStats": {
         "Gujarat Titans": {
           "runsFor": 205,
@@ -830,6 +1467,25 @@
         "Punjab Kings"
       ],
       "winner": "Punjab Kings",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Delhi Capitals",
+          "runs": 264,
+          "wickets": 2,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Punjab Kings",
+          "runs": 265,
+          "wickets": 4,
+          "balls": 113,
+          "overs": "18.5"
+        }
+      ],
       "teamStats": {
         "Delhi Capitals": {
           "runsFor": 264,
@@ -854,6 +1510,25 @@
         "Sunrisers Hyderabad"
       ],
       "winner": "Sunrisers Hyderabad",
+      "margin": {
+        "wickets": 5
+      },
+      "scores": [
+        {
+          "team": "Rajasthan Royals",
+          "runs": 228,
+          "wickets": 6,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Sunrisers Hyderabad",
+          "runs": 229,
+          "wickets": 5,
+          "balls": 111,
+          "overs": "18.3"
+        }
+      ],
       "teamStats": {
         "Rajasthan Royals": {
           "runsFor": 228,
@@ -878,6 +1553,25 @@
         "Gujarat Titans"
       ],
       "winner": "Gujarat Titans",
+      "margin": {
+        "wickets": 8
+      },
+      "scores": [
+        {
+          "team": "Chennai Super Kings",
+          "runs": 158,
+          "wickets": 7,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Gujarat Titans",
+          "runs": 162,
+          "wickets": 2,
+          "balls": 100,
+          "overs": "16.4"
+        }
+      ],
       "teamStats": {
         "Chennai Super Kings": {
           "runsFor": 158,
@@ -903,6 +1597,23 @@
       ],
       "winner": "Kolkata Knight Riders",
       "result": "tie",
+      "margin": null,
+      "scores": [
+        {
+          "team": "Kolkata Knight Riders",
+          "runs": 155,
+          "wickets": 7,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Lucknow Super Giants",
+          "runs": 155,
+          "wickets": 8,
+          "balls": 120,
+          "overs": "20.0"
+        }
+      ],
       "teamStats": {
         "Kolkata Knight Riders": {
           "runsFor": 155,
@@ -927,6 +1638,25 @@
         "Royal Challengers Bengaluru"
       ],
       "winner": "Royal Challengers Bengaluru",
+      "margin": {
+        "wickets": 9
+      },
+      "scores": [
+        {
+          "team": "Delhi Capitals",
+          "runs": 75,
+          "wickets": 10,
+          "balls": 99,
+          "overs": "16.3"
+        },
+        {
+          "team": "Royal Challengers Bengaluru",
+          "runs": 77,
+          "wickets": 1,
+          "balls": 39,
+          "overs": "6.3"
+        }
+      ],
       "teamStats": {
         "Delhi Capitals": {
           "runsFor": 75,

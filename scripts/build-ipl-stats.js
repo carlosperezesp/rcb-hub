@@ -117,6 +117,10 @@ function ensureTeamMatchStats(matchStats, team) {
   return matchStats[team];
 }
 
+function ballsToOvers(balls) {
+  return `${Math.floor(balls / 6)}.${balls % 6}`;
+}
+
 function sampleAdjustedScore(score, sample, fullSample) {
   if (score === null || score === undefined) return null;
   if (score <= 0) return 0;
@@ -297,6 +301,7 @@ function processMatch(filePath, seasonPlayers, matches) {
   const registry = info.registry?.people || {};
   const teamByPlayer = {};
   const matchStats = {};
+  const scores = [];
   const maxBalls = (info.overs || 20) * 6;
 
   Object.entries(info.players || {}).forEach(([team, names]) => {
@@ -367,15 +372,25 @@ function processMatch(filePath, seasonPlayers, matches) {
     battingStats.ballsFor += ballsForNrr;
     bowlingStats.runsAgainst += inningsTotal;
     bowlingStats.ballsAgainst += ballsForNrr;
+    scores.push({
+      team: battingTeam,
+      runs: inningsTotal,
+      wickets: inningsWickets,
+      balls: inningsBalls,
+      overs: ballsToOvers(inningsBalls),
+    });
   });
 
+  const winner = info.outcome?.winner || info.outcome?.eliminator;
   matches.push({
     id: matchId,
     date: info.dates?.[0],
     matchNumber: info.event?.match_number,
     teams,
-    winner: info.outcome?.winner || info.outcome?.eliminator,
+    winner,
     result: info.outcome?.result,
+    margin: info.outcome?.by || null,
+    scores,
     teamStats: matchStats,
   });
 }

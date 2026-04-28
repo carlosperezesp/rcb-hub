@@ -481,6 +481,11 @@
     font-weight: 700;
     text-align: right;
   }
+  .fixture-score {
+    color: var(--ink);
+    font: 800 13px/1.25 'Manrope', sans-serif;
+    margin-bottom: 6px;
+  }
   .player-nat {
     margin-bottom: 5px;
   }
@@ -1147,7 +1152,7 @@ const iplFallback = [
 ];
 
 const iplFixtures = [
-  { date:'28', mo:'Apr', t:'19:30', a:'Punjab Kings', aa:'PBKS', af:'pbks', b:'Rajasthan Royals', ba:'RR', bf:'rr', venue:'Maharaja Yadavindra Singh International Cricket Stadium, New Chandigarh' },
+  { date:'28', mo:'Apr', t:'19:30', a:'Punjab Kings', aa:'PBKS', af:'pbks', b:'Rajasthan Royals', ba:'RR', bf:'rr', venue:'Maharaja Yadavindra Singh Stadium, Mullanpur' },
   { date:'29', mo:'Apr', t:'19:30', a:'Mumbai Indians', aa:'MI', af:'mi', b:'Sunrisers Hyderabad', ba:'SRH', bf:'srh', venue:'Wankhede Stadium, Mumbai' },
   { date:'30', mo:'Apr', t:'19:30', a:'Gujarat Titans', aa:'GT', af:'gt', b:'Royal Challengers Bengaluru', ba:'RCB', bf:'rcb', venue:'Narendra Modi Stadium, Ahmedabad' },
   { date:'01', mo:'May', t:'19:30', a:'Rajasthan Royals', aa:'RR', af:'rr', b:'Delhi Capitals', ba:'DC', bf:'dc', venue:'Sawai Mansingh Stadium, Jaipur' },
@@ -1809,8 +1814,9 @@ function renderFixtures(target, fixtures) {
       </div>
       <div class="fixture-info">
         ${m.tag ? `<span class="chip chip-gold">${m.tag}</span>` : ''}
-        <div style="${m.tag ? 'margin-top:8px' : ''}">${m.result || m.venue}</div>
-        ${m.result && m.venue ? `<div style="margin-top:6px;color:var(--ink-mute)">${m.venue}</div>` : ''}
+        ${m.score ? `<div class="fixture-score" style="${m.tag ? 'margin-top:8px' : ''}">${m.score}</div>` : ''}
+        <div style="${m.tag || m.score ? 'margin-top:8px' : ''}">${m.result || shortVenueName(m.venue)}</div>
+        ${m.result && m.venue ? `<div style="margin-top:6px;color:var(--ink-mute)">${shortVenueName(m.venue)}</div>` : ''}
       </div>
     </div>
   `).join('');
@@ -1826,6 +1832,13 @@ function fixtureAbbr(match, side) {
   };
   if (bySlug[slug]) return bySlug[slug];
   return String(match[side] || '').split(/\s+/).map(word => word[0]).join('').slice(0, 5).toUpperCase();
+}
+
+function shortVenueName(venue = '') {
+  return String(venue)
+    .replace(/Maharaja Yadavindra Singh International Cricket Stadium(?:, Mullanpur)?, New Chandigarh/i, 'Maharaja Yadavindra Singh Stadium, Mullanpur')
+    .replace(/Maharaja Yadavindra Singh International Cricket Stadium/i, 'Maharaja Yadavindra Singh Stadium')
+    .replace(/Rajiv Gandhi International Stadium, Uppal, Hyderabad/i, 'Rajiv Gandhi Stadium, Hyderabad');
 }
 
 function formatIplFixture(matchInfo) {
@@ -1852,7 +1865,7 @@ function formatIplFixture(matchInfo) {
     b: matchInfo.team2?.teamName || matchInfo.team2?.teamSName || '',
     ba: matchInfo.team2?.teamSName || '',
     bf: teamFlag(matchInfo.team2?.teamSName || ''),
-    venue: [matchInfo.venueInfo?.ground, matchInfo.venueInfo?.city].filter(Boolean).join(', '),
+    venue: shortVenueName([matchInfo.venueInfo?.ground, matchInfo.venueInfo?.city].filter(Boolean).join(', ')),
     start: Number(matchInfo.startDate),
   };
 }
@@ -1886,6 +1899,20 @@ function formatShortDate(dateText) {
   };
 }
 
+function scoreTextForTeam(match, team) {
+  const score = match.scores?.find(row => row.team === team);
+  if (!score) return null;
+  return `${teamAbbrFromName(team)} ${score.runs}/${score.wickets}`;
+}
+
+function resultMarginText(match) {
+  if (!match.winner) return match.result === 'tie' ? 'Match tied' : 'No result';
+  if (match.result === 'tie') return `${teamAbbrFromName(match.winner)} won Super Over`;
+  if (match.margin?.runs) return `${teamAbbrFromName(match.winner)} won by ${match.margin.runs} runs`;
+  if (match.margin?.wickets) return `${teamAbbrFromName(match.winner)} won by ${match.margin.wickets} wkts`;
+  return `${teamAbbrFromName(match.winner)} won`;
+}
+
 function formatRecentResults() {
   const matches = window.CRICSHEET_IPL_STATS?.matches || [];
   return matches
@@ -1898,6 +1925,7 @@ function formatRecentResults() {
       const aAbbr = teamAbbrFromName(teamA);
       const bAbbr = teamAbbrFromName(teamB);
       const when = formatShortDate(match.date);
+      const score = [scoreTextForTeam(match, teamA), scoreTextForTeam(match, teamB)].filter(Boolean).join(' · ');
       return {
         ...when,
         t: `M${match.matchNumber || ''}`,
@@ -1907,7 +1935,8 @@ function formatRecentResults() {
         b: teamB,
         ba: bAbbr,
         bf: teamFlag(bAbbr),
-        result: match.winner ? `${match.winner} won` : 'No result',
+        score,
+        result: resultMarginText(match),
         venue: 'Cricsheet result',
       };
     });
