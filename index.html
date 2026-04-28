@@ -466,12 +466,13 @@
   .fixture-main {
     display: grid;
     gap: 7px;
+    min-width: 0;
   }
   .fixture-team {
     align-items: center;
     display: flex;
     gap: 10px;
-    font: 800 16px/1 'Manrope', sans-serif;
+    font: 800 16px/1.15 'Manrope', sans-serif;
   }
   .fixture-info {
     align-self: center;
@@ -991,10 +992,10 @@ const iplFallback = [
 ];
 
 const iplFixtures = [
-  { date:'28', mo:'Apr', t:'19:30', a:'RCB', af:'rcb', b:'DC', bf:'dc', venue:'M Chinnaswamy, Bengaluru', tag:'Prime time' },
-  { date:'02', mo:'May', t:'15:30', a:'GT', af:'gt', b:'RCB', bf:'rcb', venue:'Narendra Modi, Ahmedabad', tag:'Top-four watch' },
-  { date:'06', mo:'May', t:'19:30', a:'RCB', af:'rcb', b:'RR', bf:'rr', venue:'M Chinnaswamy, Bengaluru', tag:'Home stretch' },
-  { date:'10', mo:'May', t:'15:30', a:'RCB', af:'rcb', b:'KKR', bf:'kkr', venue:'M Chinnaswamy, Bengaluru', tag:'Rivalry' },
+  { date:'28', mo:'Apr', t:'19:30', a:'Punjab Kings', af:'pbks', b:'Rajasthan Royals', bf:'rr', venue:'Maharaja Yadavindra Singh International Cricket Stadium, New Chandigarh' },
+  { date:'29', mo:'Apr', t:'19:30', a:'Mumbai Indians', af:'mi', b:'Sunrisers Hyderabad', bf:'srh', venue:'Wankhede Stadium, Mumbai' },
+  { date:'30', mo:'Apr', t:'19:30', a:'Gujarat Titans', af:'gt', b:'Royal Challengers Bengaluru', bf:'rcb', venue:'Narendra Modi Stadium, Ahmedabad' },
+  { date:'01', mo:'May', t:'19:30', a:'Rajasthan Royals', af:'rr', b:'Delhi Capitals', bf:'dc', venue:'Sawai Mansingh Stadium, Jaipur' },
 ];
 
 const IPL_SLUGS = ['gt', 'rcb', 'mi', 'kkr', 'srh', 'csk', 'rr', 'pbks', 'dc', 'lsg'];
@@ -1633,11 +1634,59 @@ function renderFixtures(target, fixtures) {
         <div class="fixture-team">${flag(m.bf, m.b)} ${m.b}</div>
       </div>
       <div class="fixture-info">
-        <span class="chip chip-gold">${m.tag}</span>
-        <div style="margin-top:8px">${m.venue}</div>
+        ${m.tag ? `<span class="chip chip-gold">${m.tag}</span>` : ''}
+        <div style="${m.tag ? 'margin-top:8px' : ''}">${m.venue}</div>
       </div>
     </div>
   `).join('');
+}
+
+function formatIplFixture(matchInfo) {
+  const start = new Date(Number(matchInfo.startDate));
+  const dateParts = new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    timeZone: 'Asia/Kolkata',
+  }).formatToParts(start);
+  const part = type => dateParts.find(item => item.type === type)?.value || '';
+  const time = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Kolkata',
+  }).format(start);
+  return {
+    date: part('day'),
+    mo: part('month'),
+    t: time,
+    a: matchInfo.team1?.teamName || matchInfo.team1?.teamSName || '',
+    af: teamFlag(matchInfo.team1?.teamSName || ''),
+    b: matchInfo.team2?.teamName || matchInfo.team2?.teamSName || '',
+    bf: teamFlag(matchInfo.team2?.teamSName || ''),
+    venue: [matchInfo.venueInfo?.ground, matchInfo.venueInfo?.city].filter(Boolean).join(', '),
+    start: Number(matchInfo.startDate),
+  };
+}
+
+async function fetchIplFixtures() {
+  const cached = cacheGet('global_ipl_fixtures_v1');
+  if (cached) return cached;
+  try {
+    const data = await cricbuzzFetch(`series/v1/${CRICBUZZ_IPL_SERIES_ID}`);
+    const now = Date.now() - 60 * 60 * 1000;
+    const fixtures = (data.matchDetails || [])
+      .flatMap(day => day.matchDetailsMap?.match || [])
+      .map(match => match.matchInfo)
+      .filter(info => info?.startDate && Number(info.startDate) >= now)
+      .sort((a, b) => Number(a.startDate) - Number(b.startDate))
+      .slice(0, 6)
+      .map(formatIplFixture);
+    if (fixtures.length) {
+      cacheSet('global_ipl_fixtures_v1', fixtures);
+      return fixtures;
+    }
+  } catch(e) {}
+  return iplFixtures;
 }
 
 async function fetchIplStandings() {
@@ -1762,6 +1811,7 @@ async function initIpl() {
     : 'Static fallback data shown because the live points-table endpoint is unavailable.';
   renderIplSpotlight(rows);
   renderTeamGrid('ipl-team-grid', rows, 'ipl');
+  renderFixtures('ipl-fixtures', await fetchIplFixtures());
   await fetchIplSquadModel();
   switchTab(window.location.hash, false);
   updateIplTeamDetail(currentRoute().detail, true);
