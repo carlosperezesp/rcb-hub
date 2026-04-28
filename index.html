@@ -527,6 +527,51 @@
   .dot-wk { background: var(--ink-mute); }
   .dot-ar { background: var(--gold); }
   .dot-bowl { background: var(--crimson); }
+  .squad-views {
+    display: grid;
+    gap: 24px;
+  }
+  .squad-view {
+    margin-top: 20px;
+  }
+  .squad-tabs {
+    background: var(--green-paler);
+    border-radius: 999px;
+    display: inline-flex;
+    gap: 4px;
+    margin: 8px 0 8px;
+    padding: 4px;
+  }
+  .squad-tab-btn {
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: var(--ink-mute);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    padding: 9px 13px;
+    text-transform: uppercase;
+  }
+  .squad-tab-btn.active {
+    background: var(--green-deep);
+    color: #fff;
+  }
+  .squad-panel {
+    display: none;
+  }
+  .squad-panel.active {
+    display: block;
+  }
+  .squad-view-head {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    margin-bottom: 12px;
+  }
+  .squad-view-head .role-title {
+    margin: 0;
+  }
   .players-grid {
     display: grid;
     gap: 12px;
@@ -608,6 +653,9 @@
     grid-template-columns: 1.25fr 1fr 1fr;
     margin-top: 10px;
   }
+  .skill-grid-single {
+    grid-template-columns: minmax(92px, 118px);
+  }
   .skill-pill {
     background: rgba(19,25,21,.05);
     border-radius: 7px;
@@ -638,6 +686,51 @@
   .skill-poor strong, .skill-poor span { color: var(--crimson); }
   .skill-nodata { background: rgba(140,150,141,.14); }
   .skill-nodata strong, .skill-nodata span { color: #6e7771; }
+  .stat-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .stat-chip {
+    background: rgba(19,25,21,.055);
+    border-radius: 7px;
+    color: var(--ink-soft);
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 54px;
+    padding: 6px 7px;
+  }
+  .stat-chip span {
+    color: var(--ink-mute);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .stat-chip strong {
+    color: var(--ink);
+    font: 800 13px/1 'Manrope', sans-serif;
+  }
+  .stat-good {
+    background: rgba(0,48,26,.12);
+  }
+  .stat-good span, .stat-good strong {
+    color: var(--green-deep);
+  }
+  .stat-elite {
+    background: rgba(47,125,75,.18);
+  }
+  .stat-elite span, .stat-elite strong {
+    color: #2f7d4b;
+  }
+  .stat-limited {
+    opacity: .72;
+  }
+  .field-strip {
+    margin-top: 8px;
+  }
   .split-lines {
     color: var(--ink-soft);
     display: grid;
@@ -704,6 +797,7 @@
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
     .section-head { align-items: start; display: block; }
     .section-note { margin-top: 8px; text-align: left; }
+    .squad-view-head { align-items: start; }
     .fixture { grid-template-columns: 62px 1fr; }
     .fixture-info { grid-column: 1 / -1; text-align: left; }
     .bottom-nav {
@@ -1916,6 +2010,19 @@ function playerProfile(player) {
   return { apps: s.apps || player.matches || 0, bat, bowl, field: { catches: 0, stumpings: 0, runouts: 0, score: 0 }, overall: player.score };
 }
 
+function skillScore(player, mode) {
+  const profile = playerProfile(player);
+  const score = mode === 'bat' ? profile.bat?.score : profile.bowl?.score;
+  if (score !== null && score !== undefined && !Number.isNaN(score)) return score;
+  if (mode === 'bat' && ['bat', 'wk', 'ar'].includes(roleCode(player.role))) {
+    return calcFormScore('bat', player.stats);
+  }
+  if (mode === 'bowl' && ['bowl', 'ar'].includes(roleCode(player.role))) {
+    return calcFormScore('bowl', player.stats);
+  }
+  return null;
+}
+
 function scoreText(score) {
   return score === null || score === undefined || Number.isNaN(score) ? '—' : String(score);
 }
@@ -1939,48 +2046,160 @@ function playerLines(profile) {
   return lines.length ? lines : ['No season contribution yet'];
 }
 
+function fmt(value, digits = 0) {
+  if (value === null || value === undefined || Number.isNaN(value)) return '—';
+  return Number(value).toFixed(digits);
+}
+
+function statTier(metric, value) {
+  if (value === null || value === undefined || Number.isNaN(value)) return '';
+  const v = Number(value);
+  const thresholds = {
+    runs: [180, 260],
+    wickets: [7, 11],
+    sr: [145, 170],
+    avg: [30, 42],
+    boundary: [58, 70],
+    econ: [8.5, 7.4],
+    bowlAvg: [28, 20],
+    wpm: [1, 1.5],
+    dot: [36, 44],
+    field: [4, 8],
+  }[metric];
+  if (!thresholds) return '';
+  if (metric === 'econ' || metric === 'bowlAvg') {
+    if (v <= thresholds[1]) return 'stat-elite';
+    if (v <= thresholds[0]) return 'stat-good';
+    return '';
+  }
+  if (v >= thresholds[1]) return 'stat-elite';
+  if (v >= thresholds[0]) return 'stat-good';
+  return '';
+}
+
+function statChip(label, value, metric, digits = 0, limited = false) {
+  if (value === null || value === undefined || Number.isNaN(value)) return '';
+  const cls = ['stat-chip', statTier(metric, value), limited ? 'stat-limited' : ''].filter(Boolean).join(' ');
+  return `<span class="${cls}"><span>${label}</span><strong>${fmt(value, digits)}</strong></span>`;
+}
+
+function battingStats(profile) {
+  const bat = profile.bat || {};
+  const lowSample = (bat.balls || 0) > 0 && (bat.balls || 0) < 24;
+  return [
+    statChip('Runs', bat.runs || 0, 'runs', 0, false),
+    statChip('SR', bat.sr || 0, 'sr', 0, lowSample),
+    statChip('Avg', bat.avg || 0, 'avg', 1, lowSample),
+    statChip('Bnd%', bat.boundary_pct || 0, 'boundary', 0, lowSample),
+  ].join('');
+}
+
+function bowlingStats(profile) {
+  const bowl = profile.bowl || {};
+  const lowSample = (bowl.balls || 0) > 0 && (bowl.balls || 0) < 24;
+  return [
+    statChip('Wkts', bowl.wickets || 0, 'wickets', 0, false),
+    statChip('Econ', bowl.econ || 0, 'econ', 1, lowSample),
+    statChip('Avg', bowl.bowling_avg || 0, 'bowlAvg', 1, lowSample),
+    statChip('W/M', bowl.wkts_per_match || 0, 'wpm', 1, lowSample),
+    statChip('Dot%', bowl.dot_pct || 0, 'dot', 0, lowSample),
+  ].join('');
+}
+
+function fieldStats(profile) {
+  const field = profile.field || {};
+  const items = [
+    ['C', field.catches],
+    ['ST', field.stumpings],
+    ['RO', field.runouts],
+  ].filter(([, value]) => value > 0);
+  if (!items.length) return '';
+  return `<div class="stat-strip field-strip">${items.map(([label, value]) => statChip(label, value, 'field')).join('')}</div>`;
+}
+
+function hasSkillSample(player, mode) {
+  const profile = playerProfile(player);
+  const isEstimated = !['cricbuzz', 'cricsheet'].includes(player.stats?.source);
+  if (mode === 'bat') {
+    return (profile.bat?.balls || 0) > 0 || (profile.bat?.runs || 0) > 0 || (isEstimated && ['bat', 'wk', 'ar'].includes(roleCode(player.role)));
+  }
+  return (profile.bowl?.balls || 0) > 0 || (profile.bowl?.wickets || 0) > 0 || (isEstimated && ['bowl', 'ar'].includes(roleCode(player.role)));
+}
+
+function bindSquadTabs(slug) {
+  const root = document.getElementById(`squad-content-${slug}`);
+  if (!root) return;
+  const buttons = root.querySelectorAll('.squad-tab-btn');
+  const panels = root.querySelectorAll('.squad-panel');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const target = button.dataset.squadTab;
+      buttons.forEach(btn => {
+        const isActive = btn === button;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', String(isActive));
+      });
+      panels.forEach(panel => panel.classList.toggle('active', panel.dataset.squadPanel === target));
+    });
+  });
+}
+
+function renderPlayerCard(p, mode) {
+  const profile = playerProfile(p);
+  const score = skillScore(p, mode);
+  const tier = formTier(score);
+  const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
+  const apps = p.matches || p.stats?.apps || profile.apps || 0;
+  const statHtml = mode === 'bat' ? battingStats(profile) : bowlingStats(profile);
+  return `<div class="player-card card-${tier}">
+    <div class="player-num">${p.num}</div>
+    <div class="player-body">
+      <div class="player-name">${p.name}</div>
+      <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
+      <div class="player-meta">${apps} matches${p.tag ? ` · ${p.tag}` : ''}</div>
+      <div class="skill-grid skill-grid-single">
+        <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
+      </div>
+      <div class="stat-strip">${statHtml}</div>
+      ${fieldStats(profile)}
+      <span class="form-score ${tier}">${source}</span>
+    </div>
+  </div>`;
+}
+
 function renderSquadContent(slug = currentRoute().detail || 'rcb') {
   const el = document.getElementById(`squad-content-${slug}`);
   if (!el) return;
   const squad = IPL_SQUADS[slug] || buildFallbackSquads()[slug] || { batters: [], wicketKeepers: [], allRounders: [], bowlers: [] };
-  const sortByScore = group => [...(group || [])].sort((a, b) => (b.score - a.score) || ((b.matches || b.stats?.apps || 0) - (a.matches || a.stats?.apps || 0)) || a.name.localeCompare(b.name));
-  const titles = [
-    ['batters', 'Batters', 'dot-bat'],
-    ['wicketKeepers', 'Wicket-keepers', 'dot-wk'],
-    ['allRounders', 'All-rounders', 'dot-ar'],
-    ['bowlers', 'Bowlers', 'dot-bowl'],
+  const players = Object.values(squad).flat();
+  const sortBySkill = mode => players
+    .filter(player => hasSkillSample(player, mode))
+    .sort((a, b) => (skillScore(b, mode) || -1) - (skillScore(a, mode) || -1)
+      || ((b.matches || b.stats?.apps || 0) - (a.matches || a.stats?.apps || 0))
+      || a.name.localeCompare(b.name));
+  const views = [
+    ['bat', 'Batting', 'Batters', 'dot-bat'],
+    ['bowl', 'Bowling', 'Bowlers', 'dot-bowl'],
   ];
   el.innerHTML = `
     <div class="chip chip-soft" style="margin-bottom:14px">${IPL_SQUAD_SOURCE} · cached 24h</div>
-    ${titles.map(([key, title, dot]) => `
-    <div class="role-section">
-      <div class="role-title"><span class="role-dot ${dot}"></span>${title}</div>
-      <div class="players-grid">
-        ${sortByScore(squad[key]).map(p => {
-          const profile = playerProfile(p);
-          const tier = formTier(p.score);
-          const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
-          const apps = p.matches || p.stats?.apps || 0;
-          return `<div class="player-card card-${tier}">
-            <div class="player-num">${p.num}</div>
-            <div class="player-body">
-              <div class="player-name">${p.name}</div>
-              <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
-              <div class="player-meta">${apps} matches${p.tag ? ` · ${p.tag}` : ''}</div>
-              <div class="skill-grid">
-                <div class="skill-pill ${skillClass(p.score)}"><span>OVR</span><strong>${scoreText(p.score)}</strong></div>
-                <div class="skill-pill ${skillClass(profile.bat?.score)}"><span>Bat</span><strong>${scoreText(profile.bat?.score)}</strong></div>
-                <div class="skill-pill ${skillClass(profile.bowl?.score)}"><span>Bowl</span><strong>${scoreText(profile.bowl?.score)}</strong></div>
-              </div>
-              <div class="split-lines">${playerLines(profile).map(line => `<div>${line}</div>`).join('')}</div>
-              <span class="form-score ${tier}">${tier} · ${p.score} · ${source}</span>
-            </div>
-          </div>`;
-        }).join('')}
-      </div>
+    <div class="squad-tabs" role="tablist" aria-label="Squad stat view">
+      ${views.map(([mode, label], index) => `<button class="squad-tab-btn ${index === 0 ? 'active' : ''}" type="button" role="tab" aria-selected="${index === 0 ? 'true' : 'false'}" data-squad-tab="${mode}">${label}</button>`).join('')}
     </div>
+    <div class="squad-views">
+    ${views.map(([mode, , title, dot], index) => `
+    <section class="squad-view squad-panel ${index === 0 ? 'active' : ''}" data-squad-panel="${mode}" role="tabpanel">
+      <div class="squad-view-head">
+        <div class="role-title"><span class="role-dot ${dot}"></span>${title}</div>
+      </div>
+      <div class="players-grid">
+        ${sortBySkill(mode).map(p => renderPlayerCard(p, mode)).join('')}
+      </div>
+    </section>
   `).join('')}
+    </div>
   `;
+  bindSquadTabs(slug);
 }
 
 function initStaticViews() {
