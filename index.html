@@ -605,12 +605,13 @@
   .skill-grid {
     display: grid;
     gap: 6px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1.25fr 1fr 1fr;
     margin-top: 10px;
   }
   .skill-pill {
     background: rgba(19,25,21,.05);
     border-radius: 7px;
+    min-width: 0;
     padding: 6px 7px;
   }
   .skill-pill strong {
@@ -622,11 +623,21 @@
   .skill-pill span {
     color: var(--ink-mute);
     display: block;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 800;
-    letter-spacing: .12em;
+    letter-spacing: .06em;
     text-transform: uppercase;
   }
+  .skill-elite { background: rgba(47,125,75,.16); }
+  .skill-elite strong, .skill-elite span { color: #2f7d4b; }
+  .skill-good { background: rgba(0,48,26,.13); }
+  .skill-good strong, .skill-good span { color: var(--green-deep); }
+  .skill-avg { background: rgba(21,21,21,.10); }
+  .skill-avg strong, .skill-avg span { color: #151515; }
+  .skill-poor { background: rgba(182,23,30,.13); }
+  .skill-poor strong, .skill-poor span { color: var(--crimson); }
+  .skill-nodata { background: rgba(140,150,141,.14); }
+  .skill-nodata strong, .skill-nodata span { color: #6e7771; }
   .split-lines {
     color: var(--ink-soft);
     display: grid;
@@ -871,6 +882,11 @@
       <div><div class="eyebrow">Calendar</div><h2>Upcoming Fixtures</h2></div>
     </div>
     <div class="grid grid-2" id="ipl-fixtures"></div>
+
+    <div class="section-head">
+      <div><div class="eyebrow">Results</div><h2>Recent Results</h2></div>
+    </div>
+    <div class="grid grid-2" id="ipl-results"></div>
   </section>
 </main>
 
@@ -1680,7 +1696,8 @@ function renderFixtures(target, fixtures) {
       </div>
       <div class="fixture-info">
         ${m.tag ? `<span class="chip chip-gold">${m.tag}</span>` : ''}
-        <div style="${m.tag ? 'margin-top:8px' : ''}">${m.venue}</div>
+        <div style="${m.tag ? 'margin-top:8px' : ''}">${m.result || m.venue}</div>
+        ${m.result && m.venue ? `<div style="margin-top:6px;color:var(--ink-mute)">${m.venue}</div>` : ''}
       </div>
     </div>
   `).join('');
@@ -1748,6 +1765,41 @@ async function fetchIplFixtures() {
   return iplFixtures;
 }
 
+function formatShortDate(dateText) {
+  const date = new Date(`${dateText}T00:00:00`);
+  return {
+    date: new Intl.DateTimeFormat('en-GB', { day: '2-digit', timeZone: 'UTC' }).format(date),
+    mo: new Intl.DateTimeFormat('en-GB', { month: 'short', timeZone: 'UTC' }).format(date),
+  };
+}
+
+function formatRecentResults() {
+  const matches = window.CRICSHEET_IPL_STATS?.matches || [];
+  return matches
+    .filter(match => match.date && match.teams?.length === 2)
+    .slice()
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    .slice(0, 4)
+    .map(match => {
+      const [teamA, teamB] = match.teams;
+      const aAbbr = teamAbbrFromName(teamA);
+      const bAbbr = teamAbbrFromName(teamB);
+      const when = formatShortDate(match.date);
+      return {
+        ...when,
+        t: `M${match.matchNumber || ''}`,
+        a: teamA,
+        aa: aAbbr,
+        af: teamFlag(aAbbr),
+        b: teamB,
+        ba: bAbbr,
+        bf: teamFlag(bAbbr),
+        result: match.winner ? `${match.winner} won` : 'No result',
+        venue: 'Cricsheet result',
+      };
+    });
+}
+
 async function fetchIplStandings() {
   const cached = cacheGet('global_ipl_standings_v1');
   if (cached) return cached;
@@ -1785,27 +1837,54 @@ function teamFlag(abbr = '') {
   })[abbr.toUpperCase()] || abbr.toLowerCase();
 }
 
+function teamAbbrFromName(name = '') {
+  const slug = slugForTeam({ teamName: name, full: name });
+  return ({
+    gt: 'GT', rcb: 'RCB', mi: 'MI', kkr: 'KKR', srh: 'SRH',
+    csk: 'CSK', rr: 'RR', pbks: 'PBKS', dc: 'DC', lsg: 'LSG',
+  })[slug] || String(name).split(/\s+/).map(word => word[0]).join('').slice(0, 5).toUpperCase();
+}
+
+function teamNameFromSlug(slug) {
+  return (iplFallback.find(team => slugForTeam(team) === slug)?.full) || slug.toUpperCase();
+}
+
+function topPlayerLeaders() {
+  const squads = IPL_SQUADS || {};
+  const players = Object.entries(squads).flatMap(([slug, squad]) =>
+    Object.values(squad || {}).flat().map(player => ({ ...player, slug, profile: playerProfile(player) }))
+  );
+  const bat = players
+    .filter(player => player.profile.bat?.runs > 0)
+    .sort((a, b) => (b.profile.bat.runs - a.profile.bat.runs) || ((b.profile.bat.score || 0) - (a.profile.bat.score || 0)))[0];
+  const bowl = players
+    .filter(player => player.profile.bowl?.wickets > 0)
+    .sort((a, b) => (b.profile.bowl.wickets - a.profile.bowl.wickets) || ((b.profile.bowl.score || 0) - (a.profile.bowl.score || 0)))[0];
+  return { bat, bowl };
+}
+
 function renderIplSpotlight(rows) {
   const leader = rows[0];
   const rcb = rows.find(t => t.rcb) || rows.find(t => t.abbr === 'RCB') || rows[1] || leader;
+  const leaders = topPlayerLeaders();
   document.getElementById('ipl-spotlight').innerHTML = `
-    <div class="eyebrow" style="color:var(--gold)">Table Leaders</div>
-    <div class="score-row">
-      ${flag(leader.flag, leader.abbr, true)}
-      <div><strong>${leader.full}</strong><div style="color:rgba(255,255,255,.58)">${leader.w} wins · ${leader.pts} points</div></div>
-      <div class="score">#${leader.pos}</div>
-    </div>
-    <div class="score-row">
-      ${flag(rcb.flag, rcb.abbr, true)}
-      <div><strong>${rcb.full}</strong><div style="color:rgba(255,255,255,.58)">RCB focus panel</div></div>
-      <div class="score">#${rcb.pos}</div>
-    </div>
-    <div class="chip chip-dark" style="margin-top:12px;">NRR ${rcb.nrr >= 0 ? '+' : ''}${rcb.nrr.toFixed(3)}</div>
+    <div class="eyebrow" style="color:var(--gold)">Stat Leaders</div>
+    ${leaders.bat ? `<div class="score-row">
+      ${flag(leaders.bat.slug, teamAbbrFromName(teamNameFromSlug(leaders.bat.slug)), true)}
+      <div><strong>${leaders.bat.name}</strong><div style="color:rgba(255,255,255,.58)">Runs leader · ${teamNameFromSlug(leaders.bat.slug)}</div></div>
+      <div class="score">${leaders.bat.profile.bat.runs}</div>
+    </div>` : ''}
+    ${leaders.bowl ? `<div class="score-row">
+      ${flag(leaders.bowl.slug, teamAbbrFromName(teamNameFromSlug(leaders.bowl.slug)), true)}
+      <div><strong>${leaders.bowl.name}</strong><div style="color:rgba(255,255,255,.58)">Wickets leader · ${teamNameFromSlug(leaders.bowl.slug)}</div></div>
+      <div class="score">${leaders.bowl.profile.bowl.wickets}<small>w</small></div>
+    </div>` : ''}
+    <div class="chip chip-dark" style="margin-top:12px;">Table leader: ${leader.abbr} · RCB #${rcb.pos}</div>
   `;
   document.getElementById('ipl-hero-strip').innerHTML = `
     <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Teams</span><strong>${rows.length}</strong></div>
-    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Leader</span><strong>${leader.abbr}</strong></div>
-    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">RCB</span><strong>#${rcb.pos}</strong></div>
+    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Runs</span><strong>${leaders.bat?.profile.bat.runs || '—'}</strong></div>
+    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Wickets</span><strong>${leaders.bowl?.profile.bowl.wickets || '—'}</strong></div>
   `;
 }
 
@@ -1839,6 +1918,10 @@ function playerProfile(player) {
 
 function scoreText(score) {
   return score === null || score === undefined || Number.isNaN(score) ? '—' : String(score);
+}
+
+function skillClass(score) {
+  return `skill-${formTier(score)}`;
 }
 
 function playerLines(profile) {
@@ -1885,9 +1968,9 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
               <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
               <div class="player-meta">${apps} matches${p.tag ? ` · ${p.tag}` : ''}</div>
               <div class="skill-grid">
-                <div class="skill-pill"><span>Overall</span><strong>${scoreText(p.score)}</strong></div>
-                <div class="skill-pill"><span>Bat</span><strong>${scoreText(profile.bat?.score)}</strong></div>
-                <div class="skill-pill"><span>Bowl</span><strong>${scoreText(profile.bowl?.score)}</strong></div>
+                <div class="skill-pill ${skillClass(p.score)}"><span>OVR</span><strong>${scoreText(p.score)}</strong></div>
+                <div class="skill-pill ${skillClass(profile.bat?.score)}"><span>Bat</span><strong>${scoreText(profile.bat?.score)}</strong></div>
+                <div class="skill-pill ${skillClass(profile.bowl?.score)}"><span>Bowl</span><strong>${scoreText(profile.bowl?.score)}</strong></div>
               </div>
               <div class="split-lines">${playerLines(profile).map(line => `<div>${line}</div>`).join('')}</div>
               <span class="form-score ${tier}">${tier} · ${p.score} · ${source}</span>
@@ -1909,6 +1992,7 @@ function initStaticViews() {
     { date:'21', mo:'Jun', t:'09:45', a:'SL', af:'sl', b:'PAK', bf:'pak', venue:'Galle International', tag:'Spin watch' },
   ]);
   renderFixtures('ipl-fixtures', iplFixtures);
+  renderFixtures('ipl-results', formatRecentResults());
 }
 
 async function initIpl() {
@@ -1917,10 +2001,11 @@ async function initIpl() {
   document.getElementById('ipl-data-label').textContent = cacheGet('global_ipl_standings_v1')
     ? `Live/cached IPL data · refreshed at ${new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}`
     : 'Static fallback data shown because the live points-table endpoint is unavailable.';
+  await fetchIplSquadModel();
   renderIplSpotlight(rows);
   renderTeamGrid('ipl-team-grid', rows, 'ipl');
   renderFixtures('ipl-fixtures', await fetchIplFixtures());
-  await fetchIplSquadModel();
+  renderFixtures('ipl-results', formatRecentResults());
   switchTab(window.location.hash, false);
   updateIplTeamDetail(currentRoute().detail, true);
 }
