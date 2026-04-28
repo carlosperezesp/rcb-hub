@@ -336,7 +336,7 @@
   .team-card .stripe {
     align-items: end;
     background:
-      linear-gradient(135deg, var(--green-mid), var(--green-soft)),
+      linear-gradient(135deg, var(--team-color, var(--green-mid)), var(--team-color-2, var(--green-soft))),
       repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 6px, rgba(0,0,0,.08) 6px 12px);
     display: flex;
     height: 82px;
@@ -537,10 +537,31 @@
     position: absolute;
     width: 6px;
   }
-  .card-elite::before { background: var(--green-deep); }
-  .card-good::before { background: #2f7d4b; }
-  .card-avg::before { background: #8c968d; }
+  .card-elite::before { background: #2f7d4b; }
+  .card-good::before { background: var(--green-deep); }
+  .card-avg::before { background: #151515; }
   .card-poor::before { background: var(--crimson); }
+  .card-nodata::before { background: #8c968d; }
+  .card-elite {
+    background: linear-gradient(90deg, rgba(47,125,75,.16), #fff 38%);
+    box-shadow: inset 0 0 0 1px rgba(47,125,75,.08);
+  }
+  .card-good {
+    background: linear-gradient(90deg, rgba(0,48,26,.15), #fff 38%);
+    box-shadow: inset 0 0 0 1px rgba(0,48,26,.07);
+  }
+  .card-avg {
+    background: linear-gradient(90deg, rgba(21,21,21,.13), #fff 38%);
+    box-shadow: inset 0 0 0 1px rgba(21,21,21,.08);
+  }
+  .card-poor {
+    background: linear-gradient(90deg, rgba(182,23,30,.13), #fff 38%);
+    box-shadow: inset 0 0 0 1px rgba(182,23,30,.08);
+  }
+  .card-nodata {
+    background: linear-gradient(90deg, rgba(140,150,141,.15), #fff 38%);
+    box-shadow: inset 0 0 0 1px rgba(140,150,141,.08);
+  }
   .player-num {
     background: var(--green-paler);
     border-radius: 8px;
@@ -550,6 +571,11 @@
     font: 800 20px/1 'Manrope', sans-serif;
     place-items: center;
   }
+  .card-elite .player-num { background: #2f7d4b; color: #fff; }
+  .card-good .player-num { background: #00301a; color: #fff; }
+  .card-avg .player-num { background: #151515; color: #fff; }
+  .card-poor .player-num { background: var(--crimson); color: #fff; }
+  .card-nodata .player-num { background: #8c968d; color: #fff; }
   .player-name {
     font: 800 15px/1.2 'Manrope', sans-serif;
     margin-bottom: 5px;
@@ -570,10 +596,11 @@
     padding: 5px 8px;
     text-transform: uppercase;
   }
-  .elite { background: rgba(0,48,26,.12); color: var(--green-deep); }
-  .good { background: rgba(22,98,58,.12); color: #16623a; }
-  .avg { background: rgba(124,133,128,.14); color: #5d6660; }
+  .elite { background: rgba(47,125,75,.14); color: #2f7d4b; }
+  .good { background: rgba(0,48,26,.12); color: var(--green-deep); }
+  .avg { background: rgba(21,21,21,.12); color: #151515; }
   .poor { background: rgba(182,23,30,.12); color: var(--crimson); }
+  .nodata { background: rgba(140,150,141,.16); color: #5d6660; }
 
   .loading {
     align-items: center;
@@ -816,6 +843,7 @@
   </a>
 </nav>
 
+<script src="data/ipl-2026-season-stats.js"></script>
 <script>
 const API_KEY = '081aca27-a3d0-4ce7-aded-a1f73624ce37';
 const BASE = 'https://api.cricapi.com/v1';
@@ -898,7 +926,7 @@ function switchTab(route, updateHash = true) {
   document.querySelectorAll('.bnav-btn').forEach(btn => btn.classList.remove('active'));
   document.getElementById(`tab-${next.tab}`)?.classList.add('active');
   document.getElementById(`bnav-${next.tab}`)?.classList.add('active');
-  updateIplTeamDetail(next.detail, next.tab === 'ipl' && next.detail === 'rcb');
+  updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail);
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
   }
@@ -910,7 +938,11 @@ function currentRoute() {
 
 function updateIplTeamDetail(detail, shouldScroll = false) {
   document.querySelectorAll('.team-detail').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.team-card').forEach(el => el.classList.remove('is-selected'));
+  document.querySelectorAll('.team-card').forEach(el => {
+    el.classList.remove('is-selected');
+    const slug = el.id?.replace('team-card-', '');
+    if (slug) el.setAttribute('href', `#ipl/${slug}`);
+  });
   if (!detail) return;
 
   const detailEl = document.getElementById(`team-detail-${detail}`);
@@ -918,6 +950,7 @@ function updateIplTeamDetail(detail, shouldScroll = false) {
   renderSquadContent(detail);
   detailEl?.classList.toggle('active', true);
   cardEl?.classList.toggle('is-selected', true);
+  cardEl?.setAttribute('href', '#ipl');
   if (shouldScroll && detailEl) {
     requestAnimationFrame(() => detailEl.scrollIntoView({ block: 'start' }));
   }
@@ -977,47 +1010,74 @@ const IPL_TEAM_ALIASES = {
 let IPL_SQUADS = {};
 let IPL_SQUAD_SOURCE = 'Estimated formula model';
 
+function loadCricsheetSquads() {
+  const data = window.CRICSHEET_IPL_STATS;
+  if (!data?.squads) return false;
+  IPL_SQUADS = data.squads;
+  IPL_SQUAD_SOURCE = `${data.source} · ${data.matchesProcessed} matches · updated ${data.lastMatchDate || 'today'}`;
+  return true;
+}
+
 const IPL_SQUAD_SEEDS = {
   gt: [
     ['Shubman Gill','IND','bat','C'], ['Sai Sudharsan','IND','bat'], ['Jos Buttler','ENG','wk','OV'], ['Rahul Tewatia','IND','ar'],
     ['Rashid Khan','AFG','ar','OV'], ['Washington Sundar','IND','ar'], ['Mohammed Siraj','IND','bowl'], ['Kagiso Rabada','RSA','bowl','OV'],
+    ['Mahipal Lomror','IND','ar'], ['Sherfane Rutherford','WI','bat','OV'], ['Ishant Sharma','IND','bowl'], ['Prasidh Krishna','IND','bowl'],
+    ['Glenn Phillips','NZ','wk','OV'], ['Jayant Yadav','IND','ar'],
   ],
   rcb: [
     ['Virat Kohli','IND','bat'], ['Rajat Patidar','IND','bat','C'], ['Phil Salt','ENG','wk','OV'], ['Devdutt Padikkal','IND','bat'],
     ['Liam Livingstone','ENG','ar','OV'], ['Krunal Pandya','IND','ar'], ['Jitesh Sharma','IND','wk'], ['Josh Hazlewood','AUS','bowl','OV'],
     ['Bhuvneshwar Kumar','IND','bowl'], ['Yash Dayal','IND','bowl'], ['Suyash Sharma','IND','bowl'],
+    ['Tim David','AUS','bat','OV'], ['Romario Shepherd','WI','ar','OV'], ['Jacob Bethell','ENG','ar','OV'], ['Rasikh Salam','IND','bowl'],
   ],
   mi: [
     ['Rohit Sharma','IND','bat'], ['Suryakumar Yadav','IND','bat'], ['Tilak Varma','IND','bat'], ['Ryan Rickelton','RSA','wk','OV'],
     ['Hardik Pandya','IND','ar','C'], ['Will Jacks','ENG','ar','OV'], ['Jasprit Bumrah','IND','bowl'], ['Trent Boult','NZ','bowl','OV'],
+    ['Naman Dhir','IND','ar'], ['Deepak Chahar','IND','bowl'], ['Mitchell Santner','NZ','ar','OV'], ['Karn Sharma','IND','bowl'],
+    ['Robin Minz','IND','wk'], ['Ashwani Kumar','IND','bowl'],
   ],
   kkr: [
     ['Ajinkya Rahane','IND','bat','C'], ['Venkatesh Iyer','IND','ar'], ['Rinku Singh','IND','bat'], ['Quinton de Kock','RSA','wk','OV'],
     ['Andre Russell','WI','ar','OV'], ['Sunil Narine','WI','ar','OV'], ['Varun Chakravarthy','IND','bowl'], ['Harshit Rana','IND','bowl'],
+    ['Angkrish Raghuvanshi','IND','bat'], ['Moeen Ali','ENG','ar','OV'], ['Ramandeep Singh','IND','ar'], ['Vaibhav Arora','IND','bowl'],
+    ['Anrich Nortje','RSA','bowl','OV'], ['Manish Pandey','IND','bat'],
   ],
   srh: [
     ['Travis Head','AUS','bat','OV'], ['Abhishek Sharma','IND','ar'], ['Ishan Kishan','IND','wk'], ['Heinrich Klaasen','RSA','wk','OV'],
     ['Nitish Kumar Reddy','IND','ar'], ['Pat Cummins','AUS','bowl','C'], ['Mohammed Shami','IND','bowl'], ['Harshal Patel','IND','bowl'],
+    ['Adam Zampa','AUS','bowl','OV'], ['Rahul Chahar','IND','bowl'], ['Kamindu Mendis','SL','ar','OV'], ['Jaydev Unadkat','IND','bowl'],
+    ['Wiaan Mulder','RSA','ar','OV'], ['Aniket Verma','IND','bat'],
   ],
   csk: [
     ['Ruturaj Gaikwad','IND','bat','C'], ['Devon Conway','NZ','bat','OV'], ['Shivam Dube','IND','ar'], ['MS Dhoni','IND','wk'],
     ['Ravindra Jadeja','IND','ar'], ['Ravichandran Ashwin','IND','ar'], ['Matheesha Pathirana','SL','bowl','OV'], ['Noor Ahmad','AFG','bowl','OV'],
+    ['Rachin Ravindra','NZ','ar','OV'], ['Rahul Tripathi','IND','bat'], ['Vijay Shankar','IND','ar'], ['Khaleel Ahmed','IND','bowl'],
+    ['Anshul Kamboj','IND','bowl'], ['Deepak Hooda','IND','bat'],
   ],
   rr: [
     ['Yashasvi Jaiswal','IND','bat'], ['Sanju Samson','IND','wk','C'], ['Riyan Parag','IND','bat'], ['Shimron Hetmyer','WI','bat','OV'],
     ['Dhruv Jurel','IND','wk'], ['Wanindu Hasaranga','SL','ar','OV'], ['Jofra Archer','ENG','bowl','OV'], ['Sandeep Sharma','IND','bowl'],
+    ['Vaibhav Sooryavanshi','IND','bat'], ['Nitish Rana','IND','bat'], ['Maheesh Theekshana','SL','bowl','OV'], ['Tushar Deshpande','IND','bowl'],
+    ['Akash Madhwal','IND','bowl'], ['Fazalhaq Farooqi','AFG','bowl','OV'],
   ],
   pbks: [
     ['Shreyas Iyer','IND','bat','C'], ['Prabhsimran Singh','IND','wk'], ['Glenn Maxwell','AUS','ar','OV'], ['Marcus Stoinis','AUS','ar','OV'],
     ['Shashank Singh','IND','bat'], ['Marco Jansen','RSA','ar','OV'], ['Arshdeep Singh','IND','bowl'], ['Yuzvendra Chahal','IND','bowl'],
+    ['Priyansh Arya','IND','bat'], ['Josh Inglis','AUS','wk','OV'], ['Nehal Wadhera','IND','bat'], ['Harpreet Brar','IND','ar'],
+    ['Lockie Ferguson','NZ','bowl','OV'], ['Vijaykumar Vyshak','IND','bowl'],
   ],
   dc: [
     ['KL Rahul','IND','wk'], ['Jake Fraser-McGurk','AUS','bat','OV'], ['Faf du Plessis','RSA','bat','OV'], ['Tristan Stubbs','RSA','bat','OV'],
     ['Axar Patel','IND','ar','C'], ['Kuldeep Yadav','IND','bowl'], ['Mitchell Starc','AUS','bowl','OV'], ['Mukesh Kumar','IND','bowl'],
+    ['Abishek Porel','IND','wk'], ['Karun Nair','IND','bat'], ['Ashutosh Sharma','IND','bat'], ['Sameer Rizvi','IND','bat'],
+    ['T Natarajan','IND','bowl'], ['Dushmantha Chameera','SL','bowl','OV'],
   ],
   lsg: [
     ['Rishabh Pant','IND','wk','C'], ['Aiden Markram','RSA','bat','OV'], ['Nicholas Pooran','WI','wk','OV'], ['David Miller','RSA','bat','OV'],
     ['Ayush Badoni','IND','bat'], ['Mitchell Marsh','AUS','ar','OV'], ['Ravi Bishnoi','IND','bowl'], ['Mayank Yadav','IND','bowl'],
+    ['Abdul Samad','IND','bat'], ['Shahbaz Ahmed','IND','ar'], ['Avesh Khan','IND','bowl'], ['Mohsin Khan','IND','bowl'],
+    ['Prince Yadav','IND','bowl'], ['Akash Deep','IND','bowl'],
   ],
 };
 
@@ -1032,6 +1092,21 @@ function normName(s = '') {
 function slugForTeam(team = {}) {
   const haystack = `${team.flag || ''} ${team.abbr || ''} ${team.shortname || ''} ${team.teamSName || ''} ${team.full || ''} ${team.teamName || ''} ${team.name || ''}`.toLowerCase();
   return IPL_SLUGS.find(slug => IPL_TEAM_ALIASES[slug].some(alias => haystack.includes(alias))) || team.flag || 'rcb';
+}
+
+function teamTheme(slug) {
+  return ({
+    gt: ['#1c2536', '#caa45d'],
+    rcb: ['#b6171e', '#111111'],
+    mi: ['#004ba0', '#0b85c8'],
+    kkr: ['#3a225d', '#caa45d'],
+    srh: ['#f26522', '#5b1f0e'],
+    csk: ['#f8d300', '#1434a4'],
+    rr: ['#ea1a85', '#254aa5'],
+    pbks: ['#d71920', '#b8a16a'],
+    dc: ['#17449b', '#d71920'],
+    lsg: ['#0b85c8', '#f36f21'],
+  })[slug] || ['#0d4a2a', '#16623a'];
 }
 
 function seededNumber(seed, min, max) {
@@ -1287,7 +1362,7 @@ function mergeStat(target, name, values) {
 }
 
 async function fetchCricbuzzSeasonStats() {
-  const cached = cacheGet('cricbuzz_ipl_season_stats_v2');
+  const cached = cacheGet('cricbuzz_ipl_season_stats_v3');
   if (cached) return cached;
 
   const [mostRuns, highestAvg, mostSixes, mostWickets, lowestEcon, lowestAvg] = await Promise.all(
@@ -1332,7 +1407,7 @@ async function fetchCricbuzzSeasonStats() {
   }));
 
   const result = { batters, bowlers, statTypes: CRICBUZZ_SEASON_STAT_TYPES.length };
-  cacheSet('cricbuzz_ipl_season_stats_v2', result);
+  cacheSet('cricbuzz_ipl_season_stats_v3', result);
   return result;
 }
 
@@ -1400,7 +1475,9 @@ function buildFallbackSquads() {
 }
 
 async function fetchIplSquadModel() {
-  const cached = cacheGet('ipl_squad_model_v6');
+  if (loadCricsheetSquads()) return;
+
+  const cached = cacheGet('ipl_squad_model_v8');
   if (cached) {
     IPL_SQUAD_SOURCE = cached.source || IPL_SQUAD_SOURCE;
     IPL_SQUADS = cached.squads || buildFallbackSquads();
@@ -1456,7 +1533,7 @@ async function fetchIplSquadModel() {
 
   IPL_SQUADS = squads;
   IPL_SQUAD_SOURCE = source;
-  cacheSet('ipl_squad_model_v6', { squads, source });
+  cacheSet('ipl_squad_model_v8', { squads, source });
 }
 
 function flag(code, label, round = false) {
@@ -1498,8 +1575,9 @@ function renderTeamGrid(target, teams, mode) {
     ${(() => {
       const slug = mode === 'ipl' ? slugForTeam(team) : null;
       const selected = currentRoute().detail === slug;
+      const [teamColor, teamColor2] = teamTheme(slug);
       return mode === 'ipl'
-        ? `<a class="card team-card ${selected ? 'is-selected' : ''}" id="team-card-${slug}" href="#ipl/${slug}">`
+        ? `<a class="card team-card ${selected ? 'is-selected' : ''}" id="team-card-${slug}" href="${selected ? '#ipl' : `#ipl/${slug}`}" style="--team-color:${teamColor};--team-color-2:${teamColor2}">`
         : '<div class="card team-card">';
     })()}
       <div class="stripe">
@@ -1611,6 +1689,7 @@ function renderIplSpotlight(rows) {
 }
 
 function formTier(score) {
+  if (score === null || score === undefined || Number.isNaN(score)) return 'nodata';
   if (score >= 75) return 'elite';
   if (score >= 55) return 'good';
   if (score >= 35) return 'avg';
@@ -1635,7 +1714,7 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
       <div class="players-grid">
         ${(squad[key] || []).map(p => {
           const tier = formTier(p.score);
-          const source = p.stats?.source === 'cricbuzz' ? 'LIVE' : 'EST';
+          const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
           return `<div class="player-card card-${tier}">
             <div class="player-num">${p.num}</div>
             <div>
