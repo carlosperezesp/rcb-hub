@@ -443,6 +443,10 @@
     background: rgba(202,164,93,.2);
     color: var(--gold-deep);
   }
+  .status-eliminated {
+    background: rgba(182,23,30,.12);
+    color: var(--crimson);
+  }
 
   .fixture {
     display: grid;
@@ -1540,6 +1544,16 @@ function flag(code, label, round = false) {
   return `<span class="flag f-${code} ${round ? 'round' : ''}">${label}</span>`;
 }
 
+function playoffStatus(team, rows) {
+  if (team.pos <= 4) return ['Playoff', 'status-playoff'];
+  const playoffCut = rows.find(row => row.pos === 4)?.pts ?? rows[3]?.pts ?? 0;
+  const remaining = Math.max(0, 14 - (team.m || 0));
+  const maxPossible = (team.pts || 0) + remaining * 2;
+  return maxPossible < playoffCut
+    ? ['Eliminated', 'status-eliminated']
+    : ['Chasing', 'status-chase'];
+}
+
 function renderStandingsTable(rows, type) {
   const isTest = type === 'test';
   let html = `<thead><tr>
@@ -1552,9 +1566,8 @@ function renderStandingsTable(rows, type) {
   </tr></thead><tbody>`;
 
   rows.forEach(team => {
-    const status = team.pos <= 4
-      ? '<span class="status-pill status-playoff">Playoff</span>'
-      : '<span class="status-pill status-chase">Chasing</span>';
+    const [statusLabel, statusClass] = isTest ? ['', ''] : playoffStatus(team, rows);
+    const status = isTest ? '' : `<span class="status-pill ${statusClass}">${statusLabel}</span>`;
 
     html += `<tr>
       <td><span class="pos ${team.pos <= 4 ? 'top-pos' : ''}">${String(team.pos).padStart(2, '0')}</span></td>
