@@ -715,6 +715,42 @@
     background: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .34);
     border-color: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .25);
   }
+  .career-delta {
+    align-items: flex-start;
+    color: var(--ink-mute);
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    font-weight: 800;
+    gap: 5px;
+    letter-spacing: .04em;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+  .career-delta > span:first-child {
+    display: block;
+  }
+  .delta-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+  .delta-chip {
+    background: rgba(19,25,21,.06);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    flex: 0 0 auto;
+    padding: 5px 7px;
+    white-space: nowrap;
+  }
+  .delta-up {
+    background: rgba(47,125,75,.14);
+    color: #2f7d4b;
+  }
+  .delta-down {
+    background: rgba(182,23,30,.12);
+    color: var(--crimson);
+  }
   .player-body {
     min-width: 0;
     width: 100%;
@@ -2393,6 +2429,44 @@ function battingPositionUsage(profile) {
   return `<div class="position-usage">${avg}${rows.map(([label, value]) => `<span class="position-chip ${intensity(value)}">${label} ${Math.round(value)}%</span>`).join('')}</div>`;
 }
 
+function signed(value, digits = 0) {
+  const rounded = Number(value).toFixed(digits);
+  return value > 0 ? `+${rounded}` : rounded;
+}
+
+function deltaChip(label, value, digits = 0, lowerIsBetter = false) {
+  if (value === null || value === undefined || Number.isNaN(value)) return '';
+  const improved = lowerIsBetter ? value < 0 : value > 0;
+  const worsened = lowerIsBetter ? value > 0 : value < 0;
+  const cls = improved ? 'delta-up' : worsened ? 'delta-down' : '';
+  return `<span class="delta-chip ${cls}">${label} ${signed(value, digits)}</span>`;
+}
+
+function careerDelta(profile, mode) {
+  const career = profile.career;
+  if (!career) return '';
+  if (mode === 'bat') {
+    const hasCareer = (career.bat?.balls || 0) >= 60;
+    if (!hasCareer || !(profile.bat?.balls || 0)) return '';
+    return `<div class="career-delta">
+      <span>Vs IPL career</span>
+      <div class="delta-row">
+        ${deltaChip('SR', (profile.bat.sr || 0) - (career.bat.sr || 0), 0)}
+        ${deltaChip('AVG', (profile.bat.avg || 0) - (career.bat.avg || 0), 1)}
+      </div>
+    </div>`;
+  }
+  const hasCareer = (career.bowl?.balls || 0) >= 48;
+  if (!hasCareer || !(profile.bowl?.balls || 0)) return '';
+  return `<div class="career-delta">
+    <span>Vs IPL career</span>
+    <div class="delta-row">
+      ${deltaChip('ECON', (profile.bowl.econ || 0) - (career.bowl.econ || 0), 1, true)}
+      ${deltaChip('W/M', (profile.bowl.wkts_per_match || 0) - (career.bowl.wkts_per_match || 0), 1)}
+    </div>
+  </div>`;
+}
+
 function leaguePlayers() {
   return Object.entries(IPL_SQUADS || {}).flatMap(([slug, squad]) =>
     Object.values(squad || {}).flat().map(player => ({ ...player, slug, profile: playerProfile(player) }))
@@ -2760,6 +2834,7 @@ function renderPlayerCard(p, mode, benchmarks, slug) {
         <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
       </div>
       <div class="stat-strip">${statHtml}</div>
+      ${careerDelta(profile, mode)}
       ${fieldStats(profile, benchmarks)}
       <span class="form-score ${tier}">${source}</span>
     </div>

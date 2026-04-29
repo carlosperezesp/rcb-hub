@@ -65,6 +65,7 @@ function ensurePlayer(players, name, team, registry = {}) {
     players[id] = {
       id,
       name,
+      namesSeen: new Set([name]),
       team,
       teams: new Set(team ? [team] : []),
       matches: new Set(),
@@ -89,6 +90,8 @@ function ensurePlayer(players, name, team, registry = {}) {
     };
   }
   if (team) {
+    players[id].name = name;
+    players[id].namesSeen.add(name);
     players[id].team = team;
     players[id].teams.add(team);
   }
@@ -326,15 +329,16 @@ function statLine(player, role, stats) {
   return `SR ${stats.bat.sr.toFixed(0)} · Avg ${stats.bat.avg.toFixed(1)}`;
 }
 
-function processMatch(filePath, seasonPlayers, matches) {
+function processMatch(filePath, seasonPlayers, matches, options = {}) {
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const info = raw.info || {};
   if (info.gender !== 'male' || info.match_type !== 'T20') return;
-  if (String(info.season) !== '2026') return;
   if (info.event?.name !== 'Indian Premier League') return;
 
   const teams = info.teams || [];
   if (!teams.every(team => TEAM_SLUGS[team])) return;
+  if (options.season && String(info.season) !== options.season) return;
+  if (options.beforeSeason && String(info.season) >= options.beforeSeason) return;
 
   const matchId = path.basename(filePath, '.json');
   const registry = info.registry?.people || {};
@@ -427,17 +431,19 @@ function processMatch(filePath, seasonPlayers, matches) {
   });
 
   const winner = info.outcome?.winner || info.outcome?.eliminator;
-  matches.push({
-    id: matchId,
-    date: info.dates?.[0],
-    matchNumber: info.event?.match_number,
-    teams,
-    winner,
-    result: info.outcome?.result,
-    margin: info.outcome?.by || null,
-    scores,
-    teamStats: matchStats,
-  });
+  if (matches) {
+    matches.push({
+      id: matchId,
+      date: info.dates?.[0],
+      matchNumber: info.event?.match_number,
+      teams,
+      winner,
+      result: info.outcome?.result,
+      margin: info.outcome?.by || null,
+      scores,
+      teamStats: matchStats,
+    });
+  }
 }
 
 function buildStandings(matches) {
@@ -515,7 +521,37 @@ function buildStandings(matches) {
     .map((row, index) => ({ ...row, pos: index + 1 }));
 }
 
-function buildOutput(players, matches) {
+function careerSnapshot(player) {
+  if (!player || !player.matches.size) return null;
+  const stats = buildStats(player, inferRole(player));
+  return {
+    apps: stats.apps,
+    names: [...player.namesSeen],
+    bat: {
+      runs: stats.bat.runs,
+      balls: stats.bat.balls,
+      sr: stats.bat.sr,
+      avg: stats.bat.avg,
+      boundary_pct: stats.bat.boundary_pct,
+    },
+    bowl: {
+      balls: stats.bowl.balls,
+      wickets: stats.bowl.wickets,
+      econ: stats.bowl.econ,
+      bowling_avg: stats.bowl.bowling_avg,
+      wkts_per_match: stats.bowl.wkts_per_match,
+      dot_pct: stats.bowl.dot_pct,
+    },
+  };
+}
+
+function buildCareerMap(players) {
+  return Object.fromEntries(Object.values(players)
+    .map(player => [player.id, careerSnapshot(player)])
+    .filter(([, stats]) => stats));
+}
+
+function buildOutput(players, matches, careerMap = {}) {
   const squads = {};
   Object.values(TEAM_SLUGS).forEach(slug => {
     squads[slug] = { batters: [], wicketKeepers: [], allRounders: [], bowlers: [] };
@@ -526,10 +562,13 @@ function buildOutput(players, matches) {
     if (!slug) return;
     const role = inferRole(player);
     const stats = buildStats(player, role);
+    const career = careerMap[player.id] || null;
+    if (career) stats.career = career;
     const score = stats.overall;
     const row = {
       num: Number.parseInt(player.id.slice(0, 2), 16) % 99 || 1,
       name: player.name,
+      aliases: [...player.namesSeen],
       nat: PLAYER_NATIONS[player.name] || 'IND',
       tag: '',
       role,
@@ -576,17 +615,26 @@ function jsonFiles(dir) {
 
 const files = jsonFiles(inputDir);
 
+const careerPlayers = {};
+files.forEach(file => {
+  try {
+    processMatch(file, careerPlayers, null, { beforeSeason: '2026' });
+  } catch (error) {
+    console.warn(`Skipping career ${file}: ${error.message}`);
+  }
+});
+
 const players = {};
 const matches = [];
 files.forEach(file => {
   try {
-    processMatch(file, players, matches);
+    processMatch(file, players, matches, { season: '2026' });
   } catch (error) {
     console.warn(`Skipping ${file}: ${error.message}`);
   }
 });
 
-const output = buildOutput(players, matches);
+const output = buildOutput(players, matches, buildCareerMap(careerPlayers));
 fs.mkdirSync(path.dirname(outJs), { recursive: true });
 fs.writeFileSync(outJson, `${JSON.stringify(output, null, 2)}\n`);
 fs.writeFileSync(outJs, `globalThis.CRICSHEET_IPL_STATS = ${JSON.stringify(output)};\n`);
