@@ -1141,12 +1141,7 @@
         <span class="chip chip-live"><span class="live-dot"></span>IPL Tracker</span>
         <div class="eyebrow" style="color:var(--gold);margin-top:18px;">Indian Premier League · All Teams</div>
         <h1>Franchise Season Board</h1>
-        <p class="hero-copy">The old RCB view now lives inside a broader IPL hub: full league standings, all franchise cards, fixtures, and a focused RCB squad panel.</p>
-        <div class="hero-strip" id="ipl-hero-strip">
-          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Teams</span><strong>10</strong></div>
-          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Data</span><strong>Live</strong></div>
-          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Focus</span><strong>RCB</strong></div>
-        </div>
+        <p class="hero-copy">Full IPL hub: standings, teams, fixtures, and squad insights in one place.</p>
       </div>
       <div class="score-card" id="ipl-spotlight">
         <div class="loading">Loading IPL spotlight...</div>
@@ -2509,8 +2504,6 @@ function renderGlobalRankings() {
 }
 
 function renderIplSpotlight(rows) {
-  const leader = rows[0];
-  const rcb = rows.find(t => t.rcb) || rows.find(t => t.abbr === 'RCB') || rows[1] || leader;
   const leaders = topPlayerLeaders();
   document.getElementById('ipl-spotlight').innerHTML = `
     <div class="eyebrow" style="color:var(--gold)">Stat Leaders</div>
@@ -2524,12 +2517,6 @@ function renderIplSpotlight(rows) {
       <div><strong>${leaders.bowl.name}</strong><div style="color:rgba(255,255,255,.58)">Wickets leader · ${teamNameFromSlug(leaders.bowl.slug)}</div></div>
       <div class="score">${leaders.bowl.profile.bowl.wickets}<small>w</small></div>
     </div>` : ''}
-    <div class="chip chip-dark" style="margin-top:12px;">Table leader: ${leader.abbr} · RCB #${rcb.pos}</div>
-  `;
-  document.getElementById('ipl-hero-strip').innerHTML = `
-    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Teams</span><strong>${rows.length}</strong></div>
-    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Runs</span><strong>${leaders.bat?.profile.bat.runs || '—'}</strong></div>
-    <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Wickets</span><strong>${leaders.bowl?.profile.bowl.wickets || '—'}</strong></div>
   `;
 }
 
