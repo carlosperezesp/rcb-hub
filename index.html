@@ -1947,9 +1947,40 @@ function formatIplFixture(matchInfo) {
   };
 }
 
+function monthIndex(month) {
+  return {
+    jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+    jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11,
+  }[String(month || '').slice(0, 3).toLowerCase()];
+}
+
+function fixtureStartMs(fixture) {
+  if (fixture.start) return Number(fixture.start);
+  const month = monthIndex(fixture.mo);
+  if (month === undefined) return null;
+  const [hour = '0', minute = '0'] = String(fixture.t || '00:00').split(':');
+  const year = Number(window.CRICSHEET_IPL_STATS?.season) || new Date().getFullYear();
+  return Date.UTC(year, month, Number(fixture.date), Number(hour), Number(minute)) - (5.5 * 60 * 60 * 1000);
+}
+
+function isUpcomingFixture(fixture) {
+  const start = fixtureStartMs(fixture);
+  return !start || start >= Date.now() - (60 * 60 * 1000);
+}
+
+function upcomingIplFixtures(fixtures) {
+  return fixtures
+    .filter(isUpcomingFixture)
+    .sort((a, b) => (fixtureStartMs(a) || 0) - (fixtureStartMs(b) || 0))
+    .slice(0, 6);
+}
+
 async function fetchIplFixtures() {
-  const cached = cacheGet('global_ipl_fixtures_v2');
-  if (cached) return cached;
+  const cached = cacheGet('global_ipl_fixtures_v3');
+  if (cached) {
+    const current = upcomingIplFixtures(cached);
+    if (current.length) return current;
+  }
   try {
     const data = await cricbuzzFetch(`series/v1/${CRICBUZZ_IPL_SERIES_ID}`);
     const now = Date.now() - 60 * 60 * 1000;
@@ -1961,11 +1992,11 @@ async function fetchIplFixtures() {
       .slice(0, 6)
       .map(formatIplFixture);
     if (fixtures.length) {
-      cacheSet('global_ipl_fixtures_v2', fixtures);
+      cacheSet('global_ipl_fixtures_v3', fixtures);
       return fixtures;
     }
   } catch(e) {}
-  return iplFixtures;
+  return upcomingIplFixtures(iplFixtures);
 }
 
 function formatShortDate(dateText) {
@@ -2405,7 +2436,7 @@ function initStaticViews() {
     { date:'12', mo:'Jun', t:'10:30', a:'RSA', af:'rsa', b:'AUS', bf:'aus', venue:'Newlands · Cape Town', tag:'Pace battle' },
     { date:'21', mo:'Jun', t:'09:45', a:'SL', af:'sl', b:'PAK', bf:'pak', venue:'Galle International', tag:'Spin watch' },
   ]);
-  renderFixtures('ipl-fixtures', iplFixtures);
+  renderFixtures('ipl-fixtures', upcomingIplFixtures(iplFixtures));
   renderFixtures('ipl-results', formatRecentResults());
 }
 
