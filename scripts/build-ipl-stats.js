@@ -72,12 +72,15 @@ function ensurePlayer(players, name, team, registry = {}) {
       runs: 0,
       balls: 0,
       outs: 0,
+      battingPositions: [],
+      battingPositionCounts: {},
       fours: 0,
       sixes: 0,
       bowlBalls: 0,
       bowlRuns: 0,
       wickets: 0,
       dotBalls: 0,
+      bowlPhaseBalls: { pp: 0, middle: 0, death: 0 },
       catches: 0,
       stumpings: 0,
       runouts: 0,
@@ -119,6 +122,20 @@ function ensureTeamMatchStats(matchStats, team) {
 
 function ballsToOvers(balls) {
   return `${Math.floor(balls / 6)}.${balls % 6}`;
+}
+
+function phaseForOver(overNumber) {
+  if (overNumber < 6) return 'pp';
+  if (overNumber < 15) return 'middle';
+  return 'death';
+}
+
+function assignBattingPosition(order, player) {
+  if (order.has(player.id)) return;
+  const position = order.size + 1;
+  order.set(player.id, position);
+  player.battingPositions.push(position);
+  player.battingPositionCounts[position] = (player.battingPositionCounts[position] || 0) + 1;
 }
 
 function sampleAdjustedScore(score, sample, fullSample) {
@@ -182,10 +199,27 @@ function buildStats(player, role) {
   const sr = player.balls ? (player.runs / player.balls) * 100 : 0;
   const boundaryPct = player.runs ? ((player.fours * 4 + player.sixes * 6) / player.runs) * 100 : 0;
   const impact = ((player.fifties || 0) + 2 * (player.hundreds || 0)) / Math.max(player.innings, 1);
+  const positionTotal = player.battingPositions.reduce((total, position) => total + position, 0);
+  const avgPosition = player.battingPositions.length ? positionTotal / player.battingPositions.length : null;
+  const positionBuckets = player.battingPositions.reduce((buckets, position) => {
+    if (position <= 2) buckets.open += 1;
+    else if (position <= 4) buckets.top += 1;
+    else if (position <= 7) buckets.middle += 1;
+    else buckets.finish += 1;
+    return buckets;
+  }, { open: 0, top: 0, middle: 0, finish: 0 });
+  const positionPct = Object.fromEntries(Object.entries(positionBuckets).map(([bucket, count]) => [
+    bucket,
+    player.battingPositions.length ? round((count / player.battingPositions.length) * 100, 1) : 0,
+  ]));
   const econ = player.bowlBalls ? player.bowlRuns / (player.bowlBalls / 6) : 12;
   const bowlingAvg = player.wickets ? player.bowlRuns / player.wickets : player.bowlRuns || 50;
   const wktsPerMatch = player.matches.size ? player.wickets / player.matches.size : 0;
   const dotPct = player.bowlBalls ? (player.dotBalls / player.bowlBalls) * 100 : 0;
+  const phasePct = Object.fromEntries(Object.entries(player.bowlPhaseBalls).map(([phase, balls]) => [
+    phase,
+    player.bowlBalls ? round((balls / player.bowlBalls) * 100, 1) : 0,
+  ]));
   const batStats = {
     apps: player.matches.size,
     sr: round(sr, 2),
@@ -228,6 +262,9 @@ function buildStats(player, role) {
       outs: player.outs,
       fifties: player.fifties,
       hundreds: player.hundreds,
+      position_counts: player.battingPositionCounts,
+      position_pct: positionPct,
+      avg_position: avgPosition === null ? null : round(avgPosition, 1),
       score: batScore,
       raw_score: rawBatScore,
     },
@@ -236,6 +273,8 @@ function buildStats(player, role) {
       balls: player.bowlBalls,
       runs: player.bowlRuns,
       wickets: player.wickets,
+      phase_balls: player.bowlPhaseBalls,
+      phase_pct: phasePct,
       score: bowlScore,
       raw_score: rawBowlScore,
     },
@@ -316,15 +355,20 @@ function processMatch(filePath, seasonPlayers, matches) {
     const battingTeam = innings.team;
     const bowlingTeam = teams.find(team => team !== battingTeam);
     const inningsBatters = new Set();
+    const battingOrder = new Map();
     const inningsRuns = {};
     let inningsTotal = 0;
     let inningsBalls = 0;
     let inningsWickets = 0;
 
     (innings.overs || []).forEach(over => {
+      const phase = phaseForOver(over.over || 0);
       (over.deliveries || []).forEach(delivery => {
         const batter = ensurePlayer(seasonPlayers, delivery.batter, battingTeam, registry);
+        const nonStriker = ensurePlayer(seasonPlayers, delivery.non_striker, battingTeam, registry);
         const bowler = ensurePlayer(seasonPlayers, delivery.bowler, bowlingTeam, registry);
+        assignBattingPosition(battingOrder, batter);
+        assignBattingPosition(battingOrder, nonStriker);
 
         if (!inningsBatters.has(batter.id)) {
           batter.innings += 1;
@@ -341,6 +385,7 @@ function processMatch(filePath, seasonPlayers, matches) {
         bowler.bowlRuns += bowlerRuns(delivery);
         if (isLegalBall(delivery)) {
           bowler.bowlBalls += 1;
+          bowler.bowlPhaseBalls[phase] += 1;
           inningsBalls += 1;
           if (delivery.runs?.total === 0) bowler.dotBalls += 1;
         }

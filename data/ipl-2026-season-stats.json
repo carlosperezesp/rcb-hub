@@ -1,6 +1,6 @@
 {
   "source": "Cricsheet ball-by-ball",
-  "generatedAt": "2026-04-29T19:00:32.765Z",
+  "generatedAt": "2026-04-29T20:04:35.759Z",
   "season": "2026",
   "matchesProcessed": 40,
   "lastMatchDate": "2026-04-28",
@@ -1877,6 +1877,16 @@
                 "outs": 8,
                 "fifties": 2,
                 "hundreds": 1,
+                "position_counts": {
+                  "1": 8
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 100,
                 "raw_score": 100
               },
@@ -1889,6 +1899,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -1934,6 +1954,16 @@
                 "outs": 7,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 7
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 100,
                 "raw_score": 100
               },
@@ -1946,6 +1976,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -1991,6 +2031,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 1,
+                  "7": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.8,
                 "score": 51,
                 "raw_score": 73
               },
@@ -2003,6 +2054,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2050,6 +2111,16 @@
                 "outs": 7,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 8
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -2062,6 +2133,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2107,6 +2188,17 @@
                 "outs": 4,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 2,
+                  "5": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 40,
+                  "middle": 60,
+                  "finish": 0
+                },
+                "avg_position": 4.6,
                 "score": 66,
                 "raw_score": 66
               },
@@ -2119,6 +2211,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2164,6 +2266,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 1
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 27,
                 "raw_score": 70
               },
@@ -2176,6 +2288,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2227,6 +2349,18 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 1,
+                  "6": 4,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6,
                 "score": 72,
                 "raw_score": 72
               },
@@ -2239,6 +2373,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2288,6 +2432,17 @@
                 "outs": 5,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 6,
+                  "5": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 75,
+                  "middle": 25,
+                  "finish": 0
+                },
+                "avg_position": 4.3,
                 "score": 93,
                 "raw_score": 93
               },
@@ -2300,6 +2455,16 @@
                 "balls": 31,
                 "runs": 51,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 30,
+                  "death": 1
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 96.8,
+                  "death": 3.2
+                },
                 "score": 14,
                 "raw_score": 22
               },
@@ -2349,6 +2514,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 40,
                 "raw_score": 63
               },
@@ -2361,6 +2536,16 @@
                 "balls": 174,
                 "runs": 255,
                 "wickets": 8,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 150,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 6.9,
+                  "middle": 86.2,
+                  "death": 6.9
+                },
                 "score": 58,
                 "raw_score": 58
               },
@@ -2408,6 +2593,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 70,
                 "raw_score": 84
               },
@@ -2420,6 +2615,16 @@
                 "balls": 186,
                 "runs": 294,
                 "wickets": 13,
+                "phase_balls": {
+                  "pp": 114,
+                  "middle": 24,
+                  "death": 48
+                },
+                "phase_pct": {
+                  "pp": 61.3,
+                  "middle": 12.9,
+                  "death": 25.8
+                },
                 "score": 79,
                 "raw_score": 79
               },
@@ -2465,6 +2670,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -2477,6 +2690,16 @@
                 "balls": 156,
                 "runs": 269,
                 "wickets": 12,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 108,
+                  "death": 42
+                },
+                "phase_pct": {
+                  "pp": 3.8,
+                  "middle": 69.2,
+                  "death": 26.9
+                },
                 "score": 72,
                 "raw_score": 72
               },
@@ -2522,6 +2745,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 0,
                 "raw_score": 0
               },
@@ -2534,6 +2767,16 @@
                 "balls": 174,
                 "runs": 230,
                 "wickets": 8,
+                "phase_balls": {
+                  "pp": 126,
+                  "middle": 6,
+                  "death": 42
+                },
+                "phase_pct": {
+                  "pp": 72.4,
+                  "middle": 3.4,
+                  "death": 24.1
+                },
                 "score": 75,
                 "raw_score": 75
               },
@@ -2579,6 +2822,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -2591,6 +2842,16 @@
                 "balls": 30,
                 "runs": 41,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 12,
+                  "death": 18
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 40,
+                  "death": 60
+                },
                 "score": 54,
                 "raw_score": 86
               },
@@ -2636,6 +2897,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5,
                 "score": 25,
                 "raw_score": 89
               },
@@ -2648,6 +2919,16 @@
                 "balls": 47,
                 "runs": 57,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 36,
+                  "death": 5
+                },
+                "phase_pct": {
+                  "pp": 12.8,
+                  "middle": 76.6,
+                  "death": 10.6
+                },
                 "score": 49,
                 "raw_score": 50
               },
@@ -2693,6 +2974,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -2705,6 +2994,16 @@
                 "balls": 24,
                 "runs": 43,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 12,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 50,
+                  "death": 50
+                },
                 "score": 39,
                 "raw_score": 77
               },
@@ -2750,6 +3049,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 1,
                 "raw_score": 8
               },
@@ -2762,6 +3071,16 @@
                 "balls": 126,
                 "runs": 228,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 24,
+                  "middle": 54,
+                  "death": 48
+                },
+                "phase_pct": {
+                  "pp": 19,
+                  "middle": 42.9,
+                  "death": 38.1
+                },
                 "score": 37,
                 "raw_score": 37
               },
@@ -2811,6 +3130,16 @@
                 "outs": 6,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 7
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -2823,6 +3152,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2868,6 +3207,17 @@
                 "outs": 6,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 1,
+                  "4": 6
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3.9,
                 "score": 100,
                 "raw_score": 100
               },
@@ -2880,6 +3230,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2925,6 +3285,16 @@
                 "outs": 6,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 8
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 100,
                 "raw_score": 100
               },
@@ -2937,6 +3307,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -2982,6 +3362,19 @@
                 "outs": 2,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "5": 2,
+                  "6": 3,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 14.3,
+                  "middle": 85.7,
+                  "finish": 0
+                },
+                "avg_position": 5.6,
                 "score": 100,
                 "raw_score": 100
               },
@@ -2994,6 +3387,16 @@
                 "balls": 6,
                 "runs": 18,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 6,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 6,
                 "raw_score": 46
               },
@@ -3039,6 +3442,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 40,
                 "raw_score": 95
               },
@@ -3051,6 +3464,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3098,6 +3521,16 @@
                 "outs": 6,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 6
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 100,
                 "raw_score": 100
               },
@@ -3110,6 +3543,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3155,6 +3598,17 @@
                 "outs": 6,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 4,
+                  "6": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.3,
                 "score": 60,
                 "raw_score": 60
               },
@@ -3167,6 +3621,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3218,6 +3682,18 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 1,
+                  "7": 1,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 66.7,
+                  "finish": 33.3
+                },
+                "avg_position": 6.7,
                 "score": 68,
                 "raw_score": 88
               },
@@ -3230,6 +3706,16 @@
                 "balls": 162,
                 "runs": 239,
                 "wickets": 9,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 150,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 3.7,
+                  "middle": 92.6,
+                  "death": 3.7
+                },
                 "score": 66,
                 "raw_score": 66
               },
@@ -3279,6 +3765,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 2
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 46,
                 "raw_score": 78
               },
@@ -3291,6 +3787,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3340,6 +3846,18 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 1,
+                  "7": 2,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 75,
+                  "finish": 25
+                },
+                "avg_position": 7,
                 "score": 55,
                 "raw_score": 79
               },
@@ -3352,6 +3870,16 @@
                 "balls": 72,
                 "runs": 174,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 36,
+                  "death": 36
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 50,
+                  "death": 50
+                },
                 "score": 9,
                 "raw_score": 9
               },
@@ -3399,6 +3927,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -3411,6 +3947,16 @@
                 "balls": 117,
                 "runs": 154,
                 "wickets": 8,
+                "phase_balls": {
+                  "pp": 66,
+                  "middle": 24,
+                  "death": 27
+                },
+                "phase_pct": {
+                  "pp": 56.4,
+                  "middle": 20.5,
+                  "death": 23.1
+                },
                 "score": 96,
                 "raw_score": 96
               },
@@ -3456,6 +4002,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 15,
                 "raw_score": 60
               },
@@ -3468,6 +4024,16 @@
                 "balls": 186,
                 "runs": 236,
                 "wickets": 14,
+                "phase_balls": {
+                  "pp": 96,
+                  "middle": 18,
+                  "death": 72
+                },
+                "phase_pct": {
+                  "pp": 51.6,
+                  "middle": 9.7,
+                  "death": 38.7
+                },
                 "score": 97,
                 "raw_score": 97
               },
@@ -3513,6 +4079,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": null,
                 "raw_score": null
               },
@@ -3525,6 +4101,16 @@
                 "balls": 95,
                 "runs": 136,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 48,
+                  "middle": 24,
+                  "death": 23
+                },
+                "phase_pct": {
+                  "pp": 50.5,
+                  "middle": 25.3,
+                  "death": 24.2
+                },
                 "score": 77,
                 "raw_score": 77
               },
@@ -3570,6 +4156,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -3582,6 +4176,16 @@
                 "balls": 72,
                 "runs": 138,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 48,
+                  "middle": 12,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 66.7,
+                  "middle": 16.7,
+                  "death": 16.7
+                },
                 "score": 66,
                 "raw_score": 66
               },
@@ -3627,6 +4231,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -3639,6 +4251,16 @@
                 "balls": 156,
                 "runs": 204,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 138,
+                  "death": 18
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 88.5,
+                  "death": 11.5
+                },
                 "score": 61,
                 "raw_score": 61
               },
@@ -3684,6 +4306,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -3696,6 +4326,16 @@
                 "balls": 58,
                 "runs": 122,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 24,
+                  "middle": 24,
+                  "death": 10
+                },
+                "phase_pct": {
+                  "pp": 41.4,
+                  "middle": 41.4,
+                  "death": 17.2
+                },
                 "score": 24,
                 "raw_score": 24
               },
@@ -3745,6 +4385,16 @@
                 "outs": 3,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 4
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 100,
                 "raw_score": 100
               },
@@ -3757,6 +4407,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3802,6 +4462,19 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 1,
+                "position_counts": {
+                  "3": 1,
+                  "4": 3,
+                  "5": 2,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 57.1,
+                  "middle": 42.9,
+                  "finish": 0
+                },
+                "avg_position": 4.6,
                 "score": 100,
                 "raw_score": 100
               },
@@ -3814,6 +4487,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3859,6 +4542,18 @@
                 "outs": 4,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 1,
+                  "6": 2,
+                  "7": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.3,
                 "score": 97,
                 "raw_score": 97
               },
@@ -3871,6 +4566,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3916,6 +4621,19 @@
                 "outs": 6,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 2,
+                  "4": 1,
+                  "6": 3,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 42.9,
+                  "middle": 57.1,
+                  "finish": 0
+                },
+                "avg_position": 5,
                 "score": 88,
                 "raw_score": 88
               },
@@ -3928,6 +4646,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -3973,6 +4701,17 @@
                 "outs": 7,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 4,
+                  "4": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3.4,
                 "score": 83,
                 "raw_score": 83
               },
@@ -3985,6 +4724,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -4030,6 +4779,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 8,
                 "raw_score": 19
               },
@@ -4042,6 +4801,16 @@
                 "balls": 24,
                 "runs": 41,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 0,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 50,
+                  "middle": 0,
+                  "death": 50
+                },
                 "score": 15,
                 "raw_score": 29
               },
@@ -4087,6 +4856,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 2
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 2,
                 "raw_score": 12
               },
@@ -4099,6 +4878,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -4144,6 +4933,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": null,
                 "raw_score": null
               },
@@ -4156,6 +4955,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -4203,6 +5012,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 1,
+                "position_counts": {
+                  "1": 2,
+                  "2": 1
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -4215,6 +5035,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -4260,6 +5090,16 @@
                 "outs": 4,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 5
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 100,
                 "raw_score": 100
               },
@@ -4272,6 +5112,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -4323,6 +5173,17 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "7": 1,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 50,
+                  "finish": 50
+                },
+                "avg_position": 7.5,
                 "score": 42,
                 "raw_score": 80
               },
@@ -4335,6 +5196,16 @@
                 "balls": 84,
                 "runs": 125,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 60,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 21.4,
+                  "middle": 71.4,
+                  "death": 7.1
+                },
                 "score": 73,
                 "raw_score": 73
               },
@@ -4384,6 +5255,17 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 4,
+                  "6": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.3,
                 "score": 75,
                 "raw_score": 75
               },
@@ -4396,6 +5278,16 @@
                 "balls": 90,
                 "runs": 190,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 48,
+                  "middle": 30,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 53.3,
+                  "middle": 33.3,
+                  "death": 13.3
+                },
                 "score": 15,
                 "raw_score": 15
               },
@@ -4445,6 +5337,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 20,
                 "raw_score": 37
               },
@@ -4457,6 +5359,16 @@
                 "balls": 84,
                 "runs": 190,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 48,
+                  "death": 18
+                },
+                "phase_pct": {
+                  "pp": 21.4,
+                  "middle": 57.1,
+                  "death": 21.4
+                },
                 "score": 36,
                 "raw_score": 36
               },
@@ -4506,6 +5418,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 9,
                 "raw_score": 77
               },
@@ -4518,6 +5440,16 @@
                 "balls": 19,
                 "runs": 39,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 12,
+                  "death": 7
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 63.2,
+                  "death": 36.8
+                },
                 "score": 11,
                 "raw_score": 29
               },
@@ -4565,6 +5497,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -4577,6 +5517,16 @@
                 "balls": 101,
                 "runs": 145,
                 "wickets": 8,
+                "phase_balls": {
+                  "pp": 30,
+                  "middle": 66,
+                  "death": 5
+                },
+                "phase_pct": {
+                  "pp": 29.7,
+                  "middle": 65.3,
+                  "death": 5
+                },
                 "score": 88,
                 "raw_score": 88
               },
@@ -4622,6 +5572,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 1,
                 "raw_score": 5
               },
@@ -4634,6 +5594,16 @@
                 "balls": 48,
                 "runs": 61,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 36,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 12.5,
+                  "middle": 75,
+                  "death": 12.5
+                },
                 "score": 100,
                 "raw_score": 100
               },
@@ -4679,6 +5649,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 10,
                 "raw_score": 52
               },
@@ -4691,6 +5671,16 @@
                 "balls": 156,
                 "runs": 210,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 72,
+                  "middle": 42,
+                  "death": 42
+                },
+                "phase_pct": {
+                  "pp": 46.2,
+                  "middle": 26.9,
+                  "death": 26.9
+                },
                 "score": 39,
                 "raw_score": 39
               },
@@ -4736,6 +5726,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 8,
                 "raw_score": 56
               },
@@ -4748,6 +5748,16 @@
                 "balls": 39,
                 "runs": 87,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 24,
+                  "middle": 12,
+                  "death": 3
+                },
+                "phase_pct": {
+                  "pp": 61.5,
+                  "middle": 30.8,
+                  "death": 7.7
+                },
                 "score": 13,
                 "raw_score": 16
               },
@@ -4793,6 +5803,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 1,
                 "raw_score": 14
               },
@@ -4805,6 +5825,16 @@
                 "balls": 54,
                 "runs": 110,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 24,
+                  "middle": 18,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 44.4,
+                  "middle": 33.3,
+                  "death": 22.2
+                },
                 "score": 12,
                 "raw_score": 12
               },
@@ -4850,6 +5880,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -4862,6 +5900,16 @@
                 "balls": 30,
                 "runs": 76,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 30,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 4,
                 "raw_score": 6
               },
@@ -4911,6 +5959,17 @@
                 "outs": 5,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 5,
+                  "4": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3.4,
                 "score": 100,
                 "raw_score": 100
               },
@@ -4923,6 +5982,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -4968,6 +6037,18 @@
                 "outs": 4,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 4,
+                  "6": 2,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.6,
                 "score": 100,
                 "raw_score": 100
               },
@@ -4980,6 +6061,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5025,6 +6116,18 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 3,
+                  "6": 1,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.6,
                 "score": 94,
                 "raw_score": 94
               },
@@ -5037,6 +6140,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5082,6 +6195,17 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 1,
+                  "2": 4
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.8,
                 "score": 82,
                 "raw_score": 82
               },
@@ -5094,6 +6218,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5139,6 +6273,18 @@
                 "outs": 7,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 5,
+                  "2": 2,
+                  "3": 1
+                },
+                "position_pct": {
+                  "open": 87.5,
+                  "top": 12.5,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.5,
                 "score": 81,
                 "raw_score": 81
               },
@@ -5151,6 +6297,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5196,6 +6352,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -5208,6 +6372,16 @@
                 "balls": 18,
                 "runs": 37,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 12,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 33.3,
+                  "middle": 66.7,
+                  "death": 0
+                },
                 "score": 8,
                 "raw_score": 20
               },
@@ -5255,6 +6429,17 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 2,
+                  "2": 1
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.3,
                 "score": 26,
                 "raw_score": 52
               },
@@ -5267,6 +6452,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5318,6 +6513,18 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 1,
+                  "8": 1,
+                  "9": 2
+                },
+                "position_pct": {
+                  "open": 25,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 75
+                },
+                "avg_position": 7,
                 "score": 58,
                 "raw_score": 65
               },
@@ -5330,6 +6537,16 @@
                 "balls": 162,
                 "runs": 180,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 102,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 22.2,
+                  "middle": 63,
+                  "death": 14.8
+                },
                 "score": 86,
                 "raw_score": 86
               },
@@ -5379,6 +6596,18 @@
                 "outs": 6,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 2,
+                  "4": 5,
+                  "6": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 87.5,
+                  "middle": 12.5,
+                  "finish": 0
+                },
+                "avg_position": 4,
                 "score": 96,
                 "raw_score": 96
               },
@@ -5391,6 +6620,16 @@
                 "balls": 48,
                 "runs": 97,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 30,
+                  "middle": 12,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 62.5,
+                  "middle": 25,
+                  "death": 12.5
+                },
                 "score": 16,
                 "raw_score": 16
               },
@@ -5440,6 +6679,18 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 1,
+                  "7": 2,
+                  "8": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 50,
+                  "finish": 50
+                },
+                "avg_position": 7.3,
                 "score": 67,
                 "raw_score": 67
               },
@@ -5452,6 +6703,16 @@
                 "balls": 16,
                 "runs": 31,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 6,
+                  "death": 10
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 37.5,
+                  "death": 62.5
+                },
                 "score": 8,
                 "raw_score": 24
               },
@@ -5499,6 +6760,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -5511,6 +6780,16 @@
                 "balls": 42,
                 "runs": 75,
                 "wickets": 4,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 12,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 42.9,
+                  "middle": 28.6,
+                  "death": 28.6
+                },
                 "score": 65,
                 "raw_score": 74
               },
@@ -5556,6 +6835,19 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 2,
+                  "7": 1,
+                  "8": 1,
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 60,
+                  "finish": 40
+                },
+                "avg_position": 7.2,
                 "score": 53,
                 "raw_score": 70
               },
@@ -5568,6 +6860,16 @@
                 "balls": 91,
                 "runs": 140,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 42,
+                  "death": 13
+                },
+                "phase_pct": {
+                  "pp": 39.6,
+                  "middle": 46.2,
+                  "death": 14.3
+                },
                 "score": 58,
                 "raw_score": 58
               },
@@ -5613,6 +6915,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 0,
                 "raw_score": 0
               },
@@ -5625,6 +6937,16 @@
                 "balls": 126,
                 "runs": 186,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 108,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 9.5,
+                  "middle": 85.7,
+                  "death": 4.8
+                },
                 "score": 68,
                 "raw_score": 68
               },
@@ -5670,6 +6992,17 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1,
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.5,
                 "score": 16,
                 "raw_score": 62
               },
@@ -5682,6 +7015,16 @@
                 "balls": 162,
                 "runs": 260,
                 "wickets": 9,
+                "phase_balls": {
+                  "pp": 24,
+                  "middle": 78,
+                  "death": 60
+                },
+                "phase_pct": {
+                  "pp": 14.8,
+                  "middle": 48.1,
+                  "death": 37
+                },
                 "score": 60,
                 "raw_score": 60
               },
@@ -5727,6 +7070,17 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1,
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10.5,
                 "score": 1,
                 "raw_score": 10
               },
@@ -5739,6 +7093,16 @@
                 "balls": 168,
                 "runs": 288,
                 "wickets": 9,
+                "phase_balls": {
+                  "pp": 90,
+                  "middle": 6,
+                  "death": 72
+                },
+                "phase_pct": {
+                  "pp": 53.6,
+                  "middle": 3.6,
+                  "death": 42.9
+                },
                 "score": 50,
                 "raw_score": 50
               },
@@ -5788,6 +7152,17 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 3,
+                  "7": 4
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.1,
                 "score": 85,
                 "raw_score": 85
               },
@@ -5800,6 +7175,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5845,6 +7230,17 @@
                 "outs": 8,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 4,
+                  "2": 4
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.5,
                 "score": 79,
                 "raw_score": 79
               },
@@ -5857,6 +7253,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5902,6 +7308,17 @@
                 "outs": 4,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 4,
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.3,
                 "score": 73,
                 "raw_score": 73
               },
@@ -5914,6 +7331,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -5959,6 +7386,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 5,
                 "raw_score": 38
               },
@@ -5971,6 +7408,16 @@
                 "balls": 30,
                 "runs": 70,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 18,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 40,
+                  "middle": 60,
+                  "death": 0
+                },
                 "score": 19,
                 "raw_score": 30
               },
@@ -6018,6 +7465,17 @@
                 "outs": 7,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 6,
+                  "5": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 75,
+                  "middle": 25,
+                  "finish": 0
+                },
+                "avg_position": 4.3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -6030,6 +7488,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -6075,6 +7543,16 @@
                 "outs": 7,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 8
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -6087,6 +7565,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -6138,6 +7626,19 @@
                 "outs": 6,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "5": 2,
+                  "6": 3,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 14.3,
+                  "middle": 85.7,
+                  "finish": 0
+                },
+                "avg_position": 5.6,
                 "score": 96,
                 "raw_score": 96
               },
@@ -6150,6 +7651,16 @@
                 "balls": 114,
                 "runs": 197,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 42,
+                  "middle": 66,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 36.8,
+                  "middle": 57.9,
+                  "death": 5.3
+                },
                 "score": 30,
                 "raw_score": 30
               },
@@ -6199,6 +7710,17 @@
                 "outs": 7,
                 "fifties": 3,
                 "hundreds": 1,
+                "position_counts": {
+                  "1": 4,
+                  "2": 4
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.5,
                 "score": 100,
                 "raw_score": 100
               },
@@ -6211,6 +7733,16 @@
                 "balls": 17,
                 "runs": 35,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 6,
+                  "death": 5
+                },
+                "phase_pct": {
+                  "pp": 35.3,
+                  "middle": 35.3,
+                  "death": 29.4
+                },
                 "score": 6,
                 "raw_score": 18
               },
@@ -6260,6 +7792,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 50,
+                  "middle": 0,
+                  "finish": 50
+                },
+                "avg_position": 6,
                 "score": 27,
                 "raw_score": 39
               },
@@ -6272,6 +7815,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -6319,6 +7872,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -6331,6 +7892,16 @@
                 "balls": 162,
                 "runs": 255,
                 "wickets": 14,
+                "phase_balls": {
+                  "pp": 54,
+                  "middle": 54,
+                  "death": 54
+                },
+                "phase_pct": {
+                  "pp": 33.3,
+                  "middle": 33.3,
+                  "death": 33.3
+                },
                 "score": 85,
                 "raw_score": 85
               },
@@ -6376,6 +7947,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -6388,6 +7967,16 @@
                 "balls": 96,
                 "runs": 147,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 30,
+                  "middle": 42,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 31.3,
+                  "middle": 43.8,
+                  "death": 25
+                },
                 "score": 82,
                 "raw_score": 82
               },
@@ -6433,6 +8022,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 5
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 16,
                 "raw_score": 63
               },
@@ -6445,6 +8044,16 @@
                 "balls": 102,
                 "runs": 142,
                 "wickets": 8,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 42,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 35.3,
+                  "middle": 41.2,
+                  "death": 23.5
+                },
                 "score": 86,
                 "raw_score": 86
               },
@@ -6490,6 +8099,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 0,
                 "raw_score": 0
               },
@@ -6502,6 +8121,16 @@
                 "balls": 72,
                 "runs": 143,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 12,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 50,
+                  "middle": 16.7,
+                  "death": 33.3
+                },
                 "score": 65,
                 "raw_score": 65
               },
@@ -6547,6 +8176,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -6559,6 +8196,16 @@
                 "balls": 24,
                 "runs": 27,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 6,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 50,
+                  "middle": 25,
+                  "death": 25
+                },
                 "score": 43,
                 "raw_score": 86
               },
@@ -6604,6 +8251,16 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 25,
                 "raw_score": 65
               },
@@ -6616,6 +8273,16 @@
                 "balls": 132,
                 "runs": 209,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 132,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 33,
                 "raw_score": 33
               },
@@ -6661,6 +8328,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 3,
                 "raw_score": 40
               },
@@ -6673,6 +8350,16 @@
                 "balls": 77,
                 "runs": 140,
                 "wickets": 4,
+                "phase_balls": {
+                  "pp": 42,
+                  "middle": 12,
+                  "death": 23
+                },
+                "phase_pct": {
+                  "pp": 54.5,
+                  "middle": 15.6,
+                  "death": 29.9
+                },
                 "score": 37,
                 "raw_score": 37
               },
@@ -6718,6 +8405,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -6730,6 +8425,16 @@
                 "balls": 24,
                 "runs": 36,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 12,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 50,
+                  "middle": 50,
+                  "death": 0
+                },
                 "score": 26,
                 "raw_score": 51
               },
@@ -6775,6 +8480,17 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1,
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.5,
                 "score": 5,
                 "raw_score": 49
               },
@@ -6787,6 +8503,16 @@
                 "balls": 46,
                 "runs": 94,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 30,
+                  "death": 10
+                },
+                "phase_pct": {
+                  "pp": 13,
+                  "middle": 65.2,
+                  "death": 21.7
+                },
                 "score": 8,
                 "raw_score": 8
               },
@@ -6836,6 +8562,16 @@
                 "outs": 5,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 6
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -6848,6 +8584,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -6893,6 +8639,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 7,
                 "score": 98,
                 "raw_score": 98
               },
@@ -6905,6 +8661,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -6950,6 +8716,19 @@
                 "outs": 7,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 1,
+                  "4": 2,
+                  "5": 3,
+                  "6": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 42.9,
+                  "middle": 57.1,
+                  "finish": 0
+                },
+                "avg_position": 4.6,
                 "score": 91,
                 "raw_score": 91
               },
@@ -6962,6 +8741,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7007,6 +8796,16 @@
                 "outs": 7,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 8
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 80,
                 "raw_score": 80
               },
@@ -7019,6 +8818,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7064,6 +8873,18 @@
                 "outs": 4,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "5": 2,
+                  "6": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 25,
+                  "middle": 75,
+                  "finish": 0
+                },
+                "avg_position": 5,
                 "score": 66,
                 "raw_score": 66
               },
@@ -7076,6 +8897,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7121,6 +8952,18 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 2,
+                  "6": 2,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.8,
                 "score": 61,
                 "raw_score": 61
               },
@@ -7133,6 +8976,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7178,6 +9031,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 4,
                 "score": 56,
                 "raw_score": 56
               },
@@ -7190,6 +9053,16 @@
                 "balls": 19,
                 "runs": 39,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 1,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 94.7,
+                  "middle": 5.3,
+                  "death": 0
+                },
                 "score": 7,
                 "raw_score": 17
               },
@@ -7235,6 +9108,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 5,
                 "raw_score": 58
               },
@@ -7247,6 +9130,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7294,6 +9187,16 @@
                 "outs": 6,
                 "fifties": 0,
                 "hundreds": 2,
+                "position_counts": {
+                  "1": 8
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 100,
                 "raw_score": 100
               },
@@ -7306,6 +9209,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7357,6 +9270,17 @@
                 "outs": 4,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "7": 2,
+                  "8": 4
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 33.3,
+                  "finish": 66.7
+                },
+                "avg_position": 7.7,
                 "score": 94,
                 "raw_score": 94
               },
@@ -7369,6 +9293,16 @@
                 "balls": 114,
                 "runs": 185,
                 "wickets": 9,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 66,
+                  "death": 42
+                },
+                "phase_pct": {
+                  "pp": 5.3,
+                  "middle": 57.9,
+                  "death": 36.8
+                },
                 "score": 73,
                 "raw_score": 73
               },
@@ -7418,6 +9352,18 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 3,
+                  "6": 3,
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 37.5,
+                  "middle": 62.5,
+                  "finish": 0
+                },
+                "avg_position": 5.5,
                 "score": 85,
                 "raw_score": 85
               },
@@ -7430,6 +9376,16 @@
                 "balls": 18,
                 "runs": 37,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 18,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 8,
                 "raw_score": 20
               },
@@ -7479,6 +9435,17 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 1,
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8.5,
                 "score": 2,
                 "raw_score": 29
               },
@@ -7491,6 +9458,16 @@
                 "balls": 82,
                 "runs": 109,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 42,
+                  "death": 4
+                },
+                "phase_pct": {
+                  "pp": 43.9,
+                  "middle": 51.2,
+                  "death": 4.9
+                },
                 "score": 94,
                 "raw_score": 94
               },
@@ -7538,6 +9515,17 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 2,
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.7,
                 "score": 77,
                 "raw_score": 92
               },
@@ -7550,6 +9538,16 @@
                 "balls": 166,
                 "runs": 237,
                 "wickets": 14,
+                "phase_balls": {
+                  "pp": 72,
+                  "middle": 30,
+                  "death": 64
+                },
+                "phase_pct": {
+                  "pp": 43.4,
+                  "middle": 18.1,
+                  "death": 38.6
+                },
                 "score": 94,
                 "raw_score": 94
               },
@@ -7595,6 +9593,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -7607,6 +9613,16 @@
                 "balls": 36,
                 "runs": 52,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 30,
+                  "middle": 6,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 83.3,
+                  "middle": 16.7,
+                  "death": 0
+                },
                 "score": 68,
                 "raw_score": 91
               },
@@ -7652,6 +9668,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1,
+                  "10": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.7,
                 "score": 19,
                 "raw_score": 38
               },
@@ -7664,6 +9691,16 @@
                 "balls": 174,
                 "runs": 254,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 156,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 3.4,
+                  "middle": 89.7,
+                  "death": 6.9
+                },
                 "score": 48,
                 "raw_score": 48
               },
@@ -7709,6 +9746,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -7721,6 +9766,16 @@
                 "balls": 101,
                 "runs": 146,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 78,
+                  "middle": 12,
+                  "death": 11
+                },
+                "phase_pct": {
+                  "pp": 77.2,
+                  "middle": 11.9,
+                  "death": 10.9
+                },
                 "score": 38,
                 "raw_score": 38
               },
@@ -7766,6 +9821,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -7778,6 +9841,16 @@
                 "balls": 85,
                 "runs": 139,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 48,
+                  "death": 31
+                },
+                "phase_pct": {
+                  "pp": 7.1,
+                  "middle": 56.5,
+                  "death": 36.5
+                },
                 "score": 30,
                 "raw_score": 30
               },
@@ -7823,6 +9896,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1,
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10.5,
                 "score": 11,
                 "raw_score": 40
               },
@@ -7835,6 +9919,16 @@
                 "balls": 60,
                 "runs": 130,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 18,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 60,
+                  "middle": 30,
+                  "death": 10
+                },
                 "score": 12,
                 "raw_score": 12
               },
@@ -7880,6 +9974,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -7892,6 +9994,16 @@
                 "balls": 24,
                 "runs": 46,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 18,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 75,
+                  "death": 25
+                },
                 "score": 3,
                 "raw_score": 6
               },
@@ -7941,6 +10053,16 @@
                 "outs": 9,
                 "fifties": 2,
                 "hundreds": 1,
+                "position_counts": {
+                  "2": 9
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2,
                 "score": 100,
                 "raw_score": 100
               },
@@ -7953,6 +10075,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -7998,6 +10130,16 @@
                 "outs": 7,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 9
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 100,
                 "raw_score": 100
               },
@@ -8010,6 +10152,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8055,6 +10207,18 @@
                 "outs": 5,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 2,
+                  "6": 2,
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6,
                 "score": 100,
                 "raw_score": 100
               },
@@ -8067,6 +10231,16 @@
                 "balls": 6,
                 "runs": 14,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 6,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 6,
                 "raw_score": 48
               },
@@ -8112,6 +10286,17 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 1,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 50,
+                  "finish": 50
+                },
+                "avg_position": 7,
                 "score": 64,
                 "raw_score": 100
               },
@@ -8124,6 +10309,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8169,6 +10364,17 @@
                 "outs": 8,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 7,
+                  "5": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 77.8,
+                  "middle": 22.2,
+                  "finish": 0
+                },
+                "avg_position": 4.2,
                 "score": 66,
                 "raw_score": 66
               },
@@ -8181,6 +10387,16 @@
                 "balls": 24,
                 "runs": 38,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 24,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 32,
                 "raw_score": 63
               },
@@ -8226,6 +10442,18 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "5": 4,
+                  "6": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 16.7,
+                  "middle": 83.3,
+                  "finish": 0
+                },
+                "avg_position": 5,
                 "score": 63,
                 "raw_score": 63
               },
@@ -8238,6 +10466,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8283,6 +10521,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 4,
                 "score": 0,
                 "raw_score": 0
               },
@@ -8295,6 +10543,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8340,6 +10598,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -8352,6 +10618,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8399,6 +10675,16 @@
                 "outs": 8,
                 "fifties": 3,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 9
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -8411,6 +10697,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8462,6 +10758,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 3,
+                  "7": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.5,
                 "score": 92,
                 "raw_score": 92
               },
@@ -8474,6 +10781,16 @@
                 "balls": 114,
                 "runs": 137,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 114,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 80,
                 "raw_score": 80
               },
@@ -8521,6 +10838,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -8533,6 +10858,16 @@
                 "balls": 48,
                 "runs": 66,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 36,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 12.5,
+                  "middle": 75,
+                  "death": 12.5
+                },
                 "score": 84,
                 "raw_score": 84
               },
@@ -8578,6 +10913,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 4
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 19,
                 "raw_score": 49
               },
@@ -8590,6 +10935,16 @@
                 "balls": 198,
                 "runs": 273,
                 "wickets": 14,
+                "phase_balls": {
+                  "pp": 108,
+                  "middle": 42,
+                  "death": 48
+                },
+                "phase_pct": {
+                  "pp": 54.5,
+                  "middle": 21.2,
+                  "death": 24.2
+                },
                 "score": 94,
                 "raw_score": 94
               },
@@ -8635,6 +10990,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1,
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.5,
                 "score": 0,
                 "raw_score": 0
               },
@@ -8647,6 +11013,16 @@
                 "balls": 144,
                 "runs": 229,
                 "wickets": 11,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 102,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 12.5,
+                  "middle": 70.8,
+                  "death": 16.7
+                },
                 "score": 74,
                 "raw_score": 74
               },
@@ -8692,6 +11068,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 1,
                 "raw_score": 10
               },
@@ -8704,6 +11090,16 @@
                 "balls": 118,
                 "runs": 179,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 54,
+                  "death": 46
+                },
+                "phase_pct": {
+                  "pp": 15.3,
+                  "middle": 45.8,
+                  "death": 39
+                },
                 "score": 69,
                 "raw_score": 69
               },
@@ -8749,6 +11145,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 3,
                 "raw_score": 19
               },
@@ -8761,6 +11167,16 @@
                 "balls": 177,
                 "runs": 295,
                 "wickets": 9,
+                "phase_balls": {
+                  "pp": 108,
+                  "middle": 42,
+                  "death": 27
+                },
+                "phase_pct": {
+                  "pp": 61,
+                  "middle": 23.7,
+                  "death": 15.3
+                },
                 "score": 52,
                 "raw_score": 52
               },
@@ -8806,6 +11222,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -8818,6 +11242,16 @@
                 "balls": 100,
                 "runs": 181,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 42,
+                  "middle": 18,
+                  "death": 40
+                },
+                "phase_pct": {
+                  "pp": 42,
+                  "middle": 18,
+                  "death": 40
+                },
                 "score": 36,
                 "raw_score": 36
               },
@@ -8863,6 +11297,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 28,
                 "raw_score": 91
               },
@@ -8875,6 +11319,16 @@
                 "balls": 72,
                 "runs": 151,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 24,
+                  "middle": 24,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 33.3,
+                  "middle": 33.3,
+                  "death": 33.3
+                },
                 "score": 18,
                 "raw_score": 18
               },
@@ -8924,6 +11378,17 @@
                 "outs": 7,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 6,
+                  "2": 1
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.1,
                 "score": 100,
                 "raw_score": 100
               },
@@ -8936,6 +11401,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -8981,6 +11456,16 @@
                 "outs": 5,
                 "fifties": 4,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 7
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 4,
                 "score": 100,
                 "raw_score": 100
               },
@@ -8993,6 +11478,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9038,6 +11533,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 4,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.2,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9050,6 +11556,16 @@
                 "balls": 30,
                 "runs": 39,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 24,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 80,
+                  "death": 20
+                },
                 "score": 51,
                 "raw_score": 81
               },
@@ -9095,6 +11611,17 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 4,
+                  "6": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.2,
                 "score": 65,
                 "raw_score": 65
               },
@@ -9107,6 +11634,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9152,6 +11689,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6,
                 "score": 2,
                 "raw_score": 43
               },
@@ -9164,6 +11711,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9211,6 +11768,17 @@
                 "outs": 5,
                 "fifties": 4,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 1,
+                  "2": 6
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.9,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9223,6 +11791,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9274,6 +11852,16 @@
                 "outs": 6,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 7
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9286,6 +11874,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9335,6 +11933,17 @@
                 "outs": 1,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 3,
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.8,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9347,6 +11956,16 @@
                 "balls": 12,
                 "runs": 28,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 12,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 9,
                 "raw_score": 34
               },
@@ -9396,6 +12015,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 16,
                 "raw_score": 52
               },
@@ -9408,6 +12037,16 @@
                 "balls": 164,
                 "runs": 256,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 60,
+                  "middle": 60,
+                  "death": 44
+                },
+                "phase_pct": {
+                  "pp": 36.6,
+                  "middle": 36.6,
+                  "death": 26.8
+                },
                 "score": 31,
                 "raw_score": 31
               },
@@ -9455,6 +12094,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -9467,6 +12114,16 @@
                 "balls": 150,
                 "runs": 241,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 132,
+                  "death": 18
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 88,
+                  "death": 12
+                },
                 "score": 43,
                 "raw_score": 43
               },
@@ -9512,6 +12169,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -9524,6 +12189,16 @@
                 "balls": 24,
                 "runs": 25,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 18,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 25,
+                  "middle": 75,
+                  "death": 0
+                },
                 "score": 39,
                 "raw_score": 77
               },
@@ -9569,6 +12244,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -9581,6 +12264,16 @@
                 "balls": 120,
                 "runs": 219,
                 "wickets": 6,
+                "phase_balls": {
+                  "pp": 36,
+                  "middle": 54,
+                  "death": 30
+                },
+                "phase_pct": {
+                  "pp": 30,
+                  "middle": 45,
+                  "death": 25
+                },
                 "score": 34,
                 "raw_score": 34
               },
@@ -9626,6 +12319,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -9638,6 +12339,16 @@
                 "balls": 180,
                 "runs": 329,
                 "wickets": 8,
+                "phase_balls": {
+                  "pp": 96,
+                  "middle": 42,
+                  "death": 42
+                },
+                "phase_pct": {
+                  "pp": 53.3,
+                  "middle": 23.3,
+                  "death": 23.3
+                },
                 "score": 29,
                 "raw_score": 29
               },
@@ -9683,6 +12394,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 11,
                 "raw_score": 77
               },
@@ -9695,6 +12416,16 @@
                 "balls": 154,
                 "runs": 297,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 64,
+                  "middle": 36,
+                  "death": 54
+                },
+                "phase_pct": {
+                  "pp": 41.6,
+                  "middle": 23.4,
+                  "death": 35.1
+                },
                 "score": 16,
                 "raw_score": 16
               },
@@ -9740,6 +12471,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -9752,6 +12491,16 @@
                 "balls": 24,
                 "runs": 57,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 0,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 50,
+                  "middle": 0,
+                  "death": 50
+                },
                 "score": 6,
                 "raw_score": 11
               },
@@ -9801,6 +12550,17 @@
                 "outs": 6,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 1,
+                  "4": 6
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3.9,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9813,6 +12573,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9858,6 +12628,18 @@
                 "outs": 3,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "5": 2,
+                  "6": 4,
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 5.9,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9870,6 +12652,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9915,6 +12707,19 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "5": 4,
+                  "7": 1,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 14.3,
+                  "middle": 71.4,
+                  "finish": 14.3
+                },
+                "avg_position": 5.6,
                 "score": 98,
                 "raw_score": 98
               },
@@ -9927,6 +12732,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -9972,6 +12787,16 @@
                 "outs": 5,
                 "fifties": 2,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 6
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 100,
                 "raw_score": 100
               },
@@ -9984,6 +12809,16 @@
                 "balls": 24,
                 "runs": 55,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 12,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 50,
+                  "middle": 50,
+                  "death": 0
+                },
                 "score": 6,
                 "raw_score": 11
               },
@@ -10029,6 +12864,17 @@
                 "outs": 7,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 5,
+                  "2": 2
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.3,
                 "score": 79,
                 "raw_score": 79
               },
@@ -10041,6 +12887,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10086,6 +12942,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 7,
                 "score": 44,
                 "raw_score": 79
               },
@@ -10098,6 +12964,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10143,6 +13019,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "3": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 100,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 3,
                 "score": 7,
                 "raw_score": 50
               },
@@ -10155,6 +13041,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10200,6 +13096,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 0,
                 "raw_score": 0
               },
@@ -10212,6 +13118,16 @@
                 "balls": 12,
                 "runs": 18,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 100,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": 18,
                 "raw_score": 72
               },
@@ -10257,6 +13173,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 1
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1,
                 "score": 0,
                 "raw_score": 0
               },
@@ -10269,6 +13195,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10316,6 +13252,17 @@
                 "outs": 7,
                 "fifties": 2,
                 "hundreds": 1,
+                "position_counts": {
+                  "1": 2,
+                  "2": 6
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.8,
                 "score": 100,
                 "raw_score": 100
               },
@@ -10328,6 +13275,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10373,6 +13330,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "7": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 7,
                 "score": 63,
                 "raw_score": 69
               },
@@ -10385,6 +13352,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10436,6 +13413,19 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 1,
+                  "5": 1,
+                  "6": 3,
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 16.7,
+                  "middle": 66.7,
+                  "finish": 16.7
+                },
+                "avg_position": 5.8,
                 "score": 40,
                 "raw_score": 47
               },
@@ -10448,6 +13438,16 @@
                 "balls": 144,
                 "runs": 200,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 42,
+                  "middle": 96,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 29.2,
+                  "middle": 66.7,
+                  "death": 4.2
+                },
                 "score": 64,
                 "raw_score": 64
               },
@@ -10497,6 +13497,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 20,
                 "raw_score": 55
               },
@@ -10509,6 +13519,16 @@
                 "balls": 18,
                 "runs": 42,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 18,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 100,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": 9,
                 "raw_score": 24
               },
@@ -10556,6 +13576,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 3,
                 "raw_score": 15
               },
@@ -10568,6 +13598,16 @@
                 "balls": 142,
                 "runs": 206,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 54,
+                  "middle": 24,
+                  "death": 64
+                },
+                "phase_pct": {
+                  "pp": 38,
+                  "middle": 16.9,
+                  "death": 45.1
+                },
                 "score": 64,
                 "raw_score": 64
               },
@@ -10613,6 +13653,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 3,
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.3,
                 "score": 9,
                 "raw_score": 16
               },
@@ -10625,6 +13676,16 @@
                 "balls": 138,
                 "runs": 236,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 114,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 82.6,
+                  "death": 17.4
+                },
                 "score": 42,
                 "raw_score": 42
               },
@@ -10670,6 +13731,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -10682,6 +13751,16 @@
                 "balls": 150,
                 "runs": 275,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 90,
+                  "middle": 24,
+                  "death": 36
+                },
+                "phase_pct": {
+                  "pp": 60,
+                  "middle": 16,
+                  "death": 24
+                },
                 "score": 23,
                 "raw_score": 23
               },
@@ -10727,6 +13806,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 15,
                 "raw_score": 76
               },
@@ -10739,6 +13828,16 @@
                 "balls": 42,
                 "runs": 79,
                 "wickets": 2,
+                "phase_balls": {
+                  "pp": 6,
+                  "middle": 36,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 14.3,
+                  "middle": 85.7,
+                  "death": 0
+                },
                 "score": 20,
                 "raw_score": 23
               },
@@ -10784,6 +13883,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 1,
                 "raw_score": 14
               },
@@ -10796,6 +13905,16 @@
                 "balls": 152,
                 "runs": 263,
                 "wickets": 4,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 75,
+                  "death": 65
+                },
+                "phase_pct": {
+                  "pp": 7.9,
+                  "middle": 49.3,
+                  "death": 42.8
+                },
                 "score": 21,
                 "raw_score": 21
               },
@@ -10841,6 +13960,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 4,
                 "raw_score": 70
               },
@@ -10853,6 +13982,16 @@
                 "balls": 42,
                 "runs": 94,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 42,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 100,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": 6,
                 "raw_score": 7
               },
@@ -10902,6 +14041,17 @@
                 "outs": 5,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 2,
+                  "7": 6
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.8,
                 "score": 92,
                 "raw_score": 92
               },
@@ -10914,6 +14064,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -10959,6 +14119,18 @@
                 "outs": 7,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 2,
+                  "4": 4,
+                  "5": 2
+                },
+                "position_pct": {
+                  "open": 25,
+                  "top": 50,
+                  "middle": 25,
+                  "finish": 0
+                },
+                "avg_position": 3.8,
                 "score": 84,
                 "raw_score": 84
               },
@@ -10971,6 +14143,16 @@
                 "balls": 6,
                 "runs": 14,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 6,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 5,
                 "raw_score": 40
               },
@@ -11016,6 +14198,20 @@
                 "outs": 8,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 3,
+                  "2": 2,
+                  "3": 1,
+                  "4": 1,
+                  "5": 1
+                },
+                "position_pct": {
+                  "open": 62.5,
+                  "top": 25,
+                  "middle": 12.5,
+                  "finish": 0
+                },
+                "avg_position": 2.4,
                 "score": 81,
                 "raw_score": 81
               },
@@ -11028,6 +14224,16 @@
                 "balls": 34,
                 "runs": 69,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 24,
+                  "death": 10
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 70.6,
+                  "death": 29.4
+                },
                 "score": 6,
                 "raw_score": 9
               },
@@ -11073,6 +14279,16 @@
                 "outs": 5,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 5
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6,
                 "score": 62,
                 "raw_score": 62
               },
@@ -11085,6 +14301,16 @@
                 "balls": 1,
                 "runs": 6,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 1
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 100
+                },
                 "score": 1,
                 "raw_score": 40
               },
@@ -11130,6 +14356,17 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "6": 1,
+                  "7": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 100,
+                  "finish": 0
+                },
+                "avg_position": 6.7,
                 "score": 51,
                 "raw_score": 71
               },
@@ -11142,6 +14379,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -11187,6 +14434,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9,
                 "score": 7,
                 "raw_score": 50
               },
@@ -11199,6 +14456,16 @@
                 "balls": 24,
                 "runs": 56,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 18,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 75,
+                  "death": 25
+                },
                 "score": 5,
                 "raw_score": 9
               },
@@ -11246,6 +14513,17 @@
                 "outs": 6,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "2": 1,
+                  "3": 7
+                },
+                "position_pct": {
+                  "open": 12.5,
+                  "top": 87.5,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 2.9,
                 "score": 87,
                 "raw_score": 87
               },
@@ -11258,6 +14536,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -11303,6 +14591,17 @@
                 "outs": 7,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "4": 3,
+                  "5": 5
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 37.5,
+                  "middle": 62.5,
+                  "finish": 0
+                },
+                "avg_position": 4.6,
                 "score": 51,
                 "raw_score": 51
               },
@@ -11315,6 +14614,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -11366,6 +14675,17 @@
                 "outs": 8,
                 "fifties": 1,
                 "hundreds": 0,
+                "position_counts": {
+                  "1": 5,
+                  "2": 3
+                },
+                "position_pct": {
+                  "open": 100,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": 1.4,
                 "score": 84,
                 "raw_score": 84
               },
@@ -11378,6 +14698,16 @@
                 "balls": 0,
                 "runs": 0,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 0,
+                  "death": 0
+                },
                 "score": null,
                 "raw_score": null
               },
@@ -11427,6 +14757,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 22,
                 "raw_score": 50
               },
@@ -11439,6 +14779,16 @@
                 "balls": 6,
                 "runs": 16,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 6,
+                  "death": 0
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 100,
+                  "death": 0
+                },
                 "score": 5,
                 "raw_score": 40
               },
@@ -11486,6 +14836,16 @@
                 "outs": 2,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "11": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 11,
                 "score": 0,
                 "raw_score": 0
               },
@@ -11498,6 +14858,16 @@
                 "balls": 96,
                 "runs": 102,
                 "wickets": 9,
+                "phase_balls": {
+                  "pp": 54,
+                  "middle": 24,
+                  "death": 18
+                },
+                "phase_pct": {
+                  "pp": 56.3,
+                  "middle": 25,
+                  "death": 18.8
+                },
                 "score": 100,
                 "raw_score": 100
               },
@@ -11543,6 +14913,16 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 0,
                 "raw_score": 0
               },
@@ -11555,6 +14935,16 @@
                 "balls": 180,
                 "runs": 242,
                 "wickets": 13,
+                "phase_balls": {
+                  "pp": 66,
+                  "middle": 54,
+                  "death": 60
+                },
+                "phase_pct": {
+                  "pp": 36.7,
+                  "middle": 30,
+                  "death": 33.3
+                },
                 "score": 94,
                 "raw_score": 94
               },
@@ -11600,6 +14990,14 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {},
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 0
+                },
+                "avg_position": null,
                 "score": null,
                 "raw_score": null
               },
@@ -11612,6 +15010,16 @@
                 "balls": 66,
                 "runs": 98,
                 "wickets": 4,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 36,
+                  "death": 18
+                },
+                "phase_pct": {
+                  "pp": 18.2,
+                  "middle": 54.5,
+                  "death": 27.3
+                },
                 "score": 73,
                 "raw_score": 73
               },
@@ -11657,6 +15065,17 @@
                 "outs": 4,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 2,
+                  "9": 4
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8.7,
                 "score": 38,
                 "raw_score": 65
               },
@@ -11669,6 +15088,16 @@
                 "balls": 186,
                 "runs": 250,
                 "wickets": 7,
+                "phase_balls": {
+                  "pp": 114,
+                  "middle": 42,
+                  "death": 30
+                },
+                "phase_pct": {
+                  "pp": 61.3,
+                  "middle": 22.6,
+                  "death": 16.1
+                },
                 "score": 61,
                 "raw_score": 61
               },
@@ -11714,6 +15143,17 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "9": 1,
+                  "10": 2
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 9.7,
                 "score": 9,
                 "raw_score": 51
               },
@@ -11726,6 +15166,16 @@
                 "balls": 102,
                 "runs": 173,
                 "wickets": 5,
+                "phase_balls": {
+                  "pp": 12,
+                  "middle": 66,
+                  "death": 24
+                },
+                "phase_pct": {
+                  "pp": 11.8,
+                  "middle": 64.7,
+                  "death": 23.5
+                },
                 "score": 45,
                 "raw_score": 45
               },
@@ -11771,6 +15221,16 @@
                 "outs": 3,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "8": 3
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 8,
                 "score": 40,
                 "raw_score": 68
               },
@@ -11783,6 +15243,16 @@
                 "balls": 37,
                 "runs": 55,
                 "wickets": 1,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 36,
+                  "death": 1
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 97.3,
+                  "death": 2.7
+                },
                 "score": 24,
                 "raw_score": 31
               },
@@ -11828,6 +15298,17 @@
                 "outs": 0,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1,
+                  "11": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10.5,
                 "score": 2,
                 "raw_score": 13
               },
@@ -11840,6 +15321,16 @@
                 "balls": 144,
                 "runs": 225,
                 "wickets": 3,
+                "phase_balls": {
+                  "pp": 30,
+                  "middle": 102,
+                  "death": 12
+                },
+                "phase_pct": {
+                  "pp": 20.8,
+                  "middle": 70.8,
+                  "death": 8.3
+                },
                 "score": 29,
                 "raw_score": 29
               },
@@ -11885,6 +15376,16 @@
                 "outs": 1,
                 "fifties": 0,
                 "hundreds": 0,
+                "position_counts": {
+                  "10": 1
+                },
+                "position_pct": {
+                  "open": 0,
+                  "top": 0,
+                  "middle": 0,
+                  "finish": 100
+                },
+                "avg_position": 10,
                 "score": 0,
                 "raw_score": 0
               },
@@ -11897,6 +15398,16 @@
                 "balls": 24,
                 "runs": 39,
                 "wickets": 0,
+                "phase_balls": {
+                  "pp": 0,
+                  "middle": 18,
+                  "death": 6
+                },
+                "phase_pct": {
+                  "pp": 0,
+                  "middle": 75,
+                  "death": 25
+                },
                 "score": 15,
                 "raw_score": 29
               },

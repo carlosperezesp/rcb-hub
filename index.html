@@ -648,6 +648,62 @@
     font-weight: 700;
     line-height: 1.35;
   }
+  .phase-usage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .phase-chip,
+  .position-chip {
+    --phase-r: 0;
+    --phase-g: 48;
+    --phase-b: 26;
+    background: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .08);
+    border: 1px solid rgba(var(--phase-r), var(--phase-g), var(--phase-b), .08);
+    border-radius: 999px;
+    color: rgb(var(--phase-r), var(--phase-g), var(--phase-b));
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    padding: 5px 7px;
+    text-transform: uppercase;
+  }
+  .card-poor .phase-chip,
+  .card-poor .position-chip {
+    --phase-r: 182;
+    --phase-g: 23;
+    --phase-b: 30;
+  }
+  .card-avg .phase-chip,
+  .card-avg .position-chip {
+    --phase-r: 21;
+    --phase-g: 21;
+    --phase-b: 21;
+  }
+  .card-elite .phase-chip,
+  .card-elite .position-chip {
+    --phase-r: 47;
+    --phase-g: 125;
+    --phase-b: 75;
+  }
+  .phase-low {
+    background: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .07);
+    border-color: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .06);
+    color: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .72);
+  }
+  .phase-mid {
+    background: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .14);
+    border-color: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .10);
+  }
+  .phase-high {
+    background: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .24);
+    border-color: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .18);
+  }
+  .phase-heavy {
+    background: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .34);
+    border-color: rgba(var(--phase-r), var(--phase-g), var(--phase-b), .25);
+  }
   .player-body {
     min-width: 0;
     width: 100%;
@@ -2295,6 +2351,42 @@ function playerUsageLabel(player, mode, slug) {
   return '';
 }
 
+function bowlerPhaseUsage(profile) {
+  const phase = profile.bowl?.phase_pct;
+  if (!phase || !profile.bowl?.balls) return '';
+  const intensity = value => {
+    if (value >= 55) return 'phase-heavy';
+    if (value >= 35) return 'phase-high';
+    if (value >= 15) return 'phase-mid';
+    return 'phase-low';
+  };
+  const rows = [
+    ['PP', phase.pp || 0],
+    ['MID', phase.middle || 0],
+    ['DEATH', phase.death || 0],
+  ];
+  return `<div class="phase-usage">${rows.map(([label, value]) => `<span class="phase-chip ${intensity(value)}">${label} ${Math.round(value)}%</span>`).join('')}</div>`;
+}
+
+function battingPositionUsage(profile) {
+  const positions = profile.bat?.position_pct;
+  if (!positions || !profile.bat?.balls) return '';
+  const intensity = value => {
+    if (value >= 55) return 'phase-heavy';
+    if (value >= 35) return 'phase-high';
+    if (value >= 15) return 'phase-mid';
+    return 'phase-low';
+  };
+  const rows = [
+    ['OPEN', positions.open || 0],
+    ['TOP', positions.top || 0],
+    ['MID', positions.middle || 0],
+    ['FIN', positions.finish || 0],
+  ];
+  const avg = profile.bat?.avg_position ? `<span class="position-chip phase-mid">AVG #${fmt(profile.bat.avg_position, 1)}</span>` : '';
+  return `<div class="phase-usage">${avg}${rows.map(([label, value]) => `<span class="position-chip ${intensity(value)}">${label} ${Math.round(value)}%</span>`).join('')}</div>`;
+}
+
 function leaguePlayers() {
   return Object.entries(IPL_SQUADS || {}).flatMap(([slug, squad]) =>
     Object.values(squad || {}).flat().map(player => ({ ...player, slug, profile: playerProfile(player) }))
@@ -2664,6 +2756,8 @@ function renderPlayerCard(p, mode, benchmarks, slug) {
       <div class="player-name">${p.name}</div>
       <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
       <div class="player-meta">${apps} matches${usage ? ` · ${usage}` : ''}${p.tag ? ` · ${p.tag}` : ''}</div>
+      ${mode === 'bat' ? battingPositionUsage(profile) : ''}
+      ${mode === 'bowl' ? bowlerPhaseUsage(profile) : ''}
       <div class="skill-grid skill-grid-single">
         <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
       </div>
