@@ -1305,6 +1305,7 @@ const IPL_TEAM_ALIASES = {
 let IPL_SQUADS = {};
 let IPL_SQUAD_SOURCE = 'Estimated formula model';
 let IPL_STANDINGS_SOURCE = 'Verified fallback table';
+let IPL_USAGE_CACHE = {};
 
 function normalizeLivePlayerScores(player) {
   const profile = player.stats?.profile;
@@ -1848,6 +1849,7 @@ function buildFallbackSquads() {
 }
 
 async function fetchIplSquadModel() {
+  IPL_USAGE_CACHE = {};
   if (loadCricsheetSquads()) return;
 
   const cached = cacheGet('ipl_squad_model_v9');
@@ -2261,6 +2263,38 @@ function teamNameFromSlug(slug) {
   return (iplFallback.find(team => slugForTeam(team) === slug)?.full) || slug.toUpperCase();
 }
 
+function teamUsageForSlug(slug) {
+  if (IPL_USAGE_CACHE[slug]) return IPL_USAGE_CACHE[slug];
+  const data = window.CRICSHEET_IPL_STATS || globalThis.CRICSHEET_IPL_STATS;
+  const teamName = teamNameFromSlug(slug);
+  const usage = { matches: 0, batBalls: 0, bowlBalls: 0 };
+  (data?.matches || []).forEach(match => {
+    if (!match.teams?.includes(teamName)) return;
+    const stats = match.teamStats?.[teamName];
+    if (!stats) return;
+    usage.matches += 1;
+    usage.batBalls += stats.ballsFor || 0;
+    usage.bowlBalls += stats.ballsAgainst || 0;
+  });
+  IPL_USAGE_CACHE[slug] = usage;
+  return usage;
+}
+
+function playerUsageLabel(player, mode, slug) {
+  const profile = playerProfile(player);
+  const usage = teamUsageForSlug(slug);
+  const balls = mode === 'bat' ? profile.bat?.balls || 0 : profile.bowl?.balls || 0;
+  const teamBalls = mode === 'bat' ? usage.batBalls : usage.bowlBalls;
+  if (balls > 0 && teamBalls > 0) {
+    return `${Math.round((balls / teamBalls) * 100)}% ${mode === 'bat' ? 'bat' : 'bowl'} share`;
+  }
+  const apps = profile.apps || player.matches || player.stats?.apps || 0;
+  if (apps > 0 && usage.matches > 0) {
+    return `${Math.round((apps / usage.matches) * 100)}% app share`;
+  }
+  return '';
+}
+
 function leaguePlayers() {
   return Object.entries(IPL_SQUADS || {}).flatMap(([slug, squad]) =>
     Object.values(squad || {}).flat().map(player => ({ ...player, slug, profile: playerProfile(player) }))
@@ -2616,19 +2650,20 @@ function bindSquadTabs(slug) {
   });
 }
 
-function renderPlayerCard(p, mode, benchmarks) {
+function renderPlayerCard(p, mode, benchmarks, slug) {
   const profile = playerProfile(p);
   const score = skillScore(p, mode);
   const tier = formTier(score);
   const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
   const apps = p.matches || p.stats?.apps || profile.apps || 0;
+  const usage = playerUsageLabel(p, mode, slug);
   const statHtml = mode === 'bat' ? battingStats(profile, benchmarks) : bowlingStats(profile, benchmarks);
   return `<div class="player-card card-${tier}">
     <div class="player-num">${p.num}</div>
     <div class="player-body">
       <div class="player-name">${p.name}</div>
       <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
-      <div class="player-meta">${apps} matches${p.tag ? ` · ${p.tag}` : ''}</div>
+      <div class="player-meta">${apps} matches${usage ? ` · ${usage}` : ''}${p.tag ? ` · ${p.tag}` : ''}</div>
       <div class="skill-grid skill-grid-single">
         <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
       </div>
@@ -2667,7 +2702,7 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
         <div class="role-title"><span class="role-dot ${dot}"></span>${title}</div>
       </div>
       <div class="players-grid">
-        ${sortBySkill(mode).map(p => renderPlayerCard(p, mode, benchmarks)).join('')}
+        ${sortBySkill(mode).map(p => renderPlayerCard(p, mode, benchmarks, slug)).join('')}
       </div>
     </section>
   `).join('')}
