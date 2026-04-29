@@ -1176,10 +1176,47 @@ let IPL_SQUADS = {};
 let IPL_SQUAD_SOURCE = 'Estimated formula model';
 let IPL_STANDINGS_SOURCE = 'Verified fallback table';
 
+function normalizeLivePlayerScores(player) {
+  const profile = player.stats?.profile;
+  if (!profile) return player;
+
+  if (profile.bat) {
+    profile.bat.score = calcFormScore('bat', { ...profile.bat, source: 'cricsheet' });
+    profile.bat.raw_score = profile.bat.score;
+  }
+  if (profile.bowl) {
+    profile.bowl.score = calcFormScore('bowl', { ...profile.bowl, source: 'cricsheet' });
+    profile.bowl.raw_score = profile.bowl.score;
+  }
+
+  if (player.role === 'bowl') {
+    player.score = profile.bowl?.score ?? profile.overall ?? player.score;
+  } else if (player.role === 'ar') {
+    player.score = calcFormScore('ar', {
+      batSr: profile.bat?.sr || 0,
+      batAvg: profile.bat?.avg || 0,
+      boundary_pct: profile.bat?.boundary_pct || 0,
+      impact: profile.bat?.impact || 0,
+      bowlEcon: profile.bowl?.econ || 12,
+      bowlAvg: profile.bowl?.bowling_avg || 50,
+      wktsPerMatch: profile.bowl?.wkts_per_match || 0,
+      dot_pct: profile.bowl?.dot_pct || 0,
+      source: 'cricsheet',
+    });
+  } else {
+    player.score = profile.bat?.score ?? profile.overall ?? player.score;
+  }
+  profile.overall = player.score;
+  return player;
+}
+
 function loadCricsheetSquads() {
   const data = window.CRICSHEET_IPL_STATS;
   if (!data?.squads) return false;
   IPL_SQUADS = data.squads;
+  Object.values(IPL_SQUADS).forEach(squad => {
+    Object.values(squad || {}).flat().forEach(normalizeLivePlayerScores);
+  });
   IPL_SQUAD_SOURCE = `${data.source} · ${data.matchesProcessed} matches · updated ${data.lastMatchDate || 'today'}`;
   return true;
 }
@@ -1298,6 +1335,33 @@ function roleCode(role = '') {
   return 'bat';
 }
 
+function scaledScore(value, floor, ceiling, points) {
+  if (value === null || value === undefined || Number.isNaN(value)) return 0;
+  const ratio = (Number(value) - floor) / (ceiling - floor);
+  return Math.max(0, Math.min(ratio, 1)) * points;
+}
+
+function scoreSampleConfidence(stats, mode) {
+  if (stats?.source === 'estimated') return 0.88;
+  if (mode === 'bat') {
+    const balls = stats.balls || 0;
+    const innings = stats.innings || stats.matches || 0;
+    const sample = Math.max(balls / 180, innings / 8);
+    return 0.72 + Math.min(sample, 1) * 0.28;
+  }
+  const balls = stats.balls || 0;
+  const matches = stats.matches || 0;
+  const sample = Math.max(balls / 144, matches / 8);
+  return 0.72 + Math.min(sample, 1) * 0.28;
+}
+
+function capScore(score, stats) {
+  const cap = stats?.source === 'estimated' ? 92 : 98;
+  if (score <= 92) return Math.round(score);
+  const compressed = 92 + (1 - Math.exp(-(score - 92) / 12)) * (cap - 92);
+  return Math.min(cap, Math.round(compressed));
+}
+
 function calcFormScore(role, stats) {
   if (!stats) return null;
   if (role === 'bat' || role === 'wk') {
@@ -1305,24 +1369,28 @@ function calcFormScore(role, stats) {
     const avg = stats.avg || stats.average || 0;
     const boundary = stats.boundary_pct || 0;
     const impact = stats.impact || 0;
-    return Math.min(100, Math.round(
-      Math.min((sr / 150) * 40, 48) +
-      Math.min((avg / 35) * 35, 44) +
-      Math.min((boundary / 40) * 15, 18) +
-      Math.min((impact / 0.3) * 10, 12)
-    ));
+    const runs = stats.runs || 0;
+    const raw = 24 +
+      scaledScore(runs, 20, 430, 28) +
+      scaledScore(sr, 95, 220, 28) +
+      scaledScore(avg, 10, 78, 24) +
+      scaledScore(boundary, 20, 86, 14) +
+      scaledScore(impact, 0, 0.6, 8);
+    const confidence = scoreSampleConfidence(stats, 'bat');
+    return capScore(48 + (raw - 48) * confidence, stats);
   }
   if (role === 'bowl') {
     const econ = stats.econ || stats.economy || 12;
     const avg = stats.bowling_avg || stats.bowlAvg || 50;
     const wpm = stats.wkts_per_match || stats.wpm || 0;
     const dot = stats.dot_pct || 0;
-    return Math.min(100, Math.round(
-      Math.max(0, Math.min(((8.5 - econ) / 3) * 20 + 20, 36)) +
-      Math.max(0, Math.min(((28 - avg) / 15) * 25 + 25, 40)) +
-      Math.min(wpm * 10, 18) +
-      Math.min((dot / 40) * 15, 18)
-    ));
+    const raw =
+      scaledScore(11.2 - econ, 0, 4.4, 34) +
+      scaledScore(48 - avg, 0, 34, 34) +
+      scaledScore(wpm, 0.35, 2.25, 18) +
+      scaledScore(dot, 22, 50, 14);
+    const confidence = scoreSampleConfidence(stats, 'bowl');
+    return capScore(48 + (raw - 48) * confidence, stats);
   }
   const bat = calcFormScore('bat', {
     sr: stats.batSr || stats.sr || 0,
@@ -1588,6 +1656,9 @@ function applyCricbuzzSeasonStats(squads, seasonStats) {
 
       if ((player.role === 'bat' || player.role === 'wk') && bat) {
         player.stats = {
+          matches: bat.matches || 0,
+          innings: bat.innings || 0,
+          runs: bat.runs || 0,
           sr: bat.sr || est.sr,
           avg: bat.avg || (bat.innings ? bat.runs / Math.max(bat.innings, 1) : est.avg),
           boundary_pct: bat.runs ? Math.min(((bat.sixes || 0) * 6 / bat.runs) * 100 + 22, 65) : est.boundary_pct,
@@ -1597,15 +1668,20 @@ function applyCricbuzzSeasonStats(squads, seasonStats) {
         applied += 1;
       } else if (player.role === 'bowl' && bowl) {
         player.stats = {
+          matches: bowl.matches || 0,
           econ: bowl.econ || est.econ,
           bowling_avg: bowl.bowling_avg || est.bowling_avg,
           wkts_per_match: bowl.matches ? (bowl.wickets || 0) / bowl.matches : est.wkts_per_match,
+          wickets: bowl.wickets || 0,
           dot_pct: est.dot_pct,
           source: 'cricbuzz',
         };
         applied += 1;
       } else if (player.role === 'ar' && (bat || bowl)) {
         player.stats = {
+          matches: Math.max(bat?.matches || 0, bowl?.matches || 0),
+          innings: bat?.innings || 0,
+          runs: bat?.runs || 0,
           batSr: bat?.sr || est.batSr,
           batAvg: bat?.avg || est.batAvg,
           boundary_pct: bat?.runs ? Math.min(((bat.sixes || 0) * 6 / bat.runs) * 100 + 22, 65) : est.boundary_pct,
@@ -1613,6 +1689,7 @@ function applyCricbuzzSeasonStats(squads, seasonStats) {
           bowlEcon: bowl?.econ || est.bowlEcon,
           bowlAvg: bowl?.bowling_avg || est.bowlAvg,
           wktsPerMatch: bowl?.matches ? (bowl.wickets || 0) / bowl.matches : est.wktsPerMatch,
+          wickets: bowl?.wickets || 0,
           dot_pct: est.dot_pct,
           source: 'cricbuzz',
         };
@@ -1643,7 +1720,7 @@ function buildFallbackSquads() {
 async function fetchIplSquadModel() {
   if (loadCricsheetSquads()) return;
 
-  const cached = cacheGet('ipl_squad_model_v8');
+  const cached = cacheGet('ipl_squad_model_v9');
   if (cached) {
     IPL_SQUAD_SOURCE = cached.source || IPL_SQUAD_SOURCE;
     IPL_SQUADS = cached.squads || buildFallbackSquads();
@@ -1699,7 +1776,7 @@ async function fetchIplSquadModel() {
 
   IPL_SQUADS = squads;
   IPL_SQUAD_SOURCE = source;
-  cacheSet('ipl_squad_model_v8', { squads, source });
+  cacheSet('ipl_squad_model_v9', { squads, source });
 }
 
 function flag(code, label, round = false) {
@@ -2052,17 +2129,20 @@ function playerProfile(player) {
   if (player.stats?.profile) return player.stats.profile;
   const s = player.stats || {};
   const bat = {
-    runs: 0,
-    balls: 0,
+    runs: s.runs || 0,
+    balls: s.balls || 0,
     sr: s.sr || s.batSr || 0,
     avg: s.avg || s.batAvg || 0,
+    boundary_pct: s.boundary_pct || 0,
     score: player.role === 'bowl' ? null : player.score,
   };
   const bowl = {
-    wickets: 0,
-    balls: 0,
+    wickets: s.wickets || 0,
+    balls: s.bowlBalls || s.balls_bowled || 0,
     econ: s.econ || s.bowlEcon || 0,
+    bowling_avg: s.bowling_avg || s.bowlAvg || 0,
     wkts_per_match: s.wkts_per_match || s.wktsPerMatch || 0,
+    dot_pct: s.dot_pct || 0,
     score: player.role === 'bat' || player.role === 'wk' ? null : player.score,
   };
   return { apps: s.apps || player.matches || 0, bat, bowl, field: { catches: 0, stumpings: 0, runouts: 0, score: 0 }, overall: player.score };

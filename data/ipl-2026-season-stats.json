@@ -1,9 +1,9 @@
 {
   "source": "Cricsheet ball-by-ball",
-  "generatedAt": "2026-04-28T19:39:59.304Z",
+  "generatedAt": "2026-04-29T06:14:02.172Z",
   "season": "2026",
-  "matchesProcessed": 39,
-  "lastMatchDate": "2026-04-27",
+  "matchesProcessed": 40,
+  "lastMatchDate": "2026-04-28",
   "matches": [
     {
       "id": "1527674",
@@ -1671,6 +1671,49 @@
           "ballsAgainst": 120
         }
       }
+    },
+    {
+      "id": "1529283",
+      "date": "2026-04-28",
+      "matchNumber": 40,
+      "teams": [
+        "Punjab Kings",
+        "Rajasthan Royals"
+      ],
+      "winner": "Rajasthan Royals",
+      "margin": {
+        "wickets": 6
+      },
+      "scores": [
+        {
+          "team": "Punjab Kings",
+          "runs": 222,
+          "wickets": 4,
+          "balls": 120,
+          "overs": "20.0"
+        },
+        {
+          "team": "Rajasthan Royals",
+          "runs": 228,
+          "wickets": 4,
+          "balls": 116,
+          "overs": "19.2"
+        }
+      ],
+      "teamStats": {
+        "Punjab Kings": {
+          "runsFor": 222,
+          "ballsFor": 120,
+          "runsAgainst": 228,
+          "ballsAgainst": 116
+        },
+        "Rajasthan Royals": {
+          "runsFor": 228,
+          "ballsFor": 116,
+          "runsAgainst": 222,
+          "ballsAgainst": 120
+        }
+      }
     }
   ],
   "standings": [
@@ -1679,12 +1722,12 @@
       "abbr": "PBKS",
       "full": "Punjab Kings",
       "flag": "pbks",
-      "m": 7,
+      "m": 8,
       "w": 6,
-      "l": 0,
+      "l": 1,
       "nr": 1,
       "pts": 13,
-      "nrr": 1.333,
+      "nrr": 1.043,
       "rcb": false
     },
     {
@@ -1702,6 +1745,19 @@
     },
     {
       "pos": 3,
+      "abbr": "RR",
+      "full": "Rajasthan Royals",
+      "flag": "rr",
+      "m": 9,
+      "w": 6,
+      "l": 3,
+      "nr": 0,
+      "pts": 12,
+      "nrr": 0.617,
+      "rcb": false
+    },
+    {
+      "pos": 4,
       "abbr": "SRH",
       "full": "Sunrisers Hyderabad",
       "flag": "srh",
@@ -1711,19 +1767,6 @@
       "nr": 0,
       "pts": 10,
       "nrr": 0.815,
-      "rcb": false
-    },
-    {
-      "pos": 4,
-      "abbr": "RR",
-      "full": "Rajasthan Royals",
-      "flag": "rr",
-      "m": 8,
-      "w": 5,
-      "l": 3,
-      "nr": 0,
-      "pts": 10,
-      "nrr": 0.602,
       "rcb": false
     },
     {
@@ -7879,30 +7922,30 @@
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 8,
-            "sr": 234.87,
-            "avg": 44.63,
-            "boundary_pct": 88.52,
-            "impact": 0.5,
+            "apps": 9,
+            "sr": 238.1,
+            "avg": 44.44,
+            "boundary_pct": 89.5,
+            "impact": 0.444,
             "source": "cricsheet",
             "profile": {
-              "apps": 8,
+              "apps": 9,
               "bat": {
-                "apps": 8,
-                "sr": 234.87,
-                "avg": 44.63,
-                "boundary_pct": 88.52,
-                "impact": 0.5,
-                "runs": 357,
-                "balls": 152,
-                "outs": 8,
+                "apps": 9,
+                "sr": 238.1,
+                "avg": 44.44,
+                "boundary_pct": 89.5,
+                "impact": 0.444,
+                "runs": 400,
+                "balls": 168,
+                "outs": 9,
                 "fifties": 2,
                 "hundreds": 1,
                 "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 8,
+                "apps": 9,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -7924,9 +7967,9 @@
             }
           },
           "score": 100,
-          "detail": "SR 235 · Avg 44.6",
-          "matches": 8,
-          "runs": 357,
+          "detail": "SR 238 · Avg 44.4",
+          "matches": 9,
+          "runs": 400,
           "wickets": 0
         },
         {
@@ -7936,30 +7979,30 @@
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 8,
-            "sr": 153.61,
-            "avg": 42.5,
-            "boundary_pct": 73.73,
-            "impact": 0.25,
+            "apps": 9,
+            "sr": 158.55,
+            "avg": 43.71,
+            "boundary_pct": 72.55,
+            "impact": 0.333,
             "source": "cricsheet",
             "profile": {
-              "apps": 8,
+              "apps": 9,
               "bat": {
-                "apps": 8,
-                "sr": 153.61,
-                "avg": 42.5,
-                "boundary_pct": 73.73,
-                "impact": 0.25,
-                "runs": 255,
-                "balls": 166,
-                "outs": 6,
-                "fifties": 2,
+                "apps": 9,
+                "sr": 158.55,
+                "avg": 43.71,
+                "boundary_pct": 72.55,
+                "impact": 0.333,
+                "runs": 306,
+                "balls": 193,
+                "outs": 7,
+                "fifties": 3,
                 "hundreds": 0,
                 "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 8,
+                "apps": 9,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -7974,16 +8017,16 @@
                 "catches": 2,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 3
+                "score": 2
               },
               "overall": 95,
               "source": "cricsheet"
             }
           },
           "score": 95,
-          "detail": "SR 154 · Avg 42.5",
-          "matches": 8,
-          "runs": 255,
+          "detail": "SR 159 · Avg 43.7",
+          "matches": 9,
+          "runs": 306,
           "wickets": 0
         },
         {
@@ -7993,33 +8036,33 @@
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 7,
-            "sr": 146.07,
-            "avg": 26,
-            "boundary_pct": 72.31,
-            "impact": 0.2,
+            "apps": 8,
+            "sr": 158.26,
+            "avg": 36.4,
+            "boundary_pct": 74.73,
+            "impact": 0.333,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
-                "sr": 146.07,
-                "avg": 26,
-                "boundary_pct": 72.31,
-                "impact": 0.2,
-                "runs": 130,
-                "balls": 89,
+                "apps": 8,
+                "sr": 158.26,
+                "avg": 36.4,
+                "boundary_pct": 74.73,
+                "impact": 0.333,
+                "runs": 182,
+                "balls": 115,
                 "outs": 5,
-                "fifties": 1,
+                "fifties": 2,
                 "hundreds": 0,
-                "score": 90,
-                "raw_score": 90
+                "score": 100,
+                "raw_score": 100
               },
               "bowl": {
-                "apps": 7,
+                "apps": 8,
                 "econ": 14,
                 "bowling_avg": 14,
-                "wkts_per_match": 0.14,
+                "wkts_per_match": 0.13,
                 "dot_pct": 16.67,
                 "balls": 6,
                 "runs": 14,
@@ -8028,20 +8071,134 @@
                 "raw_score": 48
               },
               "field": {
-                "catches": 5,
+                "catches": 6,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 7
+                "score": 8
               },
-              "overall": 77,
+              "overall": 86,
               "source": "cricsheet"
             }
           },
-          "score": 77,
-          "detail": "SR 146 · Avg 26.0",
-          "matches": 7,
-          "runs": 130,
+          "score": 86,
+          "detail": "SR 158 · Avg 36.4",
+          "matches": 8,
+          "runs": 182,
           "wickets": 1
+        },
+        {
+          "num": 8,
+          "name": "SB Dubey",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 2,
+            "sr": 217.39,
+            "avg": 50,
+            "boundary_pct": 72,
+            "impact": 0,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 2,
+              "bat": {
+                "apps": 2,
+                "sr": 217.39,
+                "avg": 50,
+                "boundary_pct": 72,
+                "impact": 0,
+                "runs": 50,
+                "balls": 23,
+                "outs": 0,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": 64,
+                "raw_score": 100
+              },
+              "bowl": {
+                "apps": 2,
+                "econ": 12,
+                "bowling_avg": 50,
+                "wkts_per_match": 0,
+                "dot_pct": 0,
+                "balls": 0,
+                "runs": 0,
+                "wickets": 0,
+                "score": null,
+                "raw_score": null
+              },
+              "field": {
+                "catches": 0,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 0
+              },
+              "overall": 64,
+              "source": "cricsheet"
+            }
+          },
+          "score": 64,
+          "detail": "SR 217 · Avg 50.0",
+          "matches": 2,
+          "runs": 50,
+          "wickets": 0
+        },
+        {
+          "num": 4,
+          "name": "R Parag",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 9,
+            "sr": 124.47,
+            "avg": 14.63,
+            "boundary_pct": 63.25,
+            "impact": 0,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 9,
+              "bat": {
+                "apps": 9,
+                "sr": 124.47,
+                "avg": 14.63,
+                "boundary_pct": 63.25,
+                "impact": 0,
+                "runs": 117,
+                "balls": 94,
+                "outs": 8,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": 66,
+                "raw_score": 66
+              },
+              "bowl": {
+                "apps": 9,
+                "econ": 9.5,
+                "bowling_avg": 19,
+                "wkts_per_match": 0.22,
+                "dot_pct": 20.83,
+                "balls": 24,
+                "runs": 38,
+                "wickets": 2,
+                "score": 32,
+                "raw_score": 63
+              },
+              "field": {
+                "catches": 4,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 4
+              },
+              "overall": 60,
+              "source": "cricsheet"
+            }
+          },
+          "score": 60,
+          "detail": "SR 124 · Avg 14.6",
+          "matches": 9,
+          "runs": 117,
+          "wickets": 2
         },
         {
           "num": 72,
@@ -8101,120 +8258,6 @@
           "wickets": 0
         },
         {
-          "num": 4,
-          "name": "R Parag",
-          "nat": "IND",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 8,
-            "sr": 112.82,
-            "avg": 12.57,
-            "boundary_pct": 61.36,
-            "impact": 0,
-            "source": "cricsheet",
-            "profile": {
-              "apps": 8,
-              "bat": {
-                "apps": 8,
-                "sr": 112.82,
-                "avg": 12.57,
-                "boundary_pct": 61.36,
-                "impact": 0,
-                "runs": 88,
-                "balls": 78,
-                "outs": 7,
-                "fifties": 0,
-                "hundreds": 0,
-                "score": 61,
-                "raw_score": 61
-              },
-              "bowl": {
-                "apps": 8,
-                "econ": 9.5,
-                "bowling_avg": 19,
-                "wkts_per_match": 0.25,
-                "dot_pct": 20.83,
-                "balls": 24,
-                "runs": 38,
-                "wickets": 2,
-                "score": 32,
-                "raw_score": 64
-              },
-              "field": {
-                "catches": 3,
-                "stumpings": 0,
-                "runouts": 0,
-                "score": 4
-              },
-              "overall": 55,
-              "source": "cricsheet"
-            }
-          },
-          "score": 55,
-          "detail": "SR 113 · Avg 12.6",
-          "matches": 8,
-          "runs": 88,
-          "wickets": 2
-        },
-        {
-          "num": 8,
-          "name": "SB Dubey",
-          "nat": "IND",
-          "tag": "",
-          "role": "bat",
-          "stats": {
-            "apps": 1,
-            "sr": 172.73,
-            "avg": 19,
-            "boundary_pct": 63.16,
-            "impact": 0,
-            "source": "cricsheet",
-            "profile": {
-              "apps": 1,
-              "bat": {
-                "apps": 1,
-                "sr": 172.73,
-                "avg": 19,
-                "boundary_pct": 63.16,
-                "impact": 0,
-                "runs": 19,
-                "balls": 11,
-                "outs": 0,
-                "fifties": 0,
-                "hundreds": 0,
-                "score": 25,
-                "raw_score": 83
-              },
-              "bowl": {
-                "apps": 1,
-                "econ": 12,
-                "bowling_avg": 50,
-                "wkts_per_match": 0,
-                "dot_pct": 0,
-                "balls": 0,
-                "runs": 0,
-                "wickets": 0,
-                "score": null,
-                "raw_score": null
-              },
-              "field": {
-                "catches": 0,
-                "stumpings": 0,
-                "runouts": 0,
-                "score": 0
-              },
-              "overall": 25,
-              "source": "cricsheet"
-            }
-          },
-          "score": 25,
-          "detail": "SR 173 · Avg 19.0",
-          "matches": 1,
-          "runs": 19,
-          "wickets": 0
-        },
-        {
           "num": 96,
           "name": "LG Pretorius",
           "nat": "RSA",
@@ -8270,40 +8313,38 @@
           "matches": 1,
           "runs": 0,
           "wickets": 0
-        }
-      ],
-      "wicketKeepers": [
+        },
         {
-          "num": 89,
-          "name": "Dhruv Jurel",
+          "num": 63,
+          "name": "MD Shanaka",
           "nat": "IND",
           "tag": "",
-          "role": "wk",
+          "role": "bat",
           "stats": {
-            "apps": 8,
-            "sr": 163.38,
-            "avg": 33.14,
-            "boundary_pct": 66.38,
-            "impact": 0.375,
+            "apps": 1,
+            "sr": 0,
+            "avg": 0,
+            "boundary_pct": 0,
+            "impact": 0,
             "source": "cricsheet",
             "profile": {
-              "apps": 8,
+              "apps": 1,
               "bat": {
-                "apps": 8,
-                "sr": 163.38,
-                "avg": 33.14,
-                "boundary_pct": 66.38,
-                "impact": 0.375,
-                "runs": 232,
-                "balls": 142,
-                "outs": 7,
-                "fifties": 3,
+                "apps": 1,
+                "sr": 0,
+                "avg": 0,
+                "boundary_pct": 0,
+                "impact": 0,
+                "runs": 0,
+                "balls": 0,
+                "outs": 0,
+                "fifties": 0,
                 "hundreds": 0,
-                "score": 100,
-                "raw_score": 100
+                "score": null,
+                "raw_score": null
               },
               "bowl": {
-                "apps": 8,
+                "apps": 1,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -8315,19 +8356,78 @@
                 "raw_score": null
               },
               "field": {
-                "catches": 12,
-                "stumpings": 1,
-                "runouts": 3,
-                "score": 21
+                "catches": 0,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 0
               },
-              "overall": 80,
+              "overall": 0,
               "source": "cricsheet"
             }
           },
-          "score": 80,
-          "detail": "SR 163 · Avg 33.1",
-          "matches": 8,
-          "runs": 232,
+          "score": 0,
+          "detail": "SR 0 · Avg 0.0",
+          "matches": 1,
+          "runs": 0,
+          "wickets": 0
+        }
+      ],
+      "wicketKeepers": [
+        {
+          "num": 89,
+          "name": "Dhruv Jurel",
+          "nat": "IND",
+          "tag": "",
+          "role": "wk",
+          "stats": {
+            "apps": 9,
+            "sr": 153.09,
+            "avg": 31,
+            "boundary_pct": 64.52,
+            "impact": 0.333,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 9,
+              "bat": {
+                "apps": 9,
+                "sr": 153.09,
+                "avg": 31,
+                "boundary_pct": 64.52,
+                "impact": 0.333,
+                "runs": 248,
+                "balls": 162,
+                "outs": 8,
+                "fifties": 3,
+                "hundreds": 0,
+                "score": 100,
+                "raw_score": 100
+              },
+              "bowl": {
+                "apps": 9,
+                "econ": 12,
+                "bowling_avg": 50,
+                "wkts_per_match": 0,
+                "dot_pct": 0,
+                "balls": 0,
+                "runs": 0,
+                "wickets": 0,
+                "score": null,
+                "raw_score": null
+              },
+              "field": {
+                "catches": 13,
+                "stumpings": 1,
+                "runouts": 3,
+                "score": 20
+              },
+              "overall": 79,
+              "source": "cricsheet"
+            }
+          },
+          "score": 79,
+          "detail": "SR 153 · Avg 31.0",
+          "matches": 9,
+          "runs": 248,
           "wickets": 0
         }
       ],
@@ -8339,20 +8439,20 @@
           "tag": "",
           "role": "ar",
           "stats": {
-            "apps": 8,
+            "apps": 9,
             "batSr": 128.16,
             "batAvg": 66,
             "boundary_pct": 37.88,
             "impact": 0,
-            "bowlEcon": 7,
-            "bowlAvg": 17.5,
-            "wktsPerMatch": 0.75,
-            "dot_pct": 36.67,
+            "bowlEcon": 7.21,
+            "bowlAvg": 22.83,
+            "wktsPerMatch": 0.67,
+            "dot_pct": 30.7,
             "source": "cricsheet",
             "profile": {
-              "apps": 8,
+              "apps": 9,
               "bat": {
-                "apps": 8,
+                "apps": 9,
                 "sr": 128.16,
                 "avg": 66,
                 "boundary_pct": 37.88,
@@ -8366,35 +8466,92 @@
                 "raw_score": 92
               },
               "bowl": {
-                "apps": 8,
-                "econ": 7,
-                "bowling_avg": 17.5,
-                "wkts_per_match": 0.75,
-                "dot_pct": 36.67,
-                "balls": 90,
-                "runs": 105,
+                "apps": 9,
+                "econ": 7.21,
+                "bowling_avg": 22.83,
+                "wkts_per_match": 0.67,
+                "dot_pct": 30.7,
+                "balls": 114,
+                "runs": 137,
                 "wickets": 6,
-                "score": 91,
-                "raw_score": 91
+                "score": 80,
+                "raw_score": 80
               },
               "field": {
                 "catches": 1,
                 "stumpings": 0,
                 "runouts": 1,
-                "score": 3
+                "score": 2
               },
-              "overall": 87,
+              "overall": 82,
               "source": "cricsheet"
             }
           },
-          "score": 87,
-          "detail": "66.0 avg · Econ 7.0",
-          "matches": 8,
+          "score": 82,
+          "detail": "66.0 avg · Econ 7.2",
+          "matches": 9,
           "runs": 132,
           "wickets": 6
         }
       ],
       "bowlers": [
+        {
+          "num": 2,
+          "name": "Yash Raj Punja",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 2,
+            "econ": 8.25,
+            "bowling_avg": 22,
+            "wkts_per_match": 1.5,
+            "dot_pct": 33.33,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 2,
+              "bat": {
+                "apps": 2,
+                "sr": 0,
+                "avg": 0,
+                "boundary_pct": 0,
+                "impact": 0,
+                "runs": 0,
+                "balls": 0,
+                "outs": 0,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": null,
+                "raw_score": null
+              },
+              "bowl": {
+                "apps": 2,
+                "econ": 8.25,
+                "bowling_avg": 22,
+                "wkts_per_match": 1.5,
+                "dot_pct": 33.33,
+                "balls": 48,
+                "runs": 66,
+                "wickets": 3,
+                "score": 84,
+                "raw_score": 84
+              },
+              "field": {
+                "catches": 0,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 0
+              },
+              "overall": 84,
+              "source": "cricsheet"
+            }
+          },
+          "score": 84,
+          "detail": "1.5 wkt/m · Econ 8.3",
+          "matches": 2,
+          "runs": 0,
+          "wickets": 3
+        },
         {
           "num": 85,
           "name": "JC Archer",
@@ -8402,16 +8559,16 @@
           "tag": "",
           "role": "bowl",
           "stats": {
-            "apps": 8,
-            "econ": 8.03,
-            "bowling_avg": 17.92,
-            "wkts_per_match": 1.63,
-            "dot_pct": 49.43,
+            "apps": 9,
+            "econ": 8.27,
+            "bowling_avg": 19.5,
+            "wkts_per_match": 1.56,
+            "dot_pct": 47.98,
             "source": "cricsheet",
             "profile": {
-              "apps": 8,
+              "apps": 9,
               "bat": {
-                "apps": 8,
+                "apps": 9,
                 "sr": 92.86,
                 "avg": 13,
                 "boundary_pct": 30.77,
@@ -8425,16 +8582,16 @@
                 "raw_score": 49
               },
               "bowl": {
-                "apps": 8,
-                "econ": 8.03,
-                "bowling_avg": 17.92,
-                "wkts_per_match": 1.63,
-                "dot_pct": 49.43,
-                "balls": 174,
-                "runs": 233,
-                "wickets": 13,
-                "score": 97,
-                "raw_score": 97
+                "apps": 9,
+                "econ": 8.27,
+                "bowling_avg": 19.5,
+                "wkts_per_match": 1.56,
+                "dot_pct": 47.98,
+                "balls": 198,
+                "runs": 273,
+                "wickets": 14,
+                "score": 94,
+                "raw_score": 94
               },
               "field": {
                 "catches": 4,
@@ -8442,72 +8599,15 @@
                 "runouts": 1,
                 "score": 6
               },
-              "overall": 78,
+              "overall": 76,
               "source": "cricsheet"
             }
           },
-          "score": 78,
-          "detail": "1.6 wkt/m · Econ 8.0",
-          "matches": 8,
+          "score": 76,
+          "detail": "1.6 wkt/m · Econ 8.3",
+          "matches": 9,
           "runs": 13,
-          "wickets": 13
-        },
-        {
-          "num": 19,
-          "name": "Brijesh Sharma",
-          "nat": "IND",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 5,
-            "econ": 8.74,
-            "bowling_avg": 19.57,
-            "wkts_per_match": 1.4,
-            "dot_pct": 34.04,
-            "source": "cricsheet",
-            "profile": {
-              "apps": 5,
-              "bat": {
-                "apps": 5,
-                "sr": 33.33,
-                "avg": 1,
-                "boundary_pct": 0,
-                "impact": 0,
-                "runs": 1,
-                "balls": 3,
-                "outs": 0,
-                "fifties": 0,
-                "hundreds": 0,
-                "score": 1,
-                "raw_score": 10
-              },
-              "bowl": {
-                "apps": 5,
-                "econ": 8.74,
-                "bowling_avg": 19.57,
-                "wkts_per_match": 1.4,
-                "dot_pct": 34.04,
-                "balls": 94,
-                "runs": 137,
-                "wickets": 7,
-                "score": 84,
-                "raw_score": 84
-              },
-              "field": {
-                "catches": 1,
-                "stumpings": 0,
-                "runouts": 0,
-                "score": 2
-              },
-              "overall": 65,
-              "source": "cricsheet"
-            }
-          },
-          "score": 65,
-          "detail": "1.4 wkt/m · Econ 8.7",
-          "matches": 5,
-          "runs": 1,
-          "wickets": 7
+          "wickets": 14
         },
         {
           "num": 25,
@@ -8567,22 +8667,79 @@
           "wickets": 11
         },
         {
+          "num": 19,
+          "name": "Brijesh Sharma",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 6,
+            "econ": 9.1,
+            "bowling_avg": 25.57,
+            "wkts_per_match": 1.17,
+            "dot_pct": 33.05,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 6,
+              "bat": {
+                "apps": 6,
+                "sr": 33.33,
+                "avg": 1,
+                "boundary_pct": 0,
+                "impact": 0,
+                "runs": 1,
+                "balls": 3,
+                "outs": 0,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": 1,
+                "raw_score": 10
+              },
+              "bowl": {
+                "apps": 6,
+                "econ": 9.1,
+                "bowling_avg": 25.57,
+                "wkts_per_match": 1.17,
+                "dot_pct": 33.05,
+                "balls": 118,
+                "runs": 179,
+                "wickets": 7,
+                "score": 69,
+                "raw_score": 69
+              },
+              "field": {
+                "catches": 1,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 2
+              },
+              "overall": 53,
+              "source": "cricsheet"
+            }
+          },
+          "score": 53,
+          "detail": "1.2 wkt/m · Econ 9.1",
+          "matches": 6,
+          "runs": 1,
+          "wickets": 7
+        },
+        {
           "num": 70,
           "name": "N Burger",
           "nat": "RSA",
           "tag": "",
           "role": "bowl",
           "stats": {
-            "apps": 8,
-            "econ": 9.25,
-            "bowling_avg": 29.5,
+            "apps": 9,
+            "econ": 10,
+            "bowling_avg": 32.78,
             "wkts_per_match": 1,
-            "dot_pct": 42.48,
+            "dot_pct": 38.98,
             "source": "cricsheet",
             "profile": {
-              "apps": 8,
+              "apps": 9,
               "bat": {
-                "apps": 8,
+                "apps": 9,
                 "sr": 60,
                 "avg": 3,
                 "boundary_pct": 0,
@@ -8596,89 +8753,32 @@
                 "raw_score": 19
               },
               "bowl": {
-                "apps": 8,
-                "econ": 9.25,
-                "bowling_avg": 29.5,
+                "apps": 9,
+                "econ": 10,
+                "bowling_avg": 32.78,
                 "wkts_per_match": 1,
-                "dot_pct": 42.48,
-                "balls": 153,
-                "runs": 236,
-                "wickets": 8,
-                "score": 63,
-                "raw_score": 63
+                "dot_pct": 38.98,
+                "balls": 177,
+                "runs": 295,
+                "wickets": 9,
+                "score": 52,
+                "raw_score": 52
               },
               "field": {
-                "catches": 0,
+                "catches": 1,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 0
+                "score": 1
               },
-              "overall": 52,
+              "overall": 41,
               "source": "cricsheet"
             }
           },
-          "score": 52,
-          "detail": "1.0 wkt/m · Econ 9.3",
-          "matches": 8,
+          "score": 41,
+          "detail": "1.0 wkt/m · Econ 10.0",
+          "matches": 9,
           "runs": 3,
-          "wickets": 8
-        },
-        {
-          "num": 2,
-          "name": "Yash Raj Punja",
-          "nat": "IND",
-          "tag": "",
-          "role": "bowl",
-          "stats": {
-            "apps": 1,
-            "econ": 6.25,
-            "bowling_avg": 25,
-            "wkts_per_match": 1,
-            "dot_pct": 41.67,
-            "source": "cricsheet",
-            "profile": {
-              "apps": 1,
-              "bat": {
-                "apps": 1,
-                "sr": 0,
-                "avg": 0,
-                "boundary_pct": 0,
-                "impact": 0,
-                "runs": 0,
-                "balls": 0,
-                "outs": 0,
-                "fifties": 0,
-                "hundreds": 0,
-                "score": null,
-                "raw_score": null
-              },
-              "bowl": {
-                "apps": 1,
-                "econ": 6.25,
-                "bowling_avg": 25,
-                "wkts_per_match": 1,
-                "dot_pct": 41.67,
-                "balls": 24,
-                "runs": 25,
-                "wickets": 1,
-                "score": 46,
-                "raw_score": 91
-              },
-              "field": {
-                "catches": 0,
-                "stumpings": 0,
-                "runouts": 0,
-                "score": 0
-              },
-              "overall": 46,
-              "source": "cricsheet"
-            }
-          },
-          "score": 46,
-          "detail": "1.0 wkt/m · Econ 6.3",
-          "matches": 1,
-          "runs": 0,
-          "wickets": 1
+          "wickets": 9
         },
         {
           "num": 8,
@@ -8805,30 +8905,30 @@
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 6,
-            "sr": 249.02,
-            "avg": 42.33,
-            "boundary_pct": 84.25,
-            "impact": 0.333,
+            "apps": 7,
+            "sr": 250.44,
+            "avg": 40.43,
+            "boundary_pct": 84.81,
+            "impact": 0.286,
             "source": "cricsheet",
             "profile": {
-              "apps": 6,
+              "apps": 7,
               "bat": {
-                "apps": 6,
-                "sr": 249.02,
-                "avg": 42.33,
-                "boundary_pct": 84.25,
-                "impact": 0.333,
-                "runs": 254,
-                "balls": 102,
-                "outs": 6,
+                "apps": 7,
+                "sr": 250.44,
+                "avg": 40.43,
+                "boundary_pct": 84.81,
+                "impact": 0.286,
+                "runs": 283,
+                "balls": 113,
+                "outs": 7,
                 "fifties": 2,
                 "hundreds": 0,
                 "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 6,
+                "apps": 7,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -8850,9 +8950,9 @@
             }
           },
           "score": 100,
-          "detail": "SR 249 · Avg 42.3",
-          "matches": 6,
-          "runs": 254,
+          "detail": "SR 250 · Avg 40.4",
+          "matches": 7,
+          "runs": 283,
           "wickets": 0
         },
         {
@@ -8862,30 +8962,30 @@
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 7,
-            "sr": 186,
-            "avg": 69.75,
-            "boundary_pct": 69.53,
-            "impact": 0.667,
+            "apps": 8,
+            "sr": 174.58,
+            "avg": 61.8,
+            "boundary_pct": 66.02,
+            "impact": 0.571,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
-                "sr": 186,
-                "avg": 69.75,
-                "boundary_pct": 69.53,
-                "impact": 0.667,
-                "runs": 279,
-                "balls": 150,
-                "outs": 4,
+                "apps": 8,
+                "sr": 174.58,
+                "avg": 61.8,
+                "boundary_pct": 66.02,
+                "impact": 0.571,
+                "runs": 309,
+                "balls": 177,
+                "outs": 5,
                 "fifties": 4,
                 "hundreds": 0,
                 "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 7,
+                "apps": 8,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -8897,19 +8997,19 @@
                 "raw_score": null
               },
               "field": {
-                "catches": 3,
+                "catches": 4,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 4
+                "score": 5
               },
               "overall": 95,
               "source": "cricsheet"
             }
           },
           "score": 95,
-          "detail": "SR 186 · Avg 69.8",
-          "matches": 7,
-          "runs": 279,
+          "detail": "SR 175 · Avg 61.8",
+          "matches": 8,
+          "runs": 309,
           "wickets": 0
         },
         {
@@ -8976,16 +9076,16 @@
           "tag": "",
           "role": "bat",
           "stats": {
-            "apps": 6,
+            "apps": 7,
             "sr": 127.45,
             "avg": 13,
             "boundary_pct": 61.54,
             "impact": 0,
             "source": "cricsheet",
             "profile": {
-              "apps": 6,
+              "apps": 7,
               "bat": {
-                "apps": 6,
+                "apps": 7,
                 "sr": 127.45,
                 "avg": 13,
                 "boundary_pct": 61.54,
@@ -8999,7 +9099,7 @@
                 "raw_score": 65
               },
               "bowl": {
-                "apps": 6,
+                "apps": 7,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -9022,8 +9122,65 @@
           },
           "score": 62,
           "detail": "SR 127 · Avg 13.0",
-          "matches": 6,
+          "matches": 7,
           "runs": 65,
+          "wickets": 0
+        },
+        {
+          "num": 52,
+          "name": "Suryansh Shedge",
+          "nat": "IND",
+          "tag": "",
+          "role": "bat",
+          "stats": {
+            "apps": 1,
+            "sr": 150,
+            "avg": 3,
+            "boundary_pct": 0,
+            "impact": 0,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 1,
+              "bat": {
+                "apps": 1,
+                "sr": 150,
+                "avg": 3,
+                "boundary_pct": 0,
+                "impact": 0,
+                "runs": 3,
+                "balls": 2,
+                "outs": 0,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": 2,
+                "raw_score": 43
+              },
+              "bowl": {
+                "apps": 1,
+                "econ": 12,
+                "bowling_avg": 50,
+                "wkts_per_match": 0,
+                "dot_pct": 0,
+                "balls": 0,
+                "runs": 0,
+                "wickets": 0,
+                "score": null,
+                "raw_score": null
+              },
+              "field": {
+                "catches": 2,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 20
+              },
+              "overall": 3,
+              "source": "cricsheet"
+            }
+          },
+          "score": 3,
+          "detail": "SR 150 · Avg 3.0",
+          "matches": 1,
+          "runs": 3,
           "wickets": 0
         }
       ],
@@ -9035,30 +9192,30 @@
           "tag": "",
           "role": "wk",
           "stats": {
-            "apps": 7,
-            "sr": 192.62,
-            "avg": 71.75,
-            "boundary_pct": 76.66,
-            "impact": 0.5,
+            "apps": 8,
+            "sr": 179.27,
+            "avg": 69.2,
+            "boundary_pct": 72.25,
+            "impact": 0.571,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
-                "sr": 192.62,
-                "avg": 71.75,
-                "boundary_pct": 76.66,
-                "impact": 0.5,
-                "runs": 287,
-                "balls": 149,
-                "outs": 4,
-                "fifties": 3,
+                "apps": 8,
+                "sr": 179.27,
+                "avg": 69.2,
+                "boundary_pct": 72.25,
+                "impact": 0.571,
+                "runs": 346,
+                "balls": 193,
+                "outs": 5,
+                "fifties": 4,
                 "hundreds": 0,
                 "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 7,
+                "apps": 8,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -9073,16 +9230,16 @@
                 "catches": 5,
                 "stumpings": 0,
                 "runouts": 1,
-                "score": 9
+                "score": 8
               },
-              "overall": 77,
+              "overall": 76,
               "source": "cricsheet"
             }
           },
-          "score": 77,
-          "detail": "SR 193 · Avg 71.8",
-          "matches": 7,
-          "runs": 287,
+          "score": 76,
+          "detail": "SR 179 · Avg 69.2",
+          "matches": 8,
+          "runs": 346,
           "wickets": 0
         }
       ],
@@ -9094,34 +9251,34 @@
           "tag": "",
           "role": "ar",
           "stats": {
-            "apps": 7,
-            "batSr": 164.38,
-            "batAvg": 48,
-            "boundary_pct": 74.17,
-            "impact": 0.333,
+            "apps": 8,
+            "batSr": 168.75,
+            "batAvg": 45,
+            "boundary_pct": 75.56,
+            "impact": 0.286,
             "bowlEcon": 12,
             "bowlAvg": 50,
             "wktsPerMatch": 0,
             "dot_pct": 0,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
-                "sr": 164.38,
-                "avg": 48,
-                "boundary_pct": 74.17,
-                "impact": 0.333,
-                "runs": 240,
-                "balls": 146,
-                "outs": 5,
+                "apps": 8,
+                "sr": 168.75,
+                "avg": 45,
+                "boundary_pct": 75.56,
+                "impact": 0.286,
+                "runs": 270,
+                "balls": 160,
+                "outs": 6,
                 "fifties": 2,
                 "hundreds": 0,
                 "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 7,
+                "apps": 8,
                 "econ": 12,
                 "bowling_avg": 50,
                 "wkts_per_match": 0,
@@ -9143,9 +9300,9 @@
             }
           },
           "score": 91,
-          "detail": "48.0 avg · Econ 12.0",
-          "matches": 7,
-          "runs": 240,
+          "detail": "45.0 avg · Econ 12.0",
+          "matches": 8,
+          "runs": 270,
           "wickets": 0
         },
         {
@@ -9155,34 +9312,34 @@
           "tag": "",
           "role": "ar",
           "stats": {
-            "apps": 7,
-            "batSr": 184.62,
-            "batAvg": 48,
-            "boundary_pct": 75,
-            "impact": 0,
+            "apps": 8,
+            "batSr": 229.17,
+            "batAvg": 110,
+            "boundary_pct": 80,
+            "impact": 0.2,
             "bowlEcon": 14,
             "bowlAvg": 28,
             "wktsPerMatch": 0,
             "dot_pct": 25,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
-                "sr": 184.62,
-                "avg": 48,
-                "boundary_pct": 75,
-                "impact": 0,
-                "runs": 48,
-                "balls": 26,
+                "apps": 8,
+                "sr": 229.17,
+                "avg": 110,
+                "boundary_pct": 80,
+                "impact": 0.2,
+                "runs": 110,
+                "balls": 48,
                 "outs": 1,
-                "fifties": 0,
+                "fifties": 1,
                 "hundreds": 0,
-                "score": 72,
+                "score": 100,
                 "raw_score": 100
               },
               "bowl": {
-                "apps": 7,
+                "apps": 8,
                 "econ": 14,
                 "bowling_avg": 28,
                 "wkts_per_match": 0,
@@ -9199,14 +9356,14 @@
                 "runouts": 1,
                 "score": 3
               },
-              "overall": 39,
+              "overall": 52,
               "source": "cricsheet"
             }
           },
-          "score": 39,
-          "detail": "48.0 avg · Econ 14.0",
-          "matches": 7,
-          "runs": 48,
+          "score": 52,
+          "detail": "110.0 avg · Econ 14.0",
+          "matches": 8,
+          "runs": 110,
           "wickets": 0
         },
         {
@@ -9216,20 +9373,20 @@
           "tag": "",
           "role": "ar",
           "stats": {
-            "apps": 7,
+            "apps": 8,
             "batSr": 90.91,
             "batAvg": 10,
             "boundary_pct": 60,
             "impact": 0,
-            "bowlEcon": 8.96,
-            "bowlAvg": 43,
-            "wktsPerMatch": 0.71,
-            "dot_pct": 29.86,
+            "bowlEcon": 9.37,
+            "bowlAvg": 51.2,
+            "wktsPerMatch": 0.63,
+            "dot_pct": 28.05,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
+                "apps": 8,
                 "sr": 90.91,
                 "avg": 10,
                 "boundary_pct": 60,
@@ -9243,52 +9400,52 @@
                 "raw_score": 52
               },
               "bowl": {
-                "apps": 7,
-                "econ": 8.96,
-                "bowling_avg": 43,
-                "wkts_per_match": 0.71,
-                "dot_pct": 29.86,
-                "balls": 144,
-                "runs": 215,
+                "apps": 8,
+                "econ": 9.37,
+                "bowling_avg": 51.2,
+                "wkts_per_match": 0.63,
+                "dot_pct": 28.05,
+                "balls": 164,
+                "runs": 256,
                 "wickets": 5,
-                "score": 35,
-                "raw_score": 35
+                "score": 31,
+                "raw_score": 31
               },
               "field": {
-                "catches": 2,
+                "catches": 3,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 3
+                "score": 4
               },
-              "overall": 24,
+              "overall": 22,
               "source": "cricsheet"
             }
           },
-          "score": 24,
-          "detail": "10.0 avg · Econ 9.0",
-          "matches": 7,
+          "score": 22,
+          "detail": "10.0 avg · Econ 9.4",
+          "matches": 8,
           "runs": 10,
           "wickets": 5
         }
       ],
       "bowlers": [
         {
-          "num": 36,
-          "name": "Arshdeep Singh",
+          "num": 87,
+          "name": "YS Chahal",
           "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
-            "apps": 7,
-            "econ": 10.04,
-            "bowling_avg": 37.29,
-            "wkts_per_match": 1,
-            "dot_pct": 33.97,
+            "apps": 8,
+            "econ": 9.64,
+            "bowling_avg": 34.43,
+            "wkts_per_match": 0.88,
+            "dot_pct": 21.33,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
+                "apps": 8,
                 "sr": 0,
                 "avg": 0,
                 "boundary_pct": 0,
@@ -9302,32 +9459,89 @@
                 "raw_score": null
               },
               "bowl": {
-                "apps": 7,
-                "econ": 10.04,
-                "bowling_avg": 37.29,
-                "wkts_per_match": 1,
-                "dot_pct": 33.97,
-                "balls": 156,
-                "runs": 261,
+                "apps": 8,
+                "econ": 9.64,
+                "bowling_avg": 34.43,
+                "wkts_per_match": 0.88,
+                "dot_pct": 21.33,
+                "balls": 150,
+                "runs": 241,
                 "wickets": 7,
-                "score": 42,
-                "raw_score": 42
+                "score": 43,
+                "raw_score": 43
               },
               "field": {
-                "catches": 3,
+                "catches": 2,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 4
+                "score": 3
               },
-              "overall": 40,
+              "overall": 41,
               "source": "cricsheet"
             }
           },
-          "score": 40,
-          "detail": "1.0 wkt/m · Econ 10.0",
-          "matches": 7,
+          "score": 41,
+          "detail": "0.9 wkt/m · Econ 9.6",
+          "matches": 8,
           "runs": 0,
           "wickets": 7
+        },
+        {
+          "num": 93,
+          "name": "Harpreet Brar",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 1,
+            "econ": 6.25,
+            "bowling_avg": 25,
+            "wkts_per_match": 0,
+            "dot_pct": 33.33,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 1,
+              "bat": {
+                "apps": 1,
+                "sr": 0,
+                "avg": 0,
+                "boundary_pct": 0,
+                "impact": 0,
+                "runs": 0,
+                "balls": 0,
+                "outs": 0,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": null,
+                "raw_score": null
+              },
+              "bowl": {
+                "apps": 1,
+                "econ": 6.25,
+                "bowling_avg": 25,
+                "wkts_per_match": 0,
+                "dot_pct": 33.33,
+                "balls": 24,
+                "runs": 25,
+                "wickets": 0,
+                "score": 39,
+                "raw_score": 77
+              },
+              "field": {
+                "catches": 0,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 0
+              },
+              "overall": 39,
+              "source": "cricsheet"
+            }
+          },
+          "score": 39,
+          "detail": "0.0 wkt/m · Econ 6.3",
+          "matches": 1,
+          "runs": 0,
+          "wickets": 0
         },
         {
           "num": 84,
@@ -9387,22 +9601,22 @@
           "wickets": 6
         },
         {
-          "num": 87,
-          "name": "YS Chahal",
+          "num": 36,
+          "name": "Arshdeep Singh",
           "nat": "IND",
           "tag": "",
           "role": "bowl",
           "stats": {
-            "apps": 7,
-            "econ": 9.76,
-            "bowling_avg": 51.25,
-            "wkts_per_match": 0.57,
-            "dot_pct": 19.84,
+            "apps": 8,
+            "econ": 10.97,
+            "bowling_avg": 41.13,
+            "wkts_per_match": 1,
+            "dot_pct": 32.78,
             "source": "cricsheet",
             "profile": {
-              "apps": 7,
+              "apps": 8,
               "bat": {
-                "apps": 7,
+                "apps": 8,
                 "sr": 0,
                 "avg": 0,
                 "boundary_pct": 0,
@@ -9416,32 +9630,32 @@
                 "raw_score": null
               },
               "bowl": {
-                "apps": 7,
-                "econ": 9.76,
-                "bowling_avg": 51.25,
-                "wkts_per_match": 0.57,
-                "dot_pct": 19.84,
-                "balls": 126,
-                "runs": 205,
-                "wickets": 4,
-                "score": 25,
-                "raw_score": 25
+                "apps": 8,
+                "econ": 10.97,
+                "bowling_avg": 41.13,
+                "wkts_per_match": 1,
+                "dot_pct": 32.78,
+                "balls": 180,
+                "runs": 329,
+                "wickets": 8,
+                "score": 29,
+                "raw_score": 29
               },
               "field": {
-                "catches": 2,
+                "catches": 3,
                 "stumpings": 0,
                 "runouts": 0,
-                "score": 3
+                "score": 4
               },
-              "overall": 24,
+              "overall": 27,
               "source": "cricsheet"
             }
           },
-          "score": 24,
-          "detail": "0.6 wkt/m · Econ 9.8",
-          "matches": 7,
+          "score": 27,
+          "detail": "1.0 wkt/m · Econ 11.0",
+          "matches": 8,
           "runs": 0,
-          "wickets": 4
+          "wickets": 8
         },
         {
           "num": 59,
@@ -9499,6 +9713,63 @@
           "matches": 7,
           "runs": 11,
           "wickets": 5
+        },
+        {
+          "num": 47,
+          "name": "LH Ferguson",
+          "nat": "IND",
+          "tag": "",
+          "role": "bowl",
+          "stats": {
+            "apps": 1,
+            "econ": 14.25,
+            "bowling_avg": 57,
+            "wkts_per_match": 0,
+            "dot_pct": 29.17,
+            "source": "cricsheet",
+            "profile": {
+              "apps": 1,
+              "bat": {
+                "apps": 1,
+                "sr": 0,
+                "avg": 0,
+                "boundary_pct": 0,
+                "impact": 0,
+                "runs": 0,
+                "balls": 0,
+                "outs": 0,
+                "fifties": 0,
+                "hundreds": 0,
+                "score": null,
+                "raw_score": null
+              },
+              "bowl": {
+                "apps": 1,
+                "econ": 14.25,
+                "bowling_avg": 57,
+                "wkts_per_match": 0,
+                "dot_pct": 29.17,
+                "balls": 24,
+                "runs": 57,
+                "wickets": 0,
+                "score": 6,
+                "raw_score": 11
+              },
+              "field": {
+                "catches": 0,
+                "stumpings": 0,
+                "runouts": 0,
+                "score": 0
+              },
+              "overall": 6,
+              "source": "cricsheet"
+            }
+          },
+          "score": 6,
+          "detail": "0.0 wkt/m · Econ 14.3",
+          "matches": 1,
+          "runs": 0,
+          "wickets": 0
         }
       ]
     },
