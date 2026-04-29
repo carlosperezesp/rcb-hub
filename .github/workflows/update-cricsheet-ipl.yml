@@ -3,7 +3,9 @@ name: Update IPL Cricsheet Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 3 * * *"
+    # GitHub cron runs in UTC. These are 07:20 and 16:20 in Amsterdam during CEST.
+    - cron: "20 5 * * *"
+    - cron: "20 14 * * *"
 
 permissions:
   contents: write
