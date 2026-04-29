@@ -654,6 +654,17 @@
     gap: 5px;
     margin-top: 8px;
   }
+  .position-usage {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: start;
+    margin-top: 8px;
+  }
+  .position-avg {
+    grid-column: 1 / -1;
+    width: max-content;
+  }
   .phase-chip,
   .position-chip {
     --phase-r: 0;
@@ -2383,8 +2394,8 @@ function battingPositionUsage(profile) {
     ['MID', positions.middle || 0],
     ['FIN', positions.finish || 0],
   ];
-  const avg = profile.bat?.avg_position ? `<span class="position-chip phase-mid">AVG #${fmt(profile.bat.avg_position, 1)}</span>` : '';
-  return `<div class="phase-usage">${avg}${rows.map(([label, value]) => `<span class="position-chip ${intensity(value)}">${label} ${Math.round(value)}%</span>`).join('')}</div>`;
+  const avg = profile.bat?.avg_position ? `<span class="position-chip position-avg phase-mid">AVG #${fmt(profile.bat.avg_position, 1)}</span>` : '';
+  return `<div class="position-usage">${avg}${rows.map(([label, value]) => `<span class="position-chip ${intensity(value)}">${label} ${Math.round(value)}%</span>`).join('')}</div>`;
 }
 
 function leaguePlayers() {
