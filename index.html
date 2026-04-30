@@ -2873,10 +2873,11 @@ function signed(value, digits = 0) {
   return value > 0 ? `+${rounded}` : rounded;
 }
 
-function deltaChip(label, value, digits = 0, lowerIsBetter = false) {
+function deltaChip(label, value, digits = 0, lowerIsBetter = false, neutralThreshold = 0) {
   if (value === null || value === undefined || Number.isNaN(value)) return '';
-  const improved = lowerIsBetter ? value < 0 : value > 0;
-  const worsened = lowerIsBetter ? value > 0 : value < 0;
+  const isNeutral = Math.abs(value) < neutralThreshold;
+  const improved = !isNeutral && (lowerIsBetter ? value < 0 : value > 0);
+  const worsened = !isNeutral && (lowerIsBetter ? value > 0 : value < 0);
   const cls = improved ? 'delta-up' : worsened ? 'delta-down' : '';
   return `<span class="delta-chip ${cls}">${label} ${signed(value, digits)}</span>`;
 }
@@ -2890,8 +2891,8 @@ function careerDelta(profile, mode) {
     return `<div class="career-delta">
       <span>Vs IPL career</span>
       <div class="delta-row">
-        ${deltaChip('SR', (profile.bat.sr || 0) - (career.bat.sr || 0), 0)}
-        ${deltaChip('AVG', (profile.bat.avg || 0) - (career.bat.avg || 0), 1)}
+        ${deltaChip('SR', (profile.bat.sr || 0) - (career.bat.sr || 0), 0, false, 8)}
+        ${deltaChip('AVG', (profile.bat.avg || 0) - (career.bat.avg || 0), 1, false, 3)}
       </div>
     </div>`;
   }
@@ -2900,8 +2901,8 @@ function careerDelta(profile, mode) {
   return `<div class="career-delta">
     <span>Vs IPL career</span>
     <div class="delta-row">
-      ${deltaChip('ECON', (profile.bowl.econ || 0) - (career.bowl.econ || 0), 1, true)}
-      ${deltaChip('W/M', (profile.bowl.wkts_per_match || 0) - (career.bowl.wkts_per_match || 0), 1)}
+      ${deltaChip('ECON', (profile.bowl.econ || 0) - (career.bowl.econ || 0), 1, true, 0.4)}
+      ${deltaChip('W/M', (profile.bowl.wkts_per_match || 0) - (career.bowl.wkts_per_match || 0), 1, false, 0.25)}
     </div>
   </div>`;
 }
@@ -3218,7 +3219,7 @@ function bowlingStats(profile, benchmarks) {
 function fieldStats(profile, benchmarks) {
   const field = profile.field || {};
   const items = [
-    ['C', field.catches],
+    ['Ct', field.catches],
     ['ST', field.stumpings],
     ['RO', field.runouts],
   ].filter(([, value]) => value > 0);
@@ -3305,7 +3306,7 @@ function renderPlayerCardFace(p, mode, benchmarks, slug, isBack = false) {
       </div>
       <div class="stat-strip">${statHtml}</div>
       ${hasStats ? careerDelta(profile, mode) : ''}
-      ${!isBack && hasStats ? fieldStats(profile, benchmarks) : ''}
+      ${isBack ? fieldStats(profile, benchmarks) : ''}
       <span class="form-score ${tier}">${source}</span>
       <span class="flip-hint">${isBack ? 'Front: ' : 'Back: '}${oppositeSkillMode(mode) === 'bat' ? 'batting' : 'bowling'}</span>
     </div>
