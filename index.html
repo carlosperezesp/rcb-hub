@@ -451,7 +451,8 @@
   .fixture {
     display: grid;
     gap: 14px;
-    grid-template-columns: 76px 1fr auto;
+    grid-template-columns: 76px minmax(0, 1fr);
+    min-height: 122px;
     padding: 16px;
   }
   .date-rail {
@@ -473,18 +474,36 @@
     display: flex;
     gap: 10px;
     font: 800 16px/1.15 'Manrope', sans-serif;
+    min-width: 0;
+  }
+  .fixture-team .flag {
+    flex: 0 0 auto;
+  }
+  .fixture-team-name {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .fixture-info {
-    align-self: center;
+    align-self: end;
     color: var(--ink-soft);
     font-size: 12px;
     font-weight: 700;
-    text-align: right;
+    grid-column: 2;
+    min-width: 0;
+    text-align: left;
+  }
+  .fixture-info .chip {
+    max-width: 100%;
+  }
+  .fixture-meta-line {
+    overflow-wrap: anywhere;
   }
   .fixture-score {
     color: var(--ink);
     font: 800 13px/1.25 'Manrope', sans-serif;
     margin-bottom: 6px;
+    overflow-wrap: anywhere;
   }
   .player-nat {
     margin-bottom: 5px;
@@ -583,44 +602,77 @@
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   }
   .player-card {
-    background: var(--white);
+    border-radius: 8px;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    min-height: 132px;
+    padding: 0;
+    perspective: 1100px;
+    position: relative;
+    text-align: left;
+  }
+  .player-card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .player-card-inner {
+    display: grid;
+    min-height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .45s ease;
+  }
+  .player-card.is-flipped .player-card-inner {
+    transform: rotateY(180deg);
+  }
+  .player-card-face {
+    backface-visibility: hidden;
     border-radius: 8px;
     display: flex;
     gap: 12px;
+    grid-area: 1 / 1;
     min-height: 132px;
     overflow: hidden;
     padding: 16px;
     position: relative;
   }
-  .player-card::before {
+  .player-card-front {
+    transform: rotateY(0deg);
+  }
+  .player-card-back {
+    transform: rotateY(180deg);
+  }
+  .player-card-face::before {
     background: var(--ink-mute);
     content: '';
     inset: 0 auto 0 0;
     position: absolute;
     width: 6px;
   }
-  .card-elite::before { background: #2f7d4b; }
-  .card-good::before { background: var(--green-deep); }
-  .card-avg::before { background: #151515; }
-  .card-poor::before { background: var(--crimson); }
-  .card-nodata::before { background: #8c968d; }
-  .card-elite {
+  .face-elite::before { background: #2f7d4b; }
+  .face-good::before { background: var(--green-deep); }
+  .face-avg::before { background: #151515; }
+  .face-poor::before { background: var(--crimson); }
+  .face-nodata::before { background: #8c968d; }
+  .face-elite {
     background: linear-gradient(90deg, rgba(47,125,75,.16), #fff 38%);
     box-shadow: inset 0 0 0 1px rgba(47,125,75,.08);
   }
-  .card-good {
+  .face-good {
     background: linear-gradient(90deg, rgba(0,48,26,.15), #fff 38%);
     box-shadow: inset 0 0 0 1px rgba(0,48,26,.07);
   }
-  .card-avg {
+  .face-avg {
     background: linear-gradient(90deg, rgba(21,21,21,.13), #fff 38%);
     box-shadow: inset 0 0 0 1px rgba(21,21,21,.08);
   }
-  .card-poor {
+  .face-poor {
     background: linear-gradient(90deg, rgba(182,23,30,.13), #fff 38%);
     box-shadow: inset 0 0 0 1px rgba(182,23,30,.08);
   }
-  .card-nodata {
+  .face-nodata {
     background: linear-gradient(90deg, rgba(140,150,141,.15), #fff 38%);
     box-shadow: inset 0 0 0 1px rgba(140,150,141,.08);
   }
@@ -638,6 +690,11 @@
   .card-avg .player-num { background: #151515; color: #fff; }
   .card-poor .player-num { background: var(--crimson); color: #fff; }
   .card-nodata .player-num { background: #8c968d; color: #fff; }
+  .face-elite .player-num { background: #2f7d4b; color: #fff; }
+  .face-good .player-num { background: #00301a; color: #fff; }
+  .face-avg .player-num { background: #151515; color: #fff; }
+  .face-poor .player-num { background: var(--crimson); color: #fff; }
+  .face-nodata .player-num { background: #8c968d; color: #fff; }
   .player-name {
     font: 800 15px/1.2 'Manrope', sans-serif;
     margin-bottom: 5px;
@@ -681,19 +738,25 @@
     text-transform: uppercase;
   }
   .card-poor .phase-chip,
-  .card-poor .position-chip {
+  .face-poor .phase-chip,
+  .card-poor .position-chip,
+  .face-poor .position-chip {
     --phase-r: 182;
     --phase-g: 23;
     --phase-b: 30;
   }
   .card-avg .phase-chip,
-  .card-avg .position-chip {
+  .face-avg .phase-chip,
+  .card-avg .position-chip,
+  .face-avg .position-chip {
     --phase-r: 21;
     --phase-g: 21;
     --phase-b: 21;
   }
   .card-elite .phase-chip,
-  .card-elite .position-chip {
+  .face-elite .phase-chip,
+  .card-elite .position-chip,
+  .face-elite .position-chip {
     --phase-r: 47;
     --phase-g: 125;
     --phase-b: 75;
@@ -936,6 +999,32 @@
   .avg { background: rgba(21,21,21,.12); color: #151515; }
   .poor { background: rgba(182,23,30,.12); color: var(--crimson); }
   .nodata { background: rgba(140,150,141,.16); color: #5d6660; }
+  .flip-hint {
+    color: var(--ink-mute);
+    display: block;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+  .no-skill-stats {
+    align-items: center;
+    background: rgba(19,25,21,.055);
+    border-radius: 8px;
+    color: var(--ink-mute);
+    display: flex;
+    font-size: 11px;
+    font-weight: 900;
+    justify-content: center;
+    letter-spacing: .08em;
+    margin-top: 10px;
+    min-height: 92px;
+    padding: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+  }
 
   .loading {
     align-items: center;
@@ -998,9 +1087,10 @@
       grid-template-columns: minmax(0, 1fr);
     }
     .player-card {
-      align-items: start;
-      gap: 10px;
       min-height: 0;
+    }
+    .player-card-face {
+      gap: 10px;
       padding: 14px;
     }
     .player-num {
@@ -1022,8 +1112,8 @@
     .stat-chip {
       min-width: 0;
     }
-    .fixture { grid-template-columns: 62px 1fr; }
-    .fixture-info { grid-column: 1 / -1; text-align: left; }
+    .fixture { grid-template-columns: 62px minmax(0, 1fr); }
+    .fixture-info { grid-column: 2; text-align: left; }
     .bottom-nav {
       background: rgba(255,255,255,.9);
       backdrop-filter: blur(20px);
@@ -1090,42 +1180,42 @@
   <section id="tab-test" class="tab-panel active">
     <div class="hero">
       <div>
-        <span class="chip chip-live"><span class="live-dot"></span>Format Live</span>
-        <div class="eyebrow" style="color:var(--gold);margin-top:18px;">Test Cricket · All Nations</div>
-        <h1>Red Ball Control Room</h1>
-        <p class="hero-copy">A global view for the long format: leading sides, recent momentum, all Test nations, and the fixtures worth tracking next.</p>
+        <span class="chip chip-live"><span class="live-dot"></span>WTC Race</span>
+        <div class="eyebrow" style="color:var(--gold);margin-top:18px;">World Test Championship · 2025-27</div>
+        <h1>WTC Control Room</h1>
+        <p class="hero-copy">A focused view of the World Test Championship race: the nine eligible teams, points percentage, qualification pressure, and the series that shape Lord's 2027.</p>
         <div class="hero-strip">
-          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Teams</span><strong>12</strong></div>
+          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Teams</span><strong>9</strong></div>
           <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Window</span><strong>WTC</strong></div>
-          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Focus</span><strong>Series</strong></div>
+          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Final</span><strong>2027</strong></div>
         </div>
       </div>
       <div class="score-card">
-        <div class="eyebrow" style="color:var(--gold)">Featured Test</div>
-        <div class="score-row">
-          <span class="flag f-ind round">IND</span>
-          <div><strong>India</strong><div class="muted" style="color:rgba(255,255,255,.58)">2nd innings · Day 4</div></div>
-          <div class="score">286<small>/6</small></div>
-        </div>
+        <div class="eyebrow" style="color:var(--gold)">Top Two Right Now</div>
         <div class="score-row">
           <span class="flag f-aus round">AUS</span>
-          <div><strong>Australia</strong><div class="muted" style="color:rgba(255,255,255,.58)">Trail by 92</div></div>
-          <div class="score">341</div>
+          <div><strong>Australia</strong><div class="muted" style="color:rgba(255,255,255,.58)">1st · 7-1-0</div></div>
+          <div class="score">87.50<small>%</small></div>
         </div>
-        <div class="chip chip-dark" style="margin-top:12px;">Session: final hour</div>
+        <div class="score-row">
+          <span class="flag f-nz round">NZ</span>
+          <div><strong>New Zealand</strong><div class="muted" style="color:rgba(255,255,255,.58)">2nd · 2-0-1</div></div>
+          <div class="score">77.78<small>%</small></div>
+        </div>
+        <div class="chip chip-dark" style="margin-top:12px;">Top two qualify</div>
       </div>
     </div>
 
     <div class="section-head">
       <div><div class="eyebrow">World Test Championship</div><h2>Standings Snapshot</h2></div>
-      <div class="section-note">Static editorial data for the first global pass; ready to be swapped for a live standings feed.</div>
+      <div class="section-note" id="test-data-label">WTC 2025-27 table only. Teams are ranked by points percentage; top two reach the final.</div>
     </div>
     <div class="card table-wrap">
       <table id="test-standings-table"></table>
     </div>
 
     <div class="section-head">
-      <div><div class="eyebrow" style="color:var(--gold-deep)">Global Roster</div><h2>Test Nations</h2></div>
+      <div><div class="eyebrow" style="color:var(--gold-deep)">WTC Roster</div><h2>Championship Teams</h2></div>
     </div>
     <div class="grid grid-4" id="test-team-grid"></div>
 
@@ -1133,6 +1223,11 @@
       <div><div class="eyebrow">Calendar</div><h2>Upcoming Tests</h2></div>
     </div>
     <div class="grid grid-3" id="test-fixtures"></div>
+
+    <div class="section-head">
+      <div><div class="eyebrow">Results</div><h2>Recent WTC Results</h2></div>
+    </div>
+    <div class="grid grid-3" id="test-results"></div>
   </section>
 
   <section id="tab-odi" class="tab-panel">
@@ -1246,8 +1341,10 @@ const CRICBUZZ_HOST = 'cricbuzz-cricket.p.rapidapi.com';
 const CRICBUZZ_BASE = `https://${CRICBUZZ_HOST}`;
 const RAPIDAPI_KEY = 'ce0ed51593mshf936836e25079c8p1a351fjsn1b8e6f656f69';
 const CRICBUZZ_IPL_SERIES_ID = 9241;
+const CRICBUZZ_WTC_SEASON_ID = 15;
 const CRICBUZZ_SCORECARD_LIMIT = 12;
 const CRICBUZZ_SEASON_STAT_TYPES = ['mostRuns', 'highestAvg', 'mostSixes', 'mostWickets', 'lowestEcon', 'lowestAvg'];
+let WTC_STANDINGS_SOURCE = 'Static WTC fallback table';
 
 function cacheSet(key, data) {
   try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch(e) {}
@@ -1288,6 +1385,18 @@ async function cricbuzzFetch(path) {
         'x-rapidapi-key': RAPIDAPI_KEY,
       },
     });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function fetchJsonWithTimeout(url, options = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch(url, { ...options, signal: controller.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   } finally {
@@ -1352,18 +1461,39 @@ function updateIplTeamDetail(detail, shouldScroll = false) {
 window.addEventListener('hashchange', () => switchTab(window.location.hash, false));
 
 const testTeams = [
-  { pos: 1, abbr: 'AUS', full: 'Australia', flag: 'aus', played: 12, pct: 62.5, series: '3/5', trend: 'Retained top spot' },
-  { pos: 2, abbr: 'IND', full: 'India', flag: 'ind', played: 11, pct: 58.3, series: '3/5', trend: 'Home series surge' },
-  { pos: 3, abbr: 'RSA', full: 'South Africa', flag: 'rsa', played: 10, pct: 54.1, series: '2/4', trend: 'Pace depth rising' },
-  { pos: 4, abbr: 'ENG', full: 'England', flag: 'eng', played: 13, pct: 51.7, series: '4/6', trend: 'Bazball volatility' },
-  { pos: 5, abbr: 'NZ', full: 'New Zealand', flag: 'nz', played: 9, pct: 48.2, series: '2/4', trend: 'Stable at home' },
-  { pos: 6, abbr: 'PAK', full: 'Pakistan', flag: 'pak', played: 10, pct: 43.3, series: '2/5', trend: 'Batting reset' },
-  { pos: 7, abbr: 'SL', full: 'Sri Lanka', flag: 'sl', played: 8, pct: 41.6, series: '2/4', trend: 'Spin-heavy threat' },
-  { pos: 8, abbr: 'WI', full: 'West Indies', flag: 'wi', played: 8, pct: 34.2, series: '1/4', trend: 'Young attack' },
-  { pos: 9, abbr: 'BAN', full: 'Bangladesh', flag: 'ban', played: 7, pct: 29.1, series: '1/3', trend: 'Home advantage' },
-  { pos: 10, abbr: 'AFG', full: 'Afghanistan', flag: 'afg', played: 4, pct: 22.4, series: '0/2', trend: 'Building format' },
-  { pos: 11, abbr: 'IRE', full: 'Ireland', flag: 'ire', played: 4, pct: 18.8, series: '0/2', trend: 'Development path' },
-  { pos: 12, abbr: 'ZIM', full: 'Zimbabwe', flag: 'zim', played: 5, pct: 17.5, series: '0/3', trend: 'Rebuild phase' },
+  { pos: 1, abbr: 'AUS', full: 'Australia', flag: 'aus', played: 8, w: 7, l: 1, d: 0, pts: 84, pct: 87.50, status: 'Final zone' },
+  { pos: 2, abbr: 'NZ', full: 'New Zealand', flag: 'nz', played: 3, w: 2, l: 0, d: 1, pts: 28, pct: 77.78, status: 'Final zone' },
+  { pos: 3, abbr: 'RSA', full: 'South Africa', flag: 'rsa', played: 4, w: 3, l: 1, d: 0, pts: 36, pct: 75.00, status: 'Contender' },
+  { pos: 4, abbr: 'SL', full: 'Sri Lanka', flag: 'sl', played: 2, w: 1, l: 0, d: 1, pts: 16, pct: 66.67, status: 'Contender' },
+  { pos: 5, abbr: 'PAK', full: 'Pakistan', flag: 'pak', played: 2, w: 1, l: 1, d: 0, pts: 12, pct: 50.00, status: 'Chasing' },
+  { pos: 6, abbr: 'IND', full: 'India', flag: 'ind', played: 9, w: 4, l: 4, d: 1, pts: 52, pct: 48.15, status: 'Chasing' },
+  { pos: 7, abbr: 'ENG', full: 'England', flag: 'eng', played: 10, w: 3, l: 6, d: 1, pts: 38, pct: 31.67, status: 'Outside' },
+  { pos: 8, abbr: 'BAN', full: 'Bangladesh', flag: 'ban', played: 2, w: 0, l: 1, d: 1, pts: 4, pct: 16.67, status: 'Long shot' },
+  { pos: 9, abbr: 'WI', full: 'West Indies', flag: 'wi', played: 8, w: 0, l: 7, d: 1, pts: 4, pct: 4.17, status: 'Long shot' },
+];
+
+const WTC_TEAM_META = {
+  Australia: { abbr: 'AUS', flag: 'aus' },
+  'New Zealand': { abbr: 'NZ', flag: 'nz' },
+  'South Africa': { abbr: 'RSA', flag: 'rsa' },
+  'Sri Lanka': { abbr: 'SL', flag: 'sl' },
+  Pakistan: { abbr: 'PAK', flag: 'pak' },
+  India: { abbr: 'IND', flag: 'ind' },
+  England: { abbr: 'ENG', flag: 'eng' },
+  Bangladesh: { abbr: 'BAN', flag: 'ban' },
+  'West Indies': { abbr: 'WI', flag: 'wi' },
+};
+
+const wtcFixtureFallback = [
+  { date:'08', mo:'May', t:'03:30 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Shere Bangla National Stadium, Dhaka', result:'1st Test', tag:'1 of 2' },
+  { date:'16', mo:'May', t:'03:30 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Sylhet International Cricket Stadium, Sylhet', result:'2nd Test', tag:'2 of 2' },
+  { date:'04', mo:'Jun', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'New Zealand', ba:'NZ', bf:'nz', venue:'Lord\'s, London', result:'1st Test', tag:'1 of 3' },
+];
+
+const wtcResultsFallback = [
+  { date:'07', mo:'Jan', t:'FT', a:'Australia', aa:'AUS', af:'aus', b:'England', ba:'ENG', bf:'eng', venue:'Sydney Cricket Ground, Sydney', result:'Australia won', tag:'5th Test' },
+  { date:'22', mo:'Dec', t:'FT', a:'New Zealand', aa:'NZ', af:'nz', b:'West Indies', ba:'WI', bf:'wi', venue:'Bay Oval, Mount Maunganui', result:'New Zealand won by 323 runs', tag:'3rd Test' },
+  { date:'14', mo:'Dec', t:'FT', a:'New Zealand', aa:'NZ', af:'nz', b:'West Indies', ba:'WI', bf:'wi', venue:'Basin Reserve, Wellington', result:'New Zealand won by 9 wickets', tag:'2nd Test' },
 ];
 
 const iplFallback = [
@@ -2023,30 +2153,339 @@ function playoffStatus(team, rows) {
     : ['Chasing', 'status-chase'];
 }
 
+function wtcStatusFor(team) {
+  if (team.pos <= 2) return 'Final zone';
+  if (team.pos <= 4 || team.pct >= 60) return 'Contender';
+  if (team.pos <= 6 || team.pct >= 40) return 'Chasing';
+  if (team.pos <= 7 || team.pct >= 25) return 'Outside';
+  return 'Long shot';
+}
+
+function normalizeWtcTeamName(name = '') {
+  const clean = String(name).replace(/\s+/g, ' ').trim();
+  return clean === 'South Africa' || clean === 'West Indies' || clean === 'New Zealand' || clean === 'Sri Lanka'
+    ? clean
+    : clean.split(' ').map(word => word[0]?.toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+function mergeWtcFallback(team) {
+  const fallback = testTeams.find(row => row.full === team.full) || {};
+  return {
+    ...fallback,
+    ...team,
+    played: Number.isFinite(team.played) ? team.played : fallback.played || 0,
+    w: Number.isFinite(team.w) ? team.w : fallback.w || 0,
+    l: Number.isFinite(team.l) ? team.l : fallback.l || 0,
+    d: Number.isFinite(team.d) ? team.d : fallback.d || 0,
+    pts: Number.isFinite(team.pts) ? team.pts : fallback.pts || 0,
+    status: team.status || wtcStatusFor({ ...fallback, ...team }),
+  };
+}
+
+function mapFullWtcStandings(data) {
+  const rows = data?.teamStandings || [];
+  if (!Array.isArray(rows) || !rows.length) return null;
+  return rows.map(row => {
+    const full = normalizeWtcTeamName(row.teamName);
+    const meta = WTC_TEAM_META[full] || {};
+    return mergeWtcFallback({
+      pos: parseInt(row.teamRank || 0, 10),
+      abbr: meta.abbr || full.slice(0, 3).toUpperCase(),
+      full,
+      flag: meta.flag || full.slice(0, 3).toLowerCase(),
+      played: parseInt(row.matchesPlayed || 0, 10),
+      w: parseInt(row.matchesWon || 0, 10),
+      l: parseInt(row.matchesLost || 0, 10),
+      d: parseInt(row.matchesDrawn || 0, 10),
+      pts: parseInt(row.totalPoints || 0, 10),
+      pct: parseFloat(row.pctPercentage || 0),
+    });
+  }).sort((a, b) => a.pos - b.pos);
+}
+
+function mapRapidWtcStandings(data) {
+  const rows = data?.values || [];
+  if (!Array.isArray(rows) || !rows.length) return null;
+  return rows.map(row => {
+    const [rank, , teamName, pct] = row.value || [];
+    const full = normalizeWtcTeamName(teamName);
+    const meta = WTC_TEAM_META[full] || {};
+    return mergeWtcFallback({
+      pos: parseInt(rank || 0, 10),
+      abbr: meta.abbr || full.slice(0, 3).toUpperCase(),
+      full,
+      flag: meta.flag || full.slice(0, 3).toLowerCase(),
+      pct: parseFloat(pct || 0),
+    });
+  }).sort((a, b) => a.pos - b.pos);
+}
+
+async function fetchWtcStandings() {
+  const cached = cacheGet('wtc_standings_v1', 60 * 60 * 1000);
+  if (cached?.rows) {
+    WTC_STANDINGS_SOURCE = cached.source || WTC_STANDINGS_SOURCE;
+    return cached.rows;
+  }
+
+  try {
+    const data = await fetchJsonWithTimeout(`https://www.cricbuzz.com/api/points-table/1/${CRICBUZZ_WTC_SEASON_ID}`);
+    const rows = mapFullWtcStandings(data);
+    if (rows?.length) {
+      WTC_STANDINGS_SOURCE = 'Live Cricbuzz WTC table';
+      cacheSet('wtc_standings_v1', { rows, source: WTC_STANDINGS_SOURCE });
+      return rows;
+    }
+  } catch(e) {
+    console.warn('Cricbuzz public WTC table failed:', e.message);
+  }
+
+  try {
+    const data = await cricbuzzFetch('stats/v1/iccstanding/team/matchtype/1');
+    const rows = mapRapidWtcStandings(data);
+    if (rows?.length) {
+      WTC_STANDINGS_SOURCE = 'Live Cricbuzz PCT via RapidAPI · W-L-D from fallback';
+      cacheSet('wtc_standings_v1', { rows, source: WTC_STANDINGS_SOURCE });
+      return rows;
+    }
+  } catch(e) {
+    console.warn('Cricbuzz RapidAPI WTC table failed:', e.message);
+  }
+
+  WTC_STANDINGS_SOURCE = 'Static WTC fallback table';
+  return testTeams;
+}
+
+function isWtcTeamName(name = '') {
+  return Boolean(WTC_TEAM_META[normalizeWtcTeamName(name)]);
+}
+
+function wtcMetaForName(name = '') {
+  return WTC_TEAM_META[normalizeWtcTeamName(name)] || {};
+}
+
+function wtcSeriesCandidates(seriesList = []) {
+  const wtcNames = Object.keys(WTC_TEAM_META);
+  return seriesList.filter(series => {
+    const name = series.name || series.seriesName || '';
+    const hits = wtcNames.filter(team => new RegExp(`\\b${team.replace(/\s+/g, '\\s+')}\\b`, 'i').test(name));
+    return hits.length >= 2;
+  });
+}
+
+function seriesListFromCricbuzz(data) {
+  return (data.seriesMapProto || [])
+    .flatMap(group => group.series || [])
+    .filter(series => series?.id && series?.name);
+}
+
+function testNumberLabel(matchDesc = '', total = 0) {
+  const number = String(matchDesc).match(/(\d+)(?:st|nd|rd|th)\s+Test/i)?.[1];
+  return number && total ? `${number} of ${total}` : 'WTC Test';
+}
+
+function wtcTestsFromSeries(data) {
+  const tests = (data.matchDetails || [])
+    .flatMap(day => day.matchDetailsMap?.match || [])
+    .map(match => match.matchInfo)
+    .filter(info =>
+      info?.matchFormat === 'TEST' &&
+      /test/i.test(info.matchDesc || '') &&
+      !/warm/i.test(info.matchDesc || '') &&
+      isWtcTeamName(info.team1?.teamName) &&
+      isWtcTeamName(info.team2?.teamName)
+    );
+  const total = tests.length;
+  return tests.map(info => {
+    const teamA = normalizeWtcTeamName(info.team1?.teamName);
+    const teamB = normalizeWtcTeamName(info.team2?.teamName);
+    const metaA = wtcMetaForName(teamA);
+    const metaB = wtcMetaForName(teamB);
+    return {
+      a: teamA,
+      aa: metaA.abbr || info.team1?.teamSName || '',
+      af: metaA.flag || teamFlag(info.team1?.teamSName || ''),
+      b: teamB,
+      ba: metaB.abbr || info.team2?.teamSName || '',
+      bf: metaB.flag || teamFlag(info.team2?.teamSName || ''),
+      venue: shortVenueName([info.venueInfo?.ground, info.venueInfo?.city].filter(Boolean).join(', ')),
+      result: info.matchDesc || 'Test',
+      tag: testNumberLabel(info.matchDesc, total),
+      start: Number(info.startDate),
+      sourceTz: info.venueInfo?.timezone || 'UTC',
+    };
+  });
+}
+
+function wtcResultsFromSeries(data) {
+  const tests = (data.matchDetails || [])
+    .flatMap(day => day.matchDetailsMap?.match || [])
+    .map(match => match.matchInfo)
+    .filter(info =>
+      info?.matchFormat === 'TEST' &&
+      /test/i.test(info.matchDesc || '') &&
+      !/warm/i.test(info.matchDesc || '') &&
+      /complete|won|drawn|tied|abandon/i.test(`${info.state || ''} ${info.status || ''}`) &&
+      isWtcTeamName(info.team1?.teamName) &&
+      isWtcTeamName(info.team2?.teamName)
+    );
+  return tests.map(info => {
+    const teamA = normalizeWtcTeamName(info.team1?.teamName);
+    const teamB = normalizeWtcTeamName(info.team2?.teamName);
+    const metaA = wtcMetaForName(teamA);
+    const metaB = wtcMetaForName(teamB);
+    return {
+      a: teamA,
+      aa: metaA.abbr || info.team1?.teamSName || '',
+      af: metaA.flag || teamFlag(info.team1?.teamSName || ''),
+      b: teamB,
+      ba: metaB.abbr || info.team2?.teamSName || '',
+      bf: metaB.flag || teamFlag(info.team2?.teamSName || ''),
+      venue: shortVenueName([info.venueInfo?.ground, info.venueInfo?.city].filter(Boolean).join(', ')),
+      result: info.status || 'Complete',
+      tag: info.matchDesc || 'Test',
+      start: Number(info.startDate || info.endDate),
+      sourceTz: info.venueInfo?.timezone || 'UTC',
+    };
+  });
+}
+
+function wtcResultFromRecentMatch(info) {
+  if (!info || info.matchFormat !== 'TEST') return null;
+  if (!/complete|won|drawn|tied|abandon/i.test(`${info.state || ''} ${info.status || ''}`)) return null;
+  if (!isWtcTeamName(info.team1?.teamName) || !isWtcTeamName(info.team2?.teamName)) return null;
+  const teamA = normalizeWtcTeamName(info.team1?.teamName);
+  const teamB = normalizeWtcTeamName(info.team2?.teamName);
+  const metaA = wtcMetaForName(teamA);
+  const metaB = wtcMetaForName(teamB);
+  return {
+    a: teamA,
+    aa: metaA.abbr || info.team1?.teamSName || '',
+    af: metaA.flag || teamFlag(info.team1?.teamSName || ''),
+    b: teamB,
+    ba: metaB.abbr || info.team2?.teamSName || '',
+    bf: metaB.flag || teamFlag(info.team2?.teamSName || ''),
+    venue: shortVenueName([info.venueInfo?.ground, info.venueInfo?.city].filter(Boolean).join(', ')),
+    result: info.status || 'Complete',
+    tag: info.matchDesc || 'Test',
+    start: Number(info.startDate || info.endDate),
+    sourceTz: info.venueInfo?.timezone || 'UTC',
+  };
+}
+
+function wtcRecentResultsFromMatches(data) {
+  return (data.typeMatches || [])
+    .flatMap(type => type.seriesMatches || [])
+    .flatMap(series => series.seriesAdWrapper?.matches || [])
+    .map(match => wtcResultFromRecentMatch(match.matchInfo))
+    .filter(Boolean);
+}
+
+async function fetchWtcFixtures() {
+  const cached = cacheGet('wtc_fixtures_v1', 6 * 60 * 60 * 1000);
+  if (cached?.length) return cached;
+
+  try {
+    const seriesData = await cricbuzzFetch('series/v1/international');
+    const candidates = wtcSeriesCandidates(seriesListFromCricbuzz(seriesData)).slice(0, 18);
+    const allFixtures = [];
+
+    for (const series of candidates) {
+      try {
+        const details = await cricbuzzFetch(`series/v1/${series.id}`);
+        allFixtures.push(...wtcTestsFromSeries(details));
+      } catch(e) {
+        console.warn('WTC series fixtures failed:', series.name, e.message);
+      }
+    }
+
+    const upcoming = allFixtures
+      .filter(isUpcomingFixture)
+      .sort((a, b) => (fixtureStartMs(a) || 0) - (fixtureStartMs(b) || 0))
+      .slice(0, 6);
+
+    if (upcoming.length) {
+      cacheSet('wtc_fixtures_v1', upcoming);
+      return upcoming;
+    }
+  } catch(e) {
+    console.warn('WTC fixture fetch failed:', e.message);
+  }
+
+  return wtcFixtureFallback;
+}
+
+async function fetchWtcResults() {
+  const cached = cacheGet('wtc_results_v1', 6 * 60 * 60 * 1000);
+  if (cached?.length) return cached;
+
+  try {
+    const recentData = await cricbuzzFetch('matches/v1/recent');
+    const recent = wtcRecentResultsFromMatches(recentData)
+      .sort((a, b) => (fixtureStartMs(b) || 0) - (fixtureStartMs(a) || 0))
+      .slice(0, 6);
+    if (recent.length >= 3) {
+      cacheSet('wtc_results_v1', recent);
+      return recent;
+    }
+  } catch(e) {
+    console.warn('WTC recent matches failed:', e.message);
+  }
+
+  try {
+    const seriesData = await cricbuzzFetch('series/v1/international');
+    const candidates = wtcSeriesCandidates(seriesListFromCricbuzz(seriesData)).slice(0, 24);
+    const allResults = [];
+
+    for (const series of candidates) {
+      try {
+        const details = await cricbuzzFetch(`series/v1/${series.id}`);
+        allResults.push(...wtcResultsFromSeries(details));
+      } catch(e) {
+        console.warn('WTC series results failed:', series.name, e.message);
+      }
+    }
+
+    const recent = allResults
+      .filter(match => fixtureStartMs(match))
+      .sort((a, b) => (fixtureStartMs(b) || 0) - (fixtureStartMs(a) || 0))
+      .slice(0, 6);
+
+    if (recent.length) {
+      cacheSet('wtc_results_v1', recent);
+      return recent;
+    }
+  } catch(e) {
+    console.warn('WTC result fetch failed:', e.message);
+  }
+
+  return wtcResultsFallback;
+}
+
 function renderStandingsTable(rows, type) {
   const isTest = type === 'test';
   let html = `<thead><tr>
     <th>#</th><th>Team</th>
-    <th class="num">${isTest ? 'Played' : 'M'}</th>
-    <th class="num">${isTest ? 'PCT' : 'W'}</th>
-    <th class="num">${isTest ? 'Series' : 'L'}</th>
-    <th class="num">${isTest ? 'Trend' : 'PTS'}</th>
-    ${isTest ? '' : '<th class="num">NRR</th><th class="num">Status</th>'}
+    <th class="num">M</th>
+    <th class="num">${isTest ? 'W-L-D' : 'W'}</th>
+    <th class="num">${isTest ? 'PTS' : 'L'}</th>
+    <th class="num">${isTest ? 'PCT' : 'PTS'}</th>
+    ${isTest ? '<th class="num">Status</th>' : '<th class="num">NRR</th><th class="num">Status</th>'}
   </tr></thead><tbody>`;
 
   rows.forEach(team => {
     const [statusLabel, statusClass] = isTest ? ['', ''] : playoffStatus(team, rows);
-    const status = isTest ? '' : `<span class="status-pill ${statusClass}">${statusLabel}</span>`;
+    const wtcStatusClass = team.pos <= 2 ? 'status-playoff' : team.pos <= 6 ? 'status-chase' : 'status-eliminated';
+    const status = isTest ? `<span class="status-pill ${wtcStatusClass}">${team.status}</span>` : `<span class="status-pill ${statusClass}">${statusLabel}</span>`;
 
     html += `<tr>
-      <td><span class="pos ${team.pos <= 4 ? 'top-pos' : ''}">${String(team.pos).padStart(2, '0')}</span></td>
+      <td><span class="pos ${(isTest ? team.pos <= 2 : team.pos <= 4) ? 'top-pos' : ''}">${String(team.pos).padStart(2, '0')}</span></td>
       <td><div class="team-cell">${flag(team.flag || team.abbr.toLowerCase(), team.abbr)}
         <div class="abbr">${team.full}</div></div></td>
       <td class="num">${isTest ? team.played : team.m}</td>
-      <td class="num">${isTest ? team.pct.toFixed(1) : team.w}</td>
-      <td class="num">${isTest ? team.series : team.l}</td>
-      <td class="num"><strong>${isTest ? team.trend : team.pts}</strong></td>
-      ${isTest ? '' : `<td class="num"><span style="color:${team.nrr >= 0 ? 'var(--green-soft)' : 'var(--crimson)'}">${team.nrr >= 0 ? '+' : ''}${team.nrr.toFixed(3)}</span></td><td class="num">${status}</td>`}
+      <td class="num">${isTest ? `${team.w}-${team.l}-${team.d}` : team.w}</td>
+      <td class="num">${isTest ? team.pts : team.l}</td>
+      <td class="num"><strong>${isTest ? team.pct.toFixed(2) : team.pts}</strong></td>
+      ${isTest ? `<td class="num">${status}</td>` : `<td class="num"><span style="color:${team.nrr >= 0 ? 'var(--green-soft)' : 'var(--crimson)'}">${team.nrr >= 0 ? '+' : ''}${team.nrr.toFixed(3)}</span></td><td class="num">${status}</td>`}
     </tr>`;
   });
   return `${html}</tbody>`;
@@ -2088,7 +2527,7 @@ function renderTeamGrid(target, teams, mode) {
         <div class="team-name">${team.full}</div>
         <div class="team-meta">
           <span>${mode === 'ipl' ? `${team.pts} pts · ${team.w}-${team.l}` : `${team.played} Tests · PCT ${team.pct.toFixed(1)}`}</span>
-          <span style="color:${team.pos <= 4 ? 'var(--green-soft)' : 'var(--ink-mute)'}">${team.pos <= 4 ? 'UP' : 'WATCH'}</span>
+          <span style="color:${(mode === 'ipl' ? team.pos <= 4 : team.pos <= 2) ? 'var(--green-soft)' : 'var(--ink-mute)'}">${mode === 'ipl' ? (team.pos <= 4 ? 'UP' : 'WATCH') : (team.pos <= 2 ? 'FINAL' : 'CHASE')}</span>
         </div>
       </div>
     ${mode === 'ipl' ? '</a>' : '</div>'}
@@ -2134,15 +2573,15 @@ function renderFixtures(target, fixtures) {
         <div class="mono" style="font-size:10px;margin-top:8px;color:var(--ink-soft)">${display.t}</div>
       </div>
       <div class="fixture-main">
-        <div class="fixture-team">${flag(m.af, fixtureAbbr(m, 'a'))} ${m.a}</div>
+        <div class="fixture-team">${flag(m.af, fixtureAbbr(m, 'a'))}<span class="fixture-team-name">${m.a}</span></div>
         <div class="eyebrow" style="color:var(--ink-mute);margin-left:46px">vs</div>
-        <div class="fixture-team">${flag(m.bf, fixtureAbbr(m, 'b'))} ${m.b}</div>
+        <div class="fixture-team">${flag(m.bf, fixtureAbbr(m, 'b'))}<span class="fixture-team-name">${m.b}</span></div>
       </div>
       <div class="fixture-info">
         ${m.tag ? `<span class="chip chip-gold">${m.tag}</span>` : ''}
         ${m.score ? `<div class="fixture-score" style="${m.tag ? 'margin-top:8px' : ''}">${m.score}</div>` : ''}
-        <div style="${m.tag || m.score ? 'margin-top:8px' : ''}">${m.result || shortVenueName(m.venue)}</div>
-        ${m.result && m.venue ? `<div style="margin-top:6px;color:var(--ink-mute)">${shortVenueName(m.venue)}</div>` : ''}
+        <div class="fixture-meta-line" style="${m.tag || m.score ? 'margin-top:8px' : ''}">${m.result || shortVenueName(m.venue)}</div>
+        ${m.result && m.venue ? `<div class="fixture-meta-line" style="margin-top:6px;color:var(--ink-mute)">${shortVenueName(m.venue)}</div>` : ''}
       </div>
     </div>
   `;
@@ -2796,6 +3235,17 @@ function hasSkillSample(player, mode) {
   return (profile.bowl?.balls || 0) > 0 || (profile.bowl?.wickets || 0) > 0 || (isEstimated && ['bowl', 'ar'].includes(roleCode(player.role)));
 }
 
+function hasSeasonSkillStats(profile, mode) {
+  if (mode === 'bat') {
+    return (profile.bat?.balls || 0) > 0 || (profile.bat?.runs || 0) > 0;
+  }
+  return (profile.bowl?.balls || 0) > 0 || (profile.bowl?.wickets || 0) > 0;
+}
+
+function oppositeSkillMode(mode) {
+  return mode === 'bat' ? 'bowl' : 'bat';
+}
+
 function bindSquadTabs(slug) {
   const root = document.getElementById(`squad-content-${slug}`);
   if (!root) return;
@@ -2812,33 +3262,66 @@ function bindSquadTabs(slug) {
       panels.forEach(panel => panel.classList.toggle('active', panel.dataset.squadPanel === target));
     });
   });
+  bindPlayerCards(root);
 }
 
-function renderPlayerCard(p, mode, benchmarks, slug) {
+function bindPlayerCards(root) {
+  root.querySelectorAll('.player-card').forEach(card => {
+    const toggle = () => {
+      const flipped = !card.classList.contains('is-flipped');
+      card.classList.toggle('is-flipped', flipped);
+      card.setAttribute('aria-pressed', String(flipped));
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggle();
+    });
+  });
+}
+
+function renderPlayerCardFace(p, mode, benchmarks, slug, isBack = false) {
   const profile = playerProfile(p);
-  const score = skillScore(p, mode);
+  const hasStats = !isBack || hasSeasonSkillStats(profile, mode);
+  const score = hasStats ? skillScore(p, mode) : null;
   const tier = formTier(score);
   const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
   const apps = p.matches || p.stats?.apps || profile.apps || 0;
-  const usage = playerUsageLabel(p, mode, slug);
-  const statHtml = mode === 'bat' ? battingStats(profile, benchmarks) : bowlingStats(profile, benchmarks);
-  return `<div class="player-card card-${tier}">
+  const usage = hasStats ? playerUsageLabel(p, mode, slug) : '';
+  const statHtml = hasStats
+    ? (mode === 'bat' ? battingStats(profile, benchmarks) : bowlingStats(profile, benchmarks))
+    : `<div class="no-skill-stats">NO ${mode === 'bat' ? 'BATTING' : 'BOWLING'} STATS THIS SEASON</div>`;
+  return `<div class="player-card-face ${isBack ? 'player-card-back' : 'player-card-front'} face-${tier}">
     <div class="player-num">${p.num}</div>
     <div class="player-body">
       <div class="player-name">${p.name}</div>
       <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
       <div class="player-meta">${apps} matches${usage ? ` · ${usage}` : ''}${p.tag ? ` · ${p.tag}` : ''}</div>
-      ${mode === 'bat' ? battingPositionUsage(profile) : ''}
-      ${mode === 'bowl' ? bowlerPhaseUsage(profile) : ''}
+      ${hasStats && mode === 'bat' ? battingPositionUsage(profile) : ''}
+      ${hasStats && mode === 'bowl' ? bowlerPhaseUsage(profile) : ''}
       <div class="skill-grid skill-grid-single">
         <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
       </div>
       <div class="stat-strip">${statHtml}</div>
-      ${careerDelta(profile, mode)}
-      ${fieldStats(profile, benchmarks)}
+      ${hasStats ? careerDelta(profile, mode) : ''}
+      ${!isBack && hasStats ? fieldStats(profile, benchmarks) : ''}
       <span class="form-score ${tier}">${source}</span>
+      <span class="flip-hint">${isBack ? 'Front: ' : 'Back: '}${oppositeSkillMode(mode) === 'bat' ? 'batting' : 'bowling'}</span>
     </div>
   </div>`;
+}
+
+function renderPlayerCard(p, mode, benchmarks, slug) {
+  const score = skillScore(p, mode);
+  const tier = formTier(score);
+  const backMode = oppositeSkillMode(mode);
+  return `<button class="player-card card-${tier}" type="button" aria-pressed="false" aria-label="${p.name}: flip card to view ${backMode === 'bat' ? 'batting' : 'bowling'} stats">
+    <div class="player-card-inner">
+      ${renderPlayerCardFace(p, mode, benchmarks, slug)}
+      ${renderPlayerCardFace(p, backMode, benchmarks, slug, true)}
+    </div>
+  </button>`;
 }
 
 function renderSquadContent(slug = currentRoute().detail || 'rcb') {
@@ -2881,13 +3364,24 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
 function initStaticViews() {
   document.getElementById('test-standings-table').innerHTML = renderStandingsTable(testTeams, 'test');
   renderTeamGrid('test-team-grid', testTeams, 'test');
-  renderFixtures('test-fixtures', [
-    { date:'04', mo:'Jun', t:'11:00', a:'ENG', af:'eng', b:'IND', bf:'ind', venue:'Lord\'s · London', tag:'WTC Series' },
-    { date:'12', mo:'Jun', t:'10:30', a:'RSA', af:'rsa', b:'AUS', bf:'aus', venue:'Newlands · Cape Town', tag:'Pace battle' },
-    { date:'21', mo:'Jun', t:'09:45', a:'SL', af:'sl', b:'PAK', bf:'pak', venue:'Galle International', tag:'Spin watch' },
-  ]);
+  renderFixtures('test-fixtures', wtcFixtureFallback);
+  renderFixtures('test-results', wtcResultsFallback);
   renderFixtures('ipl-fixtures', upcomingIplFixtures(iplFixtures));
   renderFixtures('ipl-results', formatRecentResults());
+}
+
+async function initWtc() {
+  const rows = await fetchWtcStandings();
+  const fixtures = await fetchWtcFixtures();
+  const results = await fetchWtcResults();
+  document.getElementById('test-standings-table').innerHTML = renderStandingsTable(rows, 'test');
+  renderTeamGrid('test-team-grid', rows, 'test');
+  renderFixtures('test-fixtures', fixtures);
+  renderFixtures('test-results', results);
+  const label = document.getElementById('test-data-label');
+  if (label) {
+    label.textContent = `${WTC_STANDINGS_SOURCE} · refreshed at ${new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}`;
+  }
 }
 
 async function initIpl() {
@@ -2906,6 +3400,8 @@ async function initIpl() {
 }
 
 initStaticViews();
+initWtc();
+setInterval(initWtc, 60 * 60 * 1000);
 initIpl();
 switchTab(window.location.hash, false);
 </script>
