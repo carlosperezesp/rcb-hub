@@ -343,6 +343,15 @@
     justify-content: space-between;
     padding: 11px;
   }
+  .team-card-test .stripe {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.99) 0 68%, color-mix(in srgb, var(--team-color-2, var(--green-soft)) 18%, white) 78%, var(--team-color-2, var(--green-soft)) 100%),
+      repeating-linear-gradient(135deg, rgba(19,25,21,.03) 0 6px, rgba(255,255,255,.24) 6px 12px);
+    border-bottom: 1px solid rgba(19,25,21,.06);
+  }
+  .team-card-test .flag {
+    box-shadow: 0 0 0 1px rgba(19,25,21,.08);
+  }
   .team-card {
     color: inherit;
     display: block;
@@ -382,6 +391,8 @@
     scroll-margin-top: 96px;
   }
   .team-detail.active { display: block; }
+  .test-squad-boards { display: none; }
+  .test-squad-boards.active { display: block; }
 
   .table-wrap { overflow-x: auto; }
   table {
@@ -651,6 +662,62 @@
     position: absolute;
     width: 6px;
   }
+  .player-card-face.has-reverse-stats::after {
+    background: var(--reverse-fold-color, var(--ink-mute));
+    border-bottom-left-radius: 9px;
+    box-shadow: -7px 7px 14px rgba(19,25,21,.2);
+    content: '';
+    height: 28px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 28px;
+  }
+  .player-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 7px 0 2px;
+  }
+  .player-type-tag {
+    background: rgba(19,25,21,.07);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    padding: 5px 7px;
+    text-transform: uppercase;
+  }
+  .player-type-tag.type-pace {
+    background: rgba(22,98,58,.12);
+    color: var(--green-deep);
+  }
+  .player-type-tag.type-spin {
+    background: rgba(202,164,93,.18);
+    color: var(--gold-deep);
+  }
+  .player-cycle-chip {
+    background: rgba(202,164,93,.18);
+    border-radius: 999px;
+    color: var(--gold-deep);
+    display: inline-flex;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    margin-left: 6px;
+    padding: 4px 7px;
+    text-transform: uppercase;
+    vertical-align: 1px;
+  }
+  .player-card-face.has-reverse-stats .player-body {
+    padding-right: 12px;
+  }
+  .reverse-elite { --reverse-fold-color: #2f7d4b; }
+  .reverse-good { --reverse-fold-color: var(--green-deep); }
+  .reverse-avg { --reverse-fold-color: #151515; }
+  .reverse-poor { --reverse-fold-color: var(--crimson); }
   .face-elite::before { background: #2f7d4b; }
   .face-good::before { background: var(--green-deep); }
   .face-avg::before { background: #151515; }
@@ -1218,6 +1285,7 @@
       <div><div class="eyebrow" style="color:var(--gold-deep)">WTC Roster</div><h2>Championship Teams</h2></div>
     </div>
     <div class="grid grid-4" id="test-team-grid"></div>
+    <div class="test-squad-boards" id="test-squad-boards"></div>
 
     <div class="section-head">
       <div><div class="eyebrow">Calendar</div><h2>Upcoming Tests</h2></div>
@@ -1332,6 +1400,7 @@
 </nav>
 
 <script src="data/ipl-2026-season-stats.js"></script>
+<script src="data/wtc-test-data.js"></script>
 <script>
 const API_KEY = '081aca27-a3d0-4ce7-aded-a1f73624ce37';
 const BASE = 'https://api.cricapi.com/v1';
@@ -1404,6 +1473,7 @@ async function fetchJsonWithTimeout(url, options = {}) {
   }
 }
 
+const TEST_SQUAD_SLUGS = ['aus', 'nz', 'rsa', 'sl', 'pak', 'ind', 'eng', 'ban', 'wi'];
 const VALID_TABS = ['test', 'odi', 't20', 'ipl'];
 
 function normalizeTab(tab) {
@@ -1413,7 +1483,7 @@ function normalizeTab(tab) {
 function parseRoute(route = '') {
   const [rawTab, rawDetail] = String(route).replace(/^#/, '').split('/');
   const tab = normalizeTab(rawTab);
-  const detail = tab === 'ipl' && isIplSlug(rawDetail) ? rawDetail : null;
+  const detail = (tab === 'ipl' && isIplSlug(rawDetail)) || (tab === 'test' && TEST_SQUAD_SLUGS.includes(rawDetail)) ? rawDetail : null;
   return {
     tab,
     detail,
@@ -1429,6 +1499,7 @@ function switchTab(route, updateHash = true) {
   document.getElementById(`tab-${next.tab}`)?.classList.add('active');
   document.getElementById(`bnav-${next.tab}`)?.classList.add('active');
   updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail);
+  updateTestTeamDetail(next.detail, next.tab === 'test' && !!next.detail);
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
   }
@@ -1439,8 +1510,8 @@ function currentRoute() {
 }
 
 function updateIplTeamDetail(detail, shouldScroll = false) {
-  document.querySelectorAll('.team-detail').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.team-card').forEach(el => {
+  document.querySelectorAll('.ipl-team-detail').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.ipl-team-card').forEach(el => {
     el.classList.remove('is-selected');
     const slug = el.id?.replace('team-card-', '');
     if (slug) el.setAttribute('href', `#ipl/${slug}`);
@@ -1453,6 +1524,27 @@ function updateIplTeamDetail(detail, shouldScroll = false) {
   detailEl?.classList.toggle('active', true);
   cardEl?.classList.toggle('is-selected', true);
   cardEl?.setAttribute('href', '#ipl');
+  if (shouldScroll && detailEl) {
+    requestAnimationFrame(() => detailEl.scrollIntoView({ block: 'start' }));
+  }
+}
+
+function updateTestTeamDetail(detail, shouldScroll = false) {
+  const boardsEl = document.getElementById('test-squad-boards');
+  boardsEl?.classList.toggle('active', Boolean(detail));
+  document.querySelectorAll('.test-team-detail').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.test-team-card').forEach(el => {
+    el.classList.remove('is-selected');
+    const slug = el.id?.replace('test-team-card-', '');
+    if (slug && TEST_SQUAD_SLUGS.includes(slug)) el.setAttribute('href', `#test/${slug}`);
+  });
+  if (!detail) return;
+
+  const detailEl = document.getElementById(`test-team-detail-${detail}`);
+  const cardEl = document.getElementById(`test-team-card-${detail}`);
+  detailEl?.classList.toggle('active', true);
+  cardEl?.classList.toggle('is-selected', true);
+  cardEl?.setAttribute('href', '#test');
   if (shouldScroll && detailEl) {
     requestAnimationFrame(() => detailEl.scrollIntoView({ block: 'start' }));
   }
@@ -1495,6 +1587,83 @@ const wtcResultsFallback = [
   { date:'22', mo:'Dec', t:'FT', a:'New Zealand', aa:'NZ', af:'nz', b:'West Indies', ba:'WI', bf:'wi', venue:'Bay Oval, Mount Maunganui', result:'New Zealand won by 323 runs', tag:'3rd Test' },
   { date:'14', mo:'Dec', t:'FT', a:'New Zealand', aa:'NZ', af:'nz', b:'West Indies', ba:'WI', bf:'wi', venue:'Basin Reserve, Wellington', result:'New Zealand won by 9 wickets', tag:'2nd Test' },
 ];
+
+const WTC_SQUAD_SOURCE = 'Announced squads for Bangladesh v Pakistan, 1st Test · 8 May 2026';
+const WTC_SQUAD_SEEDS = {
+  pak: {
+    name: 'Pakistan',
+    note: '16-player touring squad for the Bangladesh Test series.',
+    rows: [
+      ['Shan Masood','PAK','bat','C'],
+      ['Abdullah Fazal','PAK','bat',''],
+      ['Amad Butt','PAK','ar','','Right arm Medium fast'],
+      ['Azan Awais','PAK','bat',''],
+      ['Babar Azam','PAK','bat',''],
+      ['Hasan Ali','PAK','bowl','','Right arm Fast medium'],
+      ['Imam-ul-Haq','PAK','bat',''],
+      ['Khurram Shahzad','PAK','bowl','','Right arm Medium fast'],
+      ['Mohammad Abbas','PAK','bowl','','Right arm Fast medium'],
+      ['Mohammad Rizwan','PAK','wk',''],
+      ['Muhammad Ghazi Ghori','PAK','wk',''],
+      ['Noman Ali','PAK','bowl','','Slow left arm Orthodox'],
+      ['Sajid Khan','PAK','bowl','','Right arm Offbreak'],
+      ['Salman Ali Agha','PAK','ar','','Right arm Offbreak'],
+      ['Saud Shakeel','PAK','bat',''],
+      ['Shaheen Shah Afridi','PAK','bowl','','Left arm Fast'],
+    ],
+  },
+  ban: {
+    name: 'Bangladesh',
+    note: '15-player squad named for the first Test in Dhaka.',
+    rows: [
+      ['Najmul Hossain Shanto','BAN','bat','C'],
+      ['Mahmudul Hasan Joy','BAN','bat',''],
+      ['Shadman Islam','BAN','bat',''],
+      ['Mominul Haque Showrab','BAN','bat',''],
+      ['Mushfiqur Rahim','BAN','bat',''],
+      ['Litton Kumer Das','BAN','wk',''],
+      ['Mehidy Hasan Miraz','BAN','ar','VC','Right arm Offbreak'],
+      ['Taijul Islam','BAN','bowl','','Slow left arm Orthodox'],
+      ['Nayeem Hasan','BAN','bowl','','Right arm Offbreak'],
+      ['Ebadot Hossain Chowdhury','BAN','bowl','','Right arm Fast medium'],
+      ['Shoriful Islam','BAN','bowl','','Left arm Medium fast'],
+      ['Taskin Ahmed','BAN','bowl','','Right arm Fast'],
+      ['Nahid Rana','BAN','bowl','','Right arm Fast'],
+      ['Tanzid Hasan','BAN','bat',''],
+      ['Amite Hasan','BAN','bat',''],
+    ],
+  },
+};
+
+const WTC_TEST_STATS = {
+  'Shan Masood': { career:{matches:45,bat:{inns:84,runs:2550,balls:4884,avg:30.72,sr:52.21,hundreds:6,fifties:13,high:156},bowl:{balls:145,runs:92,wickets:2,avg:46,econ:3.81,sr:72.5,fiveWickets:0},field:{catches:30,stumpings:0,runouts:3}}, cycle:{matches:2,bat:{inns:4,runs:170,balls:345,avg:42.5,sr:49.28,hundreds:0,fifties:2,high:87},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Babar Azam': { career:{matches:63,bat:{inns:112,runs:4366,balls:8017,avg:41.98,sr:54.46,hundreds:9,fifties:30,high:196},bowl:{balls:90,runs:42,wickets:2,avg:21,econ:2.8,sr:45,fiveWickets:0},field:{catches:51,stumpings:0,runouts:1}}, cycle:{matches:2,bat:{inns:4,runs:131,balls:229,avg:32.75,sr:57.21,hundreds:0,fifties:1,high:50},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Hasan Ali': { career:{matches:25,bat:{inns:39,runs:382,balls:530,avg:11.94,sr:72.08,hundreds:0,fifties:0,high:30},bowl:{balls:4397,runs:2213,wickets:80,avg:27.66,econ:3.02,sr:54.96,fiveWickets:6},field:{catches:6,stumpings:0,runouts:2}}, cycle:{matches:1,bat:{inns:1,runs:0,balls:3,avg:0,sr:0,hundreds:0,fifties:0,high:0},bowl:{balls:61,runs:28,wickets:0,avg:0,econ:2.75,sr:0,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Imam-ul-Haq': { career:{matches:26,bat:{inns:50,runs:1687,balls:3608,avg:36.67,sr:46.76,hundreds:3,fifties:10,high:157},bowl:{balls:12,runs:9,wickets:0,avg:0,econ:4.5,sr:0,fiveWickets:0},field:{catches:21,stumpings:0,runouts:0}}, cycle:{matches:2,bat:{inns:4,runs:119,balls:204,avg:29.75,sr:58.33,hundreds:0,fifties:1,high:93},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Khurram Shahzad': { career:{matches:6,bat:{inns:10,runs:83,balls:224,avg:10.38,sr:37.05,hundreds:0,fifties:0,high:18},bowl:{balls:917,runs:600,wickets:20,avg:30,econ:3.93,sr:45.85,fiveWickets:1},field:{catches:2,stumpings:0,runouts:0}}, cycle:{matches:0,bat:{inns:0,runs:0,balls:0,avg:0,sr:0,hundreds:0,fifties:0,high:0},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Mohammad Abbas': { career:{matches:27,bat:{inns:40,runs:120,balls:688,avg:5.71,sr:17.44,hundreds:0,fifties:0,high:29},bowl:{balls:5573,runs:2318,wickets:100,avg:23.18,econ:2.5,sr:55.73,fiveWickets:5},field:{catches:8,stumpings:0,runouts:0}}, cycle:{matches:0,bat:{inns:0,runs:0,balls:0,avg:0,sr:0,hundreds:0,fifties:0,high:0},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Mohammad Rizwan': { career:{matches:43,bat:{inns:69,runs:2399,balls:4454,avg:39.98,sr:53.86,hundreds:3,fifties:12,high:171},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:112,stumpings:10,runouts:2}}, cycle:{matches:2,bat:{inns:4,runs:126,balls:270,avg:31.5,sr:46.67,hundreds:0,fifties:1,high:75},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:5,stumpings:1,runouts:0}} },
+  'Noman Ali': { career:{matches:21,bat:{inns:30,runs:385,balls:810,avg:15.4,sr:47.53,hundreds:0,fifties:1,high:97},bowl:{balls:4713,runs:2378,wickets:97,avg:24.52,econ:3.03,sr:48.59,fiveWickets:9},field:{catches:1,stumpings:0,runouts:0}}, cycle:{matches:2,bat:{inns:4,runs:17,balls:40,avg:5.67,sr:42.5,hundreds:0,fifties:0,high:11},bowl:{balls:594,runs:323,wickets:14,avg:23.07,econ:3.26,sr:42.43,fiveWickets:1},field:{catches:0,stumpings:0,runouts:0}} },
+  'Sajid Khan': { career:{matches:14,bat:{inns:20,runs:225,balls:395,avg:12.5,sr:56.96,hundreds:0,fifties:0,high:48},bowl:{balls:3294,runs:1880,wickets:65,avg:28.92,econ:3.42,sr:50.68,fiveWickets:4},field:{catches:4,stumpings:0,runouts:1}}, cycle:{matches:2,bat:{inns:4,runs:19,balls:36,avg:4.75,sr:52.78,hundreds:0,fifties:0,high:13},bowl:{balls:471,runs:270,wickets:6,avg:45,econ:3.44,sr:78.5,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Salman Ali Agha': { career:{matches:23,bat:{inns:44,runs:1487,balls:2387,avg:39.13,sr:62.3,hundreds:3,fifties:10,high:132},bowl:{balls:1858,runs:1161,wickets:20,avg:58.05,econ:3.75,sr:92.9,fiveWickets:0},field:{catches:32,stumpings:0,runouts:1}}, cycle:{matches:2,bat:{inns:4,runs:170,balls:274,avg:42.5,sr:62.04,hundreds:0,fifties:1,high:93},bowl:{balls:78,runs:38,wickets:1,avg:38,econ:2.92,sr:78,fiveWickets:0},field:{catches:7,stumpings:0,runouts:0}} },
+  'Saud Shakeel': { career:{matches:22,bat:{inns:40,runs:1773,balls:3589,avg:47.92,sr:49.4,hundreds:4,fifties:10,high:208},bowl:{balls:37,runs:54,wickets:0,avg:0,econ:8.76,sr:0,fiveWickets:0},field:{catches:12,stumpings:0,runouts:0}}, cycle:{matches:2,bat:{inns:4,runs:115,balls:244,avg:28.75,sr:47.13,hundreds:0,fifties:1,high:66},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Shaheen Shah Afridi': { career:{matches:33,bat:{inns:44,runs:256,balls:597,avg:7.31,sr:42.88,hundreds:0,fifties:0,high:29},bowl:{balls:6455,runs:3378,wickets:121,avg:27.92,econ:3.14,sr:53.35,fiveWickets:4},field:{catches:2,stumpings:0,runouts:1}}, cycle:{matches:2,bat:{inns:4,runs:7,balls:41,avg:1.75,sr:17.07,hundreds:0,fifties:0,high:7},bowl:{balls:240,runs:143,wickets:5,avg:28.6,econ:3.58,sr:48,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Najmul Hossain Shanto': { career:{matches:38,bat:{inns:71,runs:2028,balls:3962,avg:29.39,sr:51.19,hundreds:6,fifties:5,high:163},bowl:{balls:118,runs:86,wickets:0,avg:0,econ:4.37,sr:0,fiveWickets:0},field:{catches:33,stumpings:0,runouts:4}}, cycle:{matches:4,bat:{inns:7,runs:409,balls:687,avg:68.17,sr:59.53,hundreds:3,fifties:0,high:148},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:4,stumpings:0,runouts:1}} },
+  'Mahmudul Hasan Joy': { career:{matches:20,bat:{inns:35,runs:947,balls:2198,avg:27.06,sr:43.08,hundreds:2,fifties:4,high:171},bowl:{balls:13,runs:14,wickets:0,avg:0,econ:6.46,sr:0,fiveWickets:0},field:{catches:11,stumpings:0,runouts:0}}, cycle:{matches:2,bat:{inns:3,runs:265,balls:463,avg:88.33,sr:57.24,hundreds:1,fifties:1,high:171},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Shadman Islam': { career:{matches:25,bat:{inns:47,runs:1359,balls:2709,avg:30.2,sr:50.17,hundreds:2,fifties:8,high:120},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:25,stumpings:0,runouts:1}}, cycle:{matches:4,bat:{inns:7,runs:341,balls:563,avg:48.71,sr:60.57,hundreds:0,fifties:3,high:80},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:6,stumpings:0,runouts:0}} },
+  'Mominul Haque Showrab': { career:{matches:73,bat:{inns:135,runs:4668,balls:8673,avg:37.05,sr:53.82,hundreds:12,fifties:24,high:181},bowl:{balls:889,runs:585,wickets:11,avg:53.18,econ:3.95,sr:80.82,fiveWickets:0},field:{catches:37,stumpings:0,runouts:2}}, cycle:{matches:4,bat:{inns:7,runs:311,balls:523,avg:44.43,sr:59.46,hundreds:0,fifties:3,high:87},bowl:{balls:78,runs:43,wickets:1,avg:43,econ:3.31,sr:78,fiveWickets:0},field:{catches:2,stumpings:0,runouts:0}} },
+  'Mushfiqur Rahim': { career:{matches:95,bat:{inns:174,runs:6226,balls:12776,avg:38.91,sr:48.73,hundreds:13,fifties:26,high:219},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:106,stumpings:15,runouts:6}}, cycle:{matches:4,bat:{inns:7,runs:455,balls:927,avg:75.83,sr:49.08,hundreds:2,fifties:1,high:163},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Litton Kumer Das': { career:{matches:51,bat:{inns:86,runs:3000,balls:5033,avg:34.88,sr:59.61,hundreds:5,fifties:18,high:141},bowl:{balls:12,runs:13,wickets:0,avg:0,econ:6.5,sr:0,fiveWickets:0},field:{catches:108,stumpings:16,runouts:8}}, cycle:{matches:4,bat:{inns:6,runs:329,balls:485,avg:54.83,sr:67.84,hundreds:1,fifties:2,high:128},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:8,stumpings:3,runouts:2}} },
+  'Mehidy Hasan Miraz': { career:{matches:54,bat:{inns:97,runs:2103,balls:4160,avg:24.17,sr:50.55,hundreds:2,fifties:9,high:104},bowl:{balls:12859,runs:6692,wickets:204,avg:32.8,econ:3.12,sr:63.03,fiveWickets:13},field:{catches:33,stumpings:0,runouts:6}}, cycle:{matches:3,bat:{inns:4,runs:106,balls:198,avg:26.5,sr:53.54,hundreds:0,fifties:0,high:47},bowl:{balls:588,runs:260,wickets:5,avg:52,econ:2.65,sr:117.6,fiveWickets:0},field:{catches:1,stumpings:0,runouts:0}} },
+  'Taijul Islam': { career:{matches:57,bat:{inns:92,runs:831,balls:2182,avg:10.26,sr:38.08,hundreds:0,fifties:0,high:47},bowl:{balls:14847,runs:7537,wickets:242,avg:31.14,econ:3.05,sr:61.35,fiveWickets:17},field:{catches:19,stumpings:0,runouts:4}}, cycle:{matches:4,bat:{inns:4,runs:49,balls:92,avg:12.25,sr:53.26,hundreds:0,fifties:0,high:33},bowl:{balls:1324,runs:652,wickets:22,avg:29.64,econ:2.95,sr:60.18,fiveWickets:1},field:{catches:0,stumpings:0,runouts:0}} },
+  'Nayeem Hasan': { career:{matches:13,bat:{inns:20,runs:227,balls:561,avg:14.19,sr:40.46,hundreds:0,fifties:0,high:26},bowl:{balls:2476,runs:1267,wickets:44,avg:28.8,econ:3.07,sr:56.27,fiveWickets:4},field:{catches:6,stumpings:0,runouts:0}}, cycle:{matches:2,bat:{inns:4,runs:48,balls:112,avg:16,sr:42.86,hundreds:0,fifties:0,high:25},bowl:{balls:446,runs:237,wickets:9,avg:26.33,econ:3.19,sr:49.56,fiveWickets:1},field:{catches:0,stumpings:0,runouts:0}} },
+  'Ebadot Hossain Chowdhury': { career:{matches:21,bat:{inns:30,runs:82,balls:271,avg:4.56,sr:30.26,hundreds:0,fifties:0,high:21},bowl:{balls:3446,runs:2042,wickets:38,avg:53.74,econ:3.56,sr:90.68,fiveWickets:1},field:{catches:1,stumpings:0,runouts:1}}, cycle:{matches:2,bat:{inns:3,runs:32,balls:44,avg:16,sr:72.73,hundreds:0,fifties:0,high:18},bowl:{balls:222,runs:131,wickets:1,avg:131,econ:3.54,sr:222,fiveWickets:0},field:{catches:0,stumpings:0,runouts:1}} },
+  'Shoriful Islam': { career:{matches:11,bat:{inns:18,runs:138,balls:189,avg:8.63,sr:73.02,hundreds:0,fifties:0,high:26},bowl:{balls:1640,runs:849,wickets:21,avg:40.43,econ:3.11,sr:78.1,fiveWickets:0},field:{catches:6,stumpings:0,runouts:1}}, cycle:{matches:0,bat:{inns:0,runs:0,balls:0,avg:0,sr:0,hundreds:0,fifties:0,high:0},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Taskin Ahmed': { career:{matches:16,bat:{inns:28,runs:259,balls:558,avg:11.26,sr:46.42,hundreds:0,fifties:1,high:75},bowl:{balls:3096,runs:1839,wickets:45,avg:40.87,econ:3.56,sr:68.8,fiveWickets:1},field:{catches:1,stumpings:0,runouts:0}}, cycle:{matches:0,bat:{inns:0,runs:0,balls:0,avg:0,sr:0,hundreds:0,fifties:0,high:0},bowl:{balls:0,runs:0,wickets:0,avg:0,econ:0,sr:0,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+  'Nahid Rana': { career:{matches:10,bat:{inns:15,runs:17,balls:88,avg:2.43,sr:19.32,hundreds:0,fifties:0,high:11},bowl:{balls:1483,runs:1125,wickets:27,avg:41.67,econ:4.55,sr:54.93,fiveWickets:1},field:{catches:1,stumpings:0,runouts:0}}, cycle:{matches:3,bat:{inns:3,runs:4,balls:21,avg:4,sr:19.05,hundreds:0,fifties:0,high:4},bowl:{balls:369,runs:296,wickets:4,avg:74,econ:4.81,sr:92.25,fiveWickets:0},field:{catches:0,stumpings:0,runouts:0}} },
+};
+Object.assign(WTC_SQUAD_SEEDS, window.WTC_TEST_DATA?.squads || {});
+Object.assign(WTC_TEST_STATS, window.WTC_TEST_DATA?.stats || {});
 
 const iplFallback = [
   { pos:1, abbr:'PBKS', full:'Punjab Kings', flag:'pbks', m:7, w:6, l:0, pts:13, nrr:+1.333 },
@@ -1575,6 +1744,9 @@ function loadCricsheetSquads() {
   IPL_SQUADS = data.squads;
   Object.values(IPL_SQUADS).forEach(squad => {
     Object.values(squad || {}).flat().forEach(normalizeLivePlayerScores);
+    Object.values(squad || {}).flat().forEach(player => {
+      player.bowlingStyle = bowlingStyleForPlayer(player);
+    });
   });
   IPL_SQUAD_SOURCE = `${data.source} · ${data.matchesProcessed} matches · updated ${data.lastMatchDate || 'today'}`;
   return true;
@@ -1658,6 +1830,15 @@ function slugForTeam(team = {}) {
 
 function teamTheme(slug) {
   return ({
+    aus: ['#fbfbf7', '#00543d'],
+    nz: ['#fbfbf7', '#111111'],
+    rsa: ['#fbfbf7', '#007749'],
+    sl: ['#fbfbf7', '#1d2d6d'],
+    pak: ['#fbfbf7', '#01411c'],
+    ind: ['#fbfbf7', '#2f80ed'],
+    eng: ['#fbfbf7', '#0b1f4d'],
+    ban: ['#fbfbf7', '#006a4e'],
+    wi: ['#fbfbf7', '#840028'],
     gt: ['#1c2536', '#caa45d'],
     rcb: ['#b6171e', '#111111'],
     mi: ['#004ba0', '#0b85c8'],
@@ -1692,6 +1873,124 @@ function roleCode(role = '') {
   if (bucket === 'allRounders') return 'ar';
   if (bucket === 'wicketKeepers') return 'wk';
   return 'bat';
+}
+
+const BOWLING_STYLE_OVERRIDES = {
+  rashidkhan: 'Right arm Legbreak',
+  washingtonsundar: 'Right arm Offbreak',
+  mohammedsiraj: 'Right arm Fast medium',
+  kagisorabada: 'Right arm Fast',
+  mahipallomror: 'Slow left arm Orthodox',
+  ishantsharma: 'Right arm Fast medium',
+  prasidhkrishna: 'Right arm Fast medium',
+  liamlivingstone: 'Right arm Legbreak',
+  krunalpandya: 'Slow left arm Orthodox',
+  joshhazlewood: 'Right arm Fast medium',
+  bhuvneshwarkumar: 'Right arm Medium',
+  yashdayal: 'Left arm Fast medium',
+  suyashsharma: 'Right arm Legbreak',
+  romarioshepherd: 'Right arm Fast medium',
+  jacobbethell: 'Slow left arm Orthodox',
+  rasikhsalam: 'Right arm Medium fast',
+  hardikpandya: 'Right arm Medium fast',
+  willjacks: 'Right arm Offbreak',
+  jaspritbumrah: 'Right arm Fast',
+  trentboult: 'Left arm Fast medium',
+  namandhir: 'Right arm Offbreak',
+  deepakchahar: 'Right arm Medium',
+  mitchellsantner: 'Slow left arm Orthodox',
+  karnsharma: 'Right arm Legbreak',
+  ashwanikumar: 'Left arm Fast medium',
+  andrerussell: 'Right arm Fast',
+  sunilnarine: 'Right arm Offbreak',
+  varunchakravarthy: 'Right arm Legbreak',
+  harshitrana: 'Right arm Fast medium',
+  moeenali: 'Right arm Offbreak',
+  ramandeepsingh: 'Right arm Medium',
+  vaibhavarora: 'Right arm Medium fast',
+  anrichnortje: 'Right arm Fast',
+  nitishkumarreddy: 'Right arm Medium fast',
+  patcummins: 'Right arm Fast',
+  mohammedshami: 'Right arm Fast medium',
+  harshalpatel: 'Right arm Medium',
+  adamzampa: 'Right arm Legbreak',
+  rahulchahar: 'Right arm Legbreak',
+  kamindumendis: 'Right arm Offbreak',
+  jaydevunadkat: 'Left arm Medium',
+  wiaanmulder: 'Right arm Medium',
+  ravindrajadeja: 'Slow left arm Orthodox',
+  ravichandranashwin: 'Right arm Offbreak',
+  matheeshapathirana: 'Right arm Fast',
+  noorahmad: 'Left arm Wrist spin',
+  rachinravindra: 'Slow left arm Orthodox',
+  vijayshankar: 'Right arm Medium',
+  khaleelahmed: 'Left arm Medium fast',
+  anshulkamboj: 'Right arm Medium fast',
+  waninduhasaranga: 'Right arm Legbreak',
+  jofraarcher: 'Right arm Fast',
+  sandeepsharma: 'Right arm Medium',
+  maheeshtheekshana: 'Right arm Offbreak',
+  tushardeshpande: 'Right arm Medium',
+  akashmadhwal: 'Right arm Medium fast',
+  fazalhaqfarooqi: 'Left arm Fast medium',
+  glennmaxwell: 'Right arm Offbreak',
+  marcusstoinis: 'Right arm Medium',
+  marcojansen: 'Left arm Fast medium',
+  arshdeepsingh: 'Left arm Medium fast',
+  yuzvendrachahal: 'Right arm Legbreak',
+  harpreetbrar: 'Slow left arm Orthodox',
+  lockieferguson: 'Right arm Fast',
+  vijaykumarvyshak: 'Right arm Medium',
+  axarpatel: 'Slow left arm Orthodox',
+  kuldeepyadav: 'Left arm Wrist spin',
+  mitchellstarc: 'Left arm Fast',
+  mukeshkumar: 'Right arm Medium',
+  tnatarajan: 'Left arm Medium fast',
+  dushmanthachameera: 'Right arm Fast',
+  shahbazahmed: 'Slow left arm Orthodox',
+  mitchellmarsh: 'Right arm Medium',
+  ravibishnoi: 'Right arm Legbreak',
+  mayankyadav: 'Right arm Fast',
+  aveshkhan: 'Right arm Fast medium',
+  mohsinkhan: 'Left arm Medium fast',
+  princeyadav: 'Right arm Medium fast',
+  akashdeep: 'Right arm Fast medium',
+};
+
+function bowlingType(style = '') {
+  const value = style.toLowerCase();
+  if (/leg|off|break|orthodox|wrist|spin|googly|chinaman/.test(value)) return 'Spin';
+  if (/fast|medium|seam|pace/.test(value)) return 'Pace';
+  return '';
+}
+
+function bowlingTypeLabel(style = '') {
+  const value = style.toLowerCase();
+  if (!value) return '';
+  if (/left/.test(value) && /fast|medium|seam|pace/.test(value)) return 'Left-arm pace';
+  if (/right/.test(value) && /fast|medium|seam|pace/.test(value)) return 'Right-arm pace';
+  if (/left/.test(value) && /wrist|chinaman/.test(value)) return 'Left-arm wrist';
+  if (/leg|googly/.test(value)) return 'Leg spin';
+  if (/off/.test(value)) return 'Off spin';
+  if (/orthodox/.test(value)) return 'SLA';
+  return bowlingType(style);
+}
+
+function bowlingStyleForPlayer(player = {}) {
+  return player.bowlingStyle || BOWLING_STYLE_OVERRIDES[normName(player.name || '')] || '';
+}
+
+function playerTypeTags(player = {}) {
+  const role = roleCode(player.role);
+  const style = bowlingStyleForPlayer(player);
+  const bowlType = bowlingType(style);
+  if (role === 'bowl' || role === 'ar') {
+    const label = bowlingTypeLabel(style) || (role === 'ar' ? 'All-rounder' : 'Bowler');
+    const cls = bowlType ? ` type-${bowlType.toLowerCase()}` : '';
+    return `<div class="player-tags"><span class="player-type-tag${cls}" title="${style || label}">${label}</span></div>`;
+  }
+  const label = role === 'wk' ? 'Wicketkeeper' : 'Batter';
+  return `<div class="player-tags"><span class="player-type-tag">${label}</span></div>`;
 }
 
 function scaledScore(value, floor, ceiling, points) {
@@ -2067,6 +2366,7 @@ function buildFallbackSquads() {
     const squad = { batters: [], wicketKeepers: [], allRounders: [], bowlers: [] };
     rows.forEach(([name, nat, role, tag], index) => {
       const player = { num: seededNumber(`${slug}-${name}`, 1, 99), name, nat, tag, role };
+      player.bowlingStyle = bowlingStyleForPlayer(player);
       player.stats = estimateStats(player, slug);
       player.score = calcFormScore(player.role, player.stats);
       player.detail = statLine(player);
@@ -2076,14 +2376,42 @@ function buildFallbackSquads() {
   }));
 }
 
+function buildWtcSquads() {
+  return Object.fromEntries(Object.entries(WTC_SQUAD_SEEDS).map(([slug, data]) => {
+    const squad = { batters: [], wicketKeepers: [], allRounders: [], bowlers: [] };
+    data.rows.forEach(([name, nat, role, tag, bowlingStyle, statsKey], index) => {
+      const player = {
+        num: seededNumber(`wtc-${slug}-${name}`, 1, 99),
+        name,
+        nat,
+        tag,
+        role,
+        bowlingStyle: bowlingStyle || '',
+        testStats: WTC_TEST_STATS[name] || WTC_TEST_STATS[statsKey] || null,
+      };
+      player.bowlingStyle = bowlingStyleForPlayer(player);
+      player.stats = estimateStats(player, `wtc-${slug}`);
+      player.score = calcFormScore(player.role, player.stats);
+      player.detail = statLine(player);
+      squad[bucketForRole(role)].push(player);
+    });
+    return [slug, { ...data, squad }];
+  }));
+}
+
 async function fetchIplSquadModel() {
   IPL_USAGE_CACHE = {};
   if (loadCricsheetSquads()) return;
 
-  const cached = cacheGet('ipl_squad_model_v9');
+  const cached = cacheGet('ipl_squad_model_v10');
   if (cached) {
     IPL_SQUAD_SOURCE = cached.source || IPL_SQUAD_SOURCE;
     IPL_SQUADS = cached.squads || buildFallbackSquads();
+    Object.values(IPL_SQUADS || {}).forEach(squad => {
+      Object.values(squad || {}).flat().forEach(player => {
+        player.bowlingStyle = bowlingStyleForPlayer(player);
+      });
+    });
     return;
   }
 
@@ -2104,7 +2432,10 @@ async function fetchIplSquadModel() {
           nat: p.country || '',
           tag: /overseas/i.test(p.country || '') ? 'OV' : '',
           role,
+          battingStyle: p.battingStyle || p.batting_style || '',
+          bowlingStyle: p.bowlingStyle || p.bowling_style || '',
         };
+        player.bowlingStyle = bowlingStyleForPlayer(player);
         player.stats = estimateStats(player, slug);
         player.score = calcFormScore(player.role, player.stats);
         player.detail = statLine(player);
@@ -2136,7 +2467,7 @@ async function fetchIplSquadModel() {
 
   IPL_SQUADS = squads;
   IPL_SQUAD_SOURCE = source;
-  cacheSet('ipl_squad_model_v9', { squads, source });
+  cacheSet('ipl_squad_model_v10', { squads, source });
 }
 
 function flag(code, label, round = false) {
@@ -2512,12 +2843,15 @@ function cricsheetStandingsRows() {
 function renderTeamGrid(target, teams, mode) {
   document.getElementById(target).innerHTML = teams.map(team => `
     ${(() => {
-      const slug = mode === 'ipl' ? slugForTeam(team) : null;
+      const slug = mode === 'ipl' ? slugForTeam(team) : (team.flag || team.abbr || '').toLowerCase();
       const selected = currentRoute().detail === slug;
       const [teamColor, teamColor2] = teamTheme(slug);
-      return mode === 'ipl'
-        ? `<a class="card team-card ${selected ? 'is-selected' : ''}" id="team-card-${slug}" href="${selected ? '#ipl' : `#ipl/${slug}`}" style="--team-color:${teamColor};--team-color-2:${teamColor2}">`
-        : '<div class="card team-card">';
+      if (mode === 'ipl') {
+        return `<a class="card team-card ipl-team-card ${selected ? 'is-selected' : ''}" id="team-card-${slug}" href="${selected ? '#ipl' : `#ipl/${slug}`}" style="--team-color:${teamColor};--team-color-2:${teamColor2}">`;
+      }
+      return TEST_SQUAD_SLUGS.includes(slug)
+        ? `<a class="card team-card team-card-test test-team-card ${selected ? 'is-selected' : ''}" id="test-team-card-${slug}" href="${selected ? '#test' : `#test/${slug}`}" style="--team-color:${teamColor};--team-color-2:${teamColor2}">`
+        : `<div class="card team-card team-card-test" style="--team-color:${teamColor};--team-color-2:${teamColor2}">`;
     })()}
       <div class="stripe">
         ${flag(team.flag || team.abbr.toLowerCase(), team.abbr)}
@@ -2530,9 +2864,9 @@ function renderTeamGrid(target, teams, mode) {
           <span style="color:${(mode === 'ipl' ? team.pos <= 4 : team.pos <= 2) ? 'var(--green-soft)' : 'var(--ink-mute)'}">${mode === 'ipl' ? (team.pos <= 4 ? 'UP' : 'WATCH') : (team.pos <= 2 ? 'FINAL' : 'CHASE')}</span>
         </div>
       </div>
-    ${mode === 'ipl' ? '</a>' : '</div>'}
+    ${mode === 'ipl' || TEST_SQUAD_SLUGS.includes((team.flag || team.abbr).toLowerCase()) ? '</a>' : '</div>'}
     ${mode === 'ipl' ? `
-      <div class="team-detail ${currentRoute().detail === slugForTeam(team) ? 'active' : ''}" id="team-detail-${slugForTeam(team)}">
+      <div class="team-detail ipl-team-detail ${currentRoute().detail === slugForTeam(team) ? 'active' : ''}" id="team-detail-${slugForTeam(team)}">
         <div class="card pad">
           <div class="section-head" style="margin-top:0">
             <div><div class="eyebrow">${team.full}</div><h2>Squad Form Board</h2></div>
@@ -3154,7 +3488,7 @@ function statTier(metric, value, benchmarks = null) {
   if (value === null || value === undefined || Number.isNaN(value)) return '';
   const v = Number(value);
   const benchmark = benchmarks?.[metric];
-  if (benchmark?.good !== null && benchmark?.elite !== null) {
+  if (Number.isFinite(benchmark?.good) && Number.isFinite(benchmark?.elite)) {
     if (benchmark.lowerIsBetter) {
       if (v <= benchmark.elite) return 'stat-elite';
       if (v <= benchmark.good) return 'stat-good';
@@ -3227,6 +3561,133 @@ function fieldStats(profile, benchmarks) {
   return `<div class="stat-strip field-strip">${items.map(([label, value]) => statChip(label, value, 'field', 0, false, benchmarks)).join('')}</div>`;
 }
 
+function emptyTestStats() {
+  return {
+    matches: 0,
+    bat: { inns: 0, runs: 0, balls: 0, avg: 0, sr: 0, hundreds: 0, fifties: 0, high: 0 },
+    bowl: { balls: 0, runs: 0, wickets: 0, avg: 0, econ: 0, sr: 0, fiveWickets: 0 },
+    field: { catches: 0, stumpings: 0, runouts: 0 },
+  };
+}
+
+function testStatsFor(player, period = 'career') {
+  return player.testStats?.[period] || emptyTestStats();
+}
+
+function testSkillScore(player, mode, period = 'career') {
+  const stats = testStatsFor(player, period);
+  if (mode === 'bat') {
+    if (!stats.bat.inns && !stats.bat.runs) return null;
+    return Math.round(Math.min(98,
+      scaledScore(stats.bat.runs, 150, 5000, 32) +
+      scaledScore(stats.bat.avg, 18, 52, 42) +
+      scaledScore(stats.bat.hundreds, 0, 12, 16) +
+      scaledScore(stats.bat.sr, 35, 65, 8)
+    ));
+  }
+  if (!stats.bowl.balls && !stats.bowl.wickets) return null;
+  return Math.round(Math.min(98,
+    scaledScore(stats.bowl.wickets, 10, 220, 32) +
+    scaledScore(55 - (stats.bowl.avg || 55), 0, 32, 38) +
+    scaledScore(95 - (stats.bowl.sr || 95), 0, 48, 18) +
+    scaledScore(stats.bowl.fiveWickets, 0, 12, 10)
+  ));
+}
+
+function hasTestSkillSample(player, mode, period = 'career') {
+  const stats = testStatsFor(player, period);
+  return mode === 'bat'
+    ? stats.bat.inns > 0 || stats.bat.runs > 0
+    : stats.bowl.balls > 0 || stats.bowl.wickets > 0;
+}
+
+function testStatStrip(player, mode, period = 'career') {
+  const stats = testStatsFor(player, period);
+  if (mode === 'bat') {
+    return [
+      statChip('Tests', stats.matches, 'field'),
+      statChip('Runs', stats.bat.runs, 'runs'),
+      statChip('Avg', stats.bat.avg, 'avg', 1),
+      statChip('100s', stats.bat.hundreds, 'field'),
+    ].join('');
+  }
+  return [
+    statChip('Tests', stats.matches, 'field'),
+    statChip('Wkts', stats.bowl.wickets, 'wickets'),
+    statChip('Avg', stats.bowl.avg, 'bowlAvg', 1),
+    statChip('5W', stats.bowl.fiveWickets, 'field'),
+  ].join('');
+}
+
+function testCycleDelta(player, mode) {
+  const career = testStatsFor(player, 'career');
+  const cycle = testStatsFor(player, 'cycle');
+  if (cycle.matches <= 0) {
+    return `<div class="career-delta"><span>No WTC 2025-27 sample yet</span></div>`;
+  }
+  if (mode === 'bat') {
+    if (!career.bat.inns || !cycle.bat.inns) return `<div class="career-delta"><span>No comparable batting sample</span></div>`;
+    return `<div class="career-delta">
+      <span>Vs Test career</span>
+      <div class="delta-row">
+        ${deltaChip('AVG', (cycle.bat.avg || 0) - (career.bat.avg || 0), 1, false, 3)}
+        ${deltaChip('SR', (cycle.bat.sr || 0) - (career.bat.sr || 0), 0, false, 6)}
+      </div>
+    </div>`;
+  }
+  if (!career.bowl.wickets || !cycle.bowl.wickets) return `<div class="career-delta"><span>No comparable bowling sample</span></div>`;
+  return `<div class="career-delta">
+    <span>Vs Test career</span>
+    <div class="delta-row">
+      ${deltaChip('AVG', (cycle.bowl.avg || 0) - (career.bowl.avg || 0), 1, true, 4)}
+      ${deltaChip('SR', (cycle.bowl.sr || 0) - (career.bowl.sr || 0), 0, true, 8)}
+    </div>
+  </div>`;
+}
+
+function testCycleChip(player) {
+  const matches = testStatsFor(player, 'cycle').matches || 0;
+  return matches ? `<span class="player-cycle-chip">${matches} WTC</span>` : '';
+}
+
+function renderTestPlayerCardFace(p, mode, isBack = false) {
+  const hasStats = hasTestSkillSample(p, mode, 'career');
+  const hasReverseStats = hasTestSkillSample(p, oppositeSkillMode(mode), 'career');
+  const reverseTier = hasReverseStats ? formTier(testSkillScore(p, oppositeSkillMode(mode), 'career')) : '';
+  const score = hasStats ? testSkillScore(p, mode, 'career') : null;
+  const tier = formTier(score);
+  const stats = testStatsFor(p, 'career');
+  const statHtml = hasStats ? testStatStrip(p, mode, 'career') : `<div class="no-skill-stats">NO TEST CAREER ${mode === 'bat' ? 'BATTING' : 'BOWLING'} SAMPLE</div>`;
+  return `<div class="player-card-face ${isBack ? 'player-card-back' : 'player-card-front'} face-${tier}${hasReverseStats ? ` has-reverse-stats reverse-${reverseTier}` : ''}">
+    <div class="player-num">${p.num}</div>
+    <div class="player-body">
+      <div class="player-name">${p.name}</div>
+      <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
+      <div class="player-meta">${stats.matches} Tests${testCycleChip(p)}${p.tag ? ` · ${p.tag}` : ''}</div>
+      ${playerTypeTags(p)}
+      <div class="skill-grid skill-grid-single">
+        <div class="skill-pill ${skillClass(score)}"><span>${mode === 'bat' ? 'Bat' : 'Bowl'}</span><strong>${scoreText(score)}</strong></div>
+      </div>
+      <div class="stat-strip">${statHtml}</div>
+      ${testCycleDelta(p, mode)}
+      <span class="form-score ${tier}">TEST</span>
+      <span class="flip-hint">${isBack ? 'Front: ' : 'Back: '}${oppositeSkillMode(mode) === 'bat' ? 'batting' : 'bowling'}</span>
+    </div>
+  </div>`;
+}
+
+function renderTestPlayerCard(p, mode) {
+  const score = testSkillScore(p, mode, 'career');
+  const tier = formTier(score);
+  const backMode = oppositeSkillMode(mode);
+  return `<button class="player-card card-${tier}" type="button" aria-pressed="false" aria-label="${p.name}: flip card to compare Test career with WTC 2025-27">
+    <div class="player-card-inner">
+      ${renderTestPlayerCardFace(p, mode)}
+      ${renderTestPlayerCardFace(p, backMode, true)}
+    </div>
+  </button>`;
+}
+
 function hasSkillSample(player, mode) {
   const profile = playerProfile(player);
   const isEstimated = !['cricbuzz', 'cricsheet'].includes(player.stats?.source);
@@ -3247,8 +3708,8 @@ function oppositeSkillMode(mode) {
   return mode === 'bat' ? 'bowl' : 'bat';
 }
 
-function bindSquadTabs(slug) {
-  const root = document.getElementById(`squad-content-${slug}`);
+function bindSquadTabs(slug, prefix = 'squad-content') {
+  const root = document.getElementById(`${prefix}-${slug}`);
   if (!root) return;
   const buttons = root.querySelectorAll('.squad-tab-btn');
   const panels = root.querySelectorAll('.squad-panel');
@@ -3285,6 +3746,8 @@ function bindPlayerCards(root) {
 function renderPlayerCardFace(p, mode, benchmarks, slug, isBack = false) {
   const profile = playerProfile(p);
   const hasStats = !isBack || hasSeasonSkillStats(profile, mode);
+  const hasReverseStats = hasSeasonSkillStats(profile, oppositeSkillMode(mode));
+  const reverseTier = hasReverseStats ? formTier(skillScore(p, oppositeSkillMode(mode))) : '';
   const score = hasStats ? skillScore(p, mode) : null;
   const tier = formTier(score);
   const source = ['cricbuzz', 'cricsheet'].includes(p.stats?.source) ? 'LIVE' : 'EST';
@@ -3293,12 +3756,13 @@ function renderPlayerCardFace(p, mode, benchmarks, slug, isBack = false) {
   const statHtml = hasStats
     ? (mode === 'bat' ? battingStats(profile, benchmarks) : bowlingStats(profile, benchmarks))
     : `<div class="no-skill-stats">NO ${mode === 'bat' ? 'BATTING' : 'BOWLING'} STATS THIS SEASON</div>`;
-  return `<div class="player-card-face ${isBack ? 'player-card-back' : 'player-card-front'} face-${tier}">
+  return `<div class="player-card-face ${isBack ? 'player-card-back' : 'player-card-front'} face-${tier}${hasReverseStats ? ` has-reverse-stats reverse-${reverseTier}` : ''}">
     <div class="player-num">${p.num}</div>
     <div class="player-body">
       <div class="player-name">${p.name}</div>
       <div class="player-nat">${p.nat ? flag(p.nat.toLowerCase(), p.nat) : ''}</div>
       <div class="player-meta">${apps} matches${usage ? ` · ${usage}` : ''}${p.tag ? ` · ${p.tag}` : ''}</div>
+      ${playerTypeTags(p)}
       ${hasStats && mode === 'bat' ? battingPositionUsage(profile) : ''}
       ${hasStats && mode === 'bowl' ? bowlerPhaseUsage(profile) : ''}
       <div class="skill-grid skill-grid-single">
@@ -3362,9 +3826,71 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
   bindSquadTabs(slug);
 }
 
+function renderSquadBoardHtml({ slug, name, note, squad, source }) {
+  const players = Object.values(squad).flat();
+  const sortBySkill = mode => players
+    .filter(player => hasTestSkillSample(player, mode, 'career') || roleCode(player.role) === (mode === 'bat' ? 'bat' : 'bowl') || (mode === 'bat' && roleCode(player.role) === 'wk') || roleCode(player.role) === 'ar')
+    .sort((a, b) => (testSkillScore(b, mode, 'career') || -1) - (testSkillScore(a, mode, 'career') || -1)
+      || a.name.localeCompare(b.name));
+  const views = [
+    ['bat', 'Batting', 'Batters', 'dot-bat'],
+    ['bowl', 'Bowling', 'Bowlers', 'dot-bowl'],
+  ];
+  return `
+    <div class="team-detail test-team-detail ${currentRoute().detail === slug ? 'active' : ''}" id="test-team-detail-${slug}">
+      <div class="card pad">
+        <div class="section-head" style="margin-top:0">
+          <div><div class="eyebrow">${name}</div><h2>Test Squad Board</h2></div>
+          <div class="section-note">${note} ${source}</div>
+        </div>
+        <div id="test-squad-content-${slug}">
+          <div class="squad-tabs" role="tablist" aria-label="${name} Test squad stat view">
+            ${views.map(([mode, label], index) => `<button class="squad-tab-btn ${index === 0 ? 'active' : ''}" type="button" role="tab" aria-selected="${index === 0 ? 'true' : 'false'}" data-squad-tab="${mode}">${label}</button>`).join('')}
+          </div>
+          <div class="squad-views">
+          ${views.map(([mode, , title, dot], index) => `
+          <section class="squad-view squad-panel ${index === 0 ? 'active' : ''}" data-squad-panel="${mode}" role="tabpanel">
+            <div class="squad-view-head">
+              <div class="role-title"><span class="role-dot ${dot}"></span>${title}</div>
+            </div>
+            <div class="players-grid">
+              ${sortBySkill(mode).map(p => renderTestPlayerCard(p, mode)).join('')}
+            </div>
+          </section>
+        `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderWtcSquadBoards() {
+  const root = document.getElementById('test-squad-boards');
+  if (!root) return;
+  const squads = buildWtcSquads();
+  root.innerHTML = `
+    <div class="section-head">
+      <div><div class="eyebrow" style="color:var(--gold-deep)">Test Squad Boards</div><h2>All WTC Teams</h2></div>
+      <div class="section-note">Pakistan and Bangladesh use the announced next-Test squads. Other teams use their latest men's Test XI from Cricsheet. Test career and WTC-cycle stats are calculated from Cricsheet Test JSON.</div>
+    </div>
+    <div class="squad-views">
+      ${TEST_SQUAD_SLUGS.map(slug => renderSquadBoardHtml({
+        slug,
+        name: squads[slug].name,
+        note: squads[slug].note,
+        squad: squads[slug].squad,
+        source: '',
+      })).join('')}
+    </div>
+  `;
+  TEST_SQUAD_SLUGS.forEach(slug => bindSquadTabs(slug, 'test-squad-content'));
+  updateTestTeamDetail(currentRoute().detail, false);
+}
+
 function initStaticViews() {
   document.getElementById('test-standings-table').innerHTML = renderStandingsTable(testTeams, 'test');
   renderTeamGrid('test-team-grid', testTeams, 'test');
+  renderWtcSquadBoards();
   renderFixtures('test-fixtures', wtcFixtureFallback);
   renderFixtures('test-results', wtcResultsFallback);
   renderFixtures('ipl-fixtures', upcomingIplFixtures(iplFixtures));
