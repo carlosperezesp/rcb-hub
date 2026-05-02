@@ -1357,7 +1357,7 @@
 
     <div class="section-head">
       <div><div class="eyebrow" style="color:var(--gold-deep)">League Leaders</div><h2>Global Player Rankings</h2></div>
-      <div class="section-note">Top 10 across every franchise: batters by runs, bowlers by wickets, with season score as context.</div>
+      <div class="section-note">Top 10 across every franchise: volume leaders by runs/wickets plus form leaders by batting and bowling score.</div>
     </div>
     <div class="leaderboard-grid" id="ipl-global-rankings">
       <div class="loading">Loading player rankings...</div>
@@ -1405,6 +1405,7 @@
 const API_KEY = '081aca27-a3d0-4ce7-aded-a1f73624ce37';
 const BASE = 'https://api.cricapi.com/v1';
 const CACHE_TTL = 24 * 60 * 60 * 1000;
+const IPL_FIXTURE_CACHE_TTL = 15 * 60 * 1000;
 const IPL_SERIES_ID = 'd5a498c8-7596-4b93-8ab0-e0efc3345312';
 const CRICBUZZ_HOST = 'cricbuzz-cricket.p.rapidapi.com';
 const CRICBUZZ_BASE = `https://${CRICBUZZ_HOST}`;
@@ -1679,10 +1680,33 @@ const iplFallback = [
 ];
 
 const iplFixtures = [
-  { date:'28', mo:'Apr', t:'19:30', sourceTz:'Asia/Kolkata', a:'Punjab Kings', aa:'PBKS', af:'pbks', b:'Rajasthan Royals', ba:'RR', bf:'rr', venue:'Maharaja Yadavindra Singh Stadium, Mullanpur' },
-  { date:'29', mo:'Apr', t:'19:30', sourceTz:'Asia/Kolkata', a:'Mumbai Indians', aa:'MI', af:'mi', b:'Sunrisers Hyderabad', ba:'SRH', bf:'srh', venue:'Wankhede Stadium, Mumbai' },
-  { date:'30', mo:'Apr', t:'19:30', sourceTz:'Asia/Kolkata', a:'Gujarat Titans', aa:'GT', af:'gt', b:'Royal Challengers Bengaluru', ba:'RCB', bf:'rcb', venue:'Narendra Modi Stadium, Ahmedabad' },
-  { date:'01', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Rajasthan Royals', aa:'RR', af:'rr', b:'Delhi Capitals', ba:'DC', bf:'dc', venue:'Sawai Mansingh Stadium, Jaipur' },
+  { date:'02', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Chennai Super Kings', aa:'CSK', af:'csk', b:'Mumbai Indians', ba:'MI', bf:'mi', venue:'M. A. Chidambaram Stadium, Chennai' },
+  { date:'03', mo:'May', t:'15:30', sourceTz:'Asia/Kolkata', a:'Sunrisers Hyderabad', aa:'SRH', af:'srh', b:'Kolkata Knight Riders', ba:'KKR', bf:'kkr', venue:'Rajiv Gandhi Intl. Cricket Stadium, Hyderabad' },
+  { date:'03', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Gujarat Titans', aa:'GT', af:'gt', b:'Punjab Kings', ba:'PBKS', bf:'pbks', venue:'Narendra Modi Stadium, Ahmedabad' },
+  { date:'04', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Mumbai Indians', aa:'MI', af:'mi', b:'Lucknow Super Giants', ba:'LSG', bf:'lsg', venue:'Wankhede Stadium, Mumbai' },
+  { date:'05', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Delhi Capitals', aa:'DC', af:'dc', b:'Chennai Super Kings', ba:'CSK', bf:'csk', venue:'Arun Jaitley Stadium, Delhi' },
+  { date:'06', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Sunrisers Hyderabad', aa:'SRH', af:'srh', b:'Punjab Kings', ba:'PBKS', bf:'pbks', venue:'Rajiv Gandhi Intl. Cricket Stadium, Hyderabad' },
+  { date:'07', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Lucknow Super Giants', aa:'LSG', af:'lsg', b:'Royal Challengers Bengaluru', ba:'RCB', bf:'rcb', venue:'BRSABV Ekana Cricket Stadium, Lucknow' },
+  { date:'08', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Delhi Capitals', aa:'DC', af:'dc', b:'Kolkata Knight Riders', ba:'KKR', bf:'kkr', venue:'Arun Jaitley Stadium, Delhi' },
+  { date:'09', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Rajasthan Royals', aa:'RR', af:'rr', b:'Gujarat Titans', ba:'GT', bf:'gt', venue:'Sawai Mansingh Stadium, Jaipur' },
+  { date:'10', mo:'May', t:'15:30', sourceTz:'Asia/Kolkata', a:'Chennai Super Kings', aa:'CSK', af:'csk', b:'Lucknow Super Giants', ba:'LSG', bf:'lsg', venue:'M. A. Chidambaram Stadium, Chennai' },
+  { date:'10', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Royal Challengers Bengaluru', aa:'RCB', af:'rcb', b:'Mumbai Indians', ba:'MI', bf:'mi', venue:'Shaheed Veer Narayan Singh Intl. Cricket Stadium, Raipur' },
+  { date:'11', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Punjab Kings', aa:'PBKS', af:'pbks', b:'Delhi Capitals', ba:'DC', bf:'dc', venue:'HPCA Stadium, Dharamshala' },
+  { date:'12', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Gujarat Titans', aa:'GT', af:'gt', b:'Sunrisers Hyderabad', ba:'SRH', bf:'srh', venue:'Narendra Modi Stadium, Ahmedabad' },
+  { date:'13', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Royal Challengers Bengaluru', aa:'RCB', af:'rcb', b:'Kolkata Knight Riders', ba:'KKR', bf:'kkr', venue:'Shaheed Veer Narayan Singh Intl. Cricket Stadium, Raipur' },
+  { date:'14', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Punjab Kings', aa:'PBKS', af:'pbks', b:'Mumbai Indians', ba:'MI', bf:'mi', venue:'HPCA Stadium, Dharamshala' },
+  { date:'15', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Lucknow Super Giants', aa:'LSG', af:'lsg', b:'Chennai Super Kings', ba:'CSK', bf:'csk', venue:'BRSABV Ekana Cricket Stadium, Lucknow' },
+  { date:'16', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Kolkata Knight Riders', aa:'KKR', af:'kkr', b:'Gujarat Titans', ba:'GT', bf:'gt', venue:'Eden Gardens, Kolkata' },
+  { date:'17', mo:'May', t:'15:30', sourceTz:'Asia/Kolkata', a:'Delhi Capitals', aa:'DC', af:'dc', b:'Rajasthan Royals', ba:'RR', bf:'rr', venue:'Arun Jaitley Stadium, Delhi' },
+  { date:'17', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Punjab Kings', aa:'PBKS', af:'pbks', b:'Royal Challengers Bengaluru', ba:'RCB', bf:'rcb', venue:'HPCA Stadium, Dharamshala' },
+  { date:'18', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Chennai Super Kings', aa:'CSK', af:'csk', b:'Sunrisers Hyderabad', ba:'SRH', bf:'srh', venue:'M. A. Chidambaram Stadium, Chennai' },
+  { date:'19', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Rajasthan Royals', aa:'RR', af:'rr', b:'Lucknow Super Giants', ba:'LSG', bf:'lsg', venue:'Sawai Mansingh Stadium, Jaipur' },
+  { date:'20', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Kolkata Knight Riders', aa:'KKR', af:'kkr', b:'Mumbai Indians', ba:'MI', bf:'mi', venue:'Eden Gardens, Kolkata' },
+  { date:'21', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Chennai Super Kings', aa:'CSK', af:'csk', b:'Gujarat Titans', ba:'GT', bf:'gt', venue:'M. A. Chidambaram Stadium, Chennai' },
+  { date:'22', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Sunrisers Hyderabad', aa:'SRH', af:'srh', b:'Royal Challengers Bengaluru', ba:'RCB', bf:'rcb', venue:'Rajiv Gandhi Intl. Cricket Stadium, Hyderabad' },
+  { date:'23', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Lucknow Super Giants', aa:'LSG', af:'lsg', b:'Punjab Kings', ba:'PBKS', bf:'pbks', venue:'BRSABV Ekana Cricket Stadium, Lucknow' },
+  { date:'24', mo:'May', t:'15:30', sourceTz:'Asia/Kolkata', a:'Mumbai Indians', aa:'MI', af:'mi', b:'Rajasthan Royals', ba:'RR', bf:'rr', venue:'Wankhede Stadium, Mumbai' },
+  { date:'24', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Kolkata Knight Riders', aa:'KKR', af:'kkr', b:'Delhi Capitals', ba:'DC', bf:'dc', venue:'Eden Gardens, Kolkata' },
 ];
 
 const IPL_SLUGS = ['gt', 'rcb', 'mi', 'kkr', 'srh', 'csk', 'rr', 'pbks', 'dc', 'lsg'];
@@ -2968,7 +2992,30 @@ function formatIplFixture(matchInfo) {
     venue: shortVenueName([matchInfo.venueInfo?.ground, matchInfo.venueInfo?.city].filter(Boolean).join(', ')),
     start: Number(matchInfo.startDate),
     sourceTz: 'Asia/Kolkata',
+    tag: iplMatchTag(matchInfo),
+    score: iplMatchScore(matchInfo),
+    result: matchInfo.status || '',
   };
+}
+
+function iplMatchTag(matchInfo = {}) {
+  const state = String(matchInfo.state || matchInfo.status || '').toLowerCase();
+  if (/live|in progress|innings|stumps/.test(state)) return 'Live';
+  if (/complete|result|won|draw|abandon|no result/.test(state)) return 'Result';
+  return matchInfo.matchDesc || matchInfo.matchNumber ? (matchInfo.matchDesc || `Match ${matchInfo.matchNumber}`) : '';
+}
+
+function iplMatchScore(matchInfo = {}) {
+  const scores = [matchInfo.team1Score, matchInfo.team2Score]
+    .map(score => {
+      const inngs = score?.inngs1 || score?.inngs2 || score;
+      if (!inngs || inngs.runs === undefined) return '';
+      const wkts = inngs.wickets === undefined ? '' : `/${inngs.wickets}`;
+      const overs = inngs.overs ? ` (${inngs.overs})` : '';
+      return `${inngs.runs}${wkts}${overs}`;
+    })
+    .filter(Boolean);
+  return scores.join(' · ');
 }
 
 function monthIndex(month) {
@@ -2989,7 +3036,19 @@ function fixtureStartMs(fixture) {
 
 function isUpcomingFixture(fixture) {
   const start = fixtureStartMs(fixture);
-  return !start || start >= Date.now() - (6 * 60 * 60 * 1000);
+  if (!start) return true;
+  return start >= startOfTodayIstMs();
+}
+
+function startOfTodayIstMs() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date());
+  const part = type => parts.find(item => item.type === type)?.value || '0';
+  return Date.UTC(Number(part('year')), Number(part('month')) - 1, Number(part('day'))) - (5.5 * 60 * 60 * 1000);
 }
 
 function upcomingIplFixtures(fixtures) {
@@ -2999,24 +3058,51 @@ function upcomingIplFixtures(fixtures) {
     .slice(0, 6);
 }
 
+function cricbuzzMatchInfos(data) {
+  return (data?.matchDetails || [])
+    .flatMap(day => day.matchDetailsMap?.match || day.seriesAdWrapper?.matches || [])
+    .map(match => match.matchInfo)
+    .filter(Boolean);
+}
+
+async function fetchCricbuzzIplCalendar(path, earliest) {
+  const data = await cricbuzzFetch(path);
+  return cricbuzzMatchInfos(data)
+    .filter(info => {
+      const seriesName = String(info.seriesName || '');
+      return (
+        info.startDate &&
+        Number(info.startDate) >= earliest &&
+        (info.seriesId === CRICBUZZ_IPL_SERIES_ID || /indian premier league|ipl 2026/i.test(seriesName))
+      );
+    })
+    .map(formatIplFixture);
+}
+
+function uniqueFixtures(fixtures) {
+  const seen = new Set();
+  return fixtures.filter(fixture => {
+    const key = [fixture.start || fixtureStartMs(fixture), fixture.aa || fixture.a, fixture.ba || fixture.b].join('|');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 async function fetchIplFixtures() {
-  const cached = cacheGet('global_ipl_fixtures_v4');
+  const cached = cacheGet('global_ipl_fixtures_v5', IPL_FIXTURE_CACHE_TTL);
   if (cached) {
     const current = upcomingIplFixtures(cached);
     if (current.length) return current;
   }
   try {
-    const data = await cricbuzzFetch(`series/v1/${CRICBUZZ_IPL_SERIES_ID}`);
-    const now = Date.now() - (6 * 60 * 60 * 1000);
-    const fixtures = (data.matchDetails || [])
-      .flatMap(day => day.matchDetailsMap?.match || [])
-      .map(match => match.matchInfo)
-      .filter(info => info?.startDate && Number(info.startDate) >= now)
-      .sort((a, b) => Number(a.startDate) - Number(b.startDate))
-      .slice(0, 6)
-      .map(formatIplFixture);
+    const earliest = startOfTodayIstMs();
+    const live = await fetchCricbuzzIplCalendar('matches/v1/live', earliest).catch(() => []);
+    const recent = await fetchCricbuzzIplCalendar('matches/v1/recent', earliest).catch(() => []);
+    const series = await fetchCricbuzzIplCalendar(`series/v1/${CRICBUZZ_IPL_SERIES_ID}`, earliest).catch(() => []);
+    const fixtures = upcomingIplFixtures(uniqueFixtures([...live, ...recent, ...series, ...iplFixtures]));
     if (fixtures.length) {
-      cacheSet('global_ipl_fixtures_v4', fixtures);
+      cacheSet('global_ipl_fixtures_v5', fixtures);
       return fixtures;
     }
   } catch(e) {}
@@ -3258,12 +3344,24 @@ function topPlayerLeaders() {
   return { bat, bowl };
 }
 
-function rankedLeaguePlayers(mode, limit = 10) {
+function rankedLeaguePlayers(mode, limit = 10, metric = 'volume') {
   const players = leaguePlayers();
   const qualified = players.filter(player => hasLeaderboardSample(player, mode));
   const pool = qualified.length >= limit ? qualified : players.filter(player => hasSkillSample(player, mode));
   return pool
     .sort((a, b) => {
+      if (metric === 'score') {
+        const scoreDiff = (skillScore(b, mode) || -1) - (skillScore(a, mode) || -1);
+        if (scoreDiff) return scoreDiff;
+        if (mode === 'bat') {
+          return (b.profile.bat.runs || 0) - (a.profile.bat.runs || 0)
+            || (b.profile.bat.sr || 0) - (a.profile.bat.sr || 0)
+            || a.name.localeCompare(b.name);
+        }
+        return (b.profile.bowl.wickets || 0) - (a.profile.bowl.wickets || 0)
+          || (a.profile.bowl.econ || 99) - (b.profile.bowl.econ || 99)
+          || a.name.localeCompare(b.name);
+      }
       if (mode === 'bat') {
         const runDiff = (b.profile.bat.runs || 0) - (a.profile.bat.runs || 0);
         if (runDiff) return runDiff;
@@ -3293,8 +3391,23 @@ function hasLeaderboardSample(player, mode) {
   return (profile.bowl?.balls || 0) >= 48 || (profile.bowl?.wickets || 0) >= 5 || (profile.apps || player.matches || 0) >= 4;
 }
 
-function leaderValue(player, mode) {
+function leaderValue(player, mode, metric = 'volume') {
   const profile = player.profile || playerProfile(player);
+  const score = skillScore(player, mode);
+  if (metric === 'score') {
+    if (mode === 'bat') {
+      return {
+        primary: scoreText(score),
+        label: 'Bat score',
+        detail: `${profile.bat?.runs || 0} runs · SR ${fmt(profile.bat?.sr || 0, 0)} · Avg ${fmt(profile.bat?.avg || 0, 1)}`,
+      };
+    }
+    return {
+      primary: scoreText(score),
+      label: 'Bowl score',
+      detail: `${profile.bowl?.wickets || 0} wkts · Econ ${fmt(profile.bowl?.econ || 0, 1)} · ${fmt(profile.bowl?.wkts_per_match || 0, 1)} w/m`,
+    };
+  }
   if (mode === 'bat') {
     return {
       primary: profile.bat?.runs || 0,
@@ -3309,8 +3422,8 @@ function leaderValue(player, mode) {
   };
 }
 
-function renderLeaderboardCard(title, mode, dotClass) {
-  const rows = rankedLeaguePlayers(mode, 10);
+function renderLeaderboardCard(title, mode, dotClass, metric = 'volume') {
+  const rows = rankedLeaguePlayers(mode, 10, metric);
   return `
     <div class="card leaderboard">
       <div class="leaderboard-head">
@@ -3318,7 +3431,7 @@ function renderLeaderboardCard(title, mode, dotClass) {
         <span class="role-dot ${dotClass}"></span>
       </div>
       ${rows.map((player, index) => {
-        const value = leaderValue(player, mode);
+        const value = leaderValue(player, mode, metric);
         const score = skillScore(player, mode);
         return `
           <div class="leader-row">
@@ -3333,7 +3446,7 @@ function renderLeaderboardCard(title, mode, dotClass) {
             </div>
             <div class="leader-value">
               <strong>${value.primary}</strong>
-              <span>${value.label} · ${scoreText(score)}</span>
+              <span>${metric === 'score' ? value.label : `${value.label} · ${scoreText(score)}`}</span>
             </div>
           </div>
         `;
@@ -3346,8 +3459,10 @@ function renderGlobalRankings() {
   const el = document.getElementById('ipl-global-rankings');
   if (!el) return;
   el.innerHTML = `
-    ${renderLeaderboardCard('Top 10 Batters', 'bat', 'dot-bat')}
-    ${renderLeaderboardCard('Top 10 Bowlers', 'bowl', 'dot-bowl')}
+    ${renderLeaderboardCard('Top 10 Run Scorers', 'bat', 'dot-bat')}
+    ${renderLeaderboardCard('Top 10 Wicket Takers', 'bowl', 'dot-bowl')}
+    ${renderLeaderboardCard('Top 10 Batting Scores', 'bat', 'dot-bat', 'score')}
+    ${renderLeaderboardCard('Top 10 Bowling Scores', 'bowl', 'dot-bowl', 'score')}
   `;
 }
 
@@ -3926,10 +4041,16 @@ async function initIpl() {
   updateIplTeamDetail(currentRoute().detail, true);
 }
 
+async function refreshIplCalendar() {
+  renderFixtures('ipl-fixtures', await fetchIplFixtures());
+  renderFixtures('ipl-results', formatRecentResults());
+}
+
 initStaticViews();
 initWtc();
 setInterval(initWtc, 60 * 60 * 1000);
 initIpl();
+setInterval(refreshIplCalendar, 5 * 60 * 1000);
 switchTab(window.location.hash, false);
 </script>
 </body>
