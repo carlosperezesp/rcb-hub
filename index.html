@@ -1128,7 +1128,7 @@
     .brand-sub { display: none; }
     .header-badge { font-size: 9px; padding: 8px 9px; }
     #desktop-tabs { display: none; }
-    main { padding: 16px 10px 92px; }
+    main { padding: 16px 10px 132px; }
     .hero { grid-template-columns: 1fr; min-height: 0; padding: 22px; }
     .hero-strip { grid-template-columns: 1fr; }
     .score-card { align-self: stretch; }
@@ -1160,6 +1160,9 @@
       gap: 10px;
       padding: 14px;
     }
+    .ipl-player-card .player-card-face {
+      min-height: 0;
+    }
     .player-num {
       align-self: start;
       flex: 0 0 42px;
@@ -1168,6 +1171,12 @@
     }
     .player-name {
       overflow-wrap: anywhere;
+    }
+    .ipl-player-card .phase-usage,
+    .ipl-player-card .position-usage,
+    .ipl-player-card .career-delta,
+    .ipl-player-card .field-strip {
+      display: none;
     }
     .skill-grid {
       grid-template-columns: minmax(0, 116px);
@@ -1178,6 +1187,12 @@
     }
     .stat-chip {
       min-width: 0;
+    }
+    .squad-source-chip {
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      line-height: 1.35;
     }
     .fixture { grid-template-columns: 62px minmax(0, 1fr); }
     .fixture-info { grid-column: 2; text-align: left; }
@@ -1415,6 +1430,7 @@ const CRICBUZZ_WTC_SEASON_ID = 15;
 const CRICBUZZ_SCORECARD_LIMIT = 12;
 const CRICBUZZ_SEASON_STAT_TYPES = ['mostRuns', 'highestAvg', 'mostSixes', 'mostWickets', 'lowestEcon', 'lowestAvg'];
 let WTC_STANDINGS_SOURCE = 'Static WTC fallback table';
+let IPL_DATA_READY_PROMISE = null;
 
 function cacheSet(key, data) {
   try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch(e) {}
@@ -1472,6 +1488,28 @@ async function fetchJsonWithTimeout(url, options = {}) {
   } finally {
     clearTimeout(timeout);
   }
+}
+
+function getCricsheetIplStats() {
+  return window.CRICSHEET_IPL_STATS || globalThis.CRICSHEET_IPL_STATS || null;
+}
+
+async function ensureCricsheetIplStats() {
+  const current = getCricsheetIplStats();
+  if (current?.matches?.length || current?.standings?.length) return current;
+  if (!IPL_DATA_READY_PROMISE) {
+    IPL_DATA_READY_PROMISE = fetchJsonWithTimeout(`data/ipl-2026-season-stats.json?v=${Date.now()}`, { cache: 'no-store' })
+      .then(data => {
+        window.CRICSHEET_IPL_STATS = data;
+        globalThis.CRICSHEET_IPL_STATS = data;
+        return data;
+      })
+      .catch(error => {
+        console.warn('Cricsheet IPL JSON fallback failed:', error.message);
+        return getCricsheetIplStats();
+      });
+  }
+  return IPL_DATA_READY_PROMISE;
 }
 
 const TEST_SQUAD_SLUGS = ['aus', 'nz', 'rsa', 'sl', 'pak', 'ind', 'eng', 'ban', 'wi'];
@@ -1709,6 +1747,26 @@ const iplFixtures = [
   { date:'24', mo:'May', t:'19:30', sourceTz:'Asia/Kolkata', a:'Kolkata Knight Riders', aa:'KKR', af:'kkr', b:'Delhi Capitals', ba:'DC', bf:'dc', venue:'Eden Gardens, Kolkata' },
 ];
 
+const iplLatestResults = [
+  {
+    id: 'cricbuzz-151987',
+    date: '2026-05-02',
+    matchNumber: 44,
+    teams: ['Mumbai Indians', 'Chennai Super Kings'],
+    winner: 'Chennai Super Kings',
+    margin: { wickets: 8 },
+    scores: [
+      { team: 'Mumbai Indians', runs: 159, wickets: 7, balls: 120, overs: '20.0' },
+      { team: 'Chennai Super Kings', runs: 160, wickets: 2, balls: 109, overs: '18.1' },
+    ],
+    teamStats: {
+      'Mumbai Indians': { runsFor: 159, ballsFor: 120, runsAgainst: 160, ballsAgainst: 109 },
+      'Chennai Super Kings': { runsFor: 160, ballsFor: 109, runsAgainst: 159, ballsAgainst: 120 },
+    },
+    source: 'Cricbuzz result',
+  },
+];
+
 const IPL_SLUGS = ['gt', 'rcb', 'mi', 'kkr', 'srh', 'csk', 'rr', 'pbks', 'dc', 'lsg'];
 const IPL_TEAM_ALIASES = {
   gt: ['gt', 'gujarat titans'],
@@ -1763,7 +1821,7 @@ function normalizeLivePlayerScores(player) {
 }
 
 function loadCricsheetSquads() {
-  const data = window.CRICSHEET_IPL_STATS;
+  const data = getCricsheetIplStats();
   if (!data?.squads) return false;
   IPL_SQUADS = data.squads;
   Object.values(IPL_SQUADS).forEach(squad => {
@@ -2854,7 +2912,15 @@ function isIplTableBehindCurrentBaseline(rows = []) {
 }
 
 function cricsheetStandingsRows() {
-  const data = window.CRICSHEET_IPL_STATS || globalThis.CRICSHEET_IPL_STATS;
+  const data = getCricsheetIplStats();
+  const matches = iplMatchesWithLatestResults();
+  if (matches.length) {
+    const hasLatest = hasLatestIplResults(data?.matches || []);
+    IPL_STANDINGS_SOURCE = hasLatest
+      ? `${data?.source || 'Cricsheet'} + Cricbuzz latest result · ${matches.length} matches · updated ${latestIplResultDate(matches)}`
+      : `${data?.source || 'Cricsheet'} standings · ${matches.length} matches · updated ${latestIplResultDate(matches) || 'today'}`;
+    return calculateIplStandings(matches);
+  }
   if (!Array.isArray(data?.standings) || !data.standings.length) return null;
   IPL_STANDINGS_SOURCE = `${data.source} standings · ${data.matchesProcessed} matches · updated ${data.lastMatchDate || 'today'}`;
   return data.standings.map(row => ({
@@ -2862,6 +2928,79 @@ function cricsheetStandingsRows() {
     flag: row.flag || teamFlag(row.abbr),
     rcb: row.rcb || row.abbr?.toUpperCase() === 'RCB',
   }));
+}
+
+function latestIplResultDate(matches = []) {
+  return matches.map(match => match.date).filter(Boolean).sort().at(-1) || null;
+}
+
+function hasLatestIplResults(matches = []) {
+  const existing = new Set(matches.map(match => `${match.matchNumber || ''}|${String(match.teams || []).toLowerCase()}`));
+  return iplLatestResults.some(match => !existing.has(`${match.matchNumber || ''}|${String(match.teams || []).toLowerCase()}`));
+}
+
+function iplMatchesWithLatestResults() {
+  const dataMatches = getCricsheetIplStats()?.matches || [];
+  const seen = new Set(dataMatches.map(match => `${match.matchNumber || ''}|${String(match.teams || []).toLowerCase()}`));
+  const latest = iplLatestResults.filter(match => !seen.has(`${match.matchNumber || ''}|${String(match.teams || []).toLowerCase()}`));
+  return [...dataMatches, ...latest];
+}
+
+function calculateIplStandings(matches = []) {
+  const rows = Object.fromEntries(iplFallback.map(team => [team.full, {
+    abbr: team.abbr,
+    full: team.full,
+    flag: team.flag,
+    m: 0,
+    w: 0,
+    l: 0,
+    nr: 0,
+    pts: 0,
+    runsFor: 0,
+    ballsFor: 0,
+    runsAgainst: 0,
+    ballsAgainst: 0,
+    rcb: team.rcb || team.abbr === 'RCB',
+  }]));
+  matches.forEach(match => {
+    if (!match.teams || match.teams.length !== 2) return;
+    const [teamA, teamB] = match.teams;
+    const countsForNrr = !!match.winner || match.result === 'tie';
+    [teamA, teamB].forEach(team => {
+      if (!rows[team]) return;
+      rows[team].m += 1;
+      if (!countsForNrr) return;
+      const stats = match.teamStats?.[team];
+      if (stats) {
+        rows[team].runsFor += stats.runsFor || 0;
+        rows[team].ballsFor += stats.ballsFor || 0;
+        rows[team].runsAgainst += stats.runsAgainst || 0;
+        rows[team].ballsAgainst += stats.ballsAgainst || 0;
+      }
+    });
+    if (match.winner && rows[match.winner]) {
+      const loser = match.teams.find(team => team !== match.winner);
+      rows[match.winner].w += 1;
+      rows[match.winner].pts += 2;
+      if (rows[loser]) rows[loser].l += 1;
+    } else {
+      [teamA, teamB].forEach(team => {
+        if (rows[team]) {
+          rows[team].nr += 1;
+          rows[team].pts += 1;
+        }
+      });
+    }
+  });
+  return Object.values(rows)
+    .map(row => {
+      const forOvers = row.ballsFor / 6;
+      const againstOvers = row.ballsAgainst / 6;
+      const nrr = forOvers && againstOvers ? (row.runsFor / forOvers) - (row.runsAgainst / againstOvers) : 0;
+      return { ...row, nrr: Number(nrr.toFixed(3)) };
+    })
+    .sort((a, b) => (b.pts - a.pts) || (b.nrr - a.nrr) || (b.w - a.w) || a.full.localeCompare(b.full))
+    .map((row, index) => ({ ...row, pos: index + 1 }));
 }
 
 function renderTeamGrid(target, teams, mode) {
@@ -2921,7 +3060,12 @@ function fixtureDisplayDate(match) {
 }
 
 function renderFixtures(target, fixtures) {
-  document.getElementById(target).innerHTML = fixtures.map(m => {
+  const el = document.getElementById(target);
+  if (!fixtures?.length) {
+    el.innerHTML = `<div class="card pad"><p class="muted">No match data available yet.</p></div>`;
+    return;
+  }
+  el.innerHTML = fixtures.map(m => {
     const display = fixtureDisplayDate(m);
     return `
     <div class="card fixture">
@@ -3030,7 +3174,7 @@ function fixtureStartMs(fixture) {
   const month = monthIndex(fixture.mo);
   if (month === undefined) return null;
   const [hour = '0', minute = '0'] = String(fixture.t || '00:00').split(':');
-  const year = Number(window.CRICSHEET_IPL_STATS?.season) || new Date().getFullYear();
+  const year = Number(getCricsheetIplStats()?.season) || new Date().getFullYear();
   return Date.UTC(year, month, Number(fixture.date), Number(hour), Number(minute)) - (5.5 * 60 * 60 * 1000);
 }
 
@@ -3133,7 +3277,7 @@ function resultMarginText(match) {
 }
 
 function formatRecentResults() {
-  const matches = window.CRICSHEET_IPL_STATS?.matches || [];
+  const matches = iplMatchesWithLatestResults();
   return matches
     .filter(match => match.date && match.teams?.length === 2)
     .slice()
@@ -3162,6 +3306,7 @@ function formatRecentResults() {
 }
 
 async function fetchIplStandings() {
+  await ensureCricsheetIplStats();
   const cricsheetRows = cricsheetStandingsRows();
   if (cricsheetRows) return cricsheetRows;
 
@@ -3222,7 +3367,7 @@ function teamNameFromSlug(slug) {
 
 function teamUsageForSlug(slug) {
   if (IPL_USAGE_CACHE[slug]) return IPL_USAGE_CACHE[slug];
-  const data = window.CRICSHEET_IPL_STATS || globalThis.CRICSHEET_IPL_STATS;
+  const data = getCricsheetIplStats();
   const teamName = teamNameFromSlug(slug);
   const usage = { matches: 0, batBalls: 0, bowlBalls: 0 };
   (data?.matches || []).forEach(match => {
@@ -3896,7 +4041,7 @@ function renderPlayerCard(p, mode, benchmarks, slug) {
   const score = skillScore(p, mode);
   const tier = formTier(score);
   const backMode = oppositeSkillMode(mode);
-  return `<button class="player-card card-${tier}" type="button" aria-pressed="false" aria-label="${p.name}: flip card to view ${backMode === 'bat' ? 'batting' : 'bowling'} stats">
+  return `<button class="player-card ipl-player-card card-${tier}" type="button" aria-pressed="false" aria-label="${p.name}: flip card to view ${backMode === 'bat' ? 'batting' : 'bowling'} stats">
     <div class="player-card-inner">
       ${renderPlayerCardFace(p, mode, benchmarks, slug)}
       ${renderPlayerCardFace(p, backMode, benchmarks, slug, true)}
@@ -3921,7 +4066,7 @@ function renderSquadContent(slug = currentRoute().detail || 'rcb') {
     ['bowl', 'Bowling', 'Bowlers', 'dot-bowl'],
   ];
   el.innerHTML = `
-    <div class="chip chip-soft" style="margin-bottom:14px">${IPL_SQUAD_SOURCE} · cached 24h</div>
+    <div class="chip chip-soft squad-source-chip" style="margin-bottom:14px">${IPL_SQUAD_SOURCE} · cached 24h</div>
     <div class="squad-tabs" role="tablist" aria-label="Squad stat view">
       ${views.map(([mode, label], index) => `<button class="squad-tab-btn ${index === 0 ? 'active' : ''}" type="button" role="tab" aria-selected="${index === 0 ? 'true' : 'false'}" data-squad-tab="${mode}">${label}</button>`).join('')}
     </div>
@@ -4027,6 +4172,7 @@ async function initWtc() {
 }
 
 async function initIpl() {
+  await ensureCricsheetIplStats();
   const rows = await fetchIplStandings();
   document.getElementById('ipl-standings-content').outerHTML = `<table>${renderStandingsTable(rows, 'ipl')}</table>`;
   document.getElementById('ipl-data-label').textContent =
@@ -4042,6 +4188,7 @@ async function initIpl() {
 }
 
 async function refreshIplCalendar() {
+  await ensureCricsheetIplStats();
   renderFixtures('ipl-fixtures', await fetchIplFixtures());
   renderFixtures('ipl-results', formatRecentResults());
 }
