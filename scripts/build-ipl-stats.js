@@ -336,7 +336,7 @@ function processMatch(filePath, seasonPlayers, matches, options = {}) {
   if (info.event?.name !== 'Indian Premier League') return;
 
   const teams = info.teams || [];
-  if (!teams.every(team => TEAM_SLUGS[team])) return;
+  if (!options.allowAllTeams && !teams.every(team => TEAM_SLUGS[team])) return;
   if (options.season && String(info.season) !== options.season) return;
   if (options.beforeSeason && String(info.season) >= options.beforeSeason) return;
 
@@ -644,7 +644,7 @@ function buildPlayerHistory(seasonFiles, allSeasons) {
     const seasonPlayers = {};
     seasonFileList.forEach(file => {
       try {
-        processMatch(file, seasonPlayers, null, { season });
+        processMatch(file, seasonPlayers, null, { season, allowAllTeams: true });
       } catch (e) {
         console.warn(`History ${season} ${file}: ${e.message}`);
       }
@@ -756,22 +756,26 @@ function jsonFiles(dir) {
 
 const files = jsonFiles(inputDir);
 
-// Single scan: group valid IPL files by season
+// Two scans: one filtered to known-slug teams (for 2026 squad stats),
+// one over all IPL matches (for player history career totals).
 const seasonFiles = {};
+const historyFiles = {};
 files.forEach(file => {
   try {
     const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
     const info = raw.info || {};
     if (info.gender !== 'male' || info.match_type !== 'T20') return;
     if (info.event?.name !== 'Indian Premier League') return;
-    if (!info.teams?.every(t => TEAM_SLUGS[t])) return;
     const season = String(info.season);
+    (historyFiles[season] = historyFiles[season] || []).push(file);
+    if (!info.teams?.every(t => TEAM_SLUGS[t])) return;
     (seasonFiles[season] = seasonFiles[season] || []).push(file);
   } catch (e) {
     console.warn(`Scan ${file}: ${e.message}`);
   }
 });
 const allSeasons = Object.keys(seasonFiles).sort();
+const allHistorySeasons = Object.keys(historyFiles).sort();
 
 const careerPlayers = {};
 files.forEach(file => {
@@ -801,11 +805,11 @@ console.log(`Processed ${output.matchesProcessed} IPL 2026 matches`);
 console.log(`Wrote ${outJson}`);
 console.log(`Wrote ${outJs}`);
 
-// Build per-season player history
-const playerHistoryMap = buildPlayerHistory(seasonFiles, allSeasons);
+// Build per-season player history (all IPL matches, including defunct teams)
+const playerHistoryMap = buildPlayerHistory(historyFiles, allHistorySeasons);
 const historyOutput = {
   generatedAt: new Date().toISOString(),
-  seasons: allSeasons,
+  seasons: allHistorySeasons,
   players: playerHistoryMap,
 };
 const historyJs = path.join(path.dirname(outJs), 'ipl-player-history.js');
