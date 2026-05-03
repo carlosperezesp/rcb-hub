@@ -1331,6 +1331,80 @@
   .chart-current-dot { color: var(--crimson); font-size: 10px; line-height: 1; margin-top: 3px; }
   .history-table { margin-bottom: 14px; }
   .history-current-season td { background: rgba(0,48,26,.04); }
+  .historical-leaders-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 14px;
+  }
+  .historical-leaderboard {
+    padding: 16px;
+  }
+  .historical-leader-row {
+    align-items: center;
+    border-top: 1px solid var(--line);
+    color: inherit;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    padding: 11px 0;
+    text-decoration: none;
+  }
+  .historical-leader-row:first-of-type {
+    border-top: 0;
+  }
+  .historical-leader-row.is-current {
+    background: rgba(0,48,26,.045);
+    border-radius: 7px;
+    margin: 0 -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .historical-leader-rank {
+    color: var(--green-deep);
+    font: 800 18px/1 'Manrope', sans-serif;
+  }
+  .historical-leader-name {
+    font: 800 13px/1.15 'Manrope', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .historical-leader-meta {
+    align-items: center;
+    color: var(--ink-mute);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 9px;
+    font-weight: 800;
+    gap: 6px;
+    letter-spacing: .06em;
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+  .history-active-chip {
+    background: rgba(0,48,26,.12);
+    border-radius: 999px;
+    color: var(--green-deep);
+    padding: 3px 6px;
+  }
+  .historical-leader-score {
+    text-align: right;
+  }
+  .historical-leader-score strong {
+    color: var(--ink);
+    display: block;
+    font: 800 20px/1 'Manrope', sans-serif;
+  }
+  .historical-leader-score span {
+    color: var(--ink-mute);
+    display: block;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
   .player-profile-link {
     background: rgba(19,25,21,.07);
     border-radius: 999px;
@@ -1360,6 +1434,7 @@
     .score-card { align-self: stretch; }
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
     .leaderboard-grid { grid-template-columns: 1fr; }
+    .historical-leaders-grid { grid-template-columns: 1fr; }
     .leaderboard { padding: 14px; }
     .leader-row {
       grid-template-columns: 28px minmax(0, 1fr) auto;
@@ -1603,6 +1678,14 @@
     </div>
     <div class="leaderboard-grid" id="ipl-global-rankings">
       <div class="loading">Loading player rankings...</div>
+    </div>
+
+    <div class="section-head">
+      <div><div class="eyebrow" style="color:var(--gold-deep)">All-Time Context</div><h2>IPL Historical Score Leaders</h2></div>
+      <div class="section-note">Top 10 players by weighted average season score. Active players are marked when they have a 2026 IPL season.</div>
+    </div>
+    <div id="ipl-historical-rankings">
+      <div class="loading">Loading historical rankings...</div>
     </div>
 
     <div class="section-head">
@@ -3858,6 +3941,12 @@ function renderGlobalRankings() {
   `;
 }
 
+function renderGlobalHistoricalRankings() {
+  const el = document.getElementById('ipl-historical-rankings');
+  if (!el) return;
+  el.innerHTML = renderHistoricalLeaderboards(null);
+}
+
 function renderIplSpotlight(rows) {
   const leaders = topPlayerLeaders();
   document.getElementById('ipl-spotlight').innerHTML = `
@@ -4480,6 +4569,84 @@ function renderSeasonHistoryTable(seasons) {
   </div>`;
 }
 
+function historicalLeaderSample(season, mode) {
+  if (mode === 'bat') {
+    return (season.bat?.balls || 0) >= 50 || (season.bat?.runs || 0) >= 120 || (season.matches || 0) >= 6;
+  }
+  return (season.bowl?.balls || 0) >= 48 || (season.bowl?.wickets || 0) >= 5 || (season.matches || 0) >= 6;
+}
+
+function historicalAverageLeaders(mode, limit = 10) {
+  const history = getIplPlayerHistory();
+  const players = Object.values(history?.players || {});
+  return players.map(player => {
+    const seasons = (player.seasons || []).filter(season => {
+      const score = mode === 'bat' ? season.batScore : season.bowlScore;
+      return score !== null && score !== undefined && historicalLeaderSample(season, mode);
+    });
+    const totalMatches = seasons.reduce((sum, season) => sum + (season.matches || 0), 0);
+    const qualifiedSeasons = seasons.length;
+    const minMatches = mode === 'bat' ? 25 : 20;
+    if (qualifiedSeasons < 3 || totalMatches < minMatches) return null;
+    const weighted = seasons.reduce((sum, season) => {
+      const score = mode === 'bat' ? season.batScore : season.bowlScore;
+      return sum + score * (season.matches || 1);
+    }, 0);
+    const avg = Math.round(weighted / Math.max(totalMatches, 1));
+    const latest = player.seasons?.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
+    return {
+      id: player.id,
+      name: player.name,
+      avg,
+      seasons: qualifiedSeasons,
+      matches: totalMatches,
+      active: (player.seasons || []).some(season => season.season === '2026'),
+      latestTeam: latest?.teams?.[0] || '',
+    };
+  }).filter(Boolean)
+    .sort((a, b) => (b.avg - a.avg) || (b.matches - a.matches) || a.name.localeCompare(b.name))
+    .slice(0, limit);
+}
+
+function renderHistoricalLeaderCard(title, mode, currentPlayerId) {
+  const rows = historicalAverageLeaders(mode, 10);
+  const label = mode === 'bat' ? 'bat avg' : 'bowl avg';
+  return `<div class="card historical-leaderboard">
+    <div class="leaderboard-head">
+      <div class="leaderboard-title">${title}</div>
+      <span class="role-dot ${mode === 'bat' ? 'dot-bat' : 'dot-bowl'}"></span>
+    </div>
+    ${rows.map((player, index) => {
+      const slug = slugForTeam({ name: player.latestTeam });
+      const current = player.id === currentPlayerId;
+      return `<a class="historical-leader-row ${current ? 'is-current' : ''}" href="#ipl/player/${player.id}">
+        <div class="historical-leader-rank">${index + 1}</div>
+        <div>
+          <div class="historical-leader-name">${player.name}</div>
+          <div class="historical-leader-meta">
+            ${player.latestTeam ? flag(slug, teamAbbrFromName(player.latestTeam)) : ''}
+            <span>${player.seasons} seasons</span>
+            <span>${player.matches} apps</span>
+            ${player.active ? '<span class="history-active-chip">Active</span>' : ''}
+            ${current ? '<span class="history-active-chip">This profile</span>' : ''}
+          </div>
+        </div>
+        <div class="historical-leader-score">
+          <strong>${player.avg}</strong>
+          <span>${label}</span>
+        </div>
+      </a>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderHistoricalLeaderboards(currentPlayerId) {
+  return `<div class="historical-leaders-grid">
+    ${renderHistoricalLeaderCard('Top Historical Batters', 'bat', currentPlayerId)}
+    ${renderHistoricalLeaderCard('Top Historical Bowlers', 'bowl', currentPlayerId)}
+  </div>`;
+}
+
 function renderIplPlayerProfile(playerId) {
   const history = getIplPlayerHistory();
   const playerData = history?.players?.[playerId];
@@ -4573,6 +4740,12 @@ function renderIplPlayerProfile(playerId) {
 
     ${seasons.length > 1 ? `
     <div class="section-head" style="margin-top:24px">
+      <div><div class="eyebrow">All-Time Context</div><h2>IPL Historical Score Leaders</h2></div>
+      <div class="section-note">Top 10 players by weighted average season score. Active players are marked when they have a 2026 IPL season.</div>
+    </div>
+    ${renderHistoricalLeaderboards(playerId)}
+
+    <div class="section-head" style="margin-top:24px">
       <div><div class="eyebrow">Season by Season</div><h2>IPL Career History</h2></div>
       <div class="section-note">Form scores are comparable within each season, not across seasons.</div>
     </div>
@@ -4615,6 +4788,7 @@ async function initIpl() {
   await fetchIplSquadModel();
   renderIplSpotlight(rows);
   renderGlobalRankings();
+  renderGlobalHistoricalRankings();
   renderTeamGrid('ipl-team-grid', rows, 'ipl');
   renderFixtures('ipl-fixtures', await fetchIplFixtures());
   renderFixtures('ipl-results', formatRecentResults());
