@@ -1211,71 +1211,67 @@
   .history-chart-wrap { margin-bottom: 14px; }
   .history-chart-legend {
     display: flex;
-    font-size: 11px;
-    font-weight: 700;
-    gap: 16px;
-    margin-bottom: 12px;
+    flex-wrap: wrap;
+    font: 800 14px/1 'Manrope', sans-serif;
+    gap: 22px;
+    margin-bottom: 18px;
   }
   .hc-legend-bat::before, .hc-legend-bowl::before {
-    border-radius: 2px;
+    border-radius: 4px;
     content: '';
     display: inline-block;
-    height: 10px;
-    margin-right: 5px;
+    height: 12px;
+    margin-right: 8px;
     vertical-align: middle;
-    width: 10px;
+    width: 12px;
   }
   .hc-legend-bat::before { background: var(--green-soft); }
   .hc-legend-bowl::before { background: var(--gold-deep); }
   .history-chart-outer {
-    align-items: flex-end;
-    display: flex;
-    gap: 6px;
+    align-items: end;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 42px minmax(0, 1fr);
   }
   .chart-y-axis {
     color: var(--ink-mute);
     display: flex;
-    flex: 0 0 20px;
     flex-direction: column;
-    font-size: 9px;
-    font-weight: 700;
-    height: 80px;
+    font-size: 12px;
+    font-weight: 800;
+    height: 178px;
     justify-content: space-between;
-    margin-bottom: 18px;
+    margin-bottom: 31px;
+    padding-top: 28px;
     text-align: right;
   }
-  .history-chart-scroll { flex: 1; overflow-x: auto; }
+  .history-chart-scroll {
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-color: rgba(19,25,21,.25) rgba(19,25,21,.06);
+  }
   .history-chart {
     align-items: flex-end;
     display: flex;
-    gap: 3px;
-    padding-bottom: 2px;
+    gap: 14px;
+    min-width: max-content;
+    padding: 4px 4px 0;
   }
   .chart-col {
     align-items: center;
     display: flex;
-    flex: 0 0 30px;
+    flex: 0 0 58px;
     flex-direction: column;
-    width: 30px;
-  }
-  .chart-col-vals {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 7px;
-    font-weight: 800;
-    gap: 1px;
-    line-height: 1;
-    margin-bottom: 2px;
-    min-height: 16px;
+    width: 58px;
   }
   .cv-bat { color: var(--green-deep); }
   .cv-bowl { color: var(--gold-deep); }
   .chart-bars {
     align-items: flex-end;
     display: flex;
-    gap: 2px;
-    height: 80px;
+    gap: 8px;
+    height: 150px;
+    margin-top: 28px;
     position: relative;
     width: 100%;
   }
@@ -1288,21 +1284,51 @@
     position: absolute;
     right: 0;
   }
-  .chart-bars::before { bottom: 40px; }
-  .chart-bars::after  { bottom: 60px; }
-  .chart-bar { border-radius: 2px 2px 0 0; flex: 1; min-height: 2px; }
-  .bat-bar { background: var(--green-soft); }
-  .bowl-bar { background: var(--gold-deep); }
-  .chart-bar-empty { background: rgba(19,25,21,.06); height: 3px; }
-  .chart-season-label {
-    color: var(--ink-mute);
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: .04em;
-    margin-top: 4px;
+  .chart-bars::before { bottom: 37.5px; }
+  .chart-bars::after  { bottom: 75px; }
+  .chart-grid-75 {
+    background: rgba(0,0,0,.13);
+    bottom: 112.5px;
+    height: 1px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+  .chart-bar-slot {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 150px;
+    justify-content: flex-end;
+    min-width: 0;
+    position: relative;
+  }
+  .chart-value {
+    display: block;
+    font: 800 12px/1 'Manrope', sans-serif;
+    min-height: 12px;
+    position: absolute;
     text-align: center;
   }
-  .chart-current-dot { color: var(--crimson); font-size: 7px; line-height: 1; }
+  .chart-bar {
+    border-radius: 5px 5px 0 0;
+    min-height: 4px;
+    width: 100%;
+  }
+  .bat-bar { background: var(--green-soft); }
+  .bowl-bar { background: var(--gold-deep); }
+  .chart-bar-empty { background: rgba(19,25,21,.06); height: 6px; }
+  .chart-season-label {
+    color: var(--ink-mute);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .chart-current-dot { color: var(--crimson); font-size: 10px; line-height: 1; margin-top: 3px; }
   .history-table { margin-bottom: 14px; }
   .history-current-season td { background: rgba(0,48,26,.04); }
   .player-profile-link {
@@ -1374,7 +1400,6 @@
     }
     .ipl-player-card .phase-usage,
     .ipl-player-card .position-usage,
-    .ipl-player-card .career-delta,
     .ipl-player-card .field-strip {
       display: none;
     }
@@ -4386,17 +4411,18 @@ function findPlayerCardById(playerId) {
 
 function renderSeasonHistoryChart(seasons) {
   const cols = seasons.map(s => {
-    const batH = s.batScore != null ? Math.round((s.batScore / 100) * 80) : 0;
-    const bowlH = s.bowlScore != null ? Math.round((s.bowlScore / 100) * 80) : 0;
+    const batH = s.batScore != null ? Math.round((s.batScore / 100) * 150) : 0;
+    const bowlH = s.bowlScore != null ? Math.round((s.bowlScore / 100) * 150) : 0;
     const yr = String(s.season).replace(/\d{4}\//, '').slice(-2);
     return `<div class="chart-col">
-      <div class="chart-col-vals">
-        ${s.batScore != null ? `<span class="cv-bat">${s.batScore}</span>` : ''}
-        ${s.bowlScore != null ? `<span class="cv-bowl">${s.bowlScore}</span>` : ''}
-      </div>
       <div class="chart-bars">
-        ${s.batScore != null ? `<div class="bat-bar chart-bar" style="height:${batH}px" title="${s.season} Bat: ${s.batScore}"></div>` : '<div class="chart-bar chart-bar-empty"></div>'}
-        ${s.bowlScore != null ? `<div class="bowl-bar chart-bar" style="height:${bowlH}px" title="${s.season} Bowl: ${s.bowlScore}"></div>` : '<div class="chart-bar chart-bar-empty"></div>'}
+        <span class="chart-grid-75"></span>
+        <div class="chart-bar-slot">
+          ${s.batScore != null ? `<span class="chart-value cv-bat" style="bottom:${batH + 7}px">${s.batScore}</span><div class="bat-bar chart-bar" style="height:${batH}px" title="${s.season} Bat: ${s.batScore}"></div>` : '<span class="chart-value"></span><div class="chart-bar chart-bar-empty"></div>'}
+        </div>
+        <div class="chart-bar-slot">
+          ${s.bowlScore != null ? `<span class="chart-value cv-bowl" style="bottom:${bowlH + 7}px">${s.bowlScore}</span><div class="bowl-bar chart-bar" style="height:${bowlH}px" title="${s.season} Bowl: ${s.bowlScore}"></div>` : '<span class="chart-value"></span><div class="chart-bar chart-bar-empty"></div>'}
+        </div>
       </div>
       <div class="chart-season-label">${yr}</div>
       ${s.season === '2026' ? '<div class="chart-current-dot">●</div>' : ''}
