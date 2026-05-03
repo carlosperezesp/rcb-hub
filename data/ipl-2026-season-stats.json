@@ -1,6 +1,6 @@
 {
   "source": "Cricsheet ball-by-ball",
-  "generatedAt": "2026-05-02T16:32:46.824Z",
+  "generatedAt": "2026-05-03T06:25:50.315Z",
   "season": "2026",
   "matchesProcessed": 43,
   "lastMatchDate": "2026-05-01",
@@ -1981,6 +1981,7 @@
     "gt": {
       "batters": [
         {
+          "id": "d5130a30",
           "num": 15,
           "name": "B Sai Sudharsan",
           "aliases": [
@@ -2082,6 +2083,7 @@
           "wickets": 0
         },
         {
+          "id": "b4b99816",
           "num": 81,
           "name": "Shubman Gill",
           "aliases": [
@@ -2183,6 +2185,7 @@
           "wickets": 0
         },
         {
+          "id": "7dcb9bc9",
           "num": 26,
           "name": "M Shahrukh Khan",
           "aliases": [
@@ -2288,6 +2291,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "99b75528",
           "num": 54,
           "name": "JC Buttler",
           "aliases": [
@@ -2389,6 +2393,7 @@
           "wickets": 0
         },
         {
+          "id": "9a46c4e5",
           "num": 55,
           "name": "GD Phillips",
           "aliases": [
@@ -2491,6 +2496,7 @@
           "wickets": 0
         },
         {
+          "id": "57ca01b3",
           "num": 87,
           "name": "Kumar Kushagra",
           "aliases": [
@@ -2594,6 +2600,7 @@
       ],
       "allRounders": [
         {
+          "id": "39a2dfa8",
           "num": 57,
           "name": "R Tewatia",
           "aliases": [
@@ -2701,6 +2708,7 @@
           "wickets": 0
         },
         {
+          "id": "5f547c8b",
           "num": 95,
           "name": "Rashid Khan",
           "aliases": [
@@ -2806,6 +2814,7 @@
           "wickets": 10
         },
         {
+          "id": "f19ccfad",
           "num": 43,
           "name": "Washington Sundar",
           "aliases": [
@@ -2914,6 +2923,7 @@
       ],
       "bowlers": [
         {
+          "id": "12314277",
           "num": 18,
           "name": "Arshad Khan",
           "aliases": [
@@ -3014,6 +3024,7 @@
           "wickets": 5
         },
         {
+          "id": "e62dd25d",
           "num": 32,
           "name": "K Rabada",
           "aliases": [
@@ -3115,6 +3126,7 @@
           "wickets": 14
         },
         {
+          "id": "0f721006",
           "num": 15,
           "name": "JO Holder",
           "aliases": [
@@ -3217,6 +3229,7 @@
           "wickets": 3
         },
         {
+          "id": "85e0cf10",
           "num": 34,
           "name": "M Prasidh Krishna",
           "aliases": [
@@ -3316,6 +3329,7 @@
           "wickets": 12
         },
         {
+          "id": "2f49c897",
           "num": 47,
           "name": "Mohammed Siraj",
           "aliases": [
@@ -3417,6 +3431,7 @@
           "wickets": 9
         },
         {
+          "id": "025c4400",
           "num": 2,
           "name": "MJ Suthar",
           "aliases": [
@@ -3516,6 +3531,7 @@
           "wickets": 2
         },
         {
+          "id": "50c09020",
           "num": 80,
           "name": "Ashok Sharma",
           "aliases": [
@@ -3600,6 +3616,7 @@
     "rcb": {
       "batters": [
         {
+          "id": "2c25d4f5",
           "num": 44,
           "name": "D Padikkal",
           "aliases": [
@@ -3701,6 +3718,7 @@
           "wickets": 0
         },
         {
+          "id": "c740ea83",
           "num": 1,
           "name": "RM Patidar",
           "aliases": [
@@ -3803,6 +3821,7 @@
           "wickets": 0
         },
         {
+          "id": "ba607b88",
           "num": 87,
           "name": "V Kohli",
           "aliases": [
@@ -3904,6 +3923,7 @@
           "wickets": 0
         },
         {
+          "id": "f1f99156",
           "num": 43,
           "name": "TH David",
           "aliases": [
@@ -4008,6 +4028,7 @@
           "wickets": 0
         },
         {
+          "id": "a24be938",
           "num": 63,
           "name": "VR Iyer",
           "aliases": [
@@ -4111,6 +4132,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "3d284ca3",
           "num": 61,
           "name": "PD Salt",
           "aliases": [
@@ -4212,6 +4234,7 @@
           "wickets": 0
         },
         {
+          "id": "800d2d97",
           "num": 29,
           "name": "JM Sharma",
           "aliases": [
@@ -4316,6 +4339,7 @@
       ],
       "allRounders": [
         {
+          "id": "5b8c830e",
           "num": 91,
           "name": "KH Pandya",
           "aliases": [
@@ -4423,6 +4447,7 @@
           "wickets": 9
         },
         {
+          "id": "3c55c703",
           "num": 60,
           "name": "JG Bethell",
           "aliases": [
@@ -4528,6 +4553,7 @@
           "wickets": 0
         },
         {
+          "id": "c5aef772",
           "num": 98,
           "name": "R Shepherd",
           "aliases": [
@@ -4637,6 +4663,7 @@
       ],
       "bowlers": [
         {
+          "id": "2e81a32d",
           "num": 46,
           "name": "B Kumar",
           "aliases": [
@@ -4738,6 +4765,7 @@
           "wickets": 17
         },
         {
+          "id": "b8527c3d",
           "num": 85,
           "name": "Rasikh Salam",
           "aliases": [
@@ -4839,6 +4867,7 @@
           "wickets": 6
         },
         {
+          "id": "dadbdb68",
           "num": 20,
           "name": "JA Duffy",
           "aliases": [
@@ -4917,6 +4946,7 @@
           "wickets": 6
         },
         {
+          "id": "03806cf8",
           "num": 3,
           "name": "JR Hazlewood",
           "aliases": [
@@ -5018,6 +5048,7 @@
           "wickets": 8
         },
         {
+          "id": "9440ef41",
           "num": 49,
           "name": "Suyash Sharma",
           "aliases": [
@@ -5117,6 +5148,7 @@
           "wickets": 7
         },
         {
+          "id": "82c10dac",
           "num": 31,
           "name": "Abhinandan Singh",
           "aliases": [
@@ -5199,6 +5231,7 @@
     "mi": {
       "batters": [
         {
+          "id": "740742ef",
           "num": 17,
           "name": "RG Sharma",
           "aliases": [
@@ -5300,6 +5333,7 @@
           "wickets": 0
         },
         {
+          "id": "b0482a1d",
           "num": 77,
           "name": "Tilak Varma",
           "aliases": [
@@ -5405,6 +5439,7 @@
           "wickets": 0
         },
         {
+          "id": "d014d5ac",
           "num": 10,
           "name": "SE Rutherford",
           "aliases": [
@@ -5508,6 +5543,7 @@
           "wickets": 0
         },
         {
+          "id": "fffa744b",
           "num": 57,
           "name": "Naman Dhir",
           "aliases": [
@@ -5612,6 +5648,7 @@
           "wickets": 0
         },
         {
+          "id": "271f83cd",
           "num": 39,
           "name": "SA Yadav",
           "aliases": [
@@ -5714,6 +5751,7 @@
           "wickets": 0
         },
         {
+          "id": "9caf69a1",
           "num": 57,
           "name": "WG Jacks",
           "aliases": [
@@ -5815,6 +5853,7 @@
           "wickets": 0
         },
         {
+          "id": "e48a4814",
           "num": 30,
           "name": "Krish Bhagat",
           "aliases": [
@@ -5895,6 +5934,7 @@
           "wickets": 0
         },
         {
+          "id": "9e6032fa",
           "num": 59,
           "name": "DV Malewar",
           "aliases": [
@@ -5975,6 +6015,7 @@
           "wickets": 0
         },
         {
+          "id": "bafd0398",
           "num": 87,
           "name": "R Minz",
           "aliases": [
@@ -6076,6 +6117,7 @@
           "wickets": 0
         },
         {
+          "id": "2b801189",
           "num": 43,
           "name": "Mayank Rawat",
           "aliases": [
@@ -6158,6 +6200,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "372455c4",
           "num": 55,
           "name": "Q de Kock",
           "aliases": [
@@ -6260,6 +6303,7 @@
           "wickets": 0
         },
         {
+          "id": "e66732f8",
           "num": 32,
           "name": "RD Rickelton",
           "aliases": [
@@ -6364,6 +6408,7 @@
       ],
       "allRounders": [
         {
+          "id": "e4a0deae",
           "num": 30,
           "name": "MJ Santner",
           "aliases": [
@@ -6470,6 +6515,7 @@
           "wickets": 5
         },
         {
+          "id": "dbe50b21",
           "num": 21,
           "name": "HH Pandya",
           "aliases": [
@@ -6576,6 +6622,7 @@
           "wickets": 4
         },
         {
+          "id": "1abb78f8",
           "num": 26,
           "name": "SN Thakur",
           "aliases": [
@@ -6681,6 +6728,7 @@
           "wickets": 6
         },
         {
+          "id": "172dff15",
           "num": 23,
           "name": "C Bosch",
           "aliases": [
@@ -6788,6 +6836,7 @@
       ],
       "bowlers": [
         {
+          "id": "9ca68676",
           "num": 57,
           "name": "AM Ghazanfar",
           "aliases": [
@@ -6866,6 +6915,7 @@
           "wickets": 10
         },
         {
+          "id": "d45c29b1",
           "num": 14,
           "name": "Ashwani Kumar",
           "aliases": [
@@ -6967,6 +7017,7 @@
           "wickets": 6
         },
         {
+          "id": "462411b3",
           "num": 70,
           "name": "JJ Bumrah",
           "aliases": [
@@ -7068,6 +7119,7 @@
           "wickets": 2
         },
         {
+          "id": "a818c1be",
           "num": 69,
           "name": "TA Boult",
           "aliases": [
@@ -7169,6 +7221,7 @@
           "wickets": 2
         },
         {
+          "id": "23eeb873",
           "num": 35,
           "name": "DL Chahar",
           "aliases": [
@@ -7270,6 +7323,7 @@
           "wickets": 1
         },
         {
+          "id": "a9fd84fb",
           "num": 70,
           "name": "M Markande",
           "aliases": [
@@ -7373,6 +7427,7 @@
     "kkr": {
       "batters": [
         {
+          "id": "d7017798",
           "num": 17,
           "name": "A Raghuvanshi",
           "aliases": [
@@ -7475,6 +7530,7 @@
           "wickets": 0
         },
         {
+          "id": "0a509d6b",
           "num": 10,
           "name": "RK Singh",
           "aliases": [
@@ -7578,6 +7634,7 @@
           "wickets": 0
         },
         {
+          "id": "650d5e49",
           "num": 2,
           "name": "R Powell",
           "aliases": [
@@ -7681,6 +7738,7 @@
           "wickets": 0
         },
         {
+          "id": "bf74b130",
           "num": 92,
           "name": "FH Allen",
           "aliases": [
@@ -7762,6 +7820,7 @@
           "wickets": 0
         },
         {
+          "id": "29e95537",
           "num": 41,
           "name": "AM Rahane",
           "aliases": [
@@ -7865,6 +7924,7 @@
           "wickets": 0
         },
         {
+          "id": "21d4e29b",
           "num": 33,
           "name": "Navdeep Saini",
           "aliases": [
@@ -7967,6 +8027,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "4663bd23",
           "num": 70,
           "name": "TL Seifert",
           "aliases": [
@@ -8071,6 +8132,7 @@
       ],
       "allRounders": [
         {
+          "id": "9d430b40",
           "num": 58,
           "name": "SP Narine",
           "aliases": [
@@ -8178,6 +8240,7 @@
           "wickets": 7
         },
         {
+          "id": "eaa76d3c",
           "num": 36,
           "name": "C Green",
           "aliases": [
@@ -8285,6 +8348,7 @@
           "wickets": 2
         },
         {
+          "id": "be24ead0",
           "num": 91,
           "name": "Ramandeep Singh",
           "aliases": [
@@ -8394,6 +8458,7 @@
       ],
       "bowlers": [
         {
+          "id": "449f4e3c",
           "num": 68,
           "name": "B Muzarabani",
           "aliases": [
@@ -8472,6 +8537,7 @@
           "wickets": 4
         },
         {
+          "id": "e4cdf230",
           "num": 30,
           "name": "AS Roy",
           "aliases": [
@@ -8576,6 +8642,7 @@
           "wickets": 5
         },
         {
+          "id": "5b7ab5a9",
           "num": 91,
           "name": "CV Varun",
           "aliases": [
@@ -8677,6 +8744,7 @@
           "wickets": 7
         },
         {
+          "id": "5d2eea49",
           "num": 93,
           "name": "Kartik Tyagi",
           "aliases": [
@@ -8779,6 +8847,7 @@
           "wickets": 9
         },
         {
+          "id": "7c3b3b78",
           "num": 25,
           "name": "VG Arora",
           "aliases": [
@@ -8885,6 +8954,7 @@
     "srh": {
       "batters": [
         {
+          "id": "12b610c2",
           "num": 18,
           "name": "TM Head",
           "aliases": [
@@ -8987,6 +9057,7 @@
           "wickets": 0
         },
         {
+          "id": "d7423da1",
           "num": 17,
           "name": "S Arora",
           "aliases": [
@@ -9068,6 +9139,7 @@
           "wickets": 0
         },
         {
+          "id": "a3b0600d",
           "num": 64,
           "name": "Aniket Verma",
           "aliases": [
@@ -9170,6 +9242,7 @@
           "wickets": 0
         },
         {
+          "id": "6c79c098",
           "num": 9,
           "name": "DA Payne",
           "aliases": [
@@ -9252,6 +9325,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "235c2bb6",
           "num": 35,
           "name": "H Klaasen",
           "aliases": [
@@ -9354,6 +9428,7 @@
           "wickets": 0
         },
         {
+          "id": "752f7486",
           "num": 18,
           "name": "Ishan Kishan",
           "aliases": [
@@ -9457,6 +9532,7 @@
       ],
       "allRounders": [
         {
+          "id": "aad0c365",
           "num": 71,
           "name": "Nithish Kumar Reddy",
           "aliases": [
@@ -9565,6 +9641,7 @@
           "wickets": 6
         },
         {
+          "id": "f29185a1",
           "num": 44,
           "name": "Abhishek Sharma",
           "aliases": [
@@ -9671,6 +9748,7 @@
           "wickets": 0
         },
         {
+          "id": "50c6bc2b",
           "num": 80,
           "name": "LS Livingstone",
           "aliases": [
@@ -9779,6 +9857,7 @@
       ],
       "bowlers": [
         {
+          "id": "5750bcb4",
           "num": 87,
           "name": "E Malinga",
           "aliases": [
@@ -9878,6 +9957,7 @@
           "wickets": 15
         },
         {
+          "id": "280fff14",
           "num": 40,
           "name": "Sakib Hussain",
           "aliases": [
@@ -9956,6 +10036,7 @@
           "wickets": 8
         },
         {
+          "id": "25228673",
           "num": 37,
           "name": "Harsh Dubey",
           "aliases": [
@@ -10057,6 +10138,7 @@
           "wickets": 8
         },
         {
+          "id": "ece7b6b3",
           "num": 38,
           "name": "PP Hinge",
           "aliases": [
@@ -10137,6 +10219,7 @@
           "wickets": 8
         },
         {
+          "id": "ded9240e",
           "num": 24,
           "name": "PJ Cummins",
           "aliases": [
@@ -10236,6 +10319,7 @@
           "wickets": 1
         },
         {
+          "id": "7b44eb3e",
           "num": 24,
           "name": "Shivang Kumar",
           "aliases": [
@@ -10316,6 +10400,7 @@
           "wickets": 5
         },
         {
+          "id": "1e66c162",
           "num": 30,
           "name": "JD Unadkat",
           "aliases": [
@@ -10417,6 +10502,7 @@
           "wickets": 4
         },
         {
+          "id": "de7d833e",
           "num": 24,
           "name": "D Madushanka",
           "aliases": [
@@ -10495,6 +10581,7 @@
           "wickets": 1
         },
         {
+          "id": "f986ca1a",
           "num": 51,
           "name": "HV Patel",
           "aliases": [
@@ -10601,6 +10688,7 @@
     "csk": {
       "batters": [
         {
+          "id": "b2b4f545",
           "num": 79,
           "name": "A Mhatre",
           "aliases": [
@@ -10702,6 +10790,7 @@
           "wickets": 0
         },
         {
+          "id": "e148e6bd",
           "num": 27,
           "name": "PR Veer",
           "aliases": [
@@ -10782,6 +10871,7 @@
           "wickets": 0
         },
         {
+          "id": "f088b960",
           "num": 42,
           "name": "SN Khan",
           "aliases": [
@@ -10886,6 +10976,7 @@
           "wickets": 0
         },
         {
+          "id": "45a43fe2",
           "num": 69,
           "name": "RD Gaikwad",
           "aliases": [
@@ -10987,6 +11078,7 @@
           "wickets": 0
         },
         {
+          "id": "844e79d1",
           "num": 33,
           "name": "D Brevis",
           "aliases": [
@@ -11090,6 +11182,7 @@
           "wickets": 0
         },
         {
+          "id": "7b679de5",
           "num": 24,
           "name": "Kartik Sharma",
           "aliases": [
@@ -11172,6 +11265,7 @@
           "wickets": 0
         },
         {
+          "id": "a90e53ec",
           "num": 70,
           "name": "MW Short",
           "aliases": [
@@ -11273,6 +11367,7 @@
           "wickets": 0
         },
         {
+          "id": "cf59b3f0",
           "num": 9,
           "name": "Urvil Patel",
           "aliases": [
@@ -11376,6 +11471,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "a4cc73aa",
           "num": 65,
           "name": "SV Samson",
           "aliases": [
@@ -11479,6 +11575,7 @@
       ],
       "allRounders": [
         {
+          "id": "59559bc2",
           "num": 89,
           "name": "J Overton",
           "aliases": [
@@ -11585,6 +11682,7 @@
           "wickets": 9
         },
         {
+          "id": "a4e37e47",
           "num": 65,
           "name": "S Dube",
           "aliases": [
@@ -11692,6 +11790,7 @@
           "wickets": 1
         },
         {
+          "id": "4d7f517e",
           "num": 77,
           "name": "AJ Hosein",
           "aliases": [
@@ -11800,6 +11899,7 @@
       ],
       "bowlers": [
         {
+          "id": "fcc21ace",
           "num": 54,
           "name": "A Kamboj",
           "aliases": [
@@ -11902,6 +12002,7 @@
           "wickets": 14
         },
         {
+          "id": "765a4731",
           "num": 19,
           "name": "Mukesh Choudhary",
           "aliases": [
@@ -12001,6 +12102,7 @@
           "wickets": 3
         },
         {
+          "id": "efc04be7",
           "num": 41,
           "name": "Noor Ahmad",
           "aliases": [
@@ -12103,6 +12205,7 @@
           "wickets": 7
         },
         {
+          "id": "a2f46292",
           "num": 63,
           "name": "KK Ahmed",
           "aliases": [
@@ -12202,6 +12305,7 @@
           "wickets": 2
         },
         {
+          "id": "cc61ee8f",
           "num": 6,
           "name": "Gurjapneet Singh",
           "aliases": [
@@ -12280,6 +12384,7 @@
           "wickets": 3
         },
         {
+          "id": "e84ac20c",
           "num": 34,
           "name": "MJ Henry",
           "aliases": [
@@ -12382,6 +12487,7 @@
           "wickets": 2
         },
         {
+          "id": "2ed569a0",
           "num": 46,
           "name": "RD Chahar",
           "aliases": [
@@ -12485,6 +12591,7 @@
     "rr": {
       "batters": [
         {
+          "id": "470f446b",
           "num": 71,
           "name": "V Suryavanshi",
           "aliases": [
@@ -12586,6 +12693,7 @@
           "wickets": 0
         },
         {
+          "id": "6c19c6e5",
           "num": 9,
           "name": "YBK Jaiswal",
           "aliases": [
@@ -12687,6 +12795,7 @@
           "wickets": 0
         },
         {
+          "id": "f0af99a7",
           "num": 42,
           "name": "D Ferreira",
           "aliases": [
@@ -12790,6 +12899,7 @@
           "wickets": 1
         },
         {
+          "id": "6b2ff18f",
           "num": 8,
           "name": "SB Dubey",
           "aliases": [
@@ -12893,6 +13003,7 @@
           "wickets": 0
         },
         {
+          "id": "04a418e8",
           "num": 4,
           "name": "R Parag",
           "aliases": [
@@ -12995,6 +13106,7 @@
           "wickets": 2
         },
         {
+          "id": "48a1d7b7",
           "num": 72,
           "name": "SO Hetmyer",
           "aliases": [
@@ -13098,6 +13210,7 @@
           "wickets": 0
         },
         {
+          "id": "60aa2db3",
           "num": 96,
           "name": "LG Pretorius",
           "aliases": [
@@ -13178,6 +13291,7 @@
           "wickets": 0
         },
         {
+          "id": "3ff033bb",
           "num": 63,
           "name": "MD Shanaka",
           "aliases": [
@@ -13279,6 +13393,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "bcf325d2",
           "num": 89,
           "name": "Dhruv Jurel",
           "aliases": [
@@ -13382,6 +13497,7 @@
       ],
       "allRounders": [
         {
+          "id": "fe93fd9d",
           "num": 56,
           "name": "RA Jadeja",
           "aliases": [
@@ -13491,6 +13607,7 @@
       ],
       "bowlers": [
         {
+          "id": "02dfebbe",
           "num": 2,
           "name": "Yash Raj Punja",
           "aliases": [
@@ -13569,6 +13686,7 @@
           "wickets": 3
         },
         {
+          "id": "5574750c",
           "num": 85,
           "name": "JC Archer",
           "aliases": [
@@ -13670,6 +13788,7 @@
           "wickets": 15
         },
         {
+          "id": "df064e1a",
           "num": 25,
           "name": "Ravi Bishnoi",
           "aliases": [
@@ -13772,6 +13891,7 @@
           "wickets": 11
         },
         {
+          "id": "133bbd61",
           "num": 19,
           "name": "Brijesh Sharma",
           "aliases": [
@@ -13852,6 +13972,7 @@
           "wickets": 7
         },
         {
+          "id": "ce820073",
           "num": 8,
           "name": "Sandeep Sharma",
           "aliases": [
@@ -13951,6 +14072,7 @@
           "wickets": 5
         },
         {
+          "id": "465aa633",
           "num": 70,
           "name": "N Burger",
           "aliases": [
@@ -14052,6 +14174,7 @@
           "wickets": 9
         },
         {
+          "id": "46a9bea1",
           "num": 70,
           "name": "TU Deshpande",
           "aliases": [
@@ -14157,6 +14280,7 @@
     "pbks": {
       "batters": [
         {
+          "id": "b5797845",
           "num": 82,
           "name": "Priyansh Arya",
           "aliases": [
@@ -14259,6 +14383,7 @@
           "wickets": 0
         },
         {
+          "id": "85ec8e33",
           "num": 34,
           "name": "SS Iyer",
           "aliases": [
@@ -14360,6 +14485,7 @@
           "wickets": 0
         },
         {
+          "id": "26989d80",
           "num": 38,
           "name": "Shashank Singh",
           "aliases": [
@@ -14462,6 +14588,7 @@
           "wickets": 3
         },
         {
+          "id": "d1a60072",
           "num": 11,
           "name": "N Wadhera",
           "aliases": [
@@ -14564,6 +14691,7 @@
           "wickets": 0
         },
         {
+          "id": "970ddd24",
           "num": 52,
           "name": "Suryansh Shedge",
           "aliases": [
@@ -14667,6 +14795,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "9418198b",
           "num": 49,
           "name": "P Simran Singh",
           "aliases": [
@@ -14771,6 +14900,7 @@
       ],
       "allRounders": [
         {
+          "id": "fe366f34",
           "num": 56,
           "name": "C Connolly",
           "aliases": [
@@ -14855,6 +14985,7 @@
           "wickets": 0
         },
         {
+          "id": "d9273ee7",
           "num": 19,
           "name": "MP Stoinis",
           "aliases": [
@@ -14961,6 +15092,7 @@
           "wickets": 0
         },
         {
+          "id": "81c36ee9",
           "num": 30,
           "name": "M Jansen",
           "aliases": [
@@ -15068,6 +15200,7 @@
       ],
       "bowlers": [
         {
+          "id": "57ee1fde",
           "num": 87,
           "name": "YS Chahal",
           "aliases": [
@@ -15167,6 +15300,7 @@
           "wickets": 7
         },
         {
+          "id": "c05edf8e",
           "num": 93,
           "name": "Harpreet Brar",
           "aliases": [
@@ -15266,6 +15400,7 @@
           "wickets": 0
         },
         {
+          "id": "54e52590",
           "num": 84,
           "name": "Vijaykumar Vyshak",
           "aliases": [
@@ -15365,6 +15500,7 @@
           "wickets": 6
         },
         {
+          "id": "244048f6",
           "num": 36,
           "name": "Arshdeep Singh",
           "aliases": [
@@ -15464,6 +15600,7 @@
           "wickets": 8
         },
         {
+          "id": "3b53243a",
           "num": 59,
           "name": "XC Bartlett",
           "aliases": [
@@ -15565,6 +15702,7 @@
           "wickets": 5
         },
         {
+          "id": "2f9d0389",
           "num": 47,
           "name": "LH Ferguson",
           "aliases": [
@@ -15668,6 +15806,7 @@
     "dc": {
       "batters": [
         {
+          "id": "f89d3b11",
           "num": 50,
           "name": "Sameer Rizvi",
           "aliases": [
@@ -15770,6 +15909,7 @@
           "wickets": 0
         },
         {
+          "id": "85b3fab2",
           "num": 34,
           "name": "T Stubbs",
           "aliases": [
@@ -15874,6 +16014,7 @@
           "wickets": 0
         },
         {
+          "id": "d67d5f00",
           "num": 16,
           "name": "DA Miller",
           "aliases": [
@@ -15978,6 +16119,7 @@
           "wickets": 0
         },
         {
+          "id": "8ee36b18",
           "num": 43,
           "name": "P Nissanka",
           "aliases": [
@@ -16059,6 +16201,7 @@
           "wickets": 0
         },
         {
+          "id": "fb2d1dda",
           "num": 53,
           "name": "N Rana",
           "aliases": [
@@ -16160,6 +16303,7 @@
           "wickets": 0
         },
         {
+          "id": "84d9c311",
           "num": 33,
           "name": "Ashutosh Sharma",
           "aliases": [
@@ -16262,6 +16406,7 @@
           "wickets": 0
         },
         {
+          "id": "944533a5",
           "num": 49,
           "name": "KK Nair",
           "aliases": [
@@ -16363,6 +16508,7 @@
           "wickets": 0
         },
         {
+          "id": "327b58d3",
           "num": 50,
           "name": "PVD Chameera",
           "aliases": [
@@ -16464,6 +16610,7 @@
           "wickets": 0
         },
         {
+          "id": "926c7443",
           "num": 47,
           "name": "SU Parakh",
           "aliases": [
@@ -16546,6 +16693,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "b17e2f24",
           "num": 78,
           "name": "KL Rahul",
           "aliases": [
@@ -16648,6 +16796,7 @@
           "wickets": 0
         },
         {
+          "id": "ad3b6e95",
           "num": 74,
           "name": "Abishek Porel",
           "aliases": [
@@ -16751,6 +16900,7 @@
       ],
       "allRounders": [
         {
+          "id": "2e171977",
           "num": 46,
           "name": "AR Patel",
           "aliases": [
@@ -16859,6 +17009,7 @@
           "wickets": 8
         },
         {
+          "id": "68c56d09",
           "num": 5,
           "name": "KA Jamieson",
           "aliases": [
@@ -16966,6 +17117,7 @@
       ],
       "bowlers": [
         {
+          "id": "f834dcfc",
           "num": 50,
           "name": "L Ngidi",
           "aliases": [
@@ -17067,6 +17219,7 @@
           "wickets": 7
         },
         {
+          "id": "3fb19989",
           "num": 63,
           "name": "MA Starc",
           "aliases": [
@@ -17166,6 +17319,7 @@
           "wickets": 3
         },
         {
+          "id": "8d2c70ad",
           "num": 42,
           "name": "Kuldeep Yadav",
           "aliases": [
@@ -17268,6 +17422,7 @@
           "wickets": 7
         },
         {
+          "id": "2cffab74",
           "num": 44,
           "name": "Mukesh Kumar",
           "aliases": [
@@ -17367,6 +17522,7 @@
           "wickets": 5
         },
         {
+          "id": "5ffc0565",
           "num": 95,
           "name": "V Nigam",
           "aliases": [
@@ -17468,6 +17624,7 @@
           "wickets": 2
         },
         {
+          "id": "ce794613",
           "num": 8,
           "name": "T Natarajan",
           "aliases": [
@@ -17569,6 +17726,7 @@
           "wickets": 5
         },
         {
+          "id": "7c3c0337",
           "num": 25,
           "name": "Auqib Nabi",
           "aliases": [
@@ -17653,6 +17811,7 @@
     "lsg": {
       "batters": [
         {
+          "id": "1c84109e",
           "num": 28,
           "name": "MD Choudhary",
           "aliases": [
@@ -17734,6 +17893,7 @@
           "wickets": 0
         },
         {
+          "id": "872b03f7",
           "num": 36,
           "name": "A Badoni",
           "aliases": [
@@ -17837,6 +17997,7 @@
           "wickets": 0
         },
         {
+          "id": "6a26221c",
           "num": 7,
           "name": "AK Markram",
           "aliases": [
@@ -17942,6 +18103,7 @@
           "wickets": 0
         },
         {
+          "id": "8e514b4c",
           "num": 43,
           "name": "Abdul Samad",
           "aliases": [
@@ -18043,6 +18205,7 @@
           "wickets": 0
         },
         {
+          "id": "ebcfef83",
           "num": 37,
           "name": "Himmat Singh",
           "aliases": [
@@ -18145,6 +18308,7 @@
           "wickets": 0
         },
         {
+          "id": "b1ad996b",
           "num": 78,
           "name": "MP Yadav",
           "aliases": [
@@ -18248,6 +18412,7 @@
       ],
       "wicketKeepers": [
         {
+          "id": "919a3be2",
           "num": 46,
           "name": "RR Pant",
           "aliases": [
@@ -18350,6 +18515,7 @@
           "wickets": 0
         },
         {
+          "id": "3241e3fd",
           "num": 50,
           "name": "N Pooran",
           "aliases": [
@@ -18454,6 +18620,7 @@
       ],
       "allRounders": [
         {
+          "id": "3d8feaf8",
           "num": 61,
           "name": "MR Marsh",
           "aliases": [
@@ -18560,6 +18727,7 @@
           "wickets": 0
         },
         {
+          "id": "f9e6e7ef",
           "num": 51,
           "name": "Shahbaz Ahmed",
           "aliases": [
@@ -18667,6 +18835,7 @@
       ],
       "bowlers": [
         {
+          "id": "c33d8116",
           "num": 96,
           "name": "Mohsin Khan",
           "aliases": [
@@ -18768,6 +18937,7 @@
           "wickets": 9
         },
         {
+          "id": "80b2fb19",
           "num": 29,
           "name": "Prince Yadav",
           "aliases": [
@@ -18869,6 +19039,7 @@
           "wickets": 13
         },
         {
+          "id": "cf0ccafa",
           "num": 9,
           "name": "M Siddharth",
           "aliases": [
@@ -18968,6 +19139,7 @@
           "wickets": 4
         },
         {
+          "id": "8cf9814c",
           "num": 41,
           "name": "Mohammed Shami",
           "aliases": [
@@ -19070,6 +19242,7 @@
           "wickets": 7
         },
         {
+          "id": "eef2536f",
           "num": 40,
           "name": "Avesh Khan",
           "aliases": [
@@ -19172,6 +19345,7 @@
           "wickets": 5
         },
         {
+          "id": "e5437608",
           "num": 31,
           "name": "GF Linde",
           "aliases": [
@@ -19252,6 +19426,7 @@
           "wickets": 1
         },
         {
+          "id": "13fc5c6d",
           "num": 19,
           "name": "DS Rathi",
           "aliases": [
@@ -19354,6 +19529,7 @@
           "wickets": 3
         },
         {
+          "id": "acdc62f5",
           "num": 73,
           "name": "A Nortje",
           "aliases": [

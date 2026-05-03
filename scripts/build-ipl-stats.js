@@ -566,6 +566,7 @@ function buildOutput(players, matches, careerMap = {}) {
     if (career) stats.career = career;
     const score = stats.overall;
     const row = {
+      id: player.id,
       num: Number.parseInt(player.id.slice(0, 2), 16) % 99 || 1,
       name: player.name,
       aliases: [...player.namesSeen],
@@ -600,6 +601,146 @@ function buildOutput(players, matches, careerMap = {}) {
   };
 }
 
+function inferBatRoleLabel(player) {
+  const total = player.battingPositions.length;
+  if (!total) return null;
+  let open = 0; let top = 0; let middle = 0; let finish = 0;
+  player.battingPositions.forEach(pos => {
+    if (pos <= 2) open++;
+    else if (pos <= 4) top++;
+    else if (pos <= 7) middle++;
+    else finish++;
+  });
+  if (open / total >= 0.6) return 'opener';
+  if ((open + top) / total >= 0.7) return 'top-order';
+  if (middle / total >= 0.5) return 'middle-order';
+  if (finish / total >= 0.4) return 'finisher';
+  return 'versatile';
+}
+
+function inferBowlPhaseLabel(player) {
+  if (!player.bowlBalls) return null;
+  const pp = player.bowlPhaseBalls.pp / player.bowlBalls;
+  const middle = player.bowlPhaseBalls.middle / player.bowlBalls;
+  const death = player.bowlPhaseBalls.death / player.bowlBalls;
+  if (pp >= 0.45) return 'powerplay';
+  if (death >= 0.45) return 'death';
+  if (middle >= 0.55) return 'middle-overs';
+  return 'mixed';
+}
+
+function sampleConfidence(player) {
+  const apps = player.matches.size;
+  if (apps >= 8 && (player.balls >= 120 || player.bowlBalls >= 150)) return 'high';
+  if (apps >= 4 && (player.balls >= 60 || player.bowlBalls >= 72)) return 'medium';
+  return 'low';
+}
+
+function buildPlayerHistory(seasonFiles, allSeasons) {
+  const playerMap = {};
+
+  for (const season of allSeasons) {
+    const seasonFileList = seasonFiles[season] || [];
+    const seasonPlayers = {};
+    seasonFileList.forEach(file => {
+      try {
+        processMatch(file, seasonPlayers, null, { season });
+      } catch (e) {
+        console.warn(`History ${season} ${file}: ${e.message}`);
+      }
+    });
+
+    const seasonStatCache = {};
+    Object.values(seasonPlayers).forEach(player => {
+      if (!player.matches.size) return;
+      const role = inferRole(player);
+      const stats = buildStats(player, role);
+      seasonStatCache[player.id] = { player, role, stats };
+    });
+
+    const roleGroups = {};
+    Object.values(seasonStatCache).forEach(({ player, role, stats }) => {
+      (roleGroups[role] = roleGroups[role] || []).push({ id: player.id, stats });
+    });
+
+    const batPercentiles = {};
+    const bowlPercentiles = {};
+
+    const computePct = (group, which, minBalls, dest) => {
+      const eligible = group.filter(p => (which === 'bat' ? p.stats.bat.balls : p.stats.bowl.balls || 0) >= minBalls && p.stats[which].score !== null);
+      if (eligible.length < 3) return;
+      const sorted = [...eligible].sort((a, b) => (a.stats[which].score || 0) - (b.stats[which].score || 0));
+      sorted.forEach(({ id }, i) => { dest[id] = Math.round(((i + 1) / sorted.length) * 100); });
+    };
+
+    const batGroup = [...(roleGroups.bat || []), ...(roleGroups.wk || [])];
+    computePct(batGroup, 'bat', 36, batPercentiles);
+    computePct(roleGroups.bowl || [], 'bowl', 36, bowlPercentiles);
+    computePct(roleGroups.ar || [], 'bat', 24, batPercentiles);
+    computePct(roleGroups.ar || [], 'bowl', 24, bowlPercentiles);
+
+    Object.values(seasonStatCache).forEach(({ player, role, stats }) => {
+      if (!player.runs && !player.wickets && !player.balls && !player.bowlBalls) return;
+
+      const entry = {
+        season,
+        teams: [...player.teams],
+        matches: player.matches.size,
+        role,
+        bat: (player.balls > 0 || player.runs > 0) ? {
+          innings: player.innings,
+          runs: player.runs,
+          balls: player.balls,
+          outs: player.outs,
+          avg: stats.bat.avg,
+          sr: stats.bat.sr,
+          boundary_pct: stats.bat.boundary_pct,
+          impact: stats.bat.impact,
+          fifties: player.fifties,
+          hundreds: player.hundreds,
+          avg_position: stats.bat.avg_position,
+          position_pct: stats.bat.position_pct,
+          batRoleLabel: inferBatRoleLabel(player),
+          score: stats.bat.score,
+          raw_score: stats.bat.raw_score,
+        } : null,
+        bowl: player.bowlBalls > 0 ? {
+          balls: player.bowlBalls,
+          runs: player.bowlRuns,
+          wickets: player.wickets,
+          econ: stats.bowl.econ,
+          bowling_avg: stats.bowl.bowling_avg,
+          wkts_per_match: stats.bowl.wkts_per_match,
+          dot_pct: stats.bowl.dot_pct,
+          phase_pct: stats.bowl.phase_pct,
+          bowlPhaseLabel: inferBowlPhaseLabel(player),
+          score: stats.bowl.score,
+          raw_score: stats.bowl.raw_score,
+        } : null,
+        field: { catches: player.catches, stumpings: player.stumpings, runouts: player.runouts },
+        batScore: stats.bat.score,
+        bowlScore: stats.bowl.score,
+        overallScore: stats.overall,
+        confidence: sampleConfidence(player),
+        batPercentile: batPercentiles[player.id] ?? null,
+        bowlPercentile: bowlPercentiles[player.id] ?? null,
+      };
+
+      if (!playerMap[player.id]) {
+        playerMap[player.id] = { id: player.id, name: player.name, namesSeen: [...player.namesSeen], seasons: [] };
+      } else {
+        playerMap[player.id].name = player.name;
+        player.namesSeen.forEach(n => {
+          if (!playerMap[player.id].namesSeen.includes(n)) playerMap[player.id].namesSeen.push(n);
+        });
+      }
+      playerMap[player.id].seasons.push(entry);
+    });
+  }
+
+  return playerMap;
+}
+
 if (!fs.existsSync(inputDir)) {
   console.error(`Input directory not found: ${inputDir}`);
   process.exit(1);
@@ -615,6 +756,23 @@ function jsonFiles(dir) {
 
 const files = jsonFiles(inputDir);
 
+// Single scan: group valid IPL files by season
+const seasonFiles = {};
+files.forEach(file => {
+  try {
+    const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const info = raw.info || {};
+    if (info.gender !== 'male' || info.match_type !== 'T20') return;
+    if (info.event?.name !== 'Indian Premier League') return;
+    if (!info.teams?.every(t => TEAM_SLUGS[t])) return;
+    const season = String(info.season);
+    (seasonFiles[season] = seasonFiles[season] || []).push(file);
+  } catch (e) {
+    console.warn(`Scan ${file}: ${e.message}`);
+  }
+});
+const allSeasons = Object.keys(seasonFiles).sort();
+
 const careerPlayers = {};
 files.forEach(file => {
   try {
@@ -626,7 +784,7 @@ files.forEach(file => {
 
 const players = {};
 const matches = [];
-files.forEach(file => {
+(seasonFiles['2026'] || []).forEach(file => {
   try {
     processMatch(file, players, matches, { season: '2026' });
   } catch (error) {
@@ -642,3 +800,19 @@ fs.writeFileSync(outJs, `globalThis.CRICSHEET_IPL_STATS = ${JSON.stringify(outpu
 console.log(`Processed ${output.matchesProcessed} IPL 2026 matches`);
 console.log(`Wrote ${outJson}`);
 console.log(`Wrote ${outJs}`);
+
+// Build per-season player history
+const playerHistoryMap = buildPlayerHistory(seasonFiles, allSeasons);
+const historyOutput = {
+  generatedAt: new Date().toISOString(),
+  seasons: allSeasons,
+  players: playerHistoryMap,
+};
+const historyJs = path.join(path.dirname(outJs), 'ipl-player-history.js');
+const historyJson = path.join(path.dirname(outJs), 'ipl-player-history.json');
+fs.writeFileSync(historyJson, `${JSON.stringify(historyOutput, null, 2)}\n`);
+fs.writeFileSync(historyJs, `globalThis.IPL_PLAYER_HISTORY = ${JSON.stringify(historyOutput)};\n`);
+
+console.log(`Generated history for ${Object.keys(playerHistoryMap).length} players across ${allSeasons.length} seasons`);
+console.log(`Wrote ${historyJson}`);
+console.log(`Wrote ${historyJs}`);

@@ -992,6 +992,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .leader-name-link { color: inherit; text-decoration: none; }
+  .leader-name-link:hover { color: var(--green-deep); text-decoration: underline; }
   .leader-meta {
     align-items: center;
     color: var(--ink-mute);
@@ -1119,6 +1121,204 @@
   }
 
   .bottom-nav { display: none; }
+
+  /* IPL Player Profile */
+  .player-profile-wrap { max-width: 900px; margin: 0 auto; }
+  .back-btn {
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .back-btn:hover { color: var(--ink); }
+  .profile-header { margin-top: 0; }
+  .profile-head-row {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+  }
+  .profile-name {
+    font: 800 28px/1.1 'Manrope', sans-serif;
+    margin: 6px 0 8px;
+  }
+  .profile-meta-row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .profile-score-box { flex: 0 0 auto; text-align: center; }
+  .profile-score-label {
+    color: var(--ink-mute);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .profile-score-num {
+    border-radius: 8px;
+    font: 800 52px/1 'Manrope', sans-serif;
+    padding: 8px 20px;
+  }
+  .profile-score-context {
+    color: var(--ink-mute);
+    font-size: 10px;
+    line-height: 1.4;
+    margin-top: 6px;
+    max-width: 170px;
+  }
+  .profile-stats-row {
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+  .profile-stat-item { flex: 1 1 110px; }
+  .profile-stat-label {
+    color: var(--ink-mute);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .profile-stat-val {
+    border-radius: 6px;
+    display: inline-block;
+    font: 800 26px/1 'Manrope', sans-serif;
+    margin-bottom: 4px;
+    padding: 4px 8px;
+  }
+  .profile-percentile-tag {
+    color: var(--green-deep);
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .profile-career-baseline {
+    color: var(--ink-mute);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .history-chart-wrap { margin-bottom: 14px; }
+  .history-chart-legend {
+    display: flex;
+    font-size: 11px;
+    font-weight: 700;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .hc-legend-bat::before, .hc-legend-bowl::before {
+    border-radius: 2px;
+    content: '';
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 10px;
+  }
+  .hc-legend-bat::before { background: var(--green-soft); }
+  .hc-legend-bowl::before { background: var(--gold-deep); }
+  .history-chart-outer {
+    align-items: flex-end;
+    display: flex;
+    gap: 6px;
+  }
+  .chart-y-axis {
+    color: var(--ink-mute);
+    display: flex;
+    flex: 0 0 20px;
+    flex-direction: column;
+    font-size: 9px;
+    font-weight: 700;
+    height: 80px;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    text-align: right;
+  }
+  .history-chart-scroll { flex: 1; overflow-x: auto; }
+  .history-chart {
+    align-items: flex-end;
+    display: flex;
+    gap: 3px;
+    padding-bottom: 2px;
+  }
+  .chart-col {
+    align-items: center;
+    display: flex;
+    flex: 0 0 30px;
+    flex-direction: column;
+    width: 30px;
+  }
+  .chart-col-vals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 7px;
+    font-weight: 800;
+    gap: 1px;
+    line-height: 1;
+    margin-bottom: 2px;
+    min-height: 16px;
+  }
+  .cv-bat { color: var(--green-deep); }
+  .cv-bowl { color: var(--gold-deep); }
+  .chart-bars {
+    align-items: flex-end;
+    display: flex;
+    gap: 2px;
+    height: 80px;
+    position: relative;
+    width: 100%;
+  }
+  .chart-bars::before, .chart-bars::after {
+    background: rgba(0,0,0,.13);
+    content: '';
+    height: 1px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+  .chart-bars::before { bottom: 40px; }
+  .chart-bars::after  { bottom: 60px; }
+  .chart-bar { border-radius: 2px 2px 0 0; flex: 1; min-height: 2px; }
+  .bat-bar { background: var(--green-soft); }
+  .bowl-bar { background: var(--gold-deep); }
+  .chart-bar-empty { background: rgba(19,25,21,.06); height: 3px; }
+  .chart-season-label {
+    color: var(--ink-mute);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .chart-current-dot { color: var(--crimson); font-size: 7px; line-height: 1; }
+  .history-table { margin-bottom: 14px; }
+  .history-current-season td { background: rgba(0,48,26,.04); }
+  .player-profile-link {
+    background: rgba(19,25,21,.07);
+    border-radius: 999px;
+    color: var(--ink-mute);
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    margin-top: 7px;
+    padding: 3px 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .player-profile-link:hover { background: rgba(19,25,21,.14); color: var(--ink); }
 
   @media (max-width: 820px) {
     header { height: 58px; padding: 0 14px; }
@@ -1350,6 +1550,8 @@
   </section>
 
   <section id="tab-ipl" class="tab-panel">
+    <div id="ipl-player-profile" style="display:none"></div>
+    <div id="ipl-main-content">
     <div class="hero">
       <div>
         <span class="chip chip-live"><span class="live-dot"></span>IPL Tracker</span>
@@ -1392,6 +1594,7 @@
       <div><div class="eyebrow">Results</div><h2>Recent Results</h2></div>
     </div>
     <div class="grid grid-2" id="ipl-results"></div>
+    </div><!-- #ipl-main-content -->
   </section>
 </main>
 
@@ -1415,6 +1618,7 @@
 </nav>
 
 <script src="data/ipl-2026-season-stats.js"></script>
+<script src="data/ipl-player-history.js" onerror="void(0)"></script>
 <script src="data/wtc-test-data.js"></script>
 <script>
 const API_KEY = '081aca27-a3d0-4ce7-aded-a1f73624ce37';
@@ -1520,14 +1724,16 @@ function normalizeTab(tab) {
 }
 
 function parseRoute(route = '') {
-  const [rawTab, rawDetail] = String(route).replace(/^#/, '').split('/');
+  const parts = String(route).replace(/^#/, '').split('/');
+  const rawTab = parts[0];
+  const rawDetail = parts[1];
+  const rawExtra = parts[2];
   const tab = normalizeTab(rawTab);
+  if (tab === 'ipl' && rawDetail === 'player' && rawExtra) {
+    return { tab, detail: null, player: rawExtra, hash: `#ipl/player/${rawExtra}` };
+  }
   const detail = (tab === 'ipl' && isIplSlug(rawDetail)) || (tab === 'test' && TEST_SQUAD_SLUGS.includes(rawDetail)) ? rawDetail : null;
-  return {
-    tab,
-    detail,
-    hash: `#${tab}${detail ? `/${detail}` : ''}`,
-  };
+  return { tab, detail, player: null, hash: `#${tab}${detail ? `/${detail}` : ''}` };
 }
 
 function switchTab(route, updateHash = true) {
@@ -1537,7 +1743,8 @@ function switchTab(route, updateHash = true) {
   document.querySelectorAll('.bnav-btn').forEach(btn => btn.classList.remove('active'));
   document.getElementById(`tab-${next.tab}`)?.classList.add('active');
   document.getElementById(`bnav-${next.tab}`)?.classList.add('active');
-  updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail);
+  updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail && !next.player);
+  updateIplPlayerProfile(next.player, next.tab === 'ipl' && !!next.player);
   updateTestTeamDetail(next.detail, next.tab === 'test' && !!next.detail);
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
@@ -1587,6 +1794,21 @@ function updateTestTeamDetail(detail, shouldScroll = false) {
   if (shouldScroll && detailEl) {
     requestAnimationFrame(() => detailEl.scrollIntoView({ block: 'start' }));
   }
+}
+
+function updateIplPlayerProfile(playerId, shouldScroll = false) {
+  const profileEl = document.getElementById('ipl-player-profile');
+  const mainEl = document.getElementById('ipl-main-content');
+  if (!profileEl || !mainEl) return;
+  if (!playerId) {
+    profileEl.style.display = 'none';
+    mainEl.style.display = '';
+    return;
+  }
+  mainEl.style.display = 'none';
+  profileEl.style.display = '';
+  profileEl.innerHTML = renderIplPlayerProfile(playerId);
+  if (shouldScroll) requestAnimationFrame(() => profileEl.scrollIntoView({ block: 'start' }));
 }
 
 window.addEventListener('hashchange', () => switchTab(window.location.hash, false));
@@ -3582,7 +3804,7 @@ function renderLeaderboardCard(title, mode, dotClass, metric = 'volume') {
           <div class="leader-row">
             <div class="leader-rank">${index + 1}</div>
             <div class="leader-player">
-              <div class="leader-name">${player.name}</div>
+              <a class="leader-name leader-name-link" href="#ipl/player/${player.id || normName(player.name)}">${player.name}</a>
               <div class="leader-meta">
                 ${flag(player.slug, teamAbbrFromName(teamNameFromSlug(player.slug)))}
                 <span>${teamNameFromSlug(player.slug)}</span>
@@ -4033,6 +4255,7 @@ function renderPlayerCardFace(p, mode, benchmarks, slug, isBack = false) {
       ${isBack ? fieldStats(profile, benchmarks) : ''}
       <span class="form-score ${tier}">${source}</span>
       <span class="flip-hint">${isBack ? 'Front: ' : 'Back: '}${oppositeSkillMode(mode) === 'bat' ? 'batting' : 'bowling'}</span>
+      ${!isBack && (p.id || p.name) ? `<a class="player-profile-link" href="#ipl/player/${p.id || normName(p.name)}" onclick="event.stopPropagation()">History ↗</a>` : ''}
     </div>
   </div>`;
 }
@@ -4145,6 +4368,192 @@ function renderWtcSquadBoards() {
   `;
   TEST_SQUAD_SLUGS.forEach(slug => bindSquadTabs(slug, 'test-squad-content'));
   updateTestTeamDetail(currentRoute().detail, false);
+}
+
+function getIplPlayerHistory() {
+  return window.IPL_PLAYER_HISTORY || globalThis.IPL_PLAYER_HISTORY || null;
+}
+
+function findPlayerCardById(playerId) {
+  for (const squad of Object.values(IPL_SQUADS || {})) {
+    for (const group of Object.values(squad)) {
+      const found = group.find(p => p.id === playerId);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+function renderSeasonHistoryChart(seasons) {
+  const cols = seasons.map(s => {
+    const batH = s.batScore != null ? Math.round((s.batScore / 100) * 80) : 0;
+    const bowlH = s.bowlScore != null ? Math.round((s.bowlScore / 100) * 80) : 0;
+    const yr = String(s.season).replace(/\d{4}\//, '').slice(-2);
+    return `<div class="chart-col">
+      <div class="chart-col-vals">
+        ${s.batScore != null ? `<span class="cv-bat">${s.batScore}</span>` : ''}
+        ${s.bowlScore != null ? `<span class="cv-bowl">${s.bowlScore}</span>` : ''}
+      </div>
+      <div class="chart-bars">
+        ${s.batScore != null ? `<div class="bat-bar chart-bar" style="height:${batH}px" title="${s.season} Bat: ${s.batScore}"></div>` : '<div class="chart-bar chart-bar-empty"></div>'}
+        ${s.bowlScore != null ? `<div class="bowl-bar chart-bar" style="height:${bowlH}px" title="${s.season} Bowl: ${s.bowlScore}"></div>` : '<div class="chart-bar chart-bar-empty"></div>'}
+      </div>
+      <div class="chart-season-label">${yr}</div>
+      ${s.season === '2026' ? '<div class="chart-current-dot">●</div>' : ''}
+    </div>`;
+  }).join('');
+  return `<div class="card pad history-chart-wrap">
+    <div class="history-chart-legend">
+      <span class="hc-legend-bat">Bat score</span>
+      <span class="hc-legend-bowl">Bowl score</span>
+    </div>
+    <div class="history-chart-outer">
+      <div class="chart-y-axis">
+        <span>100</span>
+        <span>75</span>
+        <span>50</span>
+        <span>25</span>
+        <span>0</span>
+      </div>
+      <div class="history-chart-scroll">
+        <div class="history-chart">${cols}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderSeasonHistoryTable(seasons) {
+  const rows = seasons.slice().reverse().map(s => {
+    const teamSlug = slugForTeam({ name: s.teams[0] || '' });
+    const isCurrent = s.season === '2026';
+    const roleLabel = { bat: 'Bat', bowl: 'Bowl', wk: 'WK', ar: 'AR' }[s.role] || s.role;
+    return `<tr class="${isCurrent ? 'history-current-season' : ''}">
+      <td>${s.season}${isCurrent ? ' <span class="chip chip-live" style="font-size:8px;padding:2px 6px">LIVE</span>' : ''}</td>
+      <td><span class="flag f-${teamSlug}" style="font-size:9px;height:20px;min-width:26px;border-radius:3px">${teamSlug.toUpperCase()}</span></td>
+      <td class="num">${s.matches}</td>
+      <td>${roleLabel}</td>
+      <td class="num">${s.bat ? s.bat.runs : '—'}</td>
+      <td class="num">${s.bat?.sr != null && s.bat.balls > 0 ? Number(s.bat.sr).toFixed(0) : '—'}</td>
+      <td class="num">${s.bowl?.wickets != null ? s.bowl.wickets : '—'}</td>
+      <td class="num">${s.bowl?.econ != null && s.bowl.balls > 0 ? Number(s.bowl.econ).toFixed(1) : '—'}</td>
+      <td class="num"><span class="form-score ${s.batScore != null ? formTier(s.batScore) : 'nodata'}" style="margin:0;padding:3px 7px;font-size:9px">${s.batScore ?? '—'}</span></td>
+      <td class="num"><span class="form-score ${s.bowlScore != null ? formTier(s.bowlScore) : 'nodata'}" style="margin:0;padding:3px 7px;font-size:9px">${s.bowlScore ?? '—'}</span></td>
+      <td class="num"><strong class="${s.overallScore != null ? formTier(s.overallScore) : ''}">${s.overallScore ?? '—'}</strong></td>
+    </tr>`;
+  }).join('');
+  return `<div class="card table-wrap history-table">
+    <table style="min-width:540px">
+      <thead><tr>
+        <th>Season</th><th>Team</th><th class="num">M</th><th>Role</th>
+        <th class="num">Runs</th><th class="num">SR</th>
+        <th class="num">Wkts</th><th class="num">Econ</th>
+        <th class="num">Bat ▲</th><th class="num">Bowl ▲</th><th class="num">Score</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
+function renderIplPlayerProfile(playerId) {
+  const history = getIplPlayerHistory();
+  const playerData = history?.players?.[playerId];
+  const currentCard = findPlayerCardById(playerId);
+
+  if (!playerData && !currentCard) {
+    return `<div class="player-profile-wrap">
+      <div style="margin-bottom:14px"><a href="#ipl" class="back-btn">← Back to IPL</a></div>
+      <div class="card pad" style="text-align:center;color:var(--ink-mute);padding:40px">Player profile not available.</div>
+    </div>`;
+  }
+
+  const name = playerData?.name || currentCard?.name || '—';
+  const nat = currentCard?.nat || 'IND';
+  const seasons = (playerData?.seasons || []).sort((a, b) => String(a.season).localeCompare(String(b.season)));
+  const s2026 = seasons.find(s => s.season === '2026');
+  const role = s2026?.role || currentCard?.role || 'bat';
+  const currentBatScore = s2026?.batScore ?? null;
+  const currentBowlScore = s2026?.bowlScore ?? null;
+  const currentOverall = s2026?.overallScore ?? currentCard?.score ?? null;
+  const currentTeams = s2026?.teams || [];
+  const confidence = s2026?.confidence || null;
+  const batPercentile = s2026?.batPercentile ?? null;
+  const bowlPercentile = s2026?.bowlPercentile ?? null;
+
+  const historicalSeasons = seasons.filter(s => s.season !== '2026' && s.matches >= 3);
+  const careerBatScore = historicalSeasons.length > 0
+    ? Math.round(historicalSeasons.reduce((sum, s) => sum + (s.batScore || 0), 0) / historicalSeasons.length)
+    : null;
+  const careerBowlScore = historicalSeasons.length > 0
+    ? Math.round(historicalSeasons.reduce((sum, s) => sum + (s.bowlScore || 0), 0) / historicalSeasons.length)
+    : null;
+
+  const teamFlagsHtml = currentTeams.map(t => {
+    const sl = slugForTeam({ name: t });
+    return `<span class="flag f-${sl}" style="font-size:9px;height:22px;min-width:28px;border-radius:4px">${sl.toUpperCase()}</span>`;
+  }).join('');
+
+  const confidenceCls = confidence === 'high' ? 'chip-soft' : confidence === 'medium' ? 'chip-gold' : '';
+  const overallTier = formTier(currentOverall);
+  const roleLabelMap = { bat: 'Batter', bowl: 'Bowler', wk: 'Wicketkeeper', ar: 'All-rounder' };
+
+  const percentileHtml = (pct, label) => pct !== null
+    ? `<div class="profile-percentile-tag">P${pct} among IPL ${label}s this season</div>` : '';
+
+  const careerBaselineHtml = (career, label) => career !== null
+    ? `<div class="profile-career-baseline">Career avg ${career} · ${label}</div>` : '';
+
+  return `<div class="player-profile-wrap">
+    <div style="margin-bottom:16px"><a href="#ipl" class="back-btn">← Back to IPL</a></div>
+
+    <div class="card pad profile-header">
+      <div class="profile-head-row">
+        <div>
+          <div class="eyebrow">IPL Player Profile</div>
+          <h2 class="profile-name">${name}</h2>
+          <div class="profile-meta-row">
+            ${nat ? flag(nat.toLowerCase(), nat) : ''}
+            ${teamFlagsHtml}
+            ${roleLabelMap[role] ? `<span class="chip chip-soft" style="font-size:9px;padding:4px 9px">${roleLabelMap[role]}</span>` : ''}
+            ${confidence ? `<span class="chip ${confidenceCls}" style="font-size:9px;padding:4px 9px">${confidence} sample</span>` : ''}
+          </div>
+        </div>
+        ${currentOverall !== null ? `<div class="profile-score-box">
+          <div class="profile-score-label">2026 Form Score</div>
+          <div class="profile-score-num ${overallTier}">${currentOverall}</div>
+          <div class="profile-score-context">Season performance — not a career rating</div>
+        </div>` : ''}
+      </div>
+
+      <div class="profile-stats-row">
+        ${currentBatScore !== null ? `<div class="profile-stat-item">
+          <div class="profile-stat-label">Bat Score</div>
+          <div class="profile-stat-val ${formTier(currentBatScore)}">${currentBatScore}</div>
+          ${percentileHtml(batPercentile, 'batter')}
+          ${careerBaselineHtml(careerBatScore, 'pre-2026 seasons')}
+        </div>` : ''}
+        ${currentBowlScore !== null ? `<div class="profile-stat-item">
+          <div class="profile-stat-label">Bowl Score</div>
+          <div class="profile-stat-val ${formTier(currentBowlScore)}">${currentBowlScore}</div>
+          ${percentileHtml(bowlPercentile, 'bowler')}
+          ${careerBaselineHtml(careerBowlScore, 'pre-2026 seasons')}
+        </div>` : ''}
+        ${s2026?.matches ? `<div class="profile-stat-item">
+          <div class="profile-stat-label">2026 Apps</div>
+          <div class="profile-stat-val">${s2026.matches}</div>
+          <div class="profile-career-baseline">${seasons.length} IPL season${seasons.length !== 1 ? 's' : ''} total</div>
+        </div>` : ''}
+      </div>
+    </div>
+
+    ${seasons.length > 1 ? `
+    <div class="section-head" style="margin-top:24px">
+      <div><div class="eyebrow">Season by Season</div><h2>IPL Career History</h2></div>
+      <div class="section-note">Form scores are comparable within each season, not across seasons.</div>
+    </div>
+    ${renderSeasonHistoryChart(seasons)}
+    ${renderSeasonHistoryTable(seasons)}
+    ` : `<div class="card pad" style="margin-top:16px;color:var(--ink-mute);font-size:13px">First IPL season recorded. History builds as more seasons are played.</div>`}
+  </div>`;
 }
 
 function initStaticViews() {
