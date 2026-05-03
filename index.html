@@ -1388,6 +1388,13 @@
     color: var(--green-deep);
     padding: 3px 6px;
   }
+  .historical-leader-detail {
+    color: var(--ink-mute);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    margin-top: 4px;
+  }
   .historical-leader-score {
     text-align: right;
   }
@@ -4879,37 +4886,120 @@ function historicalAverageLeaders(mode, limit = 10) {
   const history = getIplPlayerHistory();
   const players = Object.values(history?.players || {});
   return players.map(player => {
-    const seasons = (player.seasons || []).filter(season => {
+    const all = player.seasons || [];
+    const seasons = all.filter(season => {
       const score = mode === 'bat' ? season.batScore : season.bowlScore;
       return score !== null && score !== undefined && historicalLeaderSample(season, mode);
     });
-    const totalMatches = seasons.reduce((sum, season) => sum + (season.matches || 0), 0);
+    const totalMatches = seasons.reduce((sum, s) => sum + (s.matches || 0), 0);
     const qualifiedSeasons = seasons.length;
     const minMatches = mode === 'bat' ? 25 : 20;
     if (qualifiedSeasons < 3 || totalMatches < minMatches) return null;
-    const weighted = seasons.reduce((sum, season) => {
-      const score = mode === 'bat' ? season.batScore : season.bowlScore;
-      return sum + score * (season.matches || 1);
+    const weighted = seasons.reduce((sum, s) => {
+      const score = mode === 'bat' ? s.batScore : s.bowlScore;
+      return sum + score * (s.matches || 1);
     }, 0);
     const avg = Math.round(weighted / Math.max(totalMatches, 1));
-    const latest = player.seasons?.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
+    const latest = all.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
+    const careerRuns = all.reduce((sum, s) => sum + (s.bat?.runs || 0), 0);
+    const careerWickets = all.reduce((sum, s) => sum + (s.bowl?.wickets || 0), 0);
     return {
       id: player.id,
       name: player.name,
       avg,
       seasons: qualifiedSeasons,
       matches: totalMatches,
-      active: (player.seasons || []).some(season => season.season === '2026'),
+      active: all.some(s => s.season === '2026'),
       latestTeam: latest?.teams?.[0] || '',
+      careerRuns,
+      careerWickets,
     };
   }).filter(Boolean)
     .sort((a, b) => (b.avg - a.avg) || (b.matches - a.matches) || a.name.localeCompare(b.name))
     .slice(0, limit);
 }
 
+function historicalCareerLeaders(mode, limit = 10) {
+  const history = getIplPlayerHistory();
+  const players = Object.values(history?.players || {});
+  return players.map(player => {
+    const all = player.seasons || [];
+    const latest = all.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
+    if (mode === 'bat') {
+      const runs = all.reduce((sum, s) => sum + (s.bat?.runs || 0), 0);
+      const balls = all.reduce((sum, s) => sum + (s.bat?.balls || 0), 0);
+      const outs = all.reduce((sum, s) => sum + (s.bat?.outs || 0), 0);
+      const fifties = all.reduce((sum, s) => sum + (s.bat?.fifties || 0), 0);
+      const hundreds = all.reduce((sum, s) => sum + (s.bat?.hundreds || 0), 0);
+      const matches = all.reduce((sum, s) => sum + (s.matches || 0), 0);
+      if (runs < 300) return null;
+      return {
+        id: player.id, name: player.name,
+        primary: runs, label: 'runs',
+        detail: `avg ${outs > 0 ? (runs / outs).toFixed(1) : '—'} · SR ${balls > 0 ? ((runs / balls) * 100).toFixed(0) : '—'}`,
+        sub: `${fifties} ×50  ${hundreds} ×100`,
+        seasons: all.length, matches,
+        active: all.some(s => s.season === '2026'),
+        latestTeam: latest?.teams?.[0] || '',
+      };
+    } else {
+      const wickets = all.reduce((sum, s) => sum + (s.bowl?.wickets || 0), 0);
+      const balls = all.reduce((sum, s) => sum + (s.bowl?.balls || 0), 0);
+      const runs = all.reduce((sum, s) => sum + (s.bowl?.runs || 0), 0);
+      const matches = all.reduce((sum, s) => sum + (s.matches || 0), 0);
+      if (wickets < 10) return null;
+      return {
+        id: player.id, name: player.name,
+        primary: wickets, label: 'wickets',
+        detail: `econ ${balls > 0 ? ((runs / balls) * 6).toFixed(2) : '—'} · avg ${wickets > 0 ? (runs / wickets).toFixed(1) : '—'}`,
+        sub: `${Math.round(balls / 6)} overs`,
+        seasons: all.length, matches,
+        active: all.some(s => s.season === '2026'),
+        latestTeam: latest?.teams?.[0] || '',
+      };
+    }
+  }).filter(Boolean)
+    .sort((a, b) => b.primary - a.primary)
+    .slice(0, limit);
+}
+
 function renderHistoricalLeaderCard(title, mode, currentPlayerId) {
   const rows = historicalAverageLeaders(mode, 10);
-  const label = mode === 'bat' ? 'bat avg' : 'bowl avg';
+  const label = mode === 'bat' ? 'score avg' : 'score avg';
+  return `<div class="card historical-leaderboard">
+    <div class="leaderboard-head">
+      <div class="leaderboard-title">${title}</div>
+      <span class="role-dot ${mode === 'bat' ? 'dot-bat' : 'dot-bowl'}"></span>
+    </div>
+    ${rows.map((player, index) => {
+      const slug = slugForTeam({ name: player.latestTeam });
+      const current = player.id === currentPlayerId;
+      const careerStat = mode === 'bat'
+        ? (player.careerRuns > 0 ? `${player.careerRuns} runs` : '')
+        : (player.careerWickets > 0 ? `${player.careerWickets} wkts` : '');
+      return `<a class="historical-leader-row ${current ? 'is-current' : ''}" href="#ipl/player/${player.id}">
+        <div class="historical-leader-rank">${index + 1}</div>
+        <div>
+          <div class="historical-leader-name">${player.name}</div>
+          <div class="historical-leader-meta">
+            ${player.latestTeam ? flag(slug, teamAbbrFromName(player.latestTeam)) : ''}
+            <span>${player.seasons} seasons</span>
+            ${careerStat ? `<span>${careerStat}</span>` : ''}
+            ${player.active ? '<span class="history-active-chip">Active</span>' : ''}
+            ${current ? '<span class="history-active-chip">This profile</span>' : ''}
+          </div>
+        </div>
+        <div class="historical-leader-score">
+          <strong>${player.avg}</strong>
+          <span>${label}</span>
+        </div>
+      </a>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderHistoricalCareerCard(title, mode, currentPlayerId) {
+  const rows = historicalCareerLeaders(mode, 10);
   return `<div class="card historical-leaderboard">
     <div class="leaderboard-head">
       <div class="leaderboard-title">${title}</div>
@@ -4924,15 +5014,15 @@ function renderHistoricalLeaderCard(title, mode, currentPlayerId) {
           <div class="historical-leader-name">${player.name}</div>
           <div class="historical-leader-meta">
             ${player.latestTeam ? flag(slug, teamAbbrFromName(player.latestTeam)) : ''}
-            <span>${player.seasons} seasons</span>
-            <span>${player.matches} apps</span>
+            <span>${player.seasons} seasons · ${player.matches} apps</span>
             ${player.active ? '<span class="history-active-chip">Active</span>' : ''}
             ${current ? '<span class="history-active-chip">This profile</span>' : ''}
           </div>
+          <div class="historical-leader-detail">${player.detail}</div>
         </div>
         <div class="historical-leader-score">
-          <strong>${player.avg}</strong>
-          <span>${label}</span>
+          <strong>${player.primary}</strong>
+          <span>${player.label}</span>
         </div>
       </a>`;
     }).join('')}
@@ -4943,6 +5033,8 @@ function renderHistoricalLeaderboards(currentPlayerId) {
   return `<div class="historical-leaders-grid">
     ${renderHistoricalLeaderCard('Top Historical Batters', 'bat', currentPlayerId)}
     ${renderHistoricalLeaderCard('Top Historical Bowlers', 'bowl', currentPlayerId)}
+    ${renderHistoricalCareerCard('All-Time Run Scorers', 'bat', currentPlayerId)}
+    ${renderHistoricalCareerCard('All-Time Wicket Takers', 'bowl', currentPlayerId)}
   </div>`;
 }
 
