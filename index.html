@@ -4640,28 +4640,35 @@ function historicalAverageLeaders(mode, limit = 10) {
   const history = getIplPlayerHistory();
   const players = Object.values(history?.players || {});
   return players.map(player => {
-    const seasons = (player.seasons || []).filter(season => {
+    const all = player.seasons || [];
+    // Include every season where the player has a score — weighting by matches
+    // naturally discounts short cameos without artificially removing them.
+    const seasons = all.filter(season => {
       const score = mode === 'bat' ? season.batScore : season.bowlScore;
-      return score !== null && score !== undefined && historicalLeaderSample(season, mode);
+      return score !== null && score !== undefined;
     });
-    const totalMatches = seasons.reduce((sum, season) => sum + (season.matches || 0), 0);
-    const qualifiedSeasons = seasons.length;
+    const totalMatches = seasons.reduce((sum, s) => sum + (s.matches || 0), 0);
+    const minSeasons = 3;
     const minMatches = mode === 'bat' ? 25 : 20;
-    if (qualifiedSeasons < 3 || totalMatches < minMatches) return null;
-    const weighted = seasons.reduce((sum, season) => {
-      const score = mode === 'bat' ? season.batScore : season.bowlScore;
-      return sum + score * (season.matches || 1);
+    if (seasons.length < minSeasons || totalMatches < minMatches) return null;
+    const weighted = seasons.reduce((sum, s) => {
+      const score = mode === 'bat' ? s.batScore : s.bowlScore;
+      return sum + score * (s.matches || 1);
     }, 0);
     const avg = Math.round(weighted / Math.max(totalMatches, 1));
-    const latest = player.seasons?.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
+    const latest = all.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
+    const careerRuns = all.reduce((sum, s) => sum + (s.bat?.runs || 0), 0);
+    const careerWickets = all.reduce((sum, s) => sum + (s.bowl?.wickets || 0), 0);
     return {
       id: player.id,
       name: player.name,
       avg,
-      seasons: qualifiedSeasons,
+      seasons: seasons.length,
       matches: totalMatches,
-      active: (player.seasons || []).some(season => season.season === '2026'),
+      active: all.some(s => s.season === '2026'),
       latestTeam: latest?.teams?.[0] || '',
+      careerRuns,
+      careerWickets,
     };
   }).filter(Boolean)
     .sort((a, b) => (b.avg - a.avg) || (b.matches - a.matches) || a.name.localeCompare(b.name))
