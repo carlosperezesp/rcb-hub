@@ -4001,6 +4001,12 @@ function renderGlobalRankings() {
   `;
 }
 
+function renderGlobalHistoricalRankings() {
+  const el = document.getElementById('ipl-historical-rankings');
+  if (!el) return;
+  el.innerHTML = renderHistoricalLeaderboards(null);
+}
+
 function renderIplSpotlight(rows) {
   const leaders = topPlayerLeaders();
   document.getElementById('ipl-spotlight').innerHTML = `
@@ -4856,6 +4862,7 @@ async function initIpl() {
   await fetchIplSquadModel();
   renderIplSpotlight(rows);
   renderGlobalRankings();
+  renderGlobalHistoricalRankings();
   renderTeamGrid('ipl-team-grid', rows, 'ipl');
   renderFixtures('ipl-fixtures', await fetchIplFixtures());
   renderFixtures('ipl-results', formatRecentResults());
