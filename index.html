@@ -4809,6 +4809,19 @@ function renderIplPlayerProfile(playerId) {
   </div>`;
 }
 
+function initIplSectionNav() {
+  document.querySelectorAll('.ipl-snav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = btn.dataset.iplSection;
+      document.querySelectorAll('.ipl-snav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.ipl-section-panel').forEach(p => { p.style.display = 'none'; });
+      const panel = document.getElementById(`ipl-panel-${section}`);
+      if (panel) panel.style.display = '';
+    });
+  });
+}
+
 function initStaticViews() {
   document.getElementById('test-standings-table').innerHTML = renderStandingsTable(testTeams, 'test');
   renderTeamGrid('test-team-grid', testTeams, 'test');
@@ -4817,6 +4830,7 @@ function initStaticViews() {
   renderFixtures('test-results', wtcResultsFallback);
   renderFixtures('ipl-fixtures', upcomingIplFixtures(iplFixtures));
   renderFixtures('ipl-results', formatRecentResults());
+  initIplSectionNav();
 }
 
 async function initWtc() {
