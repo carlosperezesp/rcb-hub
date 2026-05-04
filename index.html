@@ -1328,7 +1328,7 @@
     margin-top: 8px;
     text-align: center;
   }
-  .chart-current-dot { color: var(--crimson); font-size: 10px; line-height: 1; margin-top: 3px; }
+  .chart-season-current { background: var(--green-deep); border-radius: 999px; color: #fff; padding: 2px 5px; }
   .history-table { margin-bottom: 14px; }
   .history-current-season td { background: rgba(0,48,26,.04); }
   .historical-leaders-grid {
@@ -4573,8 +4573,7 @@ function renderSeasonHistoryChart(seasons) {
           ${s.bowlScore != null ? `<span class="chart-value cv-bowl" style="bottom:${bowlH + 7}px">${s.bowlScore}</span><div class="bowl-bar chart-bar" style="height:${bowlH}px" title="${s.season} Bowl: ${s.bowlScore}"></div>` : '<span class="chart-value"></span><div class="chart-bar chart-bar-empty"></div>'}
         </div>
       </div>
-      <div class="chart-season-label">${yr}</div>
-      ${s.season === '2026' ? '<div class="chart-current-dot">●</div>' : ''}
+      <div class="chart-season-label ${s.season === '2026' ? 'chart-season-current' : ''}">${yr}</div>
     </div>`;
   }).join('');
   return `<div class="card pad history-chart-wrap">
