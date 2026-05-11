@@ -2031,7 +2031,7 @@
     <div class="ipl-section-panel" id="ipl-panel-history" style="display:none">
       <div class="section-head">
         <div><div class="eyebrow" style="color:var(--gold-deep)">All-Time Context</div><h2>IPL Historical Score Leaders</h2></div>
-        <div class="section-note">Top 10 players by weighted average season score. Active players are marked when they have a 2026 IPL season.</div>
+        <div class="section-note">Top 10 players by weighted average pre-2026 season score. Active players are marked when they have a 2026 IPL season.</div>
       </div>
       <div id="ipl-historical-rankings">
         <div class="loading">Loading historical rankings...</div>
@@ -5041,7 +5041,7 @@ function historicalAverageLeaders(mode, limit = 10) {
     // naturally discounts short cameos without artificially removing them.
     const seasons = all.filter(season => {
       const score = mode === 'bat' ? season.batScore : season.bowlScore;
-      return score !== null && score !== undefined;
+      return score !== null && score !== undefined && season.season !== '2026';
     });
     const totalMatches = seasons.reduce((sum, s) => sum + (s.matches || 0), 0);
     const minSeasons = 3;
@@ -5073,7 +5073,7 @@ function historicalAverageLeaders(mode, limit = 10) {
 
 function renderHistoricalLeaderCard(title, mode, currentPlayerId) {
   const rows = historicalAverageLeaders(mode, 10);
-  const label = mode === 'bat' ? 'bat avg' : 'bowl avg';
+  const label = mode === 'bat' ? 'career score' : 'career score';
   return `<div class="card historical-leaderboard">
     <div class="leaderboard-head">
       <div class="leaderboard-title">${title}</div>
@@ -5126,7 +5126,8 @@ function renderIplPlayerProfile(playerId) {
   const nat = iplPlayerNation(playerData, currentCard);
   const seasons = (playerData?.seasons || []).sort((a, b) => String(a.season).localeCompare(String(b.season)));
   const s2026 = seasons.find(s => s.season === '2026');
-  const role = s2026?.role || currentCard?.role || 'bat';
+  const historicalRole = seasons.filter(s => s.role && s.season !== '2026').at(-1)?.role || null;
+  const role = s2026?.role || currentCard?.role || historicalRole || 'bat';
   const currentRole = roleCode(currentCard?.role || role);
   const historicalMode = ['bowl', 'ar'].includes(currentRole) && historicalProfileScore(playerData, 'bowl') !== null ? 'bowl' : 'bat';
   const historicalScore = historicalProfileScore(playerData, historicalMode);
@@ -5230,7 +5231,7 @@ function renderIplPlayerProfile(playerId) {
 
     <div class="section-head" style="margin-top:24px">
       <div><div class="eyebrow">All-Time Context</div><h2>IPL Historical Score Leaders</h2></div>
-      <div class="section-note">Top 10 players by weighted average season score. Active players are marked when they have a 2026 IPL season.</div>
+      <div class="section-note">Top 10 players by weighted average pre-2026 season score. Active players are marked when they have a 2026 IPL season.</div>
     </div>
     ${renderHistoricalLeaderboards(playerId)}
     ` : `<div class="card pad" style="margin-top:16px;color:var(--ink-mute);font-size:13px">First IPL season recorded. History builds as more seasons are played.</div>`}
