@@ -1,3 +1,7 @@
 .DS_Store
-data/cricsheet/
+data/cricsheet/*
+!data/cricsheet/ipl_male_json/
+data/cricsheet/ipl_male_json/*
+!data/cricsheet/ipl_male_json/1527*.json
+!data/cricsheet/ipl_male_json/1529*.json
 .tools/
