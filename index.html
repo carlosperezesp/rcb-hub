@@ -4759,14 +4759,73 @@ function getIplPlayerHistory() {
   return window.IPL_PLAYER_HISTORY || globalThis.IPL_PLAYER_HISTORY || null;
 }
 
+const IPL_PLAYER_NATIONS = {
+  'AB de Villiers': 'RSA',
+  'A Nortje': 'RSA',
+  'AD Russell': 'WI',
+  'AK Markram': 'RSA',
+  'Azhar Mahmood': 'PAK',
+  'B Muzarabani': 'ZIM',
+  'CH Gayle': 'WI',
+  'DA Miller': 'RSA',
+  'DA Warner': 'AUS',
+  'DE Bollinger': 'AUS',
+  'DP Conway': 'NZ',
+  'D Brevis': 'RSA',
+  'D Ferreira': 'RSA',
+  'DW Steyn': 'RSA',
+  'F du Plessis': 'RSA',
+  'GF Linde': 'RSA',
+  'Imran Tahir': 'RSA',
+  'JC Archer': 'ENG',
+  'JC Buttler': 'ENG',
+  'JG Bethell': 'ENG',
+  'JO Holder': 'WI',
+  'JR Hazlewood': 'AUS',
+  'KA Pollard': 'WI',
+  'L Ngidi': 'RSA',
+  'LG Pretorius': 'RSA',
+  'MF Maharoof': 'SL',
+  'MJ Henry': 'NZ',
+  'MW Short': 'AUS',
+  'Noor Ahmad': 'AFG',
+  'P Nissanka': 'SL',
+  'PD Salt': 'ENG',
+  'PVD Chameera': 'SL',
+  'Rashid Khan': 'AFG',
+  'SL Malinga': 'SL',
+  'SR Watson': 'AUS',
+  'TM Head': 'AUS',
+  'XC Bartlett': 'AUS',
+};
+
+function iplPlayerNation(playerData, currentCard) {
+  return currentCard?.nat || playerData?.nat || IPL_PLAYER_NATIONS[playerData?.name] || null;
+}
+
 function findPlayerCardById(playerId) {
-  for (const squad of Object.values(IPL_SQUADS || {})) {
+  for (const [slug, squad] of Object.entries(IPL_SQUADS || {})) {
     for (const group of Object.values(squad)) {
       const found = group.find(p => p.id === playerId);
-      if (found) return found;
+      if (found) return { ...found, slug };
     }
   }
   return null;
+}
+
+function historicalProfileScore(playerData, mode) {
+  const seasons = playerData?.seasons || [];
+  const scored = seasons.filter(season => {
+    const score = mode === 'bat' ? season.batScore : season.bowlScore;
+    return score !== null && score !== undefined;
+  });
+  const totalMatches = scored.reduce((sum, season) => sum + (season.matches || 0), 0);
+  if (!scored.length || !totalMatches) return null;
+  const weighted = scored.reduce((sum, season) => {
+    const score = mode === 'bat' ? season.batScore : season.bowlScore;
+    return sum + score * (season.matches || 1);
+  }, 0);
+  return Math.round(weighted / totalMatches);
 }
 
 function renderSeasonHistoryChart(seasons) {
@@ -4937,19 +4996,39 @@ function renderIplPlayerProfile(playerId) {
   }
 
   const name = playerData?.name || currentCard?.name || '—';
-  const nat = currentCard?.nat || 'IND';
+  const nat = iplPlayerNation(playerData, currentCard);
   const seasons = (playerData?.seasons || []).sort((a, b) => String(a.season).localeCompare(String(b.season)));
   const s2026 = seasons.find(s => s.season === '2026');
   const role = s2026?.role || currentCard?.role || 'bat';
-  const currentBatScore = s2026?.batScore ?? null;
-  const currentBowlScore = s2026?.bowlScore ?? null;
-  const currentOverall = s2026?.overallScore ?? currentCard?.score ?? null;
-  const currentTeams = s2026?.teams || [];
+  const currentRole = roleCode(currentCard?.role || role);
+  const historicalMode = ['bowl', 'ar'].includes(currentRole) && historicalProfileScore(playerData, 'bowl') !== null ? 'bowl' : 'bat';
+  const historicalScore = historicalProfileScore(playerData, historicalMode);
+  const currentBatScore = currentCard && ['bat', 'wk', 'ar'].includes(currentRole)
+    ? skillScore(currentCard, 'bat')
+    : (s2026?.batScore ?? null);
+  const currentBowlScore = currentCard && ['bowl', 'ar'].includes(currentRole)
+    ? skillScore(currentCard, 'bowl')
+    : (s2026?.bowlScore ?? null);
+  const currentOverall = currentCard?.score ?? s2026?.overallScore ?? null;
+  const headlineScore = currentOverall ?? historicalScore;
+  const headlineTier = formTier(headlineScore);
+  const headlineLabel = currentOverall !== null ? '2026 Form Score' : `Historical ${historicalMode === 'bat' ? 'Bat' : 'Bowl'} Avg`;
+  const headlineContext = currentOverall !== null ? 'Season performance — not a career rating' : 'Weighted average across IPL seasons';
+  const currentTeams = s2026?.teams || (currentCard ? [teamNameFromSlug(currentCard.slug)] : []);
   const confidence = s2026?.confidence || null;
   const batPercentile = s2026?.batPercentile ?? null;
   const bowlPercentile = s2026?.bowlPercentile ?? null;
+  const displaySeasons = seasons.map(season => {
+    if (season.season !== '2026' || !currentCard) return season;
+    return {
+      ...season,
+      batScore: currentBatScore,
+      bowlScore: currentBowlScore,
+      overallScore: currentOverall,
+    };
+  });
 
-  const historicalSeasons = seasons.filter(s => s.season !== '2026' && s.matches >= 3);
+  const historicalSeasons = displaySeasons.filter(s => s.season !== '2026' && s.matches >= 3);
   const careerBatScore = historicalSeasons.length > 0
     ? Math.round(historicalSeasons.reduce((sum, s) => sum + (s.batScore || 0), 0) / historicalSeasons.length)
     : null;
@@ -4963,7 +5042,6 @@ function renderIplPlayerProfile(playerId) {
   }).join('');
 
   const confidenceCls = confidence === 'high' ? 'chip-soft' : confidence === 'medium' ? 'chip-gold' : '';
-  const overallTier = formTier(currentOverall);
   const roleLabelMap = { bat: 'Batter', bowl: 'Bowler', wk: 'Wicketkeeper', ar: 'All-rounder' };
 
   const percentileHtml = (pct, label) => pct !== null
@@ -4987,10 +5065,10 @@ function renderIplPlayerProfile(playerId) {
             ${confidence ? `<span class="chip ${confidenceCls}" style="font-size:9px;padding:4px 9px">${confidence} sample</span>` : ''}
           </div>
         </div>
-        ${currentOverall !== null ? `<div class="profile-score-box">
-          <div class="profile-score-label">2026 Form Score</div>
-          <div class="profile-score-num ${overallTier}">${currentOverall}</div>
-          <div class="profile-score-context">Season performance — not a career rating</div>
+        ${headlineScore !== null ? `<div class="profile-score-box">
+          <div class="profile-score-label">${headlineLabel}</div>
+          <div class="profile-score-num ${headlineTier}">${headlineScore}</div>
+          <div class="profile-score-context">${headlineContext}</div>
         </div>` : ''}
       </div>
 
@@ -5010,18 +5088,18 @@ function renderIplPlayerProfile(playerId) {
         ${s2026?.matches ? `<div class="profile-stat-item">
           <div class="profile-stat-label">2026 Apps</div>
           <div class="profile-stat-val">${s2026.matches}</div>
-          <div class="profile-career-baseline">${seasons.length} IPL season${seasons.length !== 1 ? 's' : ''} total</div>
+          <div class="profile-career-baseline">${displaySeasons.length} IPL season${displaySeasons.length !== 1 ? 's' : ''} total</div>
         </div>` : ''}
       </div>
     </div>
 
-    ${seasons.length > 1 ? `
+    ${displaySeasons.length > 1 ? `
     <div class="section-head" style="margin-top:24px">
       <div><div class="eyebrow">Season by Season</div><h2>IPL Career History</h2></div>
       <div class="section-note">Form scores are comparable within each season, not across seasons.</div>
     </div>
-    ${renderSeasonHistoryChart(seasons)}
-    ${renderSeasonHistoryTable(seasons)}
+    ${renderSeasonHistoryChart(displaySeasons)}
+    ${renderSeasonHistoryTable(displaySeasons)}
 
     <div class="section-head" style="margin-top:24px">
       <div><div class="eyebrow">All-Time Context</div><h2>IPL Historical Score Leaders</h2></div>

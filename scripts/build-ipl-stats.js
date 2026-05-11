@@ -53,6 +53,9 @@ const PLAYER_NATIONS = {
   'C Connolly': 'AUS', 'MP Stoinis': 'AUS', 'M Jansen': 'RSA', 'XC Bartlett': 'AUS',
   'T Stubbs': 'RSA', 'DA Miller': 'RSA', 'P Nissanka': 'SL', 'KA Jamieson': 'NZ', 'PVD Chameera': 'SL', 'L Ngidi': 'RSA',
   'AK Markram': 'RSA', 'MR Marsh': 'AUS', 'N Pooran': 'WI', 'A Nortje': 'RSA', 'GF Linde': 'RSA',
+  'DP Conway': 'NZ', 'F du Plessis': 'RSA', 'AB de Villiers': 'RSA', 'DA Warner': 'AUS', 'SR Watson': 'AUS',
+  'KA Pollard': 'WI', 'CH Gayle': 'WI', 'AD Russell': 'WI', 'SL Malinga': 'SL', 'DW Steyn': 'RSA',
+  'Imran Tahir': 'RSA', 'MF Maharoof': 'SL', 'DE Bollinger': 'AUS', 'Azhar Mahmood': 'PAK',
 };
 
 function normName(name = '') {
@@ -727,9 +730,10 @@ function buildPlayerHistory(seasonFiles, allSeasons) {
       };
 
       if (!playerMap[player.id]) {
-        playerMap[player.id] = { id: player.id, name: player.name, namesSeen: [...player.namesSeen], seasons: [] };
+        playerMap[player.id] = { id: player.id, name: player.name, nat: PLAYER_NATIONS[player.name] || 'IND', namesSeen: [...player.namesSeen], seasons: [] };
       } else {
         playerMap[player.id].name = player.name;
+        playerMap[player.id].nat = PLAYER_NATIONS[player.name] || playerMap[player.id].nat || 'IND';
         player.namesSeen.forEach(n => {
           if (!playerMap[player.id].namesSeen.includes(n)) playerMap[player.id].namesSeen.push(n);
         });
