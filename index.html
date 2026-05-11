@@ -5201,14 +5201,19 @@ function renderIplPlayerProfile(playerId) {
       </div>
 
       <div class="profile-stats-row">
+        ${historicalScore !== null && currentCard ? `<div class="profile-stat-item">
+          <div class="profile-stat-label">Career Score</div>
+          <div class="profile-stat-val ${formTier(historicalScore)}">${historicalScore}</div>
+          <div class="profile-career-baseline">Ranking histórico · ${displaySeasons.length} temporadas</div>
+        </div>` : ''}
         ${currentBatScore !== null ? `<div class="profile-stat-item">
-          <div class="profile-stat-label">Bat Score</div>
+          <div class="profile-stat-label">Bat Score 2026</div>
           <div class="profile-stat-val ${formTier(currentBatScore)}">${currentBatScore}</div>
           ${percentileHtml(batPercentile, 'batter')}
           ${careerBaselineHtml(careerBatScore, 'pre-2026 seasons')}
         </div>` : ''}
         ${currentBowlScore !== null ? `<div class="profile-stat-item">
-          <div class="profile-stat-label">Bowl Score</div>
+          <div class="profile-stat-label">Bowl Score 2026</div>
           <div class="profile-stat-val ${formTier(currentBowlScore)}">${currentBowlScore}</div>
           ${percentileHtml(bowlPercentile, 'bowler')}
           ${careerBaselineHtml(careerBowlScore, 'pre-2026 seasons')}
