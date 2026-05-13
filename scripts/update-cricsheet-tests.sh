@@ -28,4 +28,9 @@ if [ "$JSON_COUNT" = "0" ]; then
   exit 1
 fi
 
-node "$ROOT_DIR/scripts/build-wtc-test-data.js" "$JSON_DIR" "$ROOT_DIR/data/wtc-test-data.js"
+NODE_BIN="${NODE_BIN:-node}"
+if ! command -v "$NODE_BIN" >/dev/null 2>&1 && [ -x "$ROOT_DIR/.tools/node/bin/node" ]; then
+  NODE_BIN="$ROOT_DIR/.tools/node/bin/node"
+fi
+
+"$NODE_BIN" "$ROOT_DIR/scripts/build-wtc-test-data.js" "$JSON_DIR" "$ROOT_DIR/data/wtc-test-data.js"

@@ -3,10 +3,9 @@ name: Update WTC Test Data
 on:
   workflow_dispatch:
   schedule:
-    # GitHub cron runs in UTC. These checks are intentionally light:
-    # the job only commits when Cricsheet publishes a new/changed Test scorecard.
-    - cron: "35 6 * * *"
-    - cron: "35 18 * * *"
+    # GitHub cron runs in UTC. Weekly refresh; the job only commits when
+    # Cricsheet publishes a new/changed Test scorecard.
+    - cron: "35 6 * * 1"
 
 permissions:
   contents: write

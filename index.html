@@ -2320,10 +2320,10 @@ const testTeams = [
   { pos: 2, abbr: 'NZ', full: 'New Zealand', flag: 'nz', played: 3, w: 2, l: 0, d: 1, pts: 28, pct: 77.78, status: 'Final zone' },
   { pos: 3, abbr: 'RSA', full: 'South Africa', flag: 'rsa', played: 4, w: 3, l: 1, d: 0, pts: 36, pct: 75.00, status: 'Contender' },
   { pos: 4, abbr: 'SL', full: 'Sri Lanka', flag: 'sl', played: 2, w: 1, l: 0, d: 1, pts: 16, pct: 66.67, status: 'Contender' },
-  { pos: 5, abbr: 'PAK', full: 'Pakistan', flag: 'pak', played: 2, w: 1, l: 1, d: 0, pts: 12, pct: 50.00, status: 'Chasing' },
-  { pos: 6, abbr: 'IND', full: 'India', flag: 'ind', played: 9, w: 4, l: 4, d: 1, pts: 52, pct: 48.15, status: 'Chasing' },
-  { pos: 7, abbr: 'ENG', full: 'England', flag: 'eng', played: 10, w: 3, l: 6, d: 1, pts: 38, pct: 31.67, status: 'Outside' },
-  { pos: 8, abbr: 'BAN', full: 'Bangladesh', flag: 'ban', played: 2, w: 0, l: 1, d: 1, pts: 4, pct: 16.67, status: 'Long shot' },
+  { pos: 5, abbr: 'IND', full: 'India', flag: 'ind', played: 9, w: 4, l: 4, d: 1, pts: 52, pct: 48.15, status: 'Chasing' },
+  { pos: 6, abbr: 'BAN', full: 'Bangladesh', flag: 'ban', played: 3, w: 1, l: 1, d: 1, pts: 16, pct: 44.44, status: 'Chasing' },
+  { pos: 7, abbr: 'PAK', full: 'Pakistan', flag: 'pak', played: 3, w: 1, l: 2, d: 0, pts: 12, pct: 33.33, status: 'Outside' },
+  { pos: 8, abbr: 'ENG', full: 'England', flag: 'eng', played: 10, w: 3, l: 6, d: 1, pts: 38, pct: 31.67, status: 'Outside' },
   { pos: 9, abbr: 'WI', full: 'West Indies', flag: 'wi', played: 8, w: 0, l: 7, d: 1, pts: 4, pct: 4.17, status: 'Long shot' },
 ];
 
@@ -2340,18 +2340,31 @@ const WTC_TEAM_META = {
 };
 
 const wtcFixtureFallback = [
-  { date:'08', mo:'May', t:'03:30 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Shere Bangla National Stadium, Dhaka', result:'1st Test', tag:'1 of 2' },
-  { date:'16', mo:'May', t:'03:30 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Sylhet International Cricket Stadium, Sylhet', result:'2nd Test', tag:'2 of 2' },
-  { date:'04', mo:'Jun', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'New Zealand', ba:'NZ', bf:'nz', venue:'Lord\'s, London', result:'1st Test', tag:'1 of 3' },
+  { start: Date.UTC(2026, 4, 16, 3, 30), sourceTz:'UTC', date:'16', mo:'May', t:'03:30 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Sylhet International Cricket Stadium, Sylhet', result:'2nd Test', tag:'2 of 2' },
+  { start: Date.UTC(2026, 5, 4, 10, 0), sourceTz:'UTC', date:'04', mo:'Jun', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'New Zealand', ba:'NZ', bf:'nz', venue:'Lord\'s, London', result:'1st Test', tag:'1 of 3' },
+  { start: Date.UTC(2026, 5, 17, 10, 0), sourceTz:'UTC', date:'17', mo:'Jun', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'New Zealand', ba:'NZ', bf:'nz', venue:'Kennington Oval, London', result:'2nd Test', tag:'2 of 3' },
+  { start: Date.UTC(2026, 5, 25, 10, 0), sourceTz:'UTC', date:'25', mo:'Jun', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'New Zealand', ba:'NZ', bf:'nz', venue:'Trent Bridge, Nottingham', result:'3rd Test', tag:'3 of 3' },
+  { start: Date.UTC(2026, 6, 25, 14, 0), sourceTz:'UTC', date:'25', mo:'Jul', t:'14:00 GMT', a:'West Indies', aa:'WI', af:'wi', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Brian Lara Stadium, Trinidad', result:'1st Test', tag:'1 of 2' },
+  { start: Date.UTC(2026, 7, 2, 14, 0), sourceTz:'UTC', date:'02', mo:'Aug', t:'14:00 GMT', a:'West Indies', aa:'WI', af:'wi', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Brian Lara Stadium, Trinidad', result:'2nd Test', tag:'2 of 2' },
+  { start: Date.UTC(2026, 7, 13, 0, 30), sourceTz:'UTC', date:'13', mo:'Aug', t:'00:30 GMT', a:'Australia', aa:'AUS', af:'aus', b:'Bangladesh', ba:'BAN', bf:'ban', venue:'Marrara Cricket Ground, Darwin', result:'1st Test', tag:'1 of 2' },
+  { start: Date.UTC(2026, 7, 19, 10, 0), sourceTz:'UTC', date:'19', mo:'Aug', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Headingley, Leeds', result:'1st Test', tag:'1 of 3' },
+  { start: Date.UTC(2026, 7, 22, 0, 0), sourceTz:'UTC', date:'22', mo:'Aug', t:'00:00 GMT', a:'Australia', aa:'AUS', af:'aus', b:'Bangladesh', ba:'BAN', bf:'ban', venue:'Ray Mitchell Oval, Mackay', result:'2nd Test', tag:'2 of 2' },
+  { start: Date.UTC(2026, 7, 27, 10, 0), sourceTz:'UTC', date:'27', mo:'Aug', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Lord\'s, London', result:'2nd Test', tag:'2 of 3' },
+  { start: Date.UTC(2026, 8, 9, 10, 0), sourceTz:'UTC', date:'09', mo:'Sep', t:'10:00 GMT', a:'England', aa:'ENG', af:'eng', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Edgbaston, Birmingham', result:'3rd Test', tag:'3 of 3' },
+  { start: Date.UTC(2026, 9, 9, 7, 30), sourceTz:'UTC', date:'09', mo:'Oct', t:'07:30 GMT', a:'South Africa', aa:'RSA', af:'rsa', b:'Australia', ba:'AUS', bf:'aus', venue:'Kingsmead, Durban', result:'1st Test', tag:'1 of 3' },
+  { start: Date.UTC(2026, 9, 18, 8, 0), sourceTz:'UTC', date:'18', mo:'Oct', t:'08:00 GMT', a:'South Africa', aa:'RSA', af:'rsa', b:'Australia', ba:'AUS', bf:'aus', venue:'St George\'s Park, Port Elizabeth', result:'2nd Test', tag:'2 of 3' },
+  { start: Date.UTC(2026, 9, 27, 8, 0), sourceTz:'UTC', date:'27', mo:'Oct', t:'08:00 GMT', a:'South Africa', aa:'RSA', af:'rsa', b:'Australia', ba:'AUS', bf:'aus', venue:'Newlands, Cape Town', result:'3rd Test', tag:'3 of 3' },
+  { start: Date.UTC(2026, 9, 28, 4, 0), sourceTz:'UTC', date:'28', mo:'Oct', t:'04:00 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'West Indies', ba:'WI', bf:'wi', venue:'TBD, Bangladesh', result:'1st Test', tag:'1 of 2' },
+  { start: Date.UTC(2026, 10, 5, 4, 0), sourceTz:'UTC', date:'05', mo:'Nov', t:'04:00 GMT', a:'Bangladesh', aa:'BAN', af:'ban', b:'West Indies', ba:'WI', bf:'wi', venue:'TBD, Bangladesh', result:'2nd Test', tag:'2 of 2' },
 ];
 
 const wtcResultsFallback = [
+  { date:'12', mo:'May', t:'FT', a:'Bangladesh', aa:'BAN', af:'ban', b:'Pakistan', ba:'PAK', bf:'pak', venue:'Shere Bangla National Stadium, Dhaka', result:'Bangladesh won by 104 runs', tag:'1st Test' },
   { date:'07', mo:'Jan', t:'FT', a:'Australia', aa:'AUS', af:'aus', b:'England', ba:'ENG', bf:'eng', venue:'Sydney Cricket Ground, Sydney', result:'Australia won', tag:'5th Test' },
   { date:'22', mo:'Dec', t:'FT', a:'New Zealand', aa:'NZ', af:'nz', b:'West Indies', ba:'WI', bf:'wi', venue:'Bay Oval, Mount Maunganui', result:'New Zealand won by 323 runs', tag:'3rd Test' },
-  { date:'14', mo:'Dec', t:'FT', a:'New Zealand', aa:'NZ', af:'nz', b:'West Indies', ba:'WI', bf:'wi', venue:'Basin Reserve, Wellington', result:'New Zealand won by 9 wickets', tag:'2nd Test' },
 ];
 
-const WTC_SQUAD_SOURCE = 'Announced squads for Bangladesh v Pakistan, 1st Test · 8 May 2026';
+const WTC_SQUAD_SOURCE = 'Cricsheet Test JSON · latest XI and WTC-cycle stats';
 const WTC_SQUAD_SEEDS = {
   pak: {
     name: 'Pakistan',
@@ -3538,7 +3551,7 @@ async function fetchWtcFixtures() {
     const upcoming = allFixtures
       .filter(isUpcomingFixture)
       .sort((a, b) => (fixtureStartMs(a) || 0) - (fixtureStartMs(b) || 0))
-      .slice(0, 6);
+      .slice(0, 8);
 
     if (upcoming.length) {
       cacheSet('wtc_fixtures_v1', upcoming);
@@ -3548,7 +3561,14 @@ async function fetchWtcFixtures() {
     console.warn('WTC fixture fetch failed:', e.message);
   }
 
-  return wtcFixtureFallback;
+  return upcomingWtcFallbackFixtures();
+}
+
+function upcomingWtcFallbackFixtures() {
+  return wtcFixtureFallback
+    .filter(isUpcomingFixture)
+    .sort((a, b) => (fixtureStartMs(a) || 0) - (fixtureStartMs(b) || 0))
+    .slice(0, 8);
 }
 
 async function fetchWtcResults() {
@@ -4866,7 +4886,7 @@ function renderWtcSquadBoards() {
   root.innerHTML = `
     <div class="section-head">
       <div><div class="eyebrow" style="color:var(--gold-deep)">Test Squad Boards</div><h2>All WTC Teams</h2></div>
-      <div class="section-note">Pakistan and Bangladesh use the announced next-Test squads. Other teams use their latest men's Test XI from Cricsheet. Test career and WTC-cycle stats are calculated from Cricsheet Test JSON.</div>
+      <div class="section-note">Teams use their latest men's Test XI from Cricsheet. Test career and WTC-cycle stats are calculated from Cricsheet Test JSON.</div>
     </div>
     <div class="squad-views">
       ${TEST_SQUAD_SLUGS.map(slug => renderSquadBoardHtml({
@@ -4955,6 +4975,24 @@ function historicalProfileScore(playerData, mode) {
   return Math.round(weighted / totalMatches);
 }
 
+const HISTORICAL_FULL_SAMPLE_SEASONS = 5;
+
+function historicalSampleFactor(seasons) {
+  return Math.min(1, Math.sqrt(Math.max(seasons, 0) / HISTORICAL_FULL_SAMPLE_SEASONS));
+}
+
+function historicalSeasonScore(player, season, mode) {
+  if (season?.season === '2026') {
+    const currentCard = findPlayerCardById(player.id);
+    if (currentCard) {
+      const currentRole = roleCode(currentCard.role || season.role || '');
+      if (mode === 'bat' && ['bat', 'wk', 'ar'].includes(currentRole)) return skillScore(currentCard, 'bat');
+      if (mode === 'bowl' && ['bowl', 'ar'].includes(currentRole)) return skillScore(currentCard, 'bowl');
+    }
+  }
+  return mode === 'bat' ? season.batScore : season.bowlScore;
+}
+
 function renderSeasonHistoryChart(seasons) {
   const cols = seasons.map(s => {
     const batH = s.batScore != null ? Math.round((s.batScore / 100) * 150) : 0;
@@ -5040,7 +5078,7 @@ function historicalAverageLeaders(mode, limit = 10) {
     // Include every season where the player has a score — weighting by matches
     // naturally discounts short cameos without artificially removing them.
     const seasons = all.filter(season => {
-      const score = mode === 'bat' ? season.batScore : season.bowlScore;
+      const score = historicalSeasonScore(player, season, mode);
       return score !== null && score !== undefined;
     });
     const totalMatches = seasons.reduce((sum, s) => sum + (s.matches || 0), 0);
@@ -5048,10 +5086,12 @@ function historicalAverageLeaders(mode, limit = 10) {
     const minMatches = mode === 'bat' ? 25 : 20;
     if (seasons.length < minSeasons || totalMatches < minMatches) return null;
     const weighted = seasons.reduce((sum, s) => {
-      const score = mode === 'bat' ? s.batScore : s.bowlScore;
+      const score = historicalSeasonScore(player, s, mode);
       return sum + score * (s.matches || 1);
     }, 0);
     const avg = Math.round(weighted / Math.max(totalMatches, 1));
+    const sampleFactor = historicalSampleFactor(seasons.length);
+    const legacyScore = Math.round(avg * sampleFactor);
     const latest = all.slice().sort((a, b) => String(a.season).localeCompare(String(b.season))).at(-1);
     const careerRuns = all.reduce((sum, s) => sum + (s.bat?.runs || 0), 0);
     const careerWickets = all.reduce((sum, s) => sum + (s.bowl?.wickets || 0), 0);
@@ -5059,6 +5099,8 @@ function historicalAverageLeaders(mode, limit = 10) {
       id: player.id,
       name: player.name,
       avg,
+      legacyScore,
+      sampleFactor,
       seasons: seasons.length,
       matches: totalMatches,
       active: all.some(s => s.season === '2026'),
@@ -5067,13 +5109,13 @@ function historicalAverageLeaders(mode, limit = 10) {
       careerWickets,
     };
   }).filter(Boolean)
-    .sort((a, b) => (b.avg - a.avg) || (b.matches - a.matches) || a.name.localeCompare(b.name))
+    .sort((a, b) => (b.legacyScore - a.legacyScore) || (b.avg - a.avg) || (b.matches - a.matches) || a.name.localeCompare(b.name))
     .slice(0, limit);
 }
 
 function renderHistoricalLeaderCard(title, mode, currentPlayerId) {
   const rows = historicalAverageLeaders(mode, 10);
-  const label = mode === 'bat' ? 'career score' : 'career score';
+  const label = 'legacy score';
   return `<div class="card historical-leaderboard">
     <div class="leaderboard-head">
       <div class="leaderboard-title">${title}</div>
@@ -5090,12 +5132,13 @@ function renderHistoricalLeaderCard(title, mode, currentPlayerId) {
             ${player.latestTeam ? flag(slug, teamAbbrFromName(player.latestTeam)) : ''}
             <span>${player.seasons} seasons</span>
             <span>${player.matches} apps</span>
+            <span>raw ${player.avg}</span>
             ${player.active ? '<span class="history-active-chip">Active</span>' : ''}
             ${current ? '<span class="history-active-chip">This profile</span>' : ''}
           </div>
         </div>
         <div class="historical-leader-score">
-          <strong>${player.avg}</strong>
+          <strong>${player.legacyScore}</strong>
           <span>${label}</span>
         </div>
       </a>`;
@@ -5236,7 +5279,7 @@ function renderIplPlayerProfile(playerId) {
 
     <div class="section-head" style="margin-top:24px">
       <div><div class="eyebrow">All-Time Context</div><h2>IPL Historical Score Leaders</h2></div>
-      <div class="section-note">Top 10 players by weighted career score across all IPL seasons. Updates live as 2026 progresses.</div>
+      <div class="section-note">Top 10 players by sample-adjusted career score across IPL seasons. Raw score stays visible; short careers are discounted until they reach five scored seasons.</div>
     </div>
     ${renderHistoricalLeaderboards(playerId)}
     ` : `<div class="card pad" style="margin-top:16px;color:var(--ink-mute);font-size:13px">First IPL season recorded. History builds as more seasons are played.</div>`}
@@ -5735,7 +5778,7 @@ function initStaticViews() {
   renderTeamGrid('test-team-grid', testTeams, 'test');
   renderWtcSquadBoards();
   renderTestPlayerBoards();
-  renderFixtures('test-fixtures', wtcFixtureFallback);
+  renderFixtures('test-fixtures', upcomingWtcFallbackFixtures());
   renderFixtures('test-results', wtcResultsFallback);
   renderFixtures('ipl-fixtures', upcomingIplFixtures(iplFixtures));
   renderFixtures('ipl-results', formatRecentResults());
