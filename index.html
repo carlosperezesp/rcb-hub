@@ -2905,7 +2905,7 @@ function scoreSampleConfidence(stats, mode) {
   }
   const balls = stats.balls || 0;
   const matches = stats.matches || 0;
-  const sample = Math.max(balls / 144, matches / 8);
+  const sample = Math.max(balls / 120, matches / 6);
   return 0.72 + Math.min(sample, 1) * 0.28;
 }
 
@@ -2914,6 +2914,19 @@ function capScore(score, stats) {
   if (score <= 92) return Math.round(score);
   const compressed = 92 + (1 - Math.exp(-(score - 92) / 12)) * (cap - 92);
   return Math.min(cap, Math.round(compressed));
+}
+
+function combinedSkillScore(batScore, bowlScore, role = '') {
+  const bat = numericScore(batScore);
+  const bowl = numericScore(bowlScore);
+  if (bat === null && bowl === null) return null;
+  if (bat === null) return bowl;
+  if (bowl === null) return bat;
+  const primary = Math.max(bat, bowl);
+  const secondary = Math.min(bat, bowl);
+  const code = roleCode(role);
+  if (code === 'ar') return Math.round(Math.min(98, primary * 0.72 + secondary * 0.38));
+  return Math.round(Math.min(98, primary * 0.9 + secondary * 0.1));
 }
 
 function calcFormScore(role, stats) {
@@ -2938,11 +2951,12 @@ function calcFormScore(role, stats) {
     const avg = stats.bowling_avg || stats.bowlAvg || 50;
     const wpm = stats.wkts_per_match || stats.wpm || 0;
     const dot = stats.dot_pct || 0;
-    const raw =
-      scaledScore(11.2 - econ, 0, 4.4, 34) +
-      scaledScore(48 - avg, 0, 34, 34) +
-      scaledScore(wpm, 0.35, 2.25, 18) +
-      scaledScore(dot, 22, 50, 14);
+    const dotScore = dot > 0 ? scaledScore(dot, 22, 48, 10) : 6;
+    const raw = 22 +
+      scaledScore(11.5 - econ, 0, 4.8, 26) +
+      scaledScore(50 - avg, 0, 31, 30) +
+      scaledScore(wpm, 0.45, 2.2, 24) +
+      dotScore;
     const confidence = scoreSampleConfidence(stats, 'bowl');
     return capScore(48 + (raw - 48) * confidence, stats);
   }
@@ -2958,7 +2972,7 @@ function calcFormScore(role, stats) {
     wkts_per_match: stats.wktsPerMatch || stats.wkts_per_match || 0,
     dot_pct: stats.dot_pct || 0,
   });
-  return Math.min(100, Math.round((bat + bowl) / 2));
+  return combinedSkillScore(bat, bowl, 'ar');
 }
 
 function estimateStats(player, slug) {
@@ -4440,12 +4454,13 @@ function numericScore(value) {
 
 function iplOverallScore(player) {
   const profile = player.profile || playerProfile(player);
+  const bat = skillScore(player, 'bat');
+  const bowl = skillScore(player, 'bowl');
+  const combined = combinedSkillScore(bat, bowl, player.role);
+  if (combined !== null) return combined;
   const overall = numericScore(profile.overall);
   if (overall !== null) return overall;
-  const scores = [skillScore(player, 'bat'), skillScore(player, 'bowl')]
-    .map(numericScore)
-    .filter(value => value !== null);
-  return scores.length ? Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length) : null;
+  return null;
 }
 
 function iplPlayerTableRows() {
@@ -4542,10 +4557,11 @@ function setIplPlayersSort(key) {
 }
 
 function testOverallScore(player) {
-  const scores = [testSkillScore(player, 'bat', 'career'), testSkillScore(player, 'bowl', 'career')]
-    .map(numericScore)
-    .filter(value => value !== null);
-  return scores.length ? Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length) : null;
+  return combinedSkillScore(
+    testSkillScore(player, 'bat', 'career'),
+    testSkillScore(player, 'bowl', 'career'),
+    player.role
+  );
 }
 
 function testPlayerTableRows() {
@@ -4887,9 +4903,10 @@ function testSkillScore(player, mode, period = 'career') {
   }
   if (!stats.bowl.balls && !stats.bowl.wickets) return null;
   return Math.round(Math.min(98,
-    scaledScore(stats.bowl.wickets, 10, 220, 32) +
-    scaledScore(55 - (stats.bowl.avg || 55), 0, 32, 38) +
-    scaledScore(95 - (stats.bowl.sr || 95), 0, 48, 18) +
+    18 +
+    scaledScore(stats.bowl.wickets, 10, 220, 30) +
+    scaledScore(55 - (stats.bowl.avg || 55), 0, 34, 34) +
+    scaledScore(95 - (stats.bowl.sr || 95), 0, 52, 16) +
     scaledScore(stats.bowl.fiveWickets, 0, 12, 10)
   ));
 }
