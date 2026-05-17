@@ -395,6 +395,53 @@
   .test-squad-boards.active { display: block; }
 
   .table-wrap { overflow-x: auto; }
+  .sortable-table { min-width: 980px; }
+  .sortable-table th button {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    display: inline-flex;
+    font: inherit;
+    gap: 5px;
+    justify-content: flex-end;
+    letter-spacing: inherit;
+    padding: 0;
+    text-align: inherit;
+    text-transform: inherit;
+    white-space: nowrap;
+  }
+  .sortable-table th:not(.num) button { justify-content: flex-start; }
+  .sort-caret {
+    color: var(--gold-deep);
+    font-size: 10px;
+    line-height: 1;
+  }
+  .player-rank-cell {
+    color: var(--ink-mute);
+    font: 800 14px/1 'Manrope', sans-serif;
+  }
+  .player-table-name {
+    background: transparent;
+    border: 0;
+    color: var(--green-deep);
+    cursor: pointer;
+    display: inline;
+    font: inherit;
+    font-weight: 900;
+    padding: 0;
+    text-decoration: none;
+  }
+  .player-table-name:hover { color: var(--gold-deep); }
+  .player-table-meta {
+    color: var(--ink-mute);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 11px;
+    font-weight: 700;
+    gap: 6px;
+    margin-top: 4px;
+  }
   table {
     border-collapse: separate;
     border-spacing: 0;
@@ -1875,8 +1922,12 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
         <span>Standings</span>
       </button>
-      <button class="ipl-snav-btn" data-test-section="players">
+      <button class="ipl-snav-btn" data-test-section="leaders">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 14.5L6 22l6-2.5 6 2.5-2.5-7.5"/></svg>
+        <span>Leaders</span>
+      </button>
+      <button class="ipl-snav-btn" data-test-section="players">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span>Players</span>
       </button>
       <button class="ipl-snav-btn" data-test-section="teams">
@@ -1899,7 +1950,7 @@
       </div>
     </div>
 
-    <div class="test-section-panel" id="test-panel-players" style="display:none">
+    <div class="test-section-panel" id="test-panel-leaders" style="display:none">
       <div class="section-head">
         <div><div class="eyebrow" style="color:var(--gold-deep)">WTC Squads</div><h2>Current Squad Leaders</h2></div>
         <div class="section-note">Career totals for the 108 players currently in WTC 2025–27 squads.</div>
@@ -1910,6 +1961,16 @@
         <div class="section-note">All-time leaders across 6 key stats. Players currently in a WTC squad are marked <span class="history-active-chip">Active</span>.</div>
       </div>
       <div class="historical-leaders-grid" id="test-alltime-leaders"></div>
+    </div>
+
+    <div class="test-section-panel" id="test-panel-players" style="display:none">
+      <div class="section-head">
+        <div><div class="eyebrow" style="color:var(--gold-deep)">WTC Squads</div><h2>Sortable Player Board</h2></div>
+        <div class="section-note">All players from the current Test squads, sorted by total score by default. Click a header to compare batting, bowling, Tests, runs, wickets, team, or name.</div>
+      </div>
+      <div class="card table-wrap">
+        <div id="test-players-table" class="loading">Loading player board...</div>
+      </div>
     </div>
 
     <div class="test-section-panel" id="test-panel-teams" style="display:none">
@@ -1994,6 +2055,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 14.5L6 22l6-2.5 6 2.5-2.5-7.5"/></svg>
         <span>Rankings</span>
       </button>
+      <button class="ipl-snav-btn" data-ipl-section="players">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Players</span>
+      </button>
       <button class="ipl-snav-btn" data-ipl-section="history">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         <span>History</span>
@@ -2025,6 +2090,16 @@
       </div>
       <div class="leaderboard-grid" id="ipl-global-rankings">
         <div class="loading">Loading player rankings...</div>
+      </div>
+    </div>
+
+    <div class="ipl-section-panel" id="ipl-panel-players" style="display:none">
+      <div class="section-head">
+        <div><div class="eyebrow" style="color:var(--gold-deep)">All Players</div><h2>Sortable Player Board</h2></div>
+        <div class="section-note">Every IPL squad player in one table. Click any column header to sort by total score, batting score, bowling score, matches, team, or name.</div>
+      </div>
+      <div class="card table-wrap">
+        <div id="ipl-players-table" class="loading">Loading player board...</div>
       </div>
     </div>
 
@@ -2522,6 +2597,8 @@ let IPL_SQUADS = {};
 let IPL_SQUAD_SOURCE = 'Estimated formula model';
 let IPL_STANDINGS_SOURCE = 'Verified fallback table';
 let IPL_USAGE_CACHE = {};
+let IPL_PLAYERS_SORT = { key: 'overall', dir: 'desc' };
+let TEST_PLAYERS_SORT = { key: 'overall', dir: 'desc' };
 
 function normalizeLivePlayerScores(player) {
   const profile = player.stats?.profile;
@@ -4357,6 +4434,217 @@ function renderGlobalRankings() {
   `;
 }
 
+function numericScore(value) {
+  return value === null || value === undefined || Number.isNaN(value) ? null : Number(value);
+}
+
+function iplOverallScore(player) {
+  const profile = player.profile || playerProfile(player);
+  const overall = numericScore(profile.overall);
+  if (overall !== null) return overall;
+  const scores = [skillScore(player, 'bat'), skillScore(player, 'bowl')]
+    .map(numericScore)
+    .filter(value => value !== null);
+  return scores.length ? Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length) : null;
+}
+
+function iplPlayerTableRows() {
+  return leaguePlayers().map(player => {
+    const profile = player.profile || playerProfile(player);
+    return {
+      player,
+      name: player.name || '',
+      team: teamNameFromSlug(player.slug),
+      role: roleCode(player.role),
+      matches: profile.apps || player.matches || player.stats?.apps || 0,
+      overall: iplOverallScore(player),
+      bat: numericScore(skillScore(player, 'bat')),
+      bowl: numericScore(skillScore(player, 'bowl')),
+      runs: profile.bat?.runs || 0,
+      wickets: profile.bowl?.wickets || 0,
+    };
+  });
+}
+
+function compareIplPlayerRows(a, b, key) {
+  if (key === 'name' || key === 'team' || key === 'role') {
+    return String(a[key] || '').localeCompare(String(b[key] || '')) || b.overall - a.overall || a.name.localeCompare(b.name);
+  }
+  const av = a[key] ?? -1;
+  const bv = b[key] ?? -1;
+  return (bv - av) || (b.overall ?? -1) - (a.overall ?? -1) || a.name.localeCompare(b.name);
+}
+
+function sortHeader(label, key, align = '') {
+  const active = IPL_PLAYERS_SORT.key === key;
+  const caret = active ? (IPL_PLAYERS_SORT.dir === 'asc' ? '&uarr;' : '&darr;') : '';
+  return `<th class="${align}"><button type="button" onclick="setIplPlayersSort('${key}')">${label}${caret ? `<span class="sort-caret">${caret}</span>` : ''}</button></th>`;
+}
+
+function renderIplPlayersTable() {
+  const el = document.getElementById('ipl-players-table');
+  if (!el) return;
+  const rows = iplPlayerTableRows();
+  if (!rows.length) {
+    el.innerHTML = '<div class="loading">Player board will appear when IPL squads load.</div>';
+    return;
+  }
+  const sorted = rows.sort((a, b) => {
+    const result = compareIplPlayerRows(a, b, IPL_PLAYERS_SORT.key);
+    return IPL_PLAYERS_SORT.dir === 'asc' ? -result : result;
+  });
+  const roleLabel = { bat: 'Bat', bowl: 'Bowl', wk: 'WK', ar: 'AR' };
+  el.outerHTML = `<table id="ipl-players-table" class="sortable-table">
+    <thead><tr>
+      <th class="num">#</th>
+      ${sortHeader('Player', 'name')}
+      ${sortHeader('Team', 'team')}
+      ${sortHeader('Role', 'role')}
+      ${sortHeader('Total', 'overall', 'num')}
+      ${sortHeader('Bat', 'bat', 'num')}
+      ${sortHeader('Bowl', 'bowl', 'num')}
+      ${sortHeader('M', 'matches', 'num')}
+      ${sortHeader('Runs', 'runs', 'num')}
+      ${sortHeader('Wkts', 'wickets', 'num')}
+    </tr></thead>
+    <tbody>
+      ${sorted.map((row, index) => `
+        <tr>
+          <td class="num"><span class="player-rank-cell">${index + 1}</span></td>
+          <td>
+            <a class="player-table-name" href="#ipl/player/${row.player.id || normName(row.name)}">${row.name}</a>
+            <div class="player-table-meta">
+              ${flag(row.player.slug, teamAbbrFromName(row.team))}
+              <span>${row.team}</span>
+            </div>
+          </td>
+          <td>${row.team}</td>
+          <td>${roleLabel[row.role] || row.role.toUpperCase()}</td>
+          <td class="num"><span class="form-score ${formTier(row.overall)}" style="margin:0;padding:3px 7px;font-size:9px">${scoreText(row.overall)}</span></td>
+          <td class="num"><span class="form-score ${formTier(row.bat)}" style="margin:0;padding:3px 7px;font-size:9px">${scoreText(row.bat)}</span></td>
+          <td class="num"><span class="form-score ${formTier(row.bowl)}" style="margin:0;padding:3px 7px;font-size:9px">${scoreText(row.bowl)}</span></td>
+          <td class="num">${row.matches}</td>
+          <td class="num">${row.runs}</td>
+          <td class="num">${row.wickets}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>`;
+}
+
+function setIplPlayersSort(key) {
+  if (IPL_PLAYERS_SORT.key === key) {
+    IPL_PLAYERS_SORT = { key, dir: IPL_PLAYERS_SORT.dir === 'asc' ? 'desc' : 'asc' };
+  } else {
+    IPL_PLAYERS_SORT = { key, dir: key === 'name' || key === 'team' || key === 'role' ? 'asc' : 'desc' };
+  }
+  renderIplPlayersTable();
+}
+
+function testOverallScore(player) {
+  const scores = [testSkillScore(player, 'bat', 'career'), testSkillScore(player, 'bowl', 'career')]
+    .map(numericScore)
+    .filter(value => value !== null);
+  return scores.length ? Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length) : null;
+}
+
+function testPlayerTableRows() {
+  return Object.entries(buildWtcSquads()).flatMap(([slug, team]) =>
+    Object.values(team.squad || {}).flat().map(player => {
+      const career = testStatsFor(player, 'career');
+      return {
+        player,
+        slug,
+        name: player.name || '',
+        team: team.name || slug.toUpperCase(),
+        nat: player.nat || '',
+        role: roleCode(player.role),
+        matches: career.matches || 0,
+        overall: testOverallScore(player),
+        bat: numericScore(testSkillScore(player, 'bat', 'career')),
+        bowl: numericScore(testSkillScore(player, 'bowl', 'career')),
+        runs: career.bat?.runs || 0,
+        wickets: career.bowl?.wickets || 0,
+      };
+    })
+  );
+}
+
+function compareTestPlayerRows(a, b, key) {
+  if (key === 'name' || key === 'team' || key === 'role') {
+    return String(a[key] || '').localeCompare(String(b[key] || '')) || (b.overall ?? -1) - (a.overall ?? -1) || a.name.localeCompare(b.name);
+  }
+  const av = a[key] ?? -1;
+  const bv = b[key] ?? -1;
+  return (bv - av) || (b.overall ?? -1) - (a.overall ?? -1) || a.name.localeCompare(b.name);
+}
+
+function testSortHeader(label, key, align = '') {
+  const active = TEST_PLAYERS_SORT.key === key;
+  const caret = active ? (TEST_PLAYERS_SORT.dir === 'asc' ? '&uarr;' : '&darr;') : '';
+  return `<th class="${align}"><button type="button" onclick="setTestPlayersSort('${key}')">${label}${caret ? `<span class="sort-caret">${caret}</span>` : ''}</button></th>`;
+}
+
+function renderTestPlayersTable() {
+  const el = document.getElementById('test-players-table');
+  if (!el) return;
+  const rows = testPlayerTableRows();
+  if (!rows.length) {
+    el.innerHTML = '<div class="loading">Player board will appear when Test squads load.</div>';
+    return;
+  }
+  const sorted = rows.sort((a, b) => {
+    const result = compareTestPlayerRows(a, b, TEST_PLAYERS_SORT.key);
+    return TEST_PLAYERS_SORT.dir === 'asc' ? -result : result;
+  });
+  const roleLabel = { bat: 'Bat', bowl: 'Bowl', wk: 'WK', ar: 'AR' };
+  el.outerHTML = `<table id="test-players-table" class="sortable-table">
+    <thead><tr>
+      <th class="num">#</th>
+      ${testSortHeader('Player', 'name')}
+      ${testSortHeader('Team', 'team')}
+      ${testSortHeader('Role', 'role')}
+      ${testSortHeader('Total', 'overall', 'num')}
+      ${testSortHeader('Bat', 'bat', 'num')}
+      ${testSortHeader('Bowl', 'bowl', 'num')}
+      ${testSortHeader('Tests', 'matches', 'num')}
+      ${testSortHeader('Runs', 'runs', 'num')}
+      ${testSortHeader('Wkts', 'wickets', 'num')}
+    </tr></thead>
+    <tbody>
+      ${sorted.map((row, index) => `
+        <tr>
+          <td class="num"><span class="player-rank-cell">${index + 1}</span></td>
+          <td>
+            <button class="player-table-name" type="button" onclick="openTestPlayerModal('${row.name.replace(/'/g, "\\'")}')">${row.name}</button>
+            <div class="player-table-meta">
+              ${row.nat ? flag(row.nat.toLowerCase(), row.nat.toUpperCase()) : ''}
+              <span>${row.team}</span>
+            </div>
+          </td>
+          <td>${row.team}</td>
+          <td>${roleLabel[row.role] || row.role.toUpperCase()}</td>
+          <td class="num"><span class="form-score ${formTier(row.overall)}" style="margin:0;padding:3px 7px;font-size:9px">${scoreText(row.overall)}</span></td>
+          <td class="num"><span class="form-score ${formTier(row.bat)}" style="margin:0;padding:3px 7px;font-size:9px">${scoreText(row.bat)}</span></td>
+          <td class="num"><span class="form-score ${formTier(row.bowl)}" style="margin:0;padding:3px 7px;font-size:9px">${scoreText(row.bowl)}</span></td>
+          <td class="num">${row.matches}</td>
+          <td class="num">${row.runs.toLocaleString()}</td>
+          <td class="num">${row.wickets}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>`;
+}
+
+function setTestPlayersSort(key) {
+  if (TEST_PLAYERS_SORT.key === key) {
+    TEST_PLAYERS_SORT = { key, dir: TEST_PLAYERS_SORT.dir === 'asc' ? 'desc' : 'asc' };
+  } else {
+    TEST_PLAYERS_SORT = { key, dir: key === 'name' || key === 'team' || key === 'role' ? 'asc' : 'desc' };
+  }
+  renderTestPlayersTable();
+}
+
 function renderGlobalHistoricalRankings() {
   const el = document.getElementById('ipl-historical-rankings');
   if (!el) return;
@@ -5288,7 +5576,7 @@ function renderIplPlayerProfile(playerId) {
 
 function initIplSectionNav() {
   const container = document.getElementById('ipl-main-content');
-  const sections = ['standings', 'rankings', 'history', 'teams', 'calendar'];
+  const sections = ['standings', 'rankings', 'players', 'history', 'teams', 'calendar'];
 
   // Build dots indicator
   const dotsEl = document.createElement('div');
@@ -5778,6 +6066,7 @@ function initStaticViews() {
   renderTeamGrid('test-team-grid', testTeams, 'test');
   renderWtcSquadBoards();
   renderTestPlayerBoards();
+  renderTestPlayersTable();
   renderFixtures('test-fixtures', upcomingWtcFallbackFixtures());
   renderFixtures('test-results', wtcResultsFallback);
   renderFixtures('ipl-fixtures', upcomingIplFixtures(iplFixtures));
@@ -5793,6 +6082,7 @@ async function initWtc() {
   document.getElementById('test-standings-table').innerHTML = renderStandingsTable(rows, 'test');
   renderTeamGrid('test-team-grid', rows, 'test');
   renderTestPlayerBoards();
+  renderTestPlayersTable();
   renderFixtures('test-fixtures', fixtures);
   renderFixtures('test-results', results);
   const label = document.getElementById('test-data-label');
@@ -5810,6 +6100,7 @@ async function initIpl() {
   await fetchIplSquadModel();
   renderIplSpotlight(rows);
   renderGlobalRankings();
+  renderIplPlayersTable();
   renderGlobalHistoricalRankings();
   renderTeamGrid('ipl-team-grid', rows, 'ipl');
   renderFixtures('ipl-fixtures', await fetchIplFixtures());
