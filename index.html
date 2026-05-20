@@ -1866,6 +1866,9 @@
   }
 
   /* ── All-Time Players tab ──────────────────────────────────── */
+  .atp-view-strip { display: flex; gap: 8px; margin-bottom: 16px; }
+  .atp-view-btn { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink-mute); cursor: pointer; font-size: 12px; font-weight: 800; letter-spacing: .06em; padding: 8px 20px; text-transform: uppercase; transition: background .15s, color .15s; }
+  .atp-view-btn.active { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
   .atp-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; align-items: center; }
   .atp-format-tabs, .atp-cat-tabs { display: flex; gap: 4px; }
   .atp-tab-btn { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink-mute); cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: .07em; padding: 6px 13px; text-transform: uppercase; transition: background .15s, color .15s; }
@@ -1879,9 +1882,17 @@
   .atp-flag-abbr { display: flex; align-items: center; gap: 5px; }
   .atp-flag-abbr .flag { height: 22px; min-width: 22px; width: 22px; font-size: 7px; border-radius: 4px; }
   .atp-show-more { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink-mute); cursor: pointer; font-size: 11px; font-weight: 700; margin: 14px auto; padding: 8px 24px; display: block; }
+  .atp-comp-header { margin-bottom: 14px; }
+  .atp-comp-header h3 { font-size: 16px; font-weight: 800; margin: 0 0 4px; }
+  .atp-comp-header p { color: var(--ink-mute); font-size: 12px; margin: 0; }
+  .atp-comp-controls { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; align-items: flex-end; }
+  .atp-comp-group label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-mute); display: block; margin-bottom: 6px; }
+  .atp-milestone-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+  .atp-comp-note { color: var(--ink-mute); font-size: 11px; margin-top: 10px; }
   @media (max-width: 820px) {
     .atp-controls { gap: 7px; }
     .atp-tab-btn { font-size: 10px; padding: 5px 10px; }
+    .atp-view-btn { font-size: 11px; padding: 7px 14px; }
   }
 </style>
 </head>
@@ -2173,7 +2184,12 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="atp-view-strip">
+      <button class="atp-view-btn active" data-view="rankings" onclick="atpSetView('rankings')">Rankings</button>
+      <button class="atp-view-btn" data-view="comparador" onclick="atpSetView('comparador')">Comparador</button>
+    </div>
+
+    <div id="atp-rankings-view" class="card">
       <div class="atp-controls">
         <div class="atp-format-tabs" role="tablist" aria-label="Format">
           <button class="atp-tab-btn active" data-atp-format="global" onclick="atpSetFormat('global')">Global</button>
@@ -2186,6 +2202,9 @@
           <button class="atp-tab-btn" data-atp-cat="bat" onclick="atpSetCat('bat')">Batting</button>
           <button class="atp-tab-btn" data-atp-cat="bowl" onclick="atpSetCat('bowl')">Bowling</button>
         </div>
+        <select class="atp-country-select" id="atp-era-select" onchange="atpSetEra(this.value)" disabled>
+          <option value="all">All eras</option>
+        </select>
         <select class="atp-country-select" id="atp-country-select" onchange="atpSetCountry(this.value)">
           <option value="all">All nations</option>
           <option value="Australia">Australia</option>
@@ -2205,6 +2224,54 @@
         <div id="atp-table-container"><div class="loading">Loading player board…</div></div>
       </div>
       <button class="atp-show-more" id="atp-show-more" onclick="atpShowMore()" style="display:none">Show more players</button>
+    </div>
+
+    <div id="atp-comparador-view" class="card" style="display:none">
+      <div class="atp-comp-header">
+        <h3>Comparador de carrera</h3>
+        <p>¿Cómo de buenos eran los jugadores en sus primeros N innings? Compara players en el mismo punto de su carrera. Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+).</p>
+      </div>
+      <div class="atp-comp-controls">
+        <div class="atp-comp-group">
+          <label>Formato</label>
+          <div class="atp-milestone-tabs" role="tablist">
+            <button class="atp-tab-btn" data-comp-fmt="t20i" onclick="compSetFmt('t20i')">T20I</button>
+            <button class="atp-tab-btn" data-comp-fmt="test" onclick="compSetFmt('test')">Test</button>
+            <button class="atp-tab-btn" data-comp-fmt="odi" onclick="compSetFmt('odi')">ODI</button>
+          </div>
+        </div>
+        <div class="atp-comp-group">
+          <label>Primeros N innings</label>
+          <div class="atp-milestone-tabs" role="tablist">
+            <button class="atp-tab-btn" data-comp-ms="20" onclick="compSetMilestone(20)">20</button>
+            <button class="atp-tab-btn" data-comp-ms="30" onclick="compSetMilestone(30)">30</button>
+            <button class="atp-tab-btn active" data-comp-ms="45" onclick="compSetMilestone(45)">45</button>
+            <button class="atp-tab-btn" data-comp-ms="75" onclick="compSetMilestone(75)">75</button>
+            <button class="atp-tab-btn" data-comp-ms="100" onclick="compSetMilestone(100)">100</button>
+            <button class="atp-tab-btn" data-comp-ms="150" onclick="compSetMilestone(150)">150</button>
+            <button class="atp-tab-btn" data-comp-ms="200" onclick="compSetMilestone(200)">200</button>
+          </div>
+        </div>
+        <div class="atp-comp-group">
+          <label>Nación</label>
+          <select class="atp-country-select" id="comp-country-select" onchange="compSetCountry(this.value)">
+            <option value="all">All nations</option>
+            <option value="Australia">Australia</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="England">England</option>
+            <option value="India">India</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="South Africa">South Africa</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="West Indies">West Indies</option>
+            <option value="Zimbabwe">Zimbabwe</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <div id="comp-table-container"><div class="loading">Selecciona un formato para ver el comparador…</div></div>
+      </div>
     </div>
   </section>
 </main>
@@ -2390,7 +2457,7 @@ function switchTab(route, updateHash = true) {
   updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail && !next.player);
   updateIplPlayerProfile(next.player, next.tab === 'ipl' && !!next.player);
   updateTestTeamDetail(next.detail, next.tab === 'test' && !!next.detail);
-  if (next.tab === 'players') renderAtpTable();
+  if (next.tab === 'players') { renderAtpTable(); atpInitComparadorButtons(); }
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
   }
@@ -6482,14 +6549,24 @@ const ATP_COUNTRY_FLAG = {
   'South Africa':'rsa','Sri Lanka':'sl','West Indies':'wi','Zimbabwe':'zim',
 };
 
-let ATP_STATE = { format: 'global', cat: 'overall', country: 'all', sort: { key: 'score', dir: 'desc' }, shown: 100 };
+let ATP_STATE = { format: 'global', cat: 'overall', country: 'all', era: 'all', sort: { key: 'score', dir: 'desc' }, shown: 100 };
 let ATP_RENDERED = false;
+let COMP_STATE = { fmt: 't20i', milestone: 45, country: 'all' };
+
+function atpSetView(v) {
+  document.getElementById('atp-rankings-view').style.display = v === 'rankings' ? '' : 'none';
+  document.getElementById('atp-comparador-view').style.display = v === 'comparador' ? '' : 'none';
+  document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  if (v === 'comparador') renderComparadorTable();
+}
 
 function atpSetFormat(f) {
   ATP_STATE.format = f;
+  ATP_STATE.era = 'all';
   ATP_STATE.sort = { key: 'score', dir: 'desc' };
   ATP_STATE.shown = 100;
   document.querySelectorAll('[data-atp-format]').forEach(b => b.classList.toggle('active', b.dataset.atpFormat === f));
+  atpUpdateEraOptions(f);
   renderAtpTable();
 }
 
@@ -6505,6 +6582,112 @@ function atpSetCountry(v) {
   ATP_STATE.country = v;
   ATP_STATE.shown = 100;
   renderAtpTable();
+}
+
+function atpSetEra(v) {
+  ATP_STATE.era = v;
+  ATP_STATE.shown = 100;
+  renderAtpTable();
+}
+
+function atpUpdateEraOptions(fmt) {
+  const select = document.getElementById('atp-era-select');
+  if (!select) return;
+  select.innerHTML = '<option value="all">All eras</option>';
+  const eras = window.ALL_TIME_PLAYERS?.eras;
+  if (!eras || fmt === 'global') { select.disabled = true; return; }
+  select.disabled = false;
+  const fmtEras = fmt === 'test' ? eras.test : fmt === 'odi' ? eras.odi : eras.t20i;
+  for (const [key, era] of Object.entries(fmtEras)) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = `${era.label} (${era.years})`;
+    select.appendChild(opt);
+  }
+}
+
+function compSetFmt(f) {
+  COMP_STATE.fmt = f;
+  document.querySelectorAll('[data-comp-fmt]').forEach(b => b.classList.toggle('active', b.dataset.compFmt === f));
+  renderComparadorTable();
+}
+
+function compSetMilestone(m) {
+  COMP_STATE.milestone = m;
+  document.querySelectorAll('[data-comp-ms]').forEach(b => b.classList.toggle('active', b.dataset.compMs == m));
+  renderComparadorTable();
+}
+
+function compSetCountry(v) {
+  COMP_STATE.country = v;
+  renderComparadorTable();
+}
+
+function atpInitComparadorButtons() {
+  document.querySelectorAll('[data-comp-fmt]').forEach(b => b.classList.toggle('active', b.dataset.compFmt === COMP_STATE.fmt));
+  document.querySelectorAll('[data-comp-ms]').forEach(b => b.classList.toggle('active', b.dataset.compMs == COMP_STATE.milestone));
+}
+
+function renderComparadorTable() {
+  const container = document.getElementById('comp-table-container');
+  if (!container) return;
+  const data = window.ALL_TIME_PLAYERS;
+  if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
+
+  const { fmt, milestone, country } = COMP_STATE;
+  const mk = String(milestone);
+  const isSR = fmt !== 'test';
+  const srBase = fmt === 'odi' ? 80 : 140;
+
+  const rows = data.players
+    .filter(p => p.batMilestones?.[fmt]?.[mk])
+    .filter(p => country === 'all' || p.country === country)
+    .map(p => {
+      const ms = p.batMilestones[fmt][mk];
+      const score = ms.avg * (ms.sr != null ? ms.sr / srBase : 1);
+      return { p, ms, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  if (!rows.length) {
+    container.innerHTML = '<p class="atp-comp-note">No hay datos de milestone para este formato / milestone. Prueba con un milestone menor.</p>';
+    return;
+  }
+
+  const thead = `<tr>
+    <th class="num">#</th>
+    <th>Player</th>
+    <th>Nation</th>
+    <th class="num">Inn</th>
+    <th class="num">Avg</th>
+    ${isSR ? '<th class="num">SR</th>' : ''}
+    <th class="num">Runs</th>
+    <th class="num">50s</th>
+    <th class="num">100s</th>
+    <th class="num" title="Career overall score">Career</th>
+  </tr>`;
+
+  const tbodyRows = rows.map((r, i) => {
+    const p = r.p, ms = r.ms;
+    const fc = ATP_COUNTRY_FLAG[p.country] || '';
+    const careerScore = p.global_overall ?? p[fmt]?.overall;
+    const avgColor = atpScoreColor(Math.min(100, ms.avg * 1.8));
+    return `<tr>
+      <td class="num"><span class="player-rank-cell">${i + 1}</span></td>
+      <td><span class="player-table-name">${p.name}</span>${p.career_start ? `<div class="player-table-meta">${p.career_start}–${p.career_end}</div>` : ''}</td>
+      <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
+      <td class="num">${milestone}</td>
+      <td class="num"><strong style="color:${avgColor}">${ms.avg}</strong></td>
+      ${isSR ? `<td class="num">${ms.sr ?? '—'}</td>` : ''}
+      <td class="num">${ms.runs}</td>
+      <td class="num">${ms.h50}</td>
+      <td class="num">${ms.h100}</td>
+      <td class="num">${atpScoreCell(careerScore)}</td>
+    </tr>`;
+  }).join('');
+
+  container.innerHTML = `<table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
+    <p class="atp-comp-note">Ordenado por avg × SR ajustado. Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). ${rows.length} jugadores en este milestone.</p>`;
 }
 
 function atpSetSort(key) {
@@ -6561,11 +6744,12 @@ function renderAtpTable() {
   const data = window.ALL_TIME_PLAYERS;
   if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
 
-  const { format: fmtKey, cat, country, sort, shown } = ATP_STATE;
+  const { format: fmtKey, cat, country, era, sort, shown } = ATP_STATE;
 
   // Filter
   let rows = data.players
     .filter(p => country === 'all' || p.country === country)
+    .filter(p => era === 'all' || fmtKey === 'global' || p[fmtKey]?.era === era)
     .map(p => ({ p, score: atpGetScore(p, fmtKey, cat) }))
     .filter(r => r.score != null);
 

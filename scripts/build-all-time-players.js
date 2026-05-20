@@ -119,10 +119,12 @@ function parseDir(dir, matchType) {
         const s = getOrCreate(rawMap, name);
         s.batInns += 1; s.runs += val.runs; s.balls += val.balls;
         s.high = Math.max(s.high, val.runs);
-        if (!outsSet.has(name)) s.notOuts += 1;
+        const isOut = outsSet.has(name);
+        if (!isOut) s.notOuts += 1;
         if (val.runs >= 100) s.hundreds += 1; else if (val.runs >= 50) s.fifties += 1;
         s.matches.add(file);
         updateMeta(nameMeta, name, year);
+        s.batInnArr.push({ year, runs: val.runs, balls: val.balls, out: isOut });
       });
     }
   }
@@ -146,6 +148,7 @@ function getOrCreate(map, name) {
     batInns:0, notOuts:0, runs:0, balls:0, high:0,
     hundreds:0, fifties:0, bowlBalls:0, bowlRuns:0, wickets:0,
     inningsWkts: new Map(), matches: new Set(),
+    batInnArr: [],
   });
   return map.get(name);
 }
@@ -214,6 +217,42 @@ function zScore(vals) {
 }
 function zToScore(z) { return Math.max(0, Math.min(100, 50 + z * 14)); }
 
+// Career maturity damping: players near the minimum threshold get a partial score.
+// At exactly min threshold → 82% of score; ramps linearly to 100% at 2× threshold.
+// Players above 2× minimum are unaffected.
+function maturityFactor(careerLen, threshold) {
+  if (careerLen >= threshold * 2) return 1;
+  const t = Math.max(0, (careerLen - threshold) / threshold); // 0 at min, 1 at 2×
+  return 0.82 + 0.18 * t;
+}
+
+// Batting milestone snapshots at key innings counts (for Comparador tab).
+const MILESTONE_INN = [20, 30, 45, 75, 100, 150, 200];
+function computeBatMilestones(innArr) {
+  if (!innArr || innArr.length < 20) return null;
+  const sorted = [...innArr].sort((a, b) => a.year - b.year);
+  let cumRuns = 0, cumBalls = 0, cumInn = 0, cumOuts = 0, cumH100 = 0, cumH50 = 0;
+  const result = {};
+  for (const inn of sorted) {
+    cumInn++;
+    cumRuns += inn.runs;
+    cumBalls += inn.balls || 0;
+    if (inn.out) cumOuts++;
+    if (inn.runs >= 100) cumH100++;
+    else if (inn.runs >= 50) cumH50++;
+    if (MILESTONE_INN.includes(cumInn)) {
+      result[cumInn] = {
+        runs: cumRuns,
+        avg:  cumOuts ? round(cumRuns / cumOuts, 1) : cumRuns,
+        sr:   cumBalls ? round(cumRuns / cumBalls * 100, 1) : null,
+        h100: cumH100,
+        h50:  cumH50,
+      };
+    }
+  }
+  return Object.keys(result).length > 0 ? result : null;
+}
+
 function computeScores(playerArr, fmt) {
   const byEra = new Map();
   for (const p of playerArr) {
@@ -230,7 +269,10 @@ function computeScores(playerArr, fmt) {
         const zs = zScore(ms.map(m => m[k] || 0));
         bG.forEach((p, i) => { p[fmt]._batZ = (p[fmt]._batZ || 0) + BAT_W[fmt][k] * zs[i]; });
       }
-      bG.forEach(p => { p[fmt].bat_score = round(zToScore(p[fmt]._batZ), 1); });
+      bG.forEach(p => {
+        const mf = maturityFactor(p[fmt].batInns, MIN[fmt].bat.inn);
+        p[fmt].bat_score = round(zToScore(p[fmt]._batZ) * mf, 1);
+      });
     }
     // Bowling
     const wG = group.filter(p => qualBowl(p[fmt], fmt));
@@ -240,7 +282,10 @@ function computeScores(playerArr, fmt) {
         const zs = zScore(ms.map(m => m[k] || 0));
         wG.forEach((p, i) => { p[fmt]._bowlZ = (p[fmt]._bowlZ || 0) + BWL_W[fmt][k] * zs[i]; });
       }
-      wG.forEach(p => { p[fmt].bowl_score = round(zToScore(p[fmt]._bowlZ), 1); });
+      wG.forEach(p => {
+        const mf = maturityFactor(p[fmt].wkts, MIN[fmt].bowl.wkts);
+        p[fmt].bowl_score = round(zToScore(p[fmt]._bowlZ) * mf, 1);
+      });
     }
   }
 }
@@ -325,6 +370,10 @@ for (const name of allNames) {
     if (p[fmt]) continue;
     p[fmt] = { ...finalise(raw), _fy:meta?.firstYear||null, _ly:meta?.lastYear||null,
                bat_score:null, bowl_score:null };
+    if (raw.batInnArr?.length >= 20) {
+      p.batMilestones = p.batMilestones || {};
+      p.batMilestones[fmt] = computeBatMilestones(raw.batInnArr);
+    }
   }
 }
 
@@ -375,6 +424,12 @@ for (const p of playerArr) {
   p.global_bat     = bw > 0 ? round(bs/bw,1) : null;
   p.global_bowl    = ww > 0 ? round(ws/ww,1) : null;
   p.global_overall = ow > 0 ? round(os/ow,1) : null;
+  // Multi-format coverage bonus: reward players who excelled across formats.
+  // 2 formats → +2%, 3 formats → +4%. Capped at 100.
+  if (scored.length >= 2 && p.global_overall != null) {
+    const bonus = scored.length === 3 ? 1.04 : 1.02;
+    p.global_overall = Math.min(100, round(p.global_overall * bonus, 1));
+  }
 }
 
 // ─── Clean up & output ───────────────────────────────────────────────────────
