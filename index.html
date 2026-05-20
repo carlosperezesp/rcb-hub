@@ -2330,7 +2330,54 @@
 <script src="data/ipl-2026-season-stats.js"></script>
 <script src="data/ipl-player-history.js" onerror="void(0)"></script>
 <script src="data/wtc-test-data.js"></script>
-<script src="data/all-time-players.js" onerror="void(0)"></script>
+<script>
+// ATP data loader — localStorage cache (7 days) + background revalidation
+(function() {
+  const ATP_KEY = 'rcb_atp_v1';
+  const ATP_TTL = 7 * 24 * 60 * 60 * 1000;
+  const ATP_URL = 'data/all-time-players.json';
+
+  function applyData(data) {
+    window.ALL_TIME_PLAYERS = data;
+    if (typeof renderAtpTable === 'function') renderAtpTable();
+    if (typeof atpInitComparadorButtons === 'function') atpInitComparadorButtons();
+    const cv = document.getElementById('atp-comparador-view');
+    if (cv && cv.style.display !== 'none' && typeof renderComparadorTable === 'function') renderComparadorTable();
+  }
+
+  function fetchFresh(onDone) {
+    fetch(ATP_URL + '?v=' + (window._atpGenerated || Date.now()))
+      .then(r => r.json())
+      .then(data => {
+        window._atpGenerated = data.generated;
+        try { localStorage.setItem(ATP_KEY, JSON.stringify({ ts: Date.now(), gen: data.generated, data })); } catch(e) {}
+        onDone(data);
+      })
+      .catch(() => {});
+  }
+
+  try {
+    const raw = localStorage.getItem(ATP_KEY);
+    if (raw) {
+      const { ts, gen, data } = JSON.parse(raw);
+      if (data && Date.now() - ts < ATP_TTL) {
+        window._atpGenerated = gen;
+        window.ALL_TIME_PLAYERS = data;
+        // Background revalidation — if generated date changed, re-render with fresh data
+        if (Date.now() - ts > 24 * 60 * 60 * 1000) {
+          fetchFresh(fresh => {
+            if (fresh.generated !== gen) applyData(fresh);
+          });
+        }
+        return;
+      }
+    }
+  } catch(e) {}
+
+  // No valid cache — fetch now (show loading until ready)
+  fetchFresh(data => applyData(data));
+})();
+</script>
 <script>
 const API_KEY = '081aca27-a3d0-4ce7-aded-a1f73624ce37';
 const BASE = 'https://api.cricapi.com/v1';

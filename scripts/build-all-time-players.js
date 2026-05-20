@@ -9,6 +9,7 @@ const ODI_DIR  = process.argv[3] || path.join(process.cwd(), 'data', 'cricsheet'
 const T20_DIR  = process.argv[4] || path.join(process.cwd(), 'data', 'cricsheet', 't20s_male_json');
 const LEGENDS  = process.argv[5] || path.join(process.cwd(), 'data', 'cricket-legends.json');
 const OUT_JS   = process.argv[6] || path.join(process.cwd(), 'data', 'all-time-players.js');
+const OUT_JSON = OUT_JS.replace(/\.js$/, '.json');
 
 // ─── Full-member nations (ICC Full Members) ───────────────────────────────────
 // Only these nations appear in the output / era-normalization pool.
@@ -505,6 +506,8 @@ const erasRef = {
 
 console.log(`Writing ${finalList.length} scored players...`);
 fs.mkdirSync(path.dirname(OUT_JS), { recursive: true });
-fs.writeFileSync(OUT_JS,
-  `window.ALL_TIME_PLAYERS = ${JSON.stringify({generated:new Date().toISOString().slice(0,10), eras:erasRef, players:finalList})};\n`);
-console.log('Done.');
+const payload = { generated: new Date().toISOString().slice(0, 10), eras: erasRef, players: finalList };
+const jsonStr = JSON.stringify(payload);
+fs.writeFileSync(OUT_JS,   `window.ALL_TIME_PLAYERS = ${jsonStr};\n`);
+fs.writeFileSync(OUT_JSON, jsonStr + '\n');
+console.log('Done. JSON:', Math.round(fs.statSync(OUT_JSON).size / 1024) + 'KB');
