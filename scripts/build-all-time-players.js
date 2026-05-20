@@ -17,6 +17,49 @@ const FULL_MEMBERS = new Set([
   'New Zealand','Pakistan','South Africa','Sri Lanka','West Indies','Zimbabwe',
 ]);
 
+// ─── Birth years lookup (Cricsheet-era players not in legends JSON) ───────────
+// Used only for age-at-milestone display in the Comparador tab.
+const BORN_YEARS = {
+  // India
+  'vkohli':1988, 'rgsharma':1987, 'sayadav':1990, 'abhisheksharma':2000,
+  'klrahul':1992, 'tilakvarma':2002, 'ybkjaiswal':2001, 'hhpandya':1993,
+  'sksharma':1990, 'ravindrajadeja':1988, 'msdhoni':1981, 'skraina':1986,
+  'jjbumrah':1993, 'kyadav':1994, 'arshdeepsingh':2001, 'iksharma':1994,
+  'yuvrajsingh':1981, 'gautamgambhir':1981, 'msvijay':1984, 'rpant':1997,
+  // Pakistan
+  'babarazam':1994, 'mohammadrizwan':1992, 'fakharzaman':1990,
+  'shoaibmalik':1982, 'imadwasim':1995, 'shadabkhan':1998, 'harisrauf':1993,
+  'naseemshah':2003, 'mohammadamir':1992, 'imamulhaq':1995,
+  // Australia
+  'ajfinch':1986, 'dawarner':1986, 'gjmaxwell':1988, 'spdsmith':1989,
+  'thdavid':1996, 'mwade':1987, 'patcummins':1993, 'mstarc':1990,
+  'jhhazlewood':1991, 'mmarsh':1991, 'trhead':1994, 'jsfraser-mcgurk':2002,
+  // England
+  'jeroot':1990, 'hcbrook':2000, 'pdsalt':1999, 'djmalan':1987,
+  'jcbuttler':1990, 'jmbairstow':1989, 'bajstokes':1991, 'smcurran':1998,
+  'markwood':1990, 'phsalt':1999, 'wcross':2000, 'jmsimpson':1987,
+  // South Africa
+  'revandermerwe':1984, 'qdekock':1992, 'fduplessis':1984, 'da miller':1989,
+  'davmiller':1989, 'krabada':1995, 'hevanderDussen':1989, 'atnortje':1993,
+  'mpretorious':1989, 'hevanDussen':1989,
+  // New Zealand
+  'kswilliamson':1990, 'tgsouthee':1988, 'lhferguson':1991,
+  'darylmitchell':1991, 'glphillips':1996, 'rachadwick':1989,
+  'mjs':1990, 'jds':1988,
+  // Sri Lanka
+  'pwhdeSilva':1995, 'pwhdeSilva':1995, 'whasalanka':1993,
+  'charithAsalanka':1997, 'dmdkarunaratne':1988, 'pwhdesilva':1995,
+  // West Indies
+  'sphope':1993, 'jcharles':1988, 'kpollard':1987,
+  'djbravo':1983, 'crussell':1988, 'sbpooran':1995, 'rovpowell':1998,
+  // Bangladesh
+  'mdshafiuddin':1994, 'shoriful':2001, 'littonkumar':1994,
+  // Afghanistan
+  'rashidkhan':1998, 'mohammadnabi':1985, 'azmatullah':2001, 'ibrahimzadran':2002,
+  // Zimbabwe
+  'seanwilliams':1986,
+};
+
 // ─── Era definitions ──────────────────────────────────────────────────────────
 const TEST_ERAS = [
   { key:'era1', label:'Golden Age',   years:'1877–1919', from:1877, to:1919 },
@@ -228,7 +271,7 @@ function maturityFactor(careerLen, threshold) {
 
 // Batting milestone snapshots at key innings counts (for Comparador tab).
 const MILESTONE_INN = [20, 30, 45, 75, 100, 150, 200];
-function computeBatMilestones(innArr) {
+function computeBatMilestones(innArr, bornYear) {
   if (!innArr || innArr.length < 20) return null;
   const sorted = [...innArr].sort((a, b) => a.year - b.year);
   let cumRuns = 0, cumBalls = 0, cumInn = 0, cumOuts = 0, cumH100 = 0, cumH50 = 0;
@@ -242,6 +285,8 @@ function computeBatMilestones(innArr) {
     else if (inn.runs >= 50) cumH50++;
     if (MILESTONE_INN.includes(cumInn)) {
       result[cumInn] = {
+        year: inn.year || null,
+        age:  (bornYear && inn.year) ? (inn.year - bornYear) : null,
         runs: cumRuns,
         avg:  cumOuts ? round(cumRuns / cumOuts, 1) : cumRuns,
         sr:   cumBalls ? round(cumRuns / cumBalls * 100, 1) : null,
@@ -372,7 +417,8 @@ for (const name of allNames) {
                bat_score:null, bowl_score:null };
     if (raw.batInnArr?.length >= 20) {
       p.batMilestones = p.batMilestones || {};
-      p.batMilestones[fmt] = computeBatMilestones(raw.batInnArr);
+      const bornYear = p.born || BORN_YEARS[normKey(p.name)] || null;
+      p.batMilestones[fmt] = computeBatMilestones(raw.batInnArr, bornYear);
     }
   }
 }

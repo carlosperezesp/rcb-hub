@@ -2228,8 +2228,8 @@
 
     <div id="atp-comparador-view" class="card" style="display:none">
       <div class="atp-comp-header">
-        <h3>Comparador de carrera</h3>
-        <p>¿Cómo de buenos eran los jugadores en sus primeros N innings? Compara players en el mismo punto de su carrera. Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+).</p>
+        <h3>Comparador de inicio de carrera</h3>
+        <p>Selecciona un formato y un milestone de innings para ver cómo estaban todos los jugadores en ese punto de su carrera — con la edad que tenían. Útil para contextualizar si un jugador en alza está o no al nivel de las leyendas en sus primeros innings.</p>
       </div>
       <div class="atp-comp-controls">
         <div class="atp-comp-group">
@@ -2243,13 +2243,13 @@
         <div class="atp-comp-group">
           <label>Primeros N innings</label>
           <div class="atp-milestone-tabs" role="tablist">
-            <button class="atp-tab-btn" data-comp-ms="20" onclick="compSetMilestone(20)">20</button>
-            <button class="atp-tab-btn" data-comp-ms="30" onclick="compSetMilestone(30)">30</button>
-            <button class="atp-tab-btn active" data-comp-ms="45" onclick="compSetMilestone(45)">45</button>
-            <button class="atp-tab-btn" data-comp-ms="75" onclick="compSetMilestone(75)">75</button>
-            <button class="atp-tab-btn" data-comp-ms="100" onclick="compSetMilestone(100)">100</button>
-            <button class="atp-tab-btn" data-comp-ms="150" onclick="compSetMilestone(150)">150</button>
-            <button class="atp-tab-btn" data-comp-ms="200" onclick="compSetMilestone(200)">200</button>
+            <button class="atp-tab-btn" data-comp-ms="20" onclick="compSetMilestone(20)">20 inn</button>
+            <button class="atp-tab-btn" data-comp-ms="30" onclick="compSetMilestone(30)">30 inn</button>
+            <button class="atp-tab-btn active" data-comp-ms="45" onclick="compSetMilestone(45)">45 inn</button>
+            <button class="atp-tab-btn" data-comp-ms="75" onclick="compSetMilestone(75)">75 inn</button>
+            <button class="atp-tab-btn" data-comp-ms="100" onclick="compSetMilestone(100)">100 inn</button>
+            <button class="atp-tab-btn" data-comp-ms="150" onclick="compSetMilestone(150)">150 inn</button>
+            <button class="atp-tab-btn" data-comp-ms="200" onclick="compSetMilestone(200)">200 inn</button>
           </div>
         </div>
         <div class="atp-comp-group">
@@ -6638,6 +6638,7 @@ function renderComparadorTable() {
   const mk = String(milestone);
   const isSR = fmt !== 'test';
   const srBase = fmt === 'odi' ? 80 : 140;
+  const fmtLabel = fmt === 'test' ? 'Test' : fmt === 'odi' ? 'ODI' : 'T20I';
 
   const rows = data.players
     .filter(p => p.batMilestones?.[fmt]?.[mk])
@@ -6650,21 +6651,23 @@ function renderComparadorTable() {
     .sort((a, b) => b.score - a.score);
 
   if (!rows.length) {
-    container.innerHTML = '<p class="atp-comp-note">No hay datos de milestone para este formato / milestone. Prueba con un milestone menor.</p>';
+    container.innerHTML = '<p class="atp-comp-note">No hay datos para este milestone. Prueba con un número menor de innings.</p>';
     return;
   }
 
+  const hasAny = rows.some(r => r.ms.age != null);
   const thead = `<tr>
     <th class="num">#</th>
-    <th>Player</th>
-    <th>Nation</th>
-    <th class="num">Inn</th>
+    <th>Jugador</th>
+    <th>Nación</th>
+    <th class="num" title="Año en que alcanzó el milestone">Año</th>
+    ${hasAny ? '<th class="num" title="Edad aproximada al alcanzar el milestone">Edad</th>' : ''}
     <th class="num">Avg</th>
     ${isSR ? '<th class="num">SR</th>' : ''}
     <th class="num">Runs</th>
     <th class="num">50s</th>
     <th class="num">100s</th>
-    <th class="num" title="Career overall score">Career</th>
+    <th class="num" title="Score total de carrera">Carrera</th>
   </tr>`;
 
   const tbodyRows = rows.map((r, i) => {
@@ -6672,11 +6675,13 @@ function renderComparadorTable() {
     const fc = ATP_COUNTRY_FLAG[p.country] || '';
     const careerScore = p.global_overall ?? p[fmt]?.overall;
     const avgColor = atpScoreColor(Math.min(100, ms.avg * 1.8));
+    const ageCell = hasAny ? `<td class="num" style="color:var(--ink-mute);font-size:12px">${ms.age != null ? ms.age + ' a' : '—'}</td>` : '';
     return `<tr>
       <td class="num"><span class="player-rank-cell">${i + 1}</span></td>
-      <td><span class="player-table-name">${p.name}</span>${p.career_start ? `<div class="player-table-meta">${p.career_start}–${p.career_end}</div>` : ''}</td>
+      <td><span class="player-table-name">${p.name}</span></td>
       <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
-      <td class="num">${milestone}</td>
+      <td class="num" style="color:var(--ink-mute);font-size:12px">${ms.year ?? '—'}</td>
+      ${ageCell}
       <td class="num"><strong style="color:${avgColor}">${ms.avg}</strong></td>
       ${isSR ? `<td class="num">${ms.sr ?? '—'}</td>` : ''}
       <td class="num">${ms.runs}</td>
@@ -6686,8 +6691,13 @@ function renderComparadorTable() {
     </tr>`;
   }).join('');
 
-  container.innerHTML = `<table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
-    <p class="atp-comp-note">Ordenado por avg × SR ajustado. Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). ${rows.length} jugadores en este milestone.</p>`;
+  container.innerHTML = `
+    <p style="font-size:12px;color:var(--ink-mute);margin-bottom:10px">
+      <strong>${rows.length} jugadores</strong> con datos ${fmtLabel} en sus primeros <strong>${milestone} innings</strong>.
+      Ordenado por avg × SR ajustado. La columna <em>Carrera</em> muestra el score final de cada jugador — permite ver quién mantuvo el nivel.
+    </p>
+    <table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
+    <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet ball-by-ball (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad aproximada (año del milestone − año de nacimiento).</p>`;
 }
 
 function atpSetSort(key) {
