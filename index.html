@@ -2802,9 +2802,12 @@ function normalizeLivePlayerScores(player) {
     profile.bat.score = calcFormScore('bat', { ...profile.bat, source: 'cricsheet' });
     profile.bat.raw_score = profile.bat.score;
   }
-  if (profile.bowl) {
+  if (profile.bowl && profile.bowl.balls > 0) {
     profile.bowl.score = calcFormScore('bowl', { ...profile.bowl, source: 'cricsheet' });
     profile.bowl.raw_score = profile.bowl.score;
+  } else if (profile.bowl) {
+    profile.bowl.score = null;
+    profile.bowl.raw_score = null;
   }
 
   if (player.role === 'bowl') {
