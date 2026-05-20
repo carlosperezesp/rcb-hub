@@ -271,9 +271,9 @@ function maturityFactor(careerLen, threshold) {
 }
 
 // Batting milestone snapshots at key innings counts (for Comparador tab).
-const MILESTONE_INN = [20, 30, 45, 75, 100, 150, 200];
+const MILESTONE_INN = [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200];
 function computeBatMilestones(innArr, bornYear) {
-  if (!innArr || innArr.length < 20) return null;
+  if (!innArr || innArr.length < 10) return null;
   const sorted = [...innArr].sort((a, b) => a.year - b.year);
   let cumRuns = 0, cumBalls = 0, cumInn = 0, cumOuts = 0, cumH100 = 0, cumH50 = 0;
   const result = {};

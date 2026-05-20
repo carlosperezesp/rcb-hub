@@ -1889,6 +1889,14 @@
   .atp-comp-group label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-mute); display: block; margin-bottom: 6px; }
   .atp-milestone-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
   .atp-comp-note { color: var(--ink-mute); font-size: 11px; margin-top: 10px; }
+  .comp-slider-group { min-width: 200px; }
+  .comp-slider-group input[type=range] { width: 100%; accent-color: var(--green-deep); cursor: pointer; }
+  .comp-slider-ticks { display: flex; justify-content: space-between; padding: 0 1px; margin-top: 2px; }
+  .comp-slider-ticks span { font-size: 9px; color: var(--ink-mute); }
+  .comp-age-hint { font-size: 10px; color: var(--ink-mute); margin-top: 3px; }
+  .comp-sort-btn { background: none; border: none; cursor: pointer; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-mute); padding: 0; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+  .comp-sort-btn.active { color: var(--ink); }
+  .comp-sort-caret { font-size: 9px; }
   @media (max-width: 820px) {
     .atp-controls { gap: 7px; }
     .atp-tab-btn { font-size: 10px; padding: 5px 10px; }
@@ -2240,17 +2248,15 @@
             <button class="atp-tab-btn" data-comp-fmt="odi" onclick="compSetFmt('odi')">ODI</button>
           </div>
         </div>
-        <div class="atp-comp-group">
-          <label>Primeros N innings</label>
-          <div class="atp-milestone-tabs" role="tablist">
-            <button class="atp-tab-btn" data-comp-ms="20" onclick="compSetMilestone(20)">20 inn</button>
-            <button class="atp-tab-btn" data-comp-ms="30" onclick="compSetMilestone(30)">30 inn</button>
-            <button class="atp-tab-btn active" data-comp-ms="45" onclick="compSetMilestone(45)">45 inn</button>
-            <button class="atp-tab-btn" data-comp-ms="75" onclick="compSetMilestone(75)">75 inn</button>
-            <button class="atp-tab-btn" data-comp-ms="100" onclick="compSetMilestone(100)">100 inn</button>
-            <button class="atp-tab-btn" data-comp-ms="150" onclick="compSetMilestone(150)">150 inn</button>
-            <button class="atp-tab-btn" data-comp-ms="200" onclick="compSetMilestone(200)">200 inn</button>
-          </div>
+        <div class="atp-comp-group comp-slider-group">
+          <label>Innings: <strong id="comp-inn-val">45</strong></label>
+          <input type="range" id="comp-inn-slider" min="0" max="18" step="1" value="7" oninput="compSetMilestoneSlider(this.value)">
+          <div class="comp-slider-ticks" id="comp-inn-ticks"></div>
+        </div>
+        <div class="atp-comp-group comp-slider-group">
+          <label>Edad: <strong id="comp-age-label">todas</strong></label>
+          <input type="range" id="comp-age-slider" min="15" max="45" step="1" value="0" oninput="compSetAgeSlider(this.value)">
+          <div class="comp-age-hint">0 = todas las edades</div>
         </div>
         <div class="atp-comp-group">
           <label>Nación</label>
@@ -6601,7 +6607,8 @@ const ATP_COUNTRY_FLAG = {
 
 let ATP_STATE = { format: 'global', cat: 'overall', country: 'all', era: 'all', sort: { key: 'score', dir: 'desc' }, shown: 100 };
 let ATP_RENDERED = false;
-let COMP_STATE = { fmt: 't20i', milestone: 45, country: 'all' };
+const COMP_MILESTONES = [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200];
+let COMP_STATE = { fmt: 't20i', milestone: 45, country: 'all', age: 0, sort: { key: 'score', dir: 'desc' } };
 
 function atpSetView(v) {
   document.getElementById('atp-rankings-view').style.display = v === 'rankings' ? '' : 'none';
@@ -6662,9 +6669,16 @@ function compSetFmt(f) {
   renderComparadorTable();
 }
 
-function compSetMilestone(m) {
-  COMP_STATE.milestone = m;
-  document.querySelectorAll('[data-comp-ms]').forEach(b => b.classList.toggle('active', b.dataset.compMs == m));
+function compSetMilestoneSlider(idx) {
+  COMP_STATE.milestone = COMP_MILESTONES[+idx] || 45;
+  document.getElementById('comp-inn-val').textContent = COMP_STATE.milestone;
+  renderComparadorTable();
+}
+
+function compSetAgeSlider(val) {
+  COMP_STATE.age = +val;
+  const lbl = document.getElementById('comp-age-label');
+  lbl.textContent = +val === 0 ? 'todas' : +val + ' años (±1)';
   renderComparadorTable();
 }
 
@@ -6673,9 +6687,26 @@ function compSetCountry(v) {
   renderComparadorTable();
 }
 
+function compSetSort(key) {
+  if (COMP_STATE.sort.key === key) {
+    COMP_STATE.sort.dir = COMP_STATE.sort.dir === 'asc' ? 'desc' : 'asc';
+  } else {
+    COMP_STATE.sort = { key, dir: key === 'name' || key === 'country' ? 'asc' : 'desc' };
+  }
+  renderComparadorTable();
+}
+
 function atpInitComparadorButtons() {
   document.querySelectorAll('[data-comp-fmt]').forEach(b => b.classList.toggle('active', b.dataset.compFmt === COMP_STATE.fmt));
-  document.querySelectorAll('[data-comp-ms]').forEach(b => b.classList.toggle('active', b.dataset.compMs == COMP_STATE.milestone));
+  const idx = COMP_MILESTONES.indexOf(COMP_STATE.milestone);
+  const slider = document.getElementById('comp-inn-slider');
+  if (slider) slider.value = Math.max(0, idx);
+  document.getElementById('comp-inn-val').textContent = COMP_STATE.milestone;
+  // Build tick labels
+  const ticks = document.getElementById('comp-inn-ticks');
+  if (ticks && !ticks.children.length) {
+    ticks.innerHTML = COMP_MILESTONES.map(m => `<span>${m}</span>`).join('');
+  }
 }
 
 function renderComparadorTable() {
@@ -6686,49 +6717,77 @@ function renderComparadorTable() {
 
   try {
   const compFmt = COMP_STATE.fmt;
-  const { milestone, country } = COMP_STATE;
+  const { milestone, country, age, sort } = COMP_STATE;
   const fmt = compFmt;
   const mk = String(milestone);
   const isSR = fmt !== 'test';
   const srBase = fmt === 'odi' ? 80 : 140;
   const fmtLabel = fmt === 'test' ? 'Test' : fmt === 'odi' ? 'ODI' : 'T20I';
 
-  const rows = data.players
+  let rows = data.players
     .filter(p => p.batMilestones?.[fmt]?.[mk])
     .filter(p => country === 'all' || p.country === country)
+    .filter(p => age === 0 || (p.batMilestones[fmt][mk].age != null && Math.abs(p.batMilestones[fmt][mk].age - age) <= 1))
     .map(p => {
       const ms = p.batMilestones[fmt][mk];
       const score = ms.avg * (ms.sr != null ? ms.sr / srBase : 1);
-      return { p, ms, score };
-    })
-    .sort((a, b) => b.score - a.score);
+      const careerScore = p.global_overall ?? p[fmt]?.overall ?? null;
+      return { p, ms, score, careerScore };
+    });
+
+  // Sort
+  rows.sort((a, b) => {
+    let av, bv;
+    const dir = sort.dir === 'asc' ? 1 : -1;
+    if (sort.key === 'name')    return dir * a.p.name.localeCompare(b.p.name);
+    if (sort.key === 'country') return dir * a.p.country.localeCompare(b.p.country);
+    if (sort.key === 'score')   { av = a.score; bv = b.score; }
+    else if (sort.key === 'avg')    { av = a.ms.avg; bv = b.ms.avg; }
+    else if (sort.key === 'sr')     { av = a.ms.sr ?? 0; bv = b.ms.sr ?? 0; }
+    else if (sort.key === 'runs')   { av = a.ms.runs; bv = b.ms.runs; }
+    else if (sort.key === 'h50')    { av = a.ms.h50; bv = b.ms.h50; }
+    else if (sort.key === 'h100')   { av = a.ms.h100; bv = b.ms.h100; }
+    else if (sort.key === 'age')    { av = a.ms.age ?? 99; bv = b.ms.age ?? 99; }
+    else if (sort.key === 'year')   { av = a.ms.year ?? 9999; bv = b.ms.year ?? 9999; }
+    else if (sort.key === 'career') { av = a.careerScore ?? -1; bv = b.careerScore ?? -1; }
+    else { av = a.score; bv = b.score; }
+    return dir * (bv - av);
+  });
 
   if (!rows.length) {
-    container.innerHTML = '<p class="atp-comp-note">No hay datos para este milestone. Prueba con un número menor de innings.</p>';
+    const hint = age > 0 ? `No hay jugadores con datos en ${milestone} innings a los ${age} años (±1). Prueba otra edad o menos innings.`
+                         : 'No hay datos para este milestone. Prueba con un número menor de innings.';
+    container.innerHTML = `<p class="atp-comp-note">${hint}</p>`;
     return;
   }
 
-  const hasAny = rows.some(r => r.ms.age != null);
+  const hasAge = rows.some(r => r.ms.age != null);
+
+  function compSortTh(label, key, cls = '') {
+    const active = sort.key === key;
+    const caret = active ? (sort.dir === 'asc' ? '↑' : '↓') : '';
+    return `<th class="${cls}"><button class="comp-sort-btn${active ? ' active' : ''}" onclick="compSetSort('${key}')">${label}${caret ? `<span class="comp-sort-caret">${caret}</span>` : ''}</button></th>`;
+  }
+
   const thead = `<tr>
     <th class="num">#</th>
-    <th>Jugador</th>
-    <th>Nación</th>
-    <th class="num" title="Año en que alcanzó el milestone">Año</th>
-    ${hasAny ? '<th class="num" title="Edad aproximada al alcanzar el milestone">Edad</th>' : ''}
-    <th class="num">Avg</th>
-    ${isSR ? '<th class="num">SR</th>' : ''}
-    <th class="num">Runs</th>
-    <th class="num">50s</th>
-    <th class="num">100s</th>
-    <th class="num" title="Score total de carrera">Carrera</th>
+    ${compSortTh('Jugador', 'name')}
+    ${compSortTh('Nación', 'country')}
+    ${compSortTh('Año', 'year', 'num')}
+    ${hasAge ? compSortTh('Edad', 'age', 'num') : ''}
+    ${compSortTh('Avg', 'avg', 'num')}
+    ${isSR ? compSortTh('SR', 'sr', 'num') : ''}
+    ${compSortTh('Runs', 'runs', 'num')}
+    ${compSortTh('50s', 'h50', 'num')}
+    ${compSortTh('100s', 'h100', 'num')}
+    ${compSortTh('Carrera', 'career', 'num')}
   </tr>`;
 
   const tbodyRows = rows.map((r, i) => {
     const p = r.p, ms = r.ms;
     const fc = ATP_COUNTRY_FLAG[p.country] || '';
-    const careerScore = p.global_overall ?? p[fmt]?.overall;
     const avgColor = atpScoreColor(Math.min(100, ms.avg * 1.8));
-    const ageCell = hasAny ? `<td class="num" style="color:var(--ink-mute);font-size:12px">${ms.age != null ? ms.age + ' a' : '—'}</td>` : '';
+    const ageCell = hasAge ? `<td class="num" style="color:var(--ink-mute);font-size:12px">${ms.age != null ? ms.age + ' a' : '—'}</td>` : '';
     return `<tr>
       <td class="num"><span class="player-rank-cell">${i + 1}</span></td>
       <td><span class="player-table-name">${p.name}</span></td>
@@ -6740,17 +6799,18 @@ function renderComparadorTable() {
       <td class="num">${ms.runs}</td>
       <td class="num">${ms.h50}</td>
       <td class="num">${ms.h100}</td>
-      <td class="num">${atpScoreCell(careerScore)}</td>
+      <td class="num">${atpScoreCell(r.careerScore)}</td>
     </tr>`;
   }).join('');
 
+  const ageNote = age > 0 ? ` · filtrando edad ${age} ±1 año` : '';
   container.innerHTML = `
     <p style="font-size:12px;color:var(--ink-mute);margin-bottom:10px">
-      <strong>${rows.length} jugadores</strong> con datos ${fmtLabel} en sus primeros <strong>${milestone} innings</strong>.
-      Ordenado por avg × SR ajustado. La columna <em>Carrera</em> muestra el score final de cada jugador — permite ver quién mantuvo el nivel.
+      <strong>${rows.length} jugadores</strong> con datos ${fmtLabel} en sus primeros <strong>${milestone} innings</strong>${ageNote}.
+      La columna <em>Carrera</em> muestra el score final — permite ver quién mantuvo el nivel.
     </p>
     <table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
-    <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet ball-by-ball (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad aproximada (año del milestone − año de nacimiento).</p>`;
+    <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad ≈ año del milestone − año de nacimiento.</p>`;
   } catch (e) {
     container.innerHTML = '<p style="padding:16px;color:var(--ink-mute)">Error al renderizar: ' + e.message + '</p>';
     console.error('renderComparadorTable error:', e);
