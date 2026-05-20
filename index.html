@@ -1864,6 +1864,29 @@
       grid-template-columns: repeat(3, minmax(0, 66px));
     }
   }
+
+  /* ── All-Time Players tab ──────────────────────────────────── */
+  .atp-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; align-items: center; }
+  .atp-format-tabs, .atp-cat-tabs { display: flex; gap: 4px; }
+  .atp-tab-btn { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink-mute); cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: .07em; padding: 6px 13px; text-transform: uppercase; transition: background .15s, color .15s; }
+  .atp-tab-btn.active { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
+  .atp-country-select { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink); cursor: pointer; font-size: 11px; font-weight: 700; height: 34px; padding: 0 10px; }
+  .atp-table { min-width: 800px; }
+  .atp-score-cell { display: inline-flex; align-items: center; gap: 6px; }
+  .atp-score-bar-wrap { background: var(--line); border-radius: 4px; height: 5px; width: 50px; }
+  .atp-score-bar { border-radius: 4px; height: 5px; transition: width .3s; }
+  .atp-score-bar.elite { background: #22c55e; }
+  .atp-score-bar.good  { background: var(--gold); }
+  .atp-score-bar.avg   { background: #94a3b8; }
+  .atp-score-bar.poor  { background: #ef4444; }
+  .atp-era-chip { background: var(--surface-2); border-radius: 4px; color: var(--ink-mute); font-size: 9px; font-weight: 700; letter-spacing: .05em; padding: 2px 6px; text-transform: uppercase; white-space: nowrap; }
+  .atp-flag-abbr { display: flex; align-items: center; gap: 5px; }
+  .atp-flag-abbr .flag { height: 22px; min-width: 22px; width: 22px; font-size: 7px; border-radius: 4px; }
+  .atp-show-more { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink-mute); cursor: pointer; font-size: 11px; font-weight: 700; margin: 14px auto; padding: 8px 24px; display: block; }
+  @media (max-width: 820px) {
+    .atp-controls { gap: 7px; }
+    .atp-tab-btn { font-size: 10px; padding: 5px 10px; }
+  }
 </style>
 </head>
 <body>
@@ -1883,6 +1906,7 @@
   <a class="tab-btn" data-tab="odi" href="#odi">ODI World Cup</a>
   <a class="tab-btn" data-tab="t20" href="#t20">T20 World Cup</a>
   <a class="tab-btn" data-tab="ipl" href="#ipl">IPL</a>
+  <a class="tab-btn" data-tab="players" href="#players">Players</a>
 </nav>
 
 <main>
@@ -2133,6 +2157,60 @@
 
     </div><!-- #ipl-main-content -->
   </section>
+
+  <section id="tab-players" class="tab-panel">
+    <div class="hero">
+      <div>
+        <span class="chip chip-soft">All-Time Rankings</span>
+        <div class="eyebrow" style="color:var(--gold);margin-top:18px;">International Cricket · All Formats</div>
+        <h1>Greatest Players of All Time</h1>
+        <p class="hero-copy">Era-normalised scores (0–100) across Test, ODI and T20I cricket. Rankings are computed from Cricsheet ball-by-ball data (Tests from 2001, ODIs from 2002, T20Is from 2005) plus curated career stats for legends. Only Full-Member nations included.</p>
+        <div class="hero-strip">
+          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Players</span><strong id="atp-total-count">508</strong></div>
+          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Nations</span><strong>12</strong></div>
+          <div class="hero-stat"><span class="eyebrow" style="color:rgba(255,255,255,.55)">Eras</span><strong>6</strong></div>
+        </div>
+      </div>
+      <div class="score-card">
+        <div class="eyebrow" style="color:var(--gold)">#1 All-Time</div>
+        <div id="atp-hero-card"><div class="loading">Loading…</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="atp-controls">
+        <div class="atp-format-tabs" role="tablist" aria-label="Format">
+          <button class="atp-tab-btn active" data-atp-format="global" onclick="atpSetFormat('global')">Global</button>
+          <button class="atp-tab-btn" data-atp-format="test" onclick="atpSetFormat('test')">Test</button>
+          <button class="atp-tab-btn" data-atp-format="odi" onclick="atpSetFormat('odi')">ODI</button>
+          <button class="atp-tab-btn" data-atp-format="t20i" onclick="atpSetFormat('t20i')">T20I</button>
+        </div>
+        <div class="atp-cat-tabs" role="tablist" aria-label="Category">
+          <button class="atp-tab-btn active" data-atp-cat="overall" onclick="atpSetCat('overall')">Overall</button>
+          <button class="atp-tab-btn" data-atp-cat="bat" onclick="atpSetCat('bat')">Batting</button>
+          <button class="atp-tab-btn" data-atp-cat="bowl" onclick="atpSetCat('bowl')">Bowling</button>
+        </div>
+        <select class="atp-country-select" id="atp-country-select" onchange="atpSetCountry(this.value)">
+          <option value="all">All nations</option>
+          <option value="Australia">Australia</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="England">England</option>
+          <option value="India">India</option>
+          <option value="Ireland">Ireland</option>
+          <option value="New Zealand">New Zealand</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="South Africa">South Africa</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="West Indies">West Indies</option>
+          <option value="Zimbabwe">Zimbabwe</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <div id="atp-table-container"><div class="loading">Loading player board…</div></div>
+      </div>
+      <button class="atp-show-more" id="atp-show-more" onclick="atpShowMore()" style="display:none">Show more players</button>
+    </div>
+  </section>
 </main>
 
 <div class="player-modal-backdrop hidden" id="player-modal-backdrop" role="dialog" aria-modal="true">
@@ -2180,11 +2258,16 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 6h3v2a3 3 0 0 1-3 3"/><path d="M7 6H4v2a3 3 0 0 0 3 3"/></svg>
     IPL
   </a>
+  <a class="bnav-btn" id="bnav-players" href="#players">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Players
+  </a>
 </nav>
 
 <script src="data/ipl-2026-season-stats.js"></script>
 <script src="data/ipl-player-history.js" onerror="void(0)"></script>
 <script src="data/wtc-test-data.js"></script>
+<script src="data/all-time-players.js" onerror="void(0)"></script>
 <script>
 const API_KEY = '081aca27-a3d0-4ce7-aded-a1f73624ce37';
 const BASE = 'https://api.cricapi.com/v1';
@@ -2282,7 +2365,7 @@ async function ensureCricsheetIplStats() {
 }
 
 const TEST_SQUAD_SLUGS = ['aus', 'nz', 'rsa', 'sl', 'pak', 'ind', 'eng', 'ban', 'wi'];
-const VALID_TABS = ['test', 'odi', 't20', 'ipl'];
+const VALID_TABS = ['test', 'odi', 't20', 'ipl', 'players'];
 
 function normalizeTab(tab) {
   return VALID_TABS.includes(tab) ? tab : 'test';
@@ -2311,6 +2394,7 @@ function switchTab(route, updateHash = true) {
   updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail && !next.player);
   updateIplPlayerProfile(next.player, next.tab === 'ipl' && !!next.player);
   updateTestTeamDetail(next.detail, next.tab === 'test' && !!next.detail);
+  if (next.tab === 'players') renderAtpTable();
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
   }
@@ -6393,6 +6477,265 @@ async function openWormModal(matchId, teamA, teamB, teamAf, teamBf) {
     svgWrap.innerHTML = `<div class="worm-loading">Could not load match data.</div>`;
   }
 }
+
+// ── All-Time Players Tab ────────────────────────────────────────────────────
+
+const ATP_COUNTRY_FLAG = {
+  'Afghanistan':'afg','Australia':'aus','Bangladesh':'ban','England':'eng',
+  'India':'ind','Ireland':'ire','New Zealand':'nz','Pakistan':'pak',
+  'South Africa':'rsa','Sri Lanka':'sl','West Indies':'wi','Zimbabwe':'zim',
+};
+
+let ATP_STATE = { format: 'global', cat: 'overall', country: 'all', sort: { key: 'score', dir: 'desc' }, shown: 100 };
+let ATP_RENDERED = false;
+
+function atpSetFormat(f) {
+  ATP_STATE.format = f;
+  ATP_STATE.sort = { key: 'score', dir: 'desc' };
+  ATP_STATE.shown = 100;
+  document.querySelectorAll('[data-atp-format]').forEach(b => b.classList.toggle('active', b.dataset.atpFormat === f));
+  renderAtpTable();
+}
+
+function atpSetCat(c) {
+  ATP_STATE.cat = c;
+  ATP_STATE.sort = { key: 'score', dir: 'desc' };
+  ATP_STATE.shown = 100;
+  document.querySelectorAll('[data-atp-cat]').forEach(b => b.classList.toggle('active', b.dataset.atpCat === c));
+  renderAtpTable();
+}
+
+function atpSetCountry(v) {
+  ATP_STATE.country = v;
+  ATP_STATE.shown = 100;
+  renderAtpTable();
+}
+
+function atpSetSort(key) {
+  if (ATP_STATE.sort.key === key) {
+    ATP_STATE.sort.dir = ATP_STATE.sort.dir === 'asc' ? 'desc' : 'asc';
+  } else {
+    ATP_STATE.sort = { key, dir: key === 'name' || key === 'country' ? 'asc' : 'desc' };
+  }
+  renderAtpTable();
+}
+
+function atpShowMore() {
+  ATP_STATE.shown += 100;
+  renderAtpTable();
+}
+
+function atpEraLabel(fmt, eraKey) {
+  if (!eraKey) return '';
+  const eras = window.ALL_TIME_PLAYERS?.eras;
+  if (!eras) return eraKey;
+  const fmtEras = fmt === 't20i' ? eras.t20i : fmt === 'odi' ? eras.odi : eras.test;
+  return fmtEras?.[eraKey]?.label || eraKey;
+}
+
+function atpScoreCell(score) {
+  if (score == null) return '<span style="color:var(--ink-mute)">—</span>';
+  const tier = formTier(score);
+  const pct = Math.round(score);
+  return `<span class="atp-score-cell"><span class="form-score ${tier}" style="margin:0;padding:3px 7px;font-size:9px">${score}</span><span class="atp-score-bar-wrap"><span class="atp-score-bar ${tier}" style="width:${pct}%"></span></span></span>`;
+}
+
+function atpSortHeader(label, key, align = '') {
+  const active = ATP_STATE.sort.key === key;
+  const caret = active ? (ATP_STATE.sort.dir === 'asc' ? '&uarr;' : '&darr;') : '';
+  return `<th class="${align}"><button type="button" onclick="atpSetSort('${key}')">${label}${caret ? `<span class="sort-caret">${caret}</span>` : ''}</button></th>`;
+}
+
+function atpGetScore(p, fmt, cat) {
+  if (fmt === 'global') {
+    return cat === 'bat' ? p.global_bat : cat === 'bowl' ? p.global_bowl : p.global_overall;
+  }
+  const fd = p[fmt];
+  if (!fd) return null;
+  return cat === 'bat' ? fd.bat_score : cat === 'bowl' ? fd.bowl_score : fd.overall;
+}
+
+function renderAtpTable() {
+  const container = document.getElementById('atp-table-container');
+  if (!container) return;
+  const data = window.ALL_TIME_PLAYERS;
+  if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
+
+  const { format: fmtKey, cat, country, sort, shown } = ATP_STATE;
+
+  // Filter
+  let rows = data.players
+    .filter(p => country === 'all' || p.country === country)
+    .map(p => ({ p, score: atpGetScore(p, fmtKey, cat) }))
+    .filter(r => r.score != null);
+
+  // Sort
+  rows.sort((a, b) => {
+    let av, bv;
+    if (sort.key === 'name') { av = a.p.name; bv = b.p.name; return sort.dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av); }
+    if (sort.key === 'country') { av = a.p.country; bv = b.p.country; return sort.dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av); }
+    if (sort.key === 'score') { av = a.score ?? -1; bv = b.score ?? -1; }
+    else if (sort.key === 'mat') { av = (fmtKey === 'global' ? (a.p.test?.mat||0)+(a.p.odi?.mat||0)+(a.p.t20i?.mat||0) : a.p[fmtKey]?.mat) ?? 0; bv = (fmtKey === 'global' ? (b.p.test?.mat||0)+(b.p.odi?.mat||0)+(b.p.t20i?.mat||0) : b.p[fmtKey]?.mat) ?? 0; }
+    else if (sort.key === 'runs') { av = (fmtKey === 'global' ? (a.p.test?.runs||0)+(a.p.odi?.runs||0)+(a.p.t20i?.runs||0) : a.p[fmtKey]?.runs) ?? 0; bv = (fmtKey === 'global' ? (b.p.test?.runs||0)+(b.p.odi?.runs||0)+(b.p.t20i?.runs||0) : b.p[fmtKey]?.runs) ?? 0; }
+    else if (sort.key === 'wkts') { av = (fmtKey === 'global' ? (a.p.test?.wkts||0)+(a.p.odi?.wkts||0)+(a.p.t20i?.wkts||0) : a.p[fmtKey]?.wkts) ?? 0; bv = (fmtKey === 'global' ? (b.p.test?.wkts||0)+(b.p.odi?.wkts||0)+(b.p.t20i?.wkts||0) : b.p[fmtKey]?.wkts) ?? 0; }
+    else if (sort.key === 'avg') { av = a.p[fmtKey]?.avg ?? 0; bv = b.p[fmtKey]?.avg ?? 0; }
+    else if (sort.key === 'sr') { av = a.p[fmtKey]?.sr ?? 0; bv = b.p[fmtKey]?.sr ?? 0; }
+    else if (sort.key === 'econ') { av = a.p[fmtKey]?.econ ?? 99; bv = b.p[fmtKey]?.econ ?? 99; return sort.dir === 'asc' ? (av - bv) : (bv - av); }
+    else if (sort.key === 'bavg') { av = a.p[fmtKey]?.bowl_avg ?? 99; bv = b.p[fmtKey]?.bowl_avg ?? 99; return sort.dir === 'asc' ? (av - bv) : (bv - av); }
+    else { av = a.score ?? -1; bv = b.score ?? -1; }
+    return sort.dir === 'asc' ? (av - bv) : (bv - av);
+  });
+
+  const total = rows.length;
+  const pageRows = rows.slice(0, shown);
+
+  // Update hero card on first render
+  if (!ATP_RENDERED && rows.length) {
+    const top = rows[0].p;
+    const fc = ATP_COUNTRY_FLAG[top.country] || 'ind';
+    document.getElementById('atp-hero-card').innerHTML = `
+      <div class="score-row">
+        <span class="flag f-${fc} round" style="font-size:9px">${fc.toUpperCase()}</span>
+        <div><strong>${top.name}</strong><div class="muted" style="color:rgba(255,255,255,.58)">${top.country}</div></div>
+        <div class="score">${rows[0].score}<small>/100</small></div>
+      </div>
+      <div class="chip chip-dark" style="margin-top:12px;">${top.born ? top.born : ''}${top.born ? ' · ' : ''}${top.role?.toUpperCase() || ''}</div>`;
+    document.getElementById('atp-total-count').textContent = data.players.length;
+    ATP_RENDERED = true;
+  }
+
+  // Build columns based on format + category
+  let thead, rowFn;
+  if (fmtKey === 'global') {
+    thead = `<tr>
+      <th class="num">#</th>
+      ${atpSortHeader('Player', 'name')}
+      ${atpSortHeader('Nation', 'country')}
+      ${atpSortHeader('Score', 'score', 'num')}
+      <th class="num">Test</th>
+      <th class="num">ODI</th>
+      <th class="num">T20I</th>
+      <th>Role</th>
+    </tr>`;
+    rowFn = (r, i) => {
+      const p = r.p;
+      const fc = ATP_COUNTRY_FLAG[p.country] || '';
+      const tScore = cat === 'bat' ? p.test?.bat_score : cat === 'bowl' ? p.test?.bowl_score : p.test?.overall;
+      const oScore = cat === 'bat' ? p.odi?.bat_score  : cat === 'bowl' ? p.odi?.bowl_score  : p.odi?.overall;
+      const xScore = cat === 'bat' ? p.t20i?.bat_score : cat === 'bowl' ? p.t20i?.bowl_score : p.t20i?.overall;
+      return `<tr>
+        <td class="num"><span class="player-rank-cell">${i+1}</span></td>
+        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
+        <td class="num">${atpScoreCell(r.score)}</td>
+        <td class="num">${atpScoreCell(tScore)}</td>
+        <td class="num">${atpScoreCell(oScore)}</td>
+        <td class="num">${atpScoreCell(xScore)}</td>
+        <td style="font-size:11px;color:var(--ink-mute)">${p.role?.toUpperCase()||'—'}</td>
+      </tr>`;
+    };
+  } else if (cat === 'bat') {
+    const isSR = fmtKey !== 'test';
+    thead = `<tr>
+      <th class="num">#</th>
+      ${atpSortHeader('Player', 'name')}
+      ${atpSortHeader('Nation', 'country')}
+      <th>Era</th>
+      ${atpSortHeader('Bat Score', 'score', 'num')}
+      ${atpSortHeader('Avg', 'avg', 'num')}
+      ${isSR ? atpSortHeader('SR', 'sr', 'num') : ''}
+      ${atpSortHeader('Runs', 'runs', 'num')}
+      <th class="num">100s</th>
+      ${atpSortHeader('Mat', 'mat', 'num')}
+    </tr>`;
+    rowFn = (r, i) => {
+      const p = r.p; const fd = p[fmtKey];
+      const fc = ATP_COUNTRY_FLAG[p.country] || '';
+      return `<tr>
+        <td class="num"><span class="player-rank-cell">${i+1}</span></td>
+        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
+        <td><span class="atp-era-chip">${atpEraLabel(fmtKey, fd?.era)}</span></td>
+        <td class="num">${atpScoreCell(r.score)}</td>
+        <td class="num">${fmt(fd?.avg, 2)}</td>
+        ${isSR ? `<td class="num">${fmt(fd?.sr, 1)}</td>` : ''}
+        <td class="num">${fd?.runs ?? '—'}</td>
+        <td class="num">${fd?.h100 ?? '—'}</td>
+        <td class="num">${fd?.mat ?? '—'}</td>
+      </tr>`;
+    };
+  } else if (cat === 'bowl') {
+    thead = `<tr>
+      <th class="num">#</th>
+      ${atpSortHeader('Player', 'name')}
+      ${atpSortHeader('Nation', 'country')}
+      <th>Era</th>
+      ${atpSortHeader('Bowl Score', 'score', 'num')}
+      ${atpSortHeader('Wkts', 'wkts', 'num')}
+      ${atpSortHeader('Avg', 'bavg', 'num')}
+      ${atpSortHeader('Econ', 'econ', 'num')}
+      ${fmtKey === 'test' ? '<th class="num">5WI</th>' : ''}
+      ${atpSortHeader('Mat', 'mat', 'num')}
+    </tr>`;
+    rowFn = (r, i) => {
+      const p = r.p; const fd = p[fmtKey];
+      const fc = ATP_COUNTRY_FLAG[p.country] || '';
+      return `<tr>
+        <td class="num"><span class="player-rank-cell">${i+1}</span></td>
+        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
+        <td><span class="atp-era-chip">${atpEraLabel(fmtKey, fd?.era)}</span></td>
+        <td class="num">${atpScoreCell(r.score)}</td>
+        <td class="num">${fd?.wkts ?? '—'}</td>
+        <td class="num">${fmt(fd?.bowl_avg, 2)}</td>
+        <td class="num">${fmt(fd?.econ, 2)}</td>
+        ${fmtKey === 'test' ? `<td class="num">${fd?.fwi ?? '—'}</td>` : ''}
+        <td class="num">${fd?.mat ?? '—'}</td>
+      </tr>`;
+    };
+  } else {
+    // Overall for specific format
+    thead = `<tr>
+      <th class="num">#</th>
+      ${atpSortHeader('Player', 'name')}
+      ${atpSortHeader('Nation', 'country')}
+      <th>Era</th>
+      ${atpSortHeader('Overall', 'score', 'num')}
+      <th class="num">Bat</th>
+      <th class="num">Bowl</th>
+      <th>Role</th>
+      ${atpSortHeader('Mat', 'mat', 'num')}
+    </tr>`;
+    rowFn = (r, i) => {
+      const p = r.p; const fd = p[fmtKey];
+      const fc = ATP_COUNTRY_FLAG[p.country] || '';
+      return `<tr>
+        <td class="num"><span class="player-rank-cell">${i+1}</span></td>
+        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
+        <td><span class="atp-era-chip">${atpEraLabel(fmtKey, fd?.era)}</span></td>
+        <td class="num">${atpScoreCell(r.score)}</td>
+        <td class="num">${atpScoreCell(fd?.bat_score)}</td>
+        <td class="num">${atpScoreCell(fd?.bowl_score)}</td>
+        <td style="font-size:11px;color:var(--ink-mute)">${p.role?.toUpperCase()||'—'}</td>
+        <td class="num">${fd?.mat ?? '—'}</td>
+      </tr>`;
+    };
+  }
+
+  container.innerHTML = `<table class="sortable-table atp-table">
+    <thead>${thead}</thead>
+    <tbody>${pageRows.map((r, i) => rowFn(r, i)).join('')}</tbody>
+  </table>`;
+
+  const btn = document.getElementById('atp-show-more');
+  if (btn) {
+    btn.style.display = total > shown ? 'block' : 'none';
+    btn.textContent = `Show more (${total - shown} remaining)`;
+  }
+}
+
+// ────────────────────────────────────────────────────────────────────────────
 
 document.getElementById('worm-close-btn').addEventListener('click', () => {
   document.getElementById('worm-modal-backdrop').classList.add('hidden');

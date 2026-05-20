@@ -1,0 +1,66 @@
+name: Update All-Time Players Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly on Sundays at 05:00 UTC — after Cricsheet typically publishes weekend match data.
+    - cron: "0 5 * * 0"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Download Cricsheet Test JSON
+        run: |
+          mkdir -p data/cricsheet/tests_json
+          curl --fail --location --retry 3 -o /tmp/tests_json.zip \
+            "https://cricsheet.org/downloads/tests_json.zip"
+          unzip -q /tmp/tests_json.zip -d data/cricsheet/tests_json
+          echo "Tests: $(find data/cricsheet/tests_json -name '*.json' | wc -l) files"
+
+      - name: Download Cricsheet ODI JSON
+        run: |
+          mkdir -p data/cricsheet/odis_male_json
+          curl --fail --location --retry 3 -o /tmp/odis_male_json.zip \
+            "https://cricsheet.org/downloads/odis_male_json.zip"
+          unzip -q /tmp/odis_male_json.zip -d data/cricsheet/odis_male_json
+          echo "ODIs: $(find data/cricsheet/odis_male_json -name '*.json' | wc -l) files"
+
+      - name: Download Cricsheet T20I JSON
+        run: |
+          mkdir -p data/cricsheet/t20s_male_json
+          curl --fail --location --retry 3 -o /tmp/t20s_male_json.zip \
+            "https://cricsheet.org/downloads/t20s_male_json.zip"
+          unzip -q /tmp/t20s_male_json.zip -d data/cricsheet/t20s_male_json
+          echo "T20Is: $(find data/cricsheet/t20s_male_json -name '*.json' | wc -l) files"
+
+      - name: Rebuild all-time-players.js
+        run: |
+          node scripts/build-all-time-players.js \
+            data/cricsheet/tests_json \
+            data/cricsheet/odis_male_json \
+            data/cricsheet/t20s_male_json \
+            data/cricket-legends.json \
+            data/all-time-players.js
+
+      - name: Commit generated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/all-time-players.js
+          if git diff --cached --quiet; then
+            echo "No all-time player data changes to commit."
+            exit 0
+          fi
+          git commit -m "Update all-time player rankings"
+          git push

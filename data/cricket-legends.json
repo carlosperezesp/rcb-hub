@@ -1,0 +1,439 @@
+{
+  "version": "1.0",
+  "notes": "Full career stats for players whose careers pre-date Cricsheet coverage (Tests: pre-2001, ODIs: pre-2002) or whose careers significantly span the cutoff. Build script uses these instead of partial Cricsheet stats. cricsheet_name: null = entirely pre-Cricsheet; string = use these full career stats instead of Cricsheet-derived partial stats.",
+  "players": [
+
+    {"key":"wg-grace","name":"WG Grace","country":"England","born":1848,"cricsheet_name":null,
+     "test":{"mat":22,"inn":36,"runs":1098,"hs":170,"avg":32.29,"sr":null,"h100":2,"h50":5,"wkts":9,"bowl_avg":26.22,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"victor-trumper","name":"Victor Trumper","country":"Australia","born":1877,"cricsheet_name":null,
+     "test":{"mat":48,"inn":89,"runs":3163,"hs":214,"avg":39.04,"sr":null,"h100":8,"h50":13,"wkts":8,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"cb-fry","name":"CB Fry","country":"England","born":1872,"cricsheet_name":null,
+     "test":{"mat":26,"inn":41,"runs":1223,"hs":144,"avg":32.18,"sr":null,"h100":6,"h50":4,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"ranjitsinhji","name":"KS Ranjitsinhji","country":"England","born":1872,"cricsheet_name":null,
+     "test":{"mat":15,"inn":26,"runs":989,"hs":175,"avg":44.95,"sr":null,"h100":2,"h50":6,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"jack-hobbs","name":"Jack Hobbs","country":"England","born":1882,"cricsheet_name":null,
+     "test":{"mat":61,"inn":102,"runs":5410,"hs":211,"avg":56.94,"sr":null,"h100":15,"h50":28,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"sf-barnes","name":"SF Barnes","country":"England","born":1873,"cricsheet_name":null,
+     "test":{"mat":27,"inn":39,"runs":242,"hs":38,"avg":8.06,"sr":null,"h100":0,"h50":0,"wkts":189,"bowl_avg":16.43,"econ":null,"bowl_sr":26.1,"fwi":24},"odi":null,"t20i":null},
+
+    {"key":"wilfred-rhodes","name":"Wilfred Rhodes","country":"England","born":1877,"cricsheet_name":null,
+     "test":{"mat":58,"inn":98,"runs":2325,"hs":179,"avg":30.19,"sr":null,"h100":2,"h50":11,"wkts":127,"bowl_avg":26.96,"econ":null,"bowl_sr":null,"fwi":6},"odi":null,"t20i":null},
+
+    {"key":"frank-woolley","name":"Frank Woolley","country":"England","born":1887,"cricsheet_name":null,
+     "test":{"mat":64,"inn":98,"runs":3283,"hs":154,"avg":36.07,"sr":null,"h100":5,"h50":23,"wkts":83,"bowl_avg":33.91,"econ":null,"bowl_sr":null,"fwi":4},"odi":null,"t20i":null},
+
+    {"key":"monty-noble","name":"Monty Noble","country":"Australia","born":1873,"cricsheet_name":null,
+     "test":{"mat":42,"inn":73,"runs":1997,"hs":133,"avg":30.25,"sr":null,"h100":1,"h50":16,"wkts":121,"bowl_avg":25.00,"econ":null,"bowl_sr":null,"fwi":9},"odi":null,"t20i":null},
+
+    {"key":"don-bradman","name":"Don Bradman","country":"Australia","born":1908,"cricsheet_name":null,
+     "test":{"mat":80,"inn":80,"runs":6996,"hs":334,"avg":99.94,"sr":null,"h100":29,"h50":13,"wkts":2,"bowl_avg":36.00,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"wally-hammond","name":"Wally Hammond","country":"England","born":1903,"cricsheet_name":null,
+     "test":{"mat":85,"inn":140,"runs":7249,"hs":336,"avg":58.45,"sr":null,"h100":22,"h50":24,"wkts":83,"bowl_avg":37.80,"econ":null,"bowl_sr":null,"fwi":2},"odi":null,"t20i":null},
+
+    {"key":"len-hutton","name":"Len Hutton","country":"England","born":1916,"cricsheet_name":null,
+     "test":{"mat":79,"inn":138,"runs":6971,"hs":364,"avg":56.67,"sr":null,"h100":19,"h50":33,"wkts":3,"bowl_avg":77.33,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"herbert-sutcliffe","name":"Herbert Sutcliffe","country":"England","born":1894,"cricsheet_name":null,
+     "test":{"mat":54,"inn":84,"runs":4555,"hs":194,"avg":60.73,"sr":null,"h100":16,"h50":23,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"george-headley","name":"George Headley","country":"West Indies","born":1909,"cricsheet_name":null,
+     "test":{"mat":22,"inn":40,"runs":2190,"hs":270,"avg":60.83,"sr":null,"h100":10,"h50":5,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"stan-mccabe","name":"Stan McCabe","country":"Australia","born":1910,"cricsheet_name":null,
+     "test":{"mat":39,"inn":62,"runs":2748,"hs":232,"avg":48.21,"sr":null,"h100":6,"h50":11,"wkts":36,"bowl_avg":42.86,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"bill-woodfull","name":"Bill Woodfull","country":"Australia","born":1897,"cricsheet_name":null,
+     "test":{"mat":35,"inn":54,"runs":2300,"hs":161,"avg":46.00,"sr":null,"h100":7,"h50":13,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"bill-oreilly","name":"Bill O'Reilly","country":"Australia","born":1905,"cricsheet_name":null,
+     "test":{"mat":27,"inn":39,"runs":410,"hs":56,"avg":12.78,"sr":null,"h100":0,"h50":1,"wkts":144,"bowl_avg":22.59,"econ":null,"bowl_sr":null,"fwi":11},"odi":null,"t20i":null},
+
+    {"key":"clarrie-grimmett","name":"Clarrie Grimmett","country":"Australia","born":1891,"cricsheet_name":null,
+     "test":{"mat":37,"inn":50,"runs":557,"hs":50,"avg":13.92,"sr":null,"h100":0,"h50":1,"wkts":216,"bowl_avg":24.22,"econ":null,"bowl_sr":null,"fwi":21},"odi":null,"t20i":null},
+
+    {"key":"learie-constantine","name":"Learie Constantine","country":"West Indies","born":1901,"cricsheet_name":null,
+     "test":{"mat":18,"inn":33,"runs":635,"hs":90,"avg":19.24,"sr":null,"h100":0,"h50":4,"wkts":58,"bowl_avg":30.10,"econ":null,"bowl_sr":null,"fwi":2},"odi":null,"t20i":null},
+
+    {"key":"alec-bedser","name":"Alec Bedser","country":"England","born":1918,"cricsheet_name":null,
+     "test":{"mat":51,"inn":71,"runs":714,"hs":79,"avg":12.75,"sr":null,"h100":0,"h50":5,"wkts":236,"bowl_avg":24.89,"econ":null,"bowl_sr":null,"fwi":15},"odi":null,"t20i":null},
+
+    {"key":"denis-compton","name":"Denis Compton","country":"England","born":1918,"cricsheet_name":null,
+     "test":{"mat":78,"inn":131,"runs":5807,"hs":278,"avg":50.06,"sr":null,"h100":17,"h50":28,"wkts":25,"bowl_avg":56.40,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"everton-weekes","name":"Everton Weekes","country":"West Indies","born":1925,"cricsheet_name":null,
+     "test":{"mat":48,"inn":81,"runs":4455,"hs":207,"avg":58.62,"sr":null,"h100":15,"h50":19,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"clyde-walcott","name":"Clyde Walcott","country":"West Indies","born":1926,"cricsheet_name":null,
+     "test":{"mat":44,"inn":74,"runs":3798,"hs":220,"avg":56.69,"sr":null,"h100":15,"h50":14,"wkts":11,"bowl_avg":37.09,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"frank-worrell","name":"Frank Worrell","country":"West Indies","born":1924,"cricsheet_name":null,
+     "test":{"mat":51,"inn":87,"runs":3860,"hs":261,"avg":49.48,"sr":null,"h100":9,"h50":22,"wkts":69,"bowl_avg":38.72,"econ":null,"bowl_sr":null,"fwi":2},"odi":null,"t20i":null},
+
+    {"key":"garfield-sobers","name":"Garfield Sobers","country":"West Indies","born":1936,"cricsheet_name":null,
+     "test":{"mat":93,"inn":160,"runs":8032,"hs":365,"avg":57.78,"sr":null,"h100":26,"h50":30,"wkts":235,"bowl_avg":34.03,"econ":null,"bowl_sr":null,"fwi":6},"odi":null,"t20i":null},
+
+    {"key":"peter-may","name":"Peter May","country":"England","born":1929,"cricsheet_name":null,
+     "test":{"mat":66,"inn":106,"runs":4537,"hs":285,"avg":46.77,"sr":null,"h100":13,"h50":22,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"colin-cowdrey","name":"Colin Cowdrey","country":"England","born":1932,"cricsheet_name":null,
+     "test":{"mat":114,"inn":188,"runs":7624,"hs":182,"avg":44.06,"sr":null,"h100":22,"h50":38,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"ken-barrington","name":"Ken Barrington","country":"England","born":1930,"cricsheet_name":null,
+     "test":{"mat":82,"inn":131,"runs":6806,"hs":256,"avg":58.67,"sr":null,"h100":20,"h50":35,"wkts":29,"bowl_avg":44.83,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"neil-harvey","name":"Neil Harvey","country":"Australia","born":1928,"cricsheet_name":null,
+     "test":{"mat":79,"inn":137,"runs":6149,"hs":205,"avg":48.41,"sr":null,"h100":21,"h50":24,"wkts":3,"bowl_avg":40.00,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"richie-benaud","name":"Richie Benaud","country":"Australia","born":1930,"cricsheet_name":null,
+     "test":{"mat":63,"inn":97,"runs":2201,"hs":122,"avg":24.46,"sr":null,"h100":3,"h50":9,"wkts":248,"bowl_avg":27.03,"econ":null,"bowl_sr":null,"fwi":16},"odi":null,"t20i":null},
+
+    {"key":"fred-trueman","name":"Fred Trueman","country":"England","born":1931,"cricsheet_name":null,
+     "test":{"mat":67,"inn":85,"runs":981,"hs":39,"avg":13.81,"sr":null,"h100":0,"h50":0,"wkts":307,"bowl_avg":21.57,"econ":null,"bowl_sr":null,"fwi":17},"odi":null,"t20i":null},
+
+    {"key":"brian-statham","name":"Brian Statham","country":"England","born":1930,"cricsheet_name":null,
+     "test":{"mat":70,"inn":87,"runs":675,"hs":38,"avg":11.44,"sr":null,"h100":0,"h50":0,"wkts":252,"bowl_avg":24.84,"econ":null,"bowl_sr":null,"fwi":9},"odi":null,"t20i":null},
+
+    {"key":"ray-lindwall","name":"Ray Lindwall","country":"Australia","born":1921,"cricsheet_name":null,
+     "test":{"mat":61,"inn":84,"runs":1502,"hs":118,"avg":21.15,"sr":null,"h100":2,"h50":5,"wkts":228,"bowl_avg":23.03,"econ":null,"bowl_sr":null,"fwi":12},"odi":null,"t20i":null},
+
+    {"key":"keith-miller","name":"Keith Miller","country":"Australia","born":1919,"cricsheet_name":null,
+     "test":{"mat":55,"inn":87,"runs":2958,"hs":147,"avg":36.97,"sr":null,"h100":7,"h50":13,"wkts":170,"bowl_avg":22.97,"econ":null,"bowl_sr":null,"fwi":7},"odi":null,"t20i":null},
+
+    {"key":"jim-laker","name":"Jim Laker","country":"England","born":1922,"cricsheet_name":null,
+     "test":{"mat":46,"inn":63,"runs":676,"hs":63,"avg":14.08,"sr":null,"h100":0,"h50":2,"wkts":193,"bowl_avg":21.24,"econ":null,"bowl_sr":null,"fwi":9},"odi":null,"t20i":null},
+
+    {"key":"derek-underwood","name":"Derek Underwood","country":"England","born":1945,"cricsheet_name":null,
+     "test":{"mat":86,"inn":116,"runs":937,"hs":45,"avg":11.56,"sr":null,"h100":0,"h50":0,"wkts":297,"bowl_avg":25.83,"econ":null,"bowl_sr":null,"fwi":17},"odi":null,"t20i":null},
+
+    {"key":"graeme-pollock","name":"Graeme Pollock","country":"South Africa","born":1944,"cricsheet_name":null,
+     "test":{"mat":23,"inn":41,"runs":2256,"hs":274,"avg":60.97,"sr":null,"h100":7,"h50":11,"wkts":4,"bowl_avg":51.25,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"rohan-kanhai","name":"Rohan Kanhai","country":"West Indies","born":1935,"cricsheet_name":null,
+     "test":{"mat":79,"inn":137,"runs":6227,"hs":256,"avg":47.53,"sr":null,"h100":15,"h50":28,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"lance-gibbs","name":"Lance Gibbs","country":"West Indies","born":1934,"cricsheet_name":null,
+     "test":{"mat":79,"inn":109,"runs":488,"hs":25,"avg":6.97,"sr":null,"h100":0,"h50":0,"wkts":309,"bowl_avg":29.09,"econ":null,"bowl_sr":null,"fwi":18},"odi":null,"t20i":null},
+
+    {"key":"hanif-mohammad","name":"Hanif Mohammad","country":"Pakistan","born":1934,"cricsheet_name":null,
+     "test":{"mat":55,"inn":97,"runs":3915,"hs":337,"avg":43.98,"sr":null,"h100":12,"h50":15,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"fazal-mahmood","name":"Fazal Mahmood","country":"Pakistan","born":1927,"cricsheet_name":null,
+     "test":{"mat":34,"inn":50,"runs":620,"hs":60,"avg":13.95,"sr":null,"h100":0,"h50":2,"wkts":139,"bowl_avg":24.70,"econ":null,"bowl_sr":null,"fwi":13},"odi":null,"t20i":null},
+
+    {"key":"tom-graveney","name":"Tom Graveney","country":"England","born":1927,"cricsheet_name":null,
+     "test":{"mat":79,"inn":123,"runs":4882,"hs":258,"avg":44.38,"sr":null,"h100":11,"h50":20,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"vinoo-mankad","name":"Vinoo Mankad","country":"India","born":1917,"cricsheet_name":null,
+     "test":{"mat":44,"inn":72,"runs":2109,"hs":231,"avg":31.47,"sr":null,"h100":5,"h50":6,"wkts":162,"bowl_avg":32.32,"econ":null,"bowl_sr":null,"fwi":8},"odi":null,"t20i":null},
+
+    {"key":"subhash-gupte","name":"Subhash Gupte","country":"India","born":1929,"cricsheet_name":null,
+     "test":{"mat":36,"inn":52,"runs":282,"hs":27,"avg":8.05,"sr":null,"h100":0,"h50":0,"wkts":149,"bowl_avg":29.55,"econ":null,"bowl_sr":null,"fwi":12},"odi":null,"t20i":null},
+
+    {"key":"polly-umrigar","name":"Polly Umrigar","country":"India","born":1926,"cricsheet_name":null,
+     "test":{"mat":59,"inn":94,"runs":3631,"hs":223,"avg":42.22,"sr":null,"h100":12,"h50":14,"wkts":35,"bowl_avg":42.09,"econ":null,"bowl_sr":null,"fwi":0},"odi":null,"t20i":null},
+
+    {"key":"greg-chappell","name":"Greg Chappell","country":"Australia","born":1948,"cricsheet_name":null,
+     "test":{"mat":87,"inn":151,"runs":7110,"hs":247,"avg":53.86,"sr":null,"h100":24,"h50":31,"wkts":47,"bowl_avg":40.70,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":74,"inn":73,"runs":2331,"hs":138,"avg":40.19,"sr":null,"h100":3,"h50":20,"wkts":72,"bowl_avg":29.99,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"ian-chappell","name":"Ian Chappell","country":"Australia","born":1943,"cricsheet_name":null,
+     "test":{"mat":75,"inn":136,"runs":5345,"hs":196,"avg":42.42,"sr":null,"h100":14,"h50":26,"wkts":20,"bowl_avg":34.38,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":16,"inn":16,"runs":673,"hs":86,"avg":42.06,"sr":null,"h100":0,"h50":8,"wkts":3,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"clive-lloyd","name":"Clive Lloyd","country":"West Indies","born":1944,"cricsheet_name":null,
+     "test":{"mat":110,"inn":175,"runs":7515,"hs":242,"avg":46.67,"sr":null,"h100":19,"h50":39,"wkts":10,"bowl_avg":62.20,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":87,"inn":86,"runs":1977,"hs":102,"avg":26.69,"sr":null,"h100":1,"h50":14,"wkts":8,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"gordon-greenidge","name":"Gordon Greenidge","country":"West Indies","born":1951,"cricsheet_name":null,
+     "test":{"mat":108,"inn":185,"runs":7558,"hs":226,"avg":44.72,"sr":null,"h100":19,"h50":34,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":128,"inn":127,"runs":5134,"hs":133,"avg":45.03,"sr":null,"h100":11,"h50":31,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"desmond-haynes","name":"Desmond Haynes","country":"West Indies","born":1956,"cricsheet_name":null,
+     "test":{"mat":116,"inn":202,"runs":7487,"hs":184,"avg":42.29,"sr":null,"h100":18,"h50":39,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":238,"inn":237,"runs":8648,"hs":152,"avg":41.37,"sr":null,"h100":17,"h50":57,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"viv-richards","name":"Viv Richards","country":"West Indies","born":1952,"cricsheet_name":null,
+     "test":{"mat":121,"inn":182,"runs":8540,"hs":291,"avg":50.23,"sr":null,"h100":24,"h50":45,"wkts":32,"bowl_avg":61.37,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":187,"inn":187,"runs":6721,"hs":189,"avg":47.00,"sr":null,"h100":11,"h50":45,"wkts":118,"bowl_avg":35.83,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"sunil-gavaskar","name":"Sunil Gavaskar","country":"India","born":1949,"cricsheet_name":null,
+     "test":{"mat":125,"inn":214,"runs":10122,"hs":236,"avg":51.12,"sr":null,"h100":34,"h50":45,"wkts":1,"bowl_avg":206.00,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":108,"inn":102,"runs":3092,"hs":103,"avg":35.13,"sr":null,"h100":1,"h50":27,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"kapil-dev","name":"Kapil Dev","country":"India","born":1959,"cricsheet_name":null,
+     "test":{"mat":131,"inn":184,"runs":5248,"hs":163,"avg":31.05,"sr":null,"h100":8,"h50":27,"wkts":434,"bowl_avg":29.64,"econ":null,"bowl_sr":null,"fwi":23},"odi":{"mat":225,"inn":198,"runs":3783,"hs":175,"avg":23.79,"sr":null,"h100":1,"h50":14,"wkts":253,"bowl_avg":27.45,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"malcolm-marshall","name":"Malcolm Marshall","country":"West Indies","born":1958,"cricsheet_name":null,
+     "test":{"mat":81,"inn":107,"runs":1810,"hs":92,"avg":18.85,"sr":null,"h100":0,"h50":10,"wkts":376,"bowl_avg":20.94,"econ":null,"bowl_sr":null,"fwi":22},"odi":{"mat":136,"inn":94,"runs":955,"hs":66,"avg":16.47,"sr":null,"h100":0,"h50":3,"wkts":157,"bowl_avg":26.96,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"richard-hadlee","name":"Richard Hadlee","country":"New Zealand","born":1951,"cricsheet_name":null,
+     "test":{"mat":86,"inn":134,"runs":3124,"hs":151,"avg":27.16,"sr":null,"h100":2,"h50":15,"wkts":431,"bowl_avg":22.29,"econ":null,"bowl_sr":null,"fwi":36},"odi":{"mat":115,"inn":79,"runs":1751,"hs":79,"avg":21.60,"sr":null,"h100":0,"h50":11,"wkts":158,"bowl_avg":21.56,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"imran-khan","name":"Imran Khan","country":"Pakistan","born":1952,"cricsheet_name":null,
+     "test":{"mat":88,"inn":126,"runs":3807,"hs":136,"avg":37.69,"sr":null,"h100":6,"h50":18,"wkts":362,"bowl_avg":22.81,"econ":null,"bowl_sr":null,"fwi":23},"odi":{"mat":175,"inn":139,"runs":3709,"hs":102,"avg":33.41,"sr":null,"h100":1,"h50":19,"wkts":182,"bowl_avg":26.61,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"ian-botham","name":"Ian Botham","country":"England","born":1955,"cricsheet_name":null,
+     "test":{"mat":102,"inn":161,"runs":5200,"hs":208,"avg":33.54,"sr":null,"h100":14,"h50":22,"wkts":383,"bowl_avg":28.40,"econ":null,"bowl_sr":null,"fwi":27},"odi":{"mat":116,"inn":106,"runs":2113,"hs":79,"avg":23.21,"sr":null,"h100":0,"h50":9,"wkts":145,"bowl_avg":28.54,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"dennis-lillee","name":"Dennis Lillee","country":"Australia","born":1949,"cricsheet_name":null,
+     "test":{"mat":70,"inn":90,"runs":905,"hs":73,"avg":13.71,"sr":null,"h100":0,"h50":2,"wkts":355,"bowl_avg":23.92,"econ":null,"bowl_sr":null,"fwi":23},"odi":{"mat":63,"inn":32,"runs":240,"hs":42,"avg":12.63,"sr":null,"h100":0,"h50":0,"wkts":103,"bowl_avg":20.83,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"jeff-thomson","name":"Jeff Thomson","country":"Australia","born":1950,"cricsheet_name":null,
+     "test":{"mat":51,"inn":72,"runs":679,"hs":49,"avg":12.81,"sr":null,"h100":0,"h50":0,"wkts":200,"bowl_avg":28.00,"econ":null,"bowl_sr":null,"fwi":8},"odi":{"mat":50,"inn":25,"runs":114,"hs":21,"avg":9.50,"sr":null,"h100":0,"h50":0,"wkts":55,"bowl_avg":25.42,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"andy-roberts","name":"Andy Roberts","country":"West Indies","born":1951,"cricsheet_name":null,
+     "test":{"mat":47,"inn":62,"runs":762,"hs":68,"avg":14.94,"sr":null,"h100":0,"h50":3,"wkts":202,"bowl_avg":25.61,"econ":null,"bowl_sr":null,"fwi":11},"odi":{"mat":56,"inn":28,"runs":245,"hs":37,"avg":12.89,"sr":null,"h100":0,"h50":0,"wkts":87,"bowl_avg":20.35,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"michael-holding","name":"Michael Holding","country":"West Indies","born":1954,"cricsheet_name":null,
+     "test":{"mat":60,"inn":76,"runs":910,"hs":73,"avg":13.78,"sr":null,"h100":0,"h50":4,"wkts":249,"bowl_avg":23.68,"econ":null,"bowl_sr":null,"fwi":13},"odi":{"mat":102,"inn":53,"runs":407,"hs":64,"avg":11.33,"sr":null,"h100":0,"h50":2,"wkts":142,"bowl_avg":21.36,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"joel-garner","name":"Joel Garner","country":"West Indies","born":1952,"cricsheet_name":null,
+     "test":{"mat":58,"inn":69,"runs":672,"hs":60,"avg":12.44,"sr":null,"h100":0,"h50":1,"wkts":259,"bowl_avg":20.97,"econ":null,"bowl_sr":null,"fwi":7},"odi":{"mat":98,"inn":37,"runs":218,"hs":37,"avg":10.38,"sr":null,"h100":0,"h50":0,"wkts":146,"bowl_avg":18.84,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"colin-croft","name":"Colin Croft","country":"West Indies","born":1953,"cricsheet_name":null,
+     "test":{"mat":27,"inn":37,"runs":339,"hs":33,"avg":10.28,"sr":null,"h100":0,"h50":0,"wkts":125,"bowl_avg":23.30,"econ":null,"bowl_sr":null,"fwi":3},"odi":null,"t20i":null},
+
+    {"key":"geoffrey-boycott","name":"Geoffrey Boycott","country":"England","born":1940,"cricsheet_name":null,
+     "test":{"mat":108,"inn":193,"runs":8114,"hs":246,"avg":47.72,"sr":null,"h100":22,"h50":42,"wkts":7,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":36,"inn":36,"runs":1082,"hs":105,"avg":36.07,"sr":null,"h100":1,"h50":10,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"graham-gooch","name":"Graham Gooch","country":"England","born":1953,"cricsheet_name":null,
+     "test":{"mat":118,"inn":215,"runs":8900,"hs":333,"avg":42.58,"sr":null,"h100":20,"h50":46,"wkts":23,"bowl_avg":46.48,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":125,"inn":122,"runs":4290,"hs":142,"avg":36.98,"sr":null,"h100":8,"h50":23,"wkts":36,"bowl_avg":42.27,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"david-gower","name":"David Gower","country":"England","born":1957,"cricsheet_name":null,
+     "test":{"mat":117,"inn":204,"runs":8231,"hs":215,"avg":44.25,"sr":null,"h100":18,"h50":39,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":114,"inn":111,"runs":3170,"hs":158,"avg":30.77,"sr":null,"h100":7,"h50":14,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"allan-border","name":"Allan Border","country":"Australia","born":1955,"cricsheet_name":null,
+     "test":{"mat":156,"inn":265,"runs":11174,"hs":205,"avg":50.56,"sr":null,"h100":27,"h50":63,"wkts":39,"bowl_avg":39.10,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":273,"inn":252,"runs":6524,"hs":127,"avg":30.62,"sr":null,"h100":3,"h50":39,"wkts":73,"bowl_avg":28.36,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"javed-miandad","name":"Javed Miandad","country":"Pakistan","born":1957,"cricsheet_name":null,
+     "test":{"mat":124,"inn":189,"runs":8832,"hs":280,"avg":52.57,"sr":null,"h100":23,"h50":43,"wkts":17,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":233,"inn":218,"runs":7381,"hs":119,"avg":41.70,"sr":null,"h100":8,"h50":50,"wkts":7,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"zaheer-abbas","name":"Zaheer Abbas","country":"Pakistan","born":1947,"cricsheet_name":null,
+     "test":{"mat":78,"inn":124,"runs":5062,"hs":274,"avg":44.79,"sr":null,"h100":12,"h50":20,"wkts":3,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":62,"inn":60,"runs":2572,"hs":123,"avg":47.63,"sr":null,"h100":7,"h50":13,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"bishen-bedi","name":"Bishen Bedi","country":"India","born":1946,"cricsheet_name":null,
+     "test":{"mat":67,"inn":101,"runs":656,"hs":50,"avg":8.98,"sr":null,"h100":0,"h50":1,"wkts":266,"bowl_avg":28.71,"econ":null,"bowl_sr":null,"fwi":14},"odi":{"mat":10,"inn":5,"runs":17,"hs":10,"avg":5.67,"sr":null,"h100":0,"h50":0,"wkts":7,"bowl_avg":29.14,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"bhagwath-chandrasekhar","name":"BS Chandrasekhar","country":"India","born":1945,"cricsheet_name":null,
+     "test":{"mat":58,"inn":80,"runs":167,"hs":22,"avg":4.07,"sr":null,"h100":0,"h50":0,"wkts":242,"bowl_avg":29.74,"econ":null,"bowl_sr":null,"fwi":16},"odi":null,"t20i":null},
+
+    {"key":"erapalli-prasanna","name":"Erapalli Prasanna","country":"India","born":1940,"cricsheet_name":null,
+     "test":{"mat":49,"inn":66,"runs":735,"hs":37,"avg":10.56,"sr":null,"h100":0,"h50":0,"wkts":189,"bowl_avg":30.38,"econ":null,"bowl_sr":null,"fwi":10},"odi":null,"t20i":null},
+
+    {"key":"gundappa-vishwanath","name":"GR Vishwanath","country":"India","born":1949,"cricsheet_name":null,
+     "test":{"mat":91,"inn":155,"runs":6080,"hs":222,"avg":41.93,"sr":null,"h100":14,"h50":35,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":25,"inn":24,"runs":629,"hs":75,"avg":26.21,"sr":null,"h100":0,"h50":6,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"dilip-vengsarkar","name":"Dilip Vengsarkar","country":"India","born":1956,"cricsheet_name":null,
+     "test":{"mat":116,"inn":185,"runs":6868,"hs":166,"avg":42.13,"sr":null,"h100":17,"h50":35,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":129,"inn":125,"runs":3508,"hs":105,"avg":34.39,"sr":null,"h100":1,"h50":26,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"bob-willis","name":"Bob Willis","country":"England","born":1949,"cricsheet_name":null,
+     "test":{"mat":90,"inn":128,"runs":840,"hs":28,"avg":8.51,"sr":null,"h100":0,"h50":0,"wkts":325,"bowl_avg":25.20,"econ":null,"bowl_sr":null,"fwi":16},"odi":{"mat":64,"inn":27,"runs":101,"hs":24,"avg":7.77,"sr":null,"h100":0,"h50":0,"wkts":80,"bowl_avg":24.60,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"martin-crowe","name":"Martin Crowe","country":"New Zealand","born":1962,"cricsheet_name":null,
+     "test":{"mat":77,"inn":131,"runs":5444,"hs":299,"avg":45.36,"sr":null,"h100":17,"h50":18,"wkts":14,"bowl_avg":47.50,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":143,"inn":140,"runs":4704,"hs":107,"avg":38.55,"sr":null,"h100":4,"h50":34,"wkts":14,"bowl_avg":56.79,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"john-wright","name":"John Wright","country":"New Zealand","born":1954,"cricsheet_name":null,
+     "test":{"mat":82,"inn":148,"runs":5334,"hs":185,"avg":37.82,"sr":null,"h100":12,"h50":23,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":149,"inn":143,"runs":3891,"hs":104,"avg":29.33,"sr":null,"h100":3,"h50":23,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"mark-taylor","name":"Mark Taylor","country":"Australia","born":1964,"cricsheet_name":null,
+     "test":{"mat":104,"inn":186,"runs":7525,"hs":334,"avg":43.49,"sr":null,"h100":19,"h50":40,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":113,"inn":110,"runs":3514,"hs":105,"avg":32.52,"sr":null,"h100":3,"h50":22,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"david-boon","name":"David Boon","country":"Australia","born":1960,"cricsheet_name":null,
+     "test":{"mat":107,"inn":190,"runs":7422,"hs":200,"avg":43.65,"sr":null,"h100":21,"h50":32,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":181,"inn":177,"runs":5964,"hs":122,"avg":37.04,"sr":null,"h100":5,"h50":37,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"dean-jones","name":"Dean Jones","country":"Australia","born":1961,"cricsheet_name":null,
+     "test":{"mat":52,"inn":89,"runs":3631,"hs":216,"avg":46.55,"sr":null,"h100":11,"h50":14,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":164,"inn":161,"runs":6068,"hs":145,"avg":44.61,"sr":null,"h100":7,"h50":45,"wkts":7,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"kim-hughes","name":"Kim Hughes","country":"Australia","born":1954,"cricsheet_name":null,
+     "test":{"mat":70,"inn":124,"runs":4415,"hs":213,"avg":37.41,"sr":null,"h100":9,"h50":22,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":97,"inn":95,"runs":2951,"hs":130,"avg":32.43,"sr":null,"h100":5,"h50":17,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"alvin-kallicharran","name":"Alvin Kallicharran","country":"West Indies","born":1949,"cricsheet_name":null,
+     "test":{"mat":66,"inn":109,"runs":4399,"hs":187,"avg":44.43,"sr":null,"h100":12,"h50":21,"wkts":4,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":31,"inn":31,"runs":826,"hs":78,"avg":26.65,"sr":null,"h100":0,"h50":6,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"curtly-ambrose","name":"Curtly Ambrose","country":"West Indies","born":1963,"cricsheet_name":null,
+     "test":{"mat":98,"inn":145,"runs":1439,"hs":53,"avg":12.40,"sr":null,"h100":0,"h50":1,"wkts":405,"bowl_avg":20.99,"econ":null,"bowl_sr":null,"fwi":22},"odi":{"mat":176,"inn":79,"runs":639,"hs":37,"avg":10.48,"sr":null,"h100":0,"h50":0,"wkts":225,"bowl_avg":24.24,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"courtney-walsh","name":"Courtney Walsh","country":"West Indies","born":1962,"cricsheet_name":null,
+     "test":{"mat":132,"inn":185,"runs":936,"hs":30,"avg":7.54,"sr":null,"h100":0,"h50":0,"wkts":519,"bowl_avg":24.44,"econ":null,"bowl_sr":null,"fwi":22},"odi":{"mat":205,"inn":82,"runs":466,"hs":30,"avg":9.92,"sr":null,"h100":0,"h50":0,"wkts":227,"bowl_avg":30.47,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"wasim-akram","name":"Wasim Akram","country":"Pakistan","born":1966,"cricsheet_name":"Wasim Akram",
+     "test":{"mat":104,"inn":147,"runs":2898,"hs":257,"avg":22.64,"sr":null,"h100":3,"h50":7,"wkts":414,"bowl_avg":23.62,"econ":null,"bowl_sr":null,"fwi":25},"odi":{"mat":356,"inn":235,"runs":3717,"hs":86,"avg":16.52,"sr":null,"h100":0,"h50":6,"wkts":502,"bowl_avg":23.52,"econ":3.89,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"waqar-younis","name":"Waqar Younis","country":"Pakistan","born":1971,"cricsheet_name":"Waqar Younis",
+     "test":{"mat":87,"inn":120,"runs":1010,"hs":45,"avg":10.20,"sr":null,"h100":0,"h50":0,"wkts":373,"bowl_avg":23.56,"econ":null,"bowl_sr":null,"fwi":22},"odi":{"mat":262,"inn":131,"runs":964,"hs":37,"avg":9.25,"sr":null,"h100":0,"h50":0,"wkts":416,"bowl_avg":23.84,"econ":4.68,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"inzamam-ul-haq","name":"Inzamam-ul-Haq","country":"Pakistan","born":1970,"cricsheet_name":"Inzamam-ul-Haq",
+     "test":{"mat":120,"inn":200,"runs":8830,"hs":329,"avg":49.60,"sr":null,"h100":25,"h50":46,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":378,"inn":350,"runs":11739,"hs":137,"avg":39.52,"sr":null,"h100":10,"h50":83,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"brian-lara","name":"Brian Lara","country":"West Indies","born":1969,"cricsheet_name":"BC Lara",
+     "test":{"mat":131,"inn":232,"runs":11953,"hs":400,"avg":52.88,"sr":null,"h100":34,"h50":48,"wkts":4,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":299,"inn":289,"runs":10405,"hs":169,"avg":40.48,"sr":null,"h100":19,"h50":63,"wkts":4,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"sachin-tendulkar","name":"Sachin Tendulkar","country":"India","born":1973,"cricsheet_name":"SR Tendulkar",
+     "test":{"mat":200,"inn":329,"runs":15921,"hs":248,"avg":53.78,"sr":54.0,"h100":51,"h50":67,"wkts":46,"bowl_avg":54.17,"econ":2.88,"bowl_sr":null,"fwi":0},"odi":{"mat":463,"inn":452,"runs":18426,"hs":200,"avg":44.83,"sr":86.23,"h100":49,"h50":96,"wkts":154,"bowl_avg":44.48,"econ":5.10,"bowl_sr":null,"fwi":0},"t20i":{"mat":1,"inn":1,"runs":12,"hs":12,"avg":12.00,"sr":100.00,"h100":0,"h50":0,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"ricky-ponting","name":"Ricky Ponting","country":"Australia","born":1974,"cricsheet_name":"RT Ponting",
+     "test":{"mat":168,"inn":287,"runs":13378,"hs":257,"avg":51.85,"sr":null,"h100":41,"h50":62,"wkts":5,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":375,"inn":365,"runs":13704,"hs":164,"avg":42.03,"sr":80.39,"h100":30,"h50":82,"wkts":3,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":17,"inn":17,"runs":401,"hs":98,"avg":25.06,"sr":131.25,"h100":0,"h50":3,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"jacques-kallis","name":"Jacques Kallis","country":"South Africa","born":1975,"cricsheet_name":"JH Kallis",
+     "test":{"mat":166,"inn":280,"runs":13289,"hs":224,"avg":55.37,"sr":null,"h100":45,"h50":58,"wkts":292,"bowl_avg":32.65,"econ":null,"bowl_sr":null,"fwi":5},"odi":{"mat":328,"inn":314,"runs":11579,"hs":139,"avg":44.36,"sr":71.90,"h100":17,"h50":86,"wkts":273,"bowl_avg":31.79,"econ":4.83,"bowl_sr":null,"fwi":0},"t20i":{"mat":25,"inn":23,"runs":666,"hs":73,"avg":36.99,"sr":124.16,"h100":0,"h50":5,"wkts":4,"bowl_avg":44.50,"econ":7.30,"bowl_sr":null,"fwi":0}},
+
+    {"key":"rahul-dravid","name":"Rahul Dravid","country":"India","born":1973,"cricsheet_name":"R Dravid",
+     "test":{"mat":164,"inn":286,"runs":13288,"hs":270,"avg":52.31,"sr":42.53,"h100":36,"h50":63,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":344,"inn":318,"runs":10889,"hs":153,"avg":39.16,"sr":71.23,"h100":12,"h50":83,"wkts":4,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":1,"inn":1,"runs":31,"hs":31,"avg":31.00,"sr":129.17,"h100":0,"h50":0,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"vvs-laxman","name":"VVS Laxman","country":"India","born":1974,"cricsheet_name":"VVS Laxman",
+     "test":{"mat":134,"inn":225,"runs":8781,"hs":281,"avg":45.97,"sr":null,"h100":17,"h50":56,"wkts":2,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":86,"inn":82,"runs":2338,"hs":131,"avg":30.76,"sr":null,"h100":6,"h50":10,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"sourav-ganguly","name":"Sourav Ganguly","country":"India","born":1972,"cricsheet_name":"SC Ganguly",
+     "test":{"mat":113,"inn":188,"runs":7212,"hs":239,"avg":42.17,"sr":null,"h100":16,"h50":35,"wkts":32,"bowl_avg":62.78,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":311,"inn":300,"runs":11363,"hs":183,"avg":41.02,"sr":73.70,"h100":22,"h50":72,"wkts":100,"bowl_avg":38.49,"econ":5.02,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"shane-warne","name":"Shane Warne","country":"Australia","born":1969,"cricsheet_name":"SK Warne",
+     "test":{"mat":145,"inn":199,"runs":3154,"hs":99,"avg":17.32,"sr":null,"h100":0,"h50":12,"wkts":708,"bowl_avg":25.41,"econ":2.65,"bowl_sr":57.5,"fwi":37},"odi":{"mat":194,"inn":119,"runs":1018,"hs":55,"avg":13.05,"sr":null,"h100":0,"h50":1,"wkts":293,"bowl_avg":25.73,"econ":4.25,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"glenn-mcgrath","name":"Glenn McGrath","country":"Australia","born":1970,"cricsheet_name":"GD McGrath",
+     "test":{"mat":124,"inn":138,"runs":641,"hs":61,"avg":7.36,"sr":null,"h100":0,"h50":0,"wkts":563,"bowl_avg":21.64,"econ":2.49,"bowl_sr":51.9,"fwi":29},"odi":{"mat":250,"inn":98,"runs":115,"hs":11,"avg":2.36,"sr":null,"h100":0,"h50":0,"wkts":381,"bowl_avg":22.02,"econ":3.88,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"muttiah-muralitharan","name":"Muttiah Muralitharan","country":"Sri Lanka","born":1972,"cricsheet_name":"M Muralitharan",
+     "test":{"mat":133,"inn":164,"runs":1261,"hs":67,"avg":11.67,"sr":null,"h100":0,"h50":4,"wkts":800,"bowl_avg":22.72,"econ":2.47,"bowl_sr":55.0,"fwi":67},"odi":{"mat":350,"inn":155,"runs":674,"hs":33,"avg":7.63,"sr":null,"h100":0,"h50":0,"wkts":534,"bowl_avg":23.08,"econ":3.93,"bowl_sr":null,"fwi":0},"t20i":{"mat":12,"inn":4,"runs":5,"hs":4,"avg":5.00,"sr":null,"h100":0,"h50":0,"wkts":13,"bowl_avg":16.23,"econ":6.59,"bowl_sr":null,"fwi":0}},
+
+    {"key":"anil-kumble","name":"Anil Kumble","country":"India","born":1970,"cricsheet_name":"A Kumble",
+     "test":{"mat":132,"inn":176,"runs":2506,"hs":110,"avg":17.77,"sr":null,"h100":1,"h50":5,"wkts":619,"bowl_avg":29.65,"econ":2.69,"bowl_sr":66.0,"fwi":35},"odi":{"mat":271,"inn":122,"runs":938,"hs":29,"avg":10.44,"sr":null,"h100":0,"h50":0,"wkts":337,"bowl_avg":30.89,"econ":4.30,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"steve-waugh","name":"Steve Waugh","country":"Australia","born":1965,"cricsheet_name":"SR Waugh",
+     "test":{"mat":168,"inn":260,"runs":10927,"hs":200,"avg":51.06,"sr":null,"h100":32,"h50":50,"wkts":92,"bowl_avg":37.44,"econ":null,"bowl_sr":null,"fwi":3},"odi":{"mat":325,"inn":288,"runs":7569,"hs":120,"avg":32.90,"sr":null,"h100":3,"h50":45,"wkts":195,"bowl_avg":34.67,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"matthew-hayden","name":"Matthew Hayden","country":"Australia","born":1971,"cricsheet_name":"ML Hayden",
+     "test":{"mat":103,"inn":184,"runs":8625,"hs":380,"avg":50.73,"sr":null,"h100":30,"h50":29,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":161,"inn":154,"runs":6133,"hs":181,"avg":43.78,"sr":null,"h100":10,"h50":36,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":9,"inn":9,"runs":225,"hs":67,"avg":25.00,"sr":130.23,"h100":0,"h50":1,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"adam-gilchrist","name":"Adam Gilchrist","country":"Australia","born":1971,"cricsheet_name":"AC Gilchrist",
+     "test":{"mat":96,"inn":137,"runs":5570,"hs":204,"avg":47.60,"sr":81.95,"h100":17,"h50":26,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":287,"inn":279,"runs":9619,"hs":172,"avg":35.89,"sr":96.94,"h100":16,"h50":55,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":13,"inn":13,"runs":347,"hs":89,"avg":26.69,"sr":130.45,"h100":0,"h50":3,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"kumar-sangakkara","name":"Kumar Sangakkara","country":"Sri Lanka","born":1977,"cricsheet_name":"KC Sangakkara",
+     "test":{"mat":134,"inn":233,"runs":12400,"hs":319,"avg":57.40,"sr":null,"h100":38,"h50":52,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":404,"inn":380,"runs":14234,"hs":169,"avg":41.98,"sr":78.86,"h100":25,"h50":93,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":56,"inn":52,"runs":1382,"hs":78,"avg":28.62,"sr":123.44,"h100":0,"h50":11,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"mahela-jayawardena","name":"Mahela Jayawardena","country":"Sri Lanka","born":1977,"cricsheet_name":"DPMD Jayawardena",
+     "test":{"mat":149,"inn":252,"runs":11814,"hs":374,"avg":49.84,"sr":null,"h100":34,"h50":50,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":448,"inn":418,"runs":12650,"hs":144,"avg":33.37,"sr":78.96,"h100":19,"h50":77,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":55,"inn":52,"runs":1493,"hs":100,"avg":30.47,"sr":128.72,"h100":1,"h50":9,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"sanath-jayasuriya","name":"Sanath Jayasuriya","country":"Sri Lanka","born":1969,"cricsheet_name":"ST Jayasuriya",
+     "test":{"mat":110,"inn":188,"runs":6973,"hs":340,"avg":40.07,"sr":null,"h100":14,"h50":31,"wkts":98,"bowl_avg":34.34,"econ":null,"bowl_sr":null,"fwi":2},"odi":{"mat":445,"inn":433,"runs":13430,"hs":189,"avg":32.36,"sr":91.22,"h100":28,"h50":68,"wkts":323,"bowl_avg":36.75,"econ":5.22,"bowl_sr":null,"fwi":0},"t20i":{"mat":31,"inn":28,"runs":529,"hs":88,"avg":21.16,"sr":130.71,"h100":0,"h50":3,"wkts":16,"bowl_avg":28.12,"econ":7.09,"bowl_sr":null,"fwi":0}},
+
+    {"key":"shaun-pollock","name":"Shaun Pollock","country":"South Africa","born":1973,"cricsheet_name":"SM Pollock",
+     "test":{"mat":108,"inn":156,"runs":3781,"hs":111,"avg":32.31,"sr":null,"h100":2,"h50":16,"wkts":421,"bowl_avg":23.11,"econ":null,"bowl_sr":null,"fwi":16},"odi":{"mat":303,"inn":186,"runs":3519,"hs":130,"avg":26.45,"sr":null,"h100":2,"h50":14,"wkts":393,"bowl_avg":24.50,"econ":3.67,"bowl_sr":null,"fwi":0},"t20i":{"mat":12,"inn":6,"runs":45,"hs":19,"avg":9.00,"sr":117.85,"h100":0,"h50":0,"wkts":12,"bowl_avg":21.67,"econ":6.75,"bowl_sr":null,"fwi":0}},
+
+    {"key":"allan-donald","name":"Allan Donald","country":"South Africa","born":1966,"cricsheet_name":"AA Donald",
+     "test":{"mat":72,"inn":90,"runs":652,"hs":37,"avg":10.68,"sr":null,"h100":0,"h50":0,"wkts":330,"bowl_avg":22.25,"econ":null,"bowl_sr":null,"fwi":20},"odi":{"mat":164,"inn":72,"runs":349,"hs":45,"avg":9.44,"sr":null,"h100":0,"h50":0,"wkts":272,"bowl_avg":21.77,"econ":4.26,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"chaminda-vaas","name":"Chaminda Vaas","country":"Sri Lanka","born":1974,"cricsheet_name":"WPUJC Vaas",
+     "test":{"mat":111,"inn":162,"runs":3089,"hs":100,"avg":24.54,"sr":null,"h100":1,"h50":14,"wkts":355,"bowl_avg":29.58,"econ":null,"bowl_sr":null,"fwi":12},"odi":{"mat":322,"inn":176,"runs":2025,"hs":67,"avg":15.76,"sr":null,"h100":0,"h50":7,"wkts":400,"bowl_avg":27.53,"econ":4.18,"bowl_sr":null,"fwi":0},"t20i":{"mat":10,"inn":3,"runs":13,"hs":11,"avg":6.50,"sr":null,"h100":0,"h50":0,"wkts":10,"bowl_avg":24.40,"econ":6.53,"bowl_sr":null,"fwi":0}},
+
+    {"key":"stephen-fleming","name":"Stephen Fleming","country":"New Zealand","born":1973,"cricsheet_name":"SP Fleming",
+     "test":{"mat":111,"inn":189,"runs":7172,"hs":274,"avg":40.06,"sr":null,"h100":9,"h50":46,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":280,"inn":269,"runs":8007,"hs":134,"avg":32.41,"sr":null,"h100":8,"h50":49,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"daniel-vettori","name":"Daniel Vettori","country":"New Zealand","born":1979,"cricsheet_name":"DJ Vettori",
+     "test":{"mat":113,"inn":175,"runs":4531,"hs":140,"avg":30.00,"sr":null,"h100":6,"h50":23,"wkts":362,"bowl_avg":34.36,"econ":null,"bowl_sr":null,"fwi":20},"odi":{"mat":295,"inn":215,"runs":2253,"hs":80,"avg":17.46,"sr":null,"h100":0,"h50":6,"wkts":305,"bowl_avg":33.58,"econ":4.47,"bowl_sr":null,"fwi":0},"t20i":{"mat":34,"inn":23,"runs":207,"hs":26,"avg":11.50,"sr":94.95,"h100":0,"h50":0,"wkts":40,"bowl_avg":23.47,"econ":6.86,"bowl_sr":null,"fwi":0}},
+
+    {"key":"nasser-hussain","name":"Nasser Hussain","country":"England","born":1968,"cricsheet_name":null,
+     "test":{"mat":96,"inn":171,"runs":5764,"hs":207,"avg":37.18,"sr":null,"h100":14,"h50":33,"wkts":3,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":88,"inn":80,"runs":2332,"hs":115,"avg":34.29,"sr":null,"h100":3,"h50":10,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"mark-boucher","name":"Mark Boucher","country":"South Africa","born":1976,"cricsheet_name":"MV Boucher",
+     "test":{"mat":147,"inn":205,"runs":5515,"hs":125,"avg":30.29,"sr":null,"h100":5,"h50":35,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":295,"inn":232,"runs":4686,"hs":147,"avg":29.09,"sr":null,"h100":5,"h50":26,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":27,"inn":22,"runs":384,"hs":50,"avg":21.33,"sr":100.52,"h100":0,"h50":1,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"aravinda-de-silva","name":"Aravinda de Silva","country":"Sri Lanka","born":1965,"cricsheet_name":"PA de Silva",
+     "test":{"mat":93,"inn":159,"runs":6361,"hs":267,"avg":42.97,"sr":null,"h100":20,"h50":22,"wkts":29,"bowl_avg":31.48,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":308,"inn":296,"runs":9284,"hs":107,"avg":34.90,"sr":null,"h100":11,"h50":64,"wkts":106,"bowl_avg":43.36,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"saeed-anwar","name":"Saeed Anwar","country":"Pakistan","born":1968,"cricsheet_name":null,
+     "test":{"mat":55,"inn":91,"runs":4052,"hs":188,"avg":45.52,"sr":null,"h100":11,"h50":25,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":247,"inn":244,"runs":8824,"hs":194,"avg":39.21,"sr":null,"h100":20,"h50":43,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"michael-atherton","name":"Michael Atherton","country":"England","born":1968,"cricsheet_name":null,
+     "test":{"mat":115,"inn":212,"runs":7728,"hs":185,"avg":37.69,"sr":null,"h100":16,"h50":46,"wkts":2,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":54,"inn":53,"runs":1791,"hs":127,"avg":35.12,"sr":null,"h100":2,"h50":11,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"younis-khan","name":"Younis Khan","country":"Pakistan","born":1977,"cricsheet_name":"Younis Khan",
+     "test":{"mat":118,"inn":213,"runs":10099,"hs":313,"avg":52.05,"sr":null,"h100":34,"h50":33,"wkts":2,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":265,"inn":246,"runs":7249,"hs":123,"avg":36.97,"sr":null,"h100":15,"h50":46,"wkts":6,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":25,"inn":24,"runs":530,"hs":56,"avg":22.08,"sr":112.53,"h100":0,"h50":1,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"mohammad-yousuf","name":"Mohammad Yousuf","country":"Pakistan","born":1974,"cricsheet_name":"Mohammad Yousuf",
+     "test":{"mat":90,"inn":156,"runs":7530,"hs":223,"avg":52.29,"sr":null,"h100":24,"h50":33,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":288,"inn":273,"runs":9720,"hs":141,"avg":41.71,"sr":null,"h100":15,"h50":64,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":8,"inn":8,"runs":203,"hs":64,"avg":29.00,"sr":114.04,"h100":0,"h50":1,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"alec-stewart","name":"Alec Stewart","country":"England","born":1963,"cricsheet_name":null,
+     "test":{"mat":133,"inn":235,"runs":8463,"hs":190,"avg":39.54,"sr":null,"h100":15,"h50":45,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":170,"inn":162,"runs":4677,"hs":119,"avg":31.60,"sr":null,"h100":4,"h50":28,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"daryl-cullinan","name":"Daryl Cullinan","country":"South Africa","born":1967,"cricsheet_name":null,
+     "test":{"mat":70,"inn":115,"runs":4554,"hs":275,"avg":44.21,"sr":null,"h100":14,"h50":23,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":138,"inn":131,"runs":3484,"hs":113,"avg":38.72,"sr":null,"h100":5,"h50":22,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"jonty-rhodes","name":"Jonty Rhodes","country":"South Africa","born":1969,"cricsheet_name":null,
+     "test":{"mat":52,"inn":80,"runs":2532,"hs":117,"avg":35.66,"sr":null,"h100":3,"h50":17,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":245,"inn":222,"runs":5935,"hs":121,"avg":35.11,"sr":null,"h100":2,"h50":40,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"mohammad-azharuddin","name":"Mohammad Azharuddin","country":"India","born":1963,"cricsheet_name":null,
+     "test":{"mat":99,"inn":147,"runs":6215,"hs":199,"avg":45.03,"sr":null,"h100":22,"h50":21,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":334,"inn":308,"runs":9378,"hs":153,"avg":36.92,"sr":null,"h100":7,"h50":58,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"gary-kirsten","name":"Gary Kirsten","country":"South Africa","born":1967,"cricsheet_name":null,
+     "test":{"mat":101,"inn":176,"runs":7289,"hs":275,"avg":45.27,"sr":null,"h100":21,"h50":34,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":185,"inn":180,"runs":6079,"hs":188,"avg":40.95,"sr":null,"h100":13,"h50":38,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"herschelle-gibbs","name":"Herschelle Gibbs","country":"South Africa","born":1974,"cricsheet_name":"HH Gibbs",
+     "test":{"mat":90,"inn":154,"runs":6167,"hs":228,"avg":41.95,"sr":null,"h100":14,"h50":26,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":248,"inn":240,"runs":8094,"hs":175,"avg":36.13,"sr":null,"h100":21,"h50":37,"wkts":18,"bowl_avg":52.33,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":23,"inn":21,"runs":643,"hs":90,"avg":34.89,"sr":122.38,"h100":0,"h50":5,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"saqlain-mushtaq","name":"Saqlain Mushtaq","country":"Pakistan","born":1976,"cricsheet_name":"Saqlain Mushtaq",
+     "test":{"mat":49,"inn":65,"runs":1004,"hs":101,"avg":19.69,"sr":null,"h100":1,"h50":4,"wkts":208,"bowl_avg":29.83,"econ":null,"bowl_sr":null,"fwi":13},"odi":{"mat":169,"inn":90,"runs":407,"hs":25,"avg":7.22,"sr":null,"h100":0,"h50":0,"wkts":288,"bowl_avg":21.78,"econ":4.29,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"lance-klusener","name":"Lance Klusener","country":"South Africa","born":1971,"cricsheet_name":"L Klusener",
+     "test":{"mat":49,"inn":75,"runs":1906,"hs":174,"avg":32.86,"sr":null,"h100":4,"h50":9,"wkts":80,"bowl_avg":37.44,"econ":null,"bowl_sr":null,"fwi":1},"odi":{"mat":171,"inn":142,"runs":3576,"hs":103,"avg":41.10,"sr":89.01,"h100":1,"h50":19,"wkts":192,"bowl_avg":29.96,"econ":4.79,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"shahid-afridi","name":"Shahid Afridi","country":"Pakistan","born":1980,"cricsheet_name":"Shahid Afridi",
+     "test":{"mat":27,"inn":48,"runs":1716,"hs":156,"avg":36.51,"sr":null,"h100":5,"h50":8,"wkts":48,"bowl_avg":35.06,"econ":null,"bowl_sr":null,"fwi":1},"odi":{"mat":398,"inn":369,"runs":8064,"hs":124,"avg":23.57,"sr":117.00,"h100":6,"h50":39,"wkts":395,"bowl_avg":34.51,"econ":4.62,"bowl_sr":null,"fwi":0},"t20i":{"mat":99,"inn":83,"runs":1416,"hs":54,"avg":19.94,"sr":150.00,"h100":0,"h50":4,"wkts":98,"bowl_avg":22.98,"econ":6.67,"bowl_sr":null,"fwi":0}},
+
+    {"key":"tillakaratne-dilshan","name":"Tillakaratne Dilshan","country":"Sri Lanka","born":1976,"cricsheet_name":"TM Dilshan",
+     "test":{"mat":87,"inn":145,"runs":5492,"hs":193,"avg":40.98,"sr":null,"h100":16,"h50":24,"wkts":6,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":330,"inn":303,"runs":10290,"hs":160,"avg":39.27,"sr":86.39,"h100":22,"h50":47,"wkts":106,"bowl_avg":38.82,"econ":5.59,"bowl_sr":null,"fwi":0},"t20i":{"mat":80,"inn":79,"runs":1889,"hs":104,"avg":28.19,"sr":122.70,"h100":1,"h50":13,"wkts":33,"bowl_avg":31.91,"econ":7.64,"bowl_sr":null,"fwi":0}},
+
+    {"key":"chris-cairns","name":"Chris Cairns","country":"New Zealand","born":1970,"cricsheet_name":"CL Cairns",
+     "test":{"mat":62,"inn":104,"runs":3320,"hs":158,"avg":33.53,"sr":null,"h100":5,"h50":22,"wkts":218,"bowl_avg":29.40,"econ":null,"bowl_sr":null,"fwi":13},"odi":{"mat":215,"inn":189,"runs":4950,"hs":115,"avg":29.46,"sr":82.20,"h100":4,"h50":25,"wkts":201,"bowl_avg":32.80,"econ":4.82,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"nathan-astle","name":"Nathan Astle","country":"New Zealand","born":1971,"cricsheet_name":"NJ Astle",
+     "test":{"mat":81,"inn":151,"runs":4702,"hs":222,"avg":37.02,"sr":null,"h100":11,"h50":24,"wkts":14,"bowl_avg":54.93,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":223,"inn":213,"runs":7090,"hs":145,"avg":34.92,"sr":null,"h100":16,"h50":41,"wkts":51,"bowl_avg":51.08,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"richie-richardson","name":"Richie Richardson","country":"West Indies","born":1962,"cricsheet_name":null,
+     "test":{"mat":86,"inn":146,"runs":5949,"hs":194,"avg":44.39,"sr":null,"h100":16,"h50":27,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":224,"inn":217,"runs":6248,"hs":122,"avg":32.89,"sr":null,"h100":5,"h50":44,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"carl-hooper","name":"Carl Hooper","country":"West Indies","born":1966,"cricsheet_name":null,
+     "test":{"mat":102,"inn":173,"runs":5762,"hs":233,"avg":36.46,"sr":null,"h100":13,"h50":27,"wkts":114,"bowl_avg":49.43,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":227,"inn":210,"runs":5762,"hs":113,"avg":32.06,"sr":null,"h100":7,"h50":29,"wkts":193,"bowl_avg":36.06,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"arjuna-ranatunga","name":"Arjuna Ranatunga","country":"Sri Lanka","born":1963,"cricsheet_name":null,
+     "test":{"mat":93,"inn":155,"runs":5105,"hs":135,"avg":35.69,"sr":null,"h100":4,"h50":38,"wkts":16,"bowl_avg":58.31,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":269,"inn":255,"runs":7456,"hs":131,"avg":35.84,"sr":null,"h100":4,"h50":49,"wkts":37,"bowl_avg":59.32,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"salim-malik","name":"Salim Malik","country":"Pakistan","born":1963,"cricsheet_name":null,
+     "test":{"mat":103,"inn":154,"runs":5768,"hs":237,"avg":43.69,"sr":null,"h100":15,"h50":29,"wkts":27,"bowl_avg":45.48,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":283,"inn":261,"runs":7170,"hs":102,"avg":38.23,"sr":null,"h100":2,"h50":47,"wkts":134,"bowl_avg":35.87,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"moin-khan","name":"Moin Khan","country":"Pakistan","born":1971,"cricsheet_name":null,
+     "test":{"mat":69,"inn":104,"runs":2741,"hs":117,"avg":28.56,"sr":null,"h100":4,"h50":15,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":219,"inn":175,"runs":3266,"hs":117,"avg":22.40,"sr":null,"h100":1,"h50":12,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"darren-gough","name":"Darren Gough","country":"England","born":1970,"cricsheet_name":null,
+     "test":{"mat":58,"inn":81,"runs":855,"hs":65,"avg":12.57,"sr":null,"h100":0,"h50":2,"wkts":229,"bowl_avg":28.39,"econ":null,"bowl_sr":null,"fwi":9},"odi":{"mat":159,"inn":75,"runs":452,"hs":42,"avg":8.46,"sr":null,"h100":0,"h50":0,"wkts":234,"bowl_avg":26.44,"econ":4.69,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"andy-caddick","name":"Andy Caddick","country":"England","born":1968,"cricsheet_name":null,
+     "test":{"mat":62,"inn":94,"runs":861,"hs":49,"avg":13.14,"sr":null,"h100":0,"h50":0,"wkts":234,"bowl_avg":29.91,"econ":null,"bowl_sr":null,"fwi":13},"odi":{"mat":54,"inn":26,"runs":100,"hs":30,"avg":7.69,"sr":null,"h100":0,"h50":0,"wkts":65,"bowl_avg":26.11,"econ":4.56,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"graeme-smith","name":"Graeme Smith","country":"South Africa","born":1981,"cricsheet_name":"GC Smith",
+     "test":{"mat":117,"inn":205,"runs":9265,"hs":277,"avg":48.25,"sr":null,"h100":27,"h50":38,"wkts":17,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":197,"inn":195,"runs":6989,"hs":141,"avg":37.99,"sr":null,"h100":10,"h50":47,"wkts":8,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":33,"inn":33,"runs":982,"hs":89,"avg":30.69,"sr":120.34,"h100":0,"h50":7,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"jason-gillespie","name":"Jason Gillespie","country":"Australia","born":1975,"cricsheet_name":null,
+     "test":{"mat":71,"inn":88,"runs":1218,"hs":201,"avg":18.53,"sr":null,"h100":1,"h50":2,"wkts":259,"bowl_avg":26.13,"econ":null,"bowl_sr":null,"fwi":8},"odi":{"mat":97,"inn":35,"runs":133,"hs":35,"avg":7.39,"sr":null,"h100":0,"h50":0,"wkts":142,"bowl_avg":25.06,"econ":4.42,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"andrew-flintoff","name":"Andrew Flintoff","country":"England","born":1977,"cricsheet_name":"A Flintoff",
+     "test":{"mat":79,"inn":130,"runs":3845,"hs":167,"avg":31.77,"sr":null,"h100":5,"h50":21,"wkts":226,"bowl_avg":32.78,"econ":null,"bowl_sr":null,"fwi":3},"odi":{"mat":141,"inn":131,"runs":3394,"hs":123,"avg":30.58,"sr":87.68,"h100":3,"h50":18,"wkts":169,"bowl_avg":24.38,"econ":4.35,"bowl_sr":null,"fwi":0},"t20i":{"mat":7,"inn":5,"runs":69,"hs":34,"avg":17.25,"sr":118.97,"h100":0,"h50":0,"wkts":8,"bowl_avg":15.63,"econ":6.87,"bowl_sr":null,"fwi":0}},
+
+    {"key":"justin-langer","name":"Justin Langer","country":"Australia","born":1970,"cricsheet_name":"JL Langer",
+     "test":{"mat":105,"inn":182,"runs":7696,"hs":250,"avg":45.27,"sr":null,"h100":23,"h50":30,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":8,"inn":8,"runs":228,"hs":66,"avg":32.57,"sr":null,"h100":0,"h50":2,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"damien-martyn","name":"Damien Martyn","country":"Australia","born":1971,"cricsheet_name":"DR Martyn",
+     "test":{"mat":67,"inn":109,"runs":4406,"hs":165,"avg":46.37,"sr":null,"h100":13,"h50":17,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":208,"inn":198,"runs":5346,"hs":116,"avg":34.49,"sr":75.48,"h100":5,"h50":37,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":null},
+
+    {"key":"brett-lee","name":"Brett Lee","country":"Australia","born":1976,"cricsheet_name":"B Lee",
+     "test":{"mat":76,"inn":110,"runs":1451,"hs":64,"avg":20.44,"sr":null,"h100":0,"h50":4,"wkts":310,"bowl_avg":30.81,"econ":null,"bowl_sr":null,"fwi":10},"odi":{"mat":221,"inn":95,"runs":954,"hs":46,"avg":15.22,"sr":null,"h100":0,"h50":0,"wkts":380,"bowl_avg":23.36,"econ":4.76,"bowl_sr":null,"fwi":0},"t20i":{"mat":25,"inn":13,"runs":97,"hs":24,"avg":9.70,"sr":133.88,"h100":0,"h50":0,"wkts":28,"bowl_avg":24.25,"econ":8.06,"bowl_sr":null,"fwi":0}},
+
+    {"key":"upul-tharanga","name":"Upul Tharanga","country":"Sri Lanka","born":1985,"cricsheet_name":"WU Tharanga",
+     "test":{"mat":31,"inn":56,"runs":1943,"hs":165,"avg":37.36,"sr":null,"h100":6,"h50":9,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":235,"inn":228,"runs":6951,"hs":174,"avg":33.41,"sr":null,"h100":14,"h50":36,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":26,"inn":26,"runs":537,"hs":82,"avg":21.48,"sr":122.19,"h100":0,"h50":2,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"virender-sehwag","name":"Virender Sehwag","country":"India","born":1978,"cricsheet_name":"V Sehwag",
+     "test":{"mat":104,"inn":180,"runs":8586,"hs":319,"avg":49.34,"sr":82.23,"h100":23,"h50":32,"wkts":40,"bowl_avg":52.73,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":251,"inn":245,"runs":8273,"hs":219,"avg":35.05,"sr":104.33,"h100":15,"h50":38,"wkts":96,"bowl_avg":43.10,"econ":5.66,"bowl_sr":null,"fwi":0},"t20i":{"mat":19,"inn":19,"runs":394,"hs":68,"avg":20.74,"sr":145.02,"h100":0,"h50":2,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}},
+
+    {"key":"ms-dhoni","name":"MS Dhoni","country":"India","born":1981,"cricsheet_name":"MS Dhoni",
+     "test":{"mat":90,"inn":144,"runs":4876,"hs":224,"avg":38.09,"sr":59.57,"h100":6,"h50":33,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"odi":{"mat":350,"inn":297,"runs":10773,"hs":183,"avg":50.57,"sr":87.56,"h100":10,"h50":73,"wkts":1,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0},"t20i":{"mat":98,"inn":85,"runs":1617,"hs":56,"avg":37.60,"sr":126.13,"h100":0,"h50":2,"wkts":0,"bowl_avg":null,"econ":null,"bowl_sr":null,"fwi":0}}
+
+  ]
+}
