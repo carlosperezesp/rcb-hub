@@ -382,6 +382,13 @@ const finalList = playerArr
   .filter(p => FULL_MEMBERS.has(p.country) && p.global_overall != null)
   .map(p => {
     delete p._era;
+    // Compute global career span from per-format first/last years
+    const fys = ['test','odi','t20i'].map(f => p[f]?._fy).filter(Boolean);
+    const lys = ['test','odi','t20i'].map(f => p[f]?._ly).filter(Boolean);
+    if (fys.length) p.career_start = Math.min(...fys);
+    if (lys.length) p.career_end   = Math.max(...lys);
+    // Estimate for pre-Cricsheet legends with no match data but a birth year
+    if (!p.career_start && p.born) { p.career_start = p.born + 20; p.career_end = p.born + 38; }
     for (const f of ['test','odi','t20i']) {
       if (p[f]) { delete p[f]._fy; delete p[f]._ly; delete p[f]._batZ; delete p[f]._bowlZ; }
     }

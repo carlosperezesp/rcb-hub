@@ -1872,13 +1872,9 @@
   .atp-tab-btn.active { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
   .atp-country-select { background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink); cursor: pointer; font-size: 11px; font-weight: 700; height: 34px; padding: 0 10px; }
   .atp-table { min-width: 800px; }
-  .atp-score-cell { display: inline-flex; align-items: center; gap: 6px; }
-  .atp-score-bar-wrap { background: var(--line); border-radius: 4px; height: 5px; width: 50px; }
-  .atp-score-bar { border-radius: 4px; height: 5px; transition: width .3s; }
-  .atp-score-bar.elite { background: #22c55e; }
-  .atp-score-bar.good  { background: var(--gold); }
-  .atp-score-bar.avg   { background: #94a3b8; }
-  .atp-score-bar.poor  { background: #ef4444; }
+  .atp-score-cell { display: inline-flex; align-items: center; gap: 8px; }
+  .atp-score-bar-wrap { background: var(--line); border-radius: 4px; display: block; height: 6px; width: 72px; overflow: hidden; }
+  .atp-score-bar { border-radius: 4px; display: block; height: 6px; transition: width .3s; }
   .atp-era-chip { background: var(--surface-2); border-radius: 4px; color: var(--ink-mute); font-size: 9px; font-weight: 700; letter-spacing: .05em; padding: 2px 6px; text-transform: uppercase; white-space: nowrap; }
   .atp-flag-abbr { display: flex; align-items: center; gap: 5px; }
   .atp-flag-abbr .flag { height: 22px; min-width: 22px; width: 22px; font-size: 7px; border-radius: 4px; }
@@ -6533,11 +6529,15 @@ function atpEraLabel(fmt, eraKey) {
   return fmtEras?.[eraKey]?.label || eraKey;
 }
 
+function atpScoreColor(score) {
+  const hue = Math.round(Math.max(0, Math.min(120, score * 1.2)));
+  return `hsl(${hue},62%,40%)`;
+}
+
 function atpScoreCell(score) {
   if (score == null) return '<span style="color:var(--ink-mute)">—</span>';
-  const tier = formTier(score);
-  const pct = Math.round(score);
-  return `<span class="atp-score-cell"><span class="form-score ${tier}" style="margin:0;padding:3px 7px;font-size:9px">${score}</span><span class="atp-score-bar-wrap"><span class="atp-score-bar ${tier}" style="width:${pct}%"></span></span></span>`;
+  const color = atpScoreColor(score);
+  return `<span class="atp-score-cell"><strong style="color:${color};font-size:13px;min-width:36px;display:inline-block;text-align:right">${score}</strong><span class="atp-score-bar-wrap"><span class="atp-score-bar" style="width:${score}%;background:${color}"></span></span></span>`;
 }
 
 function atpSortHeader(label, key, align = '') {
@@ -6599,7 +6599,7 @@ function renderAtpTable() {
         <div><strong>${top.name}</strong><div class="muted" style="color:rgba(255,255,255,.58)">${top.country}</div></div>
         <div class="score">${rows[0].score}<small>/100</small></div>
       </div>
-      <div class="chip chip-dark" style="margin-top:12px;">${top.born ? top.born : ''}${top.born ? ' · ' : ''}${top.role?.toUpperCase() || ''}</div>`;
+      <div class="chip chip-dark" style="margin-top:12px;">${top.career_start ? `${top.career_start}–${top.career_end} · ` : ''}${top.role?.toUpperCase() || ''}</div>`;
     document.getElementById('atp-total-count').textContent = data.players.length;
     ATP_RENDERED = true;
   }
@@ -6625,7 +6625,7 @@ function renderAtpTable() {
       const xScore = cat === 'bat' ? p.t20i?.bat_score : cat === 'bowl' ? p.t20i?.bowl_score : p.t20i?.overall;
       return `<tr>
         <td class="num"><span class="player-rank-cell">${i+1}</span></td>
-        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="player-table-name">${p.name}</span>${p.career_start ? `<div class="player-table-meta">${p.career_start}–${p.career_end}</div>` : ''}</td>
         <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
         <td class="num">${atpScoreCell(r.score)}</td>
         <td class="num">${atpScoreCell(tScore)}</td>
@@ -6653,7 +6653,7 @@ function renderAtpTable() {
       const fc = ATP_COUNTRY_FLAG[p.country] || '';
       return `<tr>
         <td class="num"><span class="player-rank-cell">${i+1}</span></td>
-        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="player-table-name">${p.name}</span>${p.career_start ? `<div class="player-table-meta">${p.career_start}–${p.career_end}</div>` : ''}</td>
         <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
         <td><span class="atp-era-chip">${atpEraLabel(fmtKey, fd?.era)}</span></td>
         <td class="num">${atpScoreCell(r.score)}</td>
@@ -6682,7 +6682,7 @@ function renderAtpTable() {
       const fc = ATP_COUNTRY_FLAG[p.country] || '';
       return `<tr>
         <td class="num"><span class="player-rank-cell">${i+1}</span></td>
-        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="player-table-name">${p.name}</span>${p.career_start ? `<div class="player-table-meta">${p.career_start}–${p.career_end}</div>` : ''}</td>
         <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
         <td><span class="atp-era-chip">${atpEraLabel(fmtKey, fd?.era)}</span></td>
         <td class="num">${atpScoreCell(r.score)}</td>
@@ -6711,7 +6711,7 @@ function renderAtpTable() {
       const fc = ATP_COUNTRY_FLAG[p.country] || '';
       return `<tr>
         <td class="num"><span class="player-rank-cell">${i+1}</span></td>
-        <td><span class="player-table-name">${p.name}</span>${p.born ? `<div class="player-table-meta">${p.born}</div>` : ''}</td>
+        <td><span class="player-table-name">${p.name}</span>${p.career_start ? `<div class="player-table-meta">${p.career_start}–${p.career_end}</div>` : ''}</td>
         <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
         <td><span class="atp-era-chip">${atpEraLabel(fmtKey, fd?.era)}</span></td>
         <td class="num">${atpScoreCell(r.score)}</td>
