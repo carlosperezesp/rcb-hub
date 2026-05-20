@@ -6630,11 +6630,14 @@ function atpInitComparadorButtons() {
 
 function renderComparadorTable() {
   const container = document.getElementById('comp-table-container');
-  if (!container) return;
+  if (!container) { console.warn('comp-table-container not found'); return; }
   const data = window.ALL_TIME_PLAYERS;
   if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
 
-  const { fmt, milestone, country } = COMP_STATE;
+  try {
+  const compFmt = COMP_STATE.fmt;
+  const { milestone, country } = COMP_STATE;
+  const fmt = compFmt;
   const mk = String(milestone);
   const isSR = fmt !== 'test';
   const srBase = fmt === 'odi' ? 80 : 140;
@@ -6698,6 +6701,10 @@ function renderComparadorTable() {
     </p>
     <table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
     <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet ball-by-ball (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad aproximada (año del milestone − año de nacimiento).</p>`;
+  } catch (e) {
+    container.innerHTML = '<p style="padding:16px;color:var(--ink-mute)">Error al renderizar: ' + e.message + '</p>';
+    console.error('renderComparadorTable error:', e);
+  }
 }
 
 function atpSetSort(key) {
