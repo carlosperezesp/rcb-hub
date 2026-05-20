@@ -2236,8 +2236,8 @@
 
     <div id="atp-comparador-view" class="card" style="display:none">
       <div class="atp-comp-header">
-        <h3>Comparador de inicio de carrera</h3>
-        <p>Selecciona un formato y un milestone de innings para ver cómo estaban todos los jugadores en ese punto de su carrera — con la edad que tenían. Útil para contextualizar si un jugador en alza está o no al nivel de las leyendas en sus primeros innings.</p>
+        <h3>Comparador de carrera</h3>
+        <p id="comp-desc-text"></p>
       </div>
       <div class="atp-comp-controls">
         <div class="atp-comp-group">
@@ -2248,15 +2248,21 @@
             <button class="atp-tab-btn" data-comp-fmt="odi" onclick="compSetFmt('odi')">ODI</button>
           </div>
         </div>
-        <div class="atp-comp-group comp-slider-group">
+        <div class="atp-comp-group">
+          <label>Comparar por</label>
+          <div class="atp-milestone-tabs" role="tablist">
+            <button class="atp-tab-btn active" data-comp-mode="inn" onclick="compSetMode('inn')">Innings</button>
+            <button class="atp-tab-btn" data-comp-mode="age" onclick="compSetMode('age')">Edad</button>
+          </div>
+        </div>
+        <div class="atp-comp-group comp-slider-group" id="comp-inn-group">
           <label>Innings: <strong id="comp-inn-val">45</strong></label>
           <input type="range" id="comp-inn-slider" min="0" max="18" step="1" value="7" oninput="compSetMilestoneSlider(this.value)">
           <div class="comp-slider-ticks" id="comp-inn-ticks"></div>
         </div>
-        <div class="atp-comp-group comp-slider-group">
-          <label>Edad: <strong id="comp-age-label">todas</strong></label>
-          <input type="range" id="comp-age-slider" min="15" max="45" step="1" value="0" oninput="compSetAgeSlider(this.value)">
-          <div class="comp-age-hint">0 = todas las edades</div>
+        <div class="atp-comp-group comp-slider-group" id="comp-age-group" style="display:none">
+          <label>Edad: <strong id="comp-age-val">25</strong> años</label>
+          <input type="range" id="comp-age-slider" min="17" max="41" step="1" value="25" oninput="compSetAgeSlider(this.value)">
         </div>
         <div class="atp-comp-group">
           <label>Nación</label>
@@ -6608,7 +6614,7 @@ const ATP_COUNTRY_FLAG = {
 let ATP_STATE = { format: 'global', cat: 'overall', country: 'all', era: 'all', sort: { key: 'score', dir: 'desc' }, shown: 100 };
 let ATP_RENDERED = false;
 const COMP_MILESTONES = [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200];
-let COMP_STATE = { fmt: 't20i', milestone: 45, country: 'all', age: 0, sort: { key: 'score', dir: 'desc' } };
+let COMP_STATE = { fmt: 't20i', mode: 'inn', milestone: 45, ageTarget: 25, country: 'all', sort: { key: 'score', dir: 'desc' } };
 
 function atpSetView(v) {
   document.getElementById('atp-rankings-view').style.display = v === 'rankings' ? '' : 'none';
@@ -6669,6 +6675,15 @@ function compSetFmt(f) {
   renderComparadorTable();
 }
 
+function compSetMode(m) {
+  COMP_STATE.mode = m;
+  COMP_STATE.sort = { key: 'score', dir: 'desc' };
+  document.querySelectorAll('[data-comp-mode]').forEach(b => b.classList.toggle('active', b.dataset.compMode === m));
+  document.getElementById('comp-inn-group').style.display = m === 'inn' ? '' : 'none';
+  document.getElementById('comp-age-group').style.display = m === 'age' ? '' : 'none';
+  renderComparadorTable();
+}
+
 function compSetMilestoneSlider(idx) {
   COMP_STATE.milestone = COMP_MILESTONES[+idx] || 45;
   document.getElementById('comp-inn-val').textContent = COMP_STATE.milestone;
@@ -6676,9 +6691,8 @@ function compSetMilestoneSlider(idx) {
 }
 
 function compSetAgeSlider(val) {
-  COMP_STATE.age = +val;
-  const lbl = document.getElementById('comp-age-label');
-  lbl.textContent = +val === 0 ? 'todas' : +val + ' años (±1)';
+  COMP_STATE.ageTarget = +val;
+  document.getElementById('comp-age-val').textContent = val;
   renderComparadorTable();
 }
 
@@ -6698,15 +6712,37 @@ function compSetSort(key) {
 
 function atpInitComparadorButtons() {
   document.querySelectorAll('[data-comp-fmt]').forEach(b => b.classList.toggle('active', b.dataset.compFmt === COMP_STATE.fmt));
+  document.querySelectorAll('[data-comp-mode]').forEach(b => b.classList.toggle('active', b.dataset.compMode === COMP_STATE.mode));
   const idx = COMP_MILESTONES.indexOf(COMP_STATE.milestone);
   const slider = document.getElementById('comp-inn-slider');
   if (slider) slider.value = Math.max(0, idx);
   document.getElementById('comp-inn-val').textContent = COMP_STATE.milestone;
-  // Build tick labels
+  const ageSlider = document.getElementById('comp-age-slider');
+  if (ageSlider) ageSlider.value = COMP_STATE.ageTarget;
+  const ageVal = document.getElementById('comp-age-val');
+  if (ageVal) ageVal.textContent = COMP_STATE.ageTarget;
+  const innGroup = document.getElementById('comp-inn-group');
+  const ageGroup = document.getElementById('comp-age-group');
+  if (innGroup) innGroup.style.display = COMP_STATE.mode === 'inn' ? '' : 'none';
+  if (ageGroup) ageGroup.style.display = COMP_STATE.mode === 'age' ? '' : 'none';
   const ticks = document.getElementById('comp-inn-ticks');
   if (ticks && !ticks.children.length) {
     ticks.innerHTML = COMP_MILESTONES.map(m => `<span>${m}</span>`).join('');
   }
+}
+
+function compGetMilestoneByAge(player, fmt, targetAge) {
+  const ms = player.batMilestones?.[fmt];
+  if (!ms) return null;
+  let bestKey = 0, bestMs = null;
+  for (const [k, v] of Object.entries(ms)) {
+    const innCount = +k;
+    if (v.age != null && v.age <= targetAge && innCount > bestKey) {
+      bestKey = innCount;
+      bestMs = { ...v, innings: innCount };
+    }
+  }
+  return bestMs;
 }
 
 function renderComparadorTable() {
@@ -6716,52 +6752,77 @@ function renderComparadorTable() {
   if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
 
   try {
-  const compFmt = COMP_STATE.fmt;
-  const { milestone, country, age, sort } = COMP_STATE;
-  const fmt = compFmt;
-  const mk = String(milestone);
+  const { fmt, mode, milestone, ageTarget, country, sort } = COMP_STATE;
   const isSR = fmt !== 'test';
   const srBase = fmt === 'odi' ? 80 : 140;
   const fmtLabel = fmt === 'test' ? 'Test' : fmt === 'odi' ? 'ODI' : 'T20I';
 
-  let rows = data.players
-    .filter(p => p.batMilestones?.[fmt]?.[mk])
-    .filter(p => country === 'all' || p.country === country)
-    .filter(p => age === 0 || (p.batMilestones[fmt][mk].age != null && Math.abs(p.batMilestones[fmt][mk].age - age) <= 1))
-    .map(p => {
-      const ms = p.batMilestones[fmt][mk];
-      const score = ms.avg * (ms.sr != null ? ms.sr / srBase : 1);
-      const careerScore = p.global_overall ?? p[fmt]?.overall ?? null;
-      return { p, ms, score, careerScore };
-    });
+  // Update description text
+  const descEl = document.getElementById('comp-desc-text');
+  if (descEl) {
+    if (mode === 'inn') {
+      descEl.textContent = `Todos los jugadores ${fmtLabel} cuando llevaban ${milestone} innings. Muestra la edad que tenían en ese momento y su score de carrera final — para ver quién mantuvo el nivel.`;
+    } else {
+      descEl.textContent = `Todos los jugadores ${fmtLabel} cuando tenían ${ageTarget} años. Muestra hasta qué milestone habían llegado en esa edad y su score de carrera final.`;
+    }
+  }
+
+  let rows;
+
+  if (mode === 'inn') {
+    const mk = String(milestone);
+    rows = data.players
+      .filter(p => p.batMilestones?.[fmt]?.[mk])
+      .filter(p => country === 'all' || p.country === country)
+      .map(p => {
+        const ms = p.batMilestones[fmt][mk];
+        const score = +(ms.avg * (ms.sr != null ? ms.sr / srBase : 1)).toFixed(1);
+        const careerBat = p[fmt]?.bat_score ?? null;
+        const careerOverall = p[fmt]?.overall ?? null;
+        return { p, ms, score, careerBat, careerOverall };
+      });
+  } else {
+    rows = data.players
+      .filter(p => country === 'all' || p.country === country)
+      .map(p => {
+        const ms = compGetMilestoneByAge(p, fmt, ageTarget);
+        if (!ms) return null;
+        const score = +(ms.avg * (ms.sr != null ? ms.sr / srBase : 1)).toFixed(1);
+        const careerBat = p[fmt]?.bat_score ?? null;
+        const careerOverall = p[fmt]?.overall ?? null;
+        return { p, ms, score, careerBat, careerOverall };
+      })
+      .filter(r => r !== null);
+  }
 
   // Sort
   rows.sort((a, b) => {
-    let av, bv;
     const dir = sort.dir === 'asc' ? 1 : -1;
     if (sort.key === 'name')    return dir * a.p.name.localeCompare(b.p.name);
     if (sort.key === 'country') return dir * a.p.country.localeCompare(b.p.country);
-    if (sort.key === 'score')   { av = a.score; bv = b.score; }
-    else if (sort.key === 'avg')    { av = a.ms.avg; bv = b.ms.avg; }
-    else if (sort.key === 'sr')     { av = a.ms.sr ?? 0; bv = b.ms.sr ?? 0; }
-    else if (sort.key === 'runs')   { av = a.ms.runs; bv = b.ms.runs; }
-    else if (sort.key === 'h50')    { av = a.ms.h50; bv = b.ms.h50; }
-    else if (sort.key === 'h100')   { av = a.ms.h100; bv = b.ms.h100; }
-    else if (sort.key === 'age')    { av = a.ms.age ?? 99; bv = b.ms.age ?? 99; }
-    else if (sort.key === 'year')   { av = a.ms.year ?? 9999; bv = b.ms.year ?? 9999; }
-    else if (sort.key === 'career') { av = a.careerScore ?? -1; bv = b.careerScore ?? -1; }
+    let av, bv;
+    if (sort.key === 'score')        { av = a.score; bv = b.score; }
+    else if (sort.key === 'avg')     { av = a.ms.avg; bv = b.ms.avg; }
+    else if (sort.key === 'sr')      { av = a.ms.sr ?? 0; bv = b.ms.sr ?? 0; }
+    else if (sort.key === 'runs')    { av = a.ms.runs; bv = b.ms.runs; }
+    else if (sort.key === 'h50')     { av = a.ms.h50; bv = b.ms.h50; }
+    else if (sort.key === 'h100')    { av = a.ms.h100; bv = b.ms.h100; }
+    else if (sort.key === 'age')     { av = a.ms.age ?? 99; bv = b.ms.age ?? 99; }
+    else if (sort.key === 'innings') { av = a.ms.innings ?? 0; bv = b.ms.innings ?? 0; }
+    else if (sort.key === 'year')    { av = a.ms.year ?? 9999; bv = b.ms.year ?? 9999; }
+    else if (sort.key === 'cbat')    { av = a.careerBat ?? -1; bv = b.careerBat ?? -1; }
+    else if (sort.key === 'cover')   { av = a.careerOverall ?? -1; bv = b.careerOverall ?? -1; }
     else { av = a.score; bv = b.score; }
     return dir * (bv - av);
   });
 
   if (!rows.length) {
-    const hint = age > 0 ? `No hay jugadores con datos en ${milestone} innings a los ${age} años (±1). Prueba otra edad o menos innings.`
-                         : 'No hay datos para este milestone. Prueba con un número menor de innings.';
+    const hint = mode === 'age'
+      ? `No hay jugadores ${fmtLabel} con datos a los ${ageTarget} años. Prueba otra edad.`
+      : `No hay datos para ${milestone} innings en ${fmtLabel}. Prueba con menos innings.`;
     container.innerHTML = `<p class="atp-comp-note">${hint}</p>`;
     return;
   }
-
-  const hasAge = rows.some(r => r.ms.age != null);
 
   function compSortTh(label, key, cls = '') {
     const active = sort.key === key;
@@ -6769,45 +6830,58 @@ function renderComparadorTable() {
     return `<th class="${cls}"><button class="comp-sort-btn${active ? ' active' : ''}" onclick="compSetSort('${key}')">${label}${caret ? `<span class="comp-sort-caret">${caret}</span>` : ''}</button></th>`;
   }
 
+  const contextCol = mode === 'inn'
+    ? compSortTh('Edad', 'age', 'num')
+    : compSortTh('Inn', 'innings', 'num');
+
   const thead = `<tr>
     <th class="num">#</th>
     ${compSortTh('Jugador', 'name')}
     ${compSortTh('Nación', 'country')}
     ${compSortTh('Año', 'year', 'num')}
-    ${hasAge ? compSortTh('Edad', 'age', 'num') : ''}
+    ${contextCol}
     ${compSortTh('Avg', 'avg', 'num')}
     ${isSR ? compSortTh('SR', 'sr', 'num') : ''}
     ${compSortTh('Runs', 'runs', 'num')}
     ${compSortTh('50s', 'h50', 'num')}
     ${compSortTh('100s', 'h100', 'num')}
-    ${compSortTh('Carrera', 'career', 'num')}
+    ${compSortTh('Score', 'score', 'num')}
+    ${compSortTh('Bat ↗', 'cbat', 'num')}
+    ${compSortTh('Overall ↗', 'cover', 'num')}
   </tr>`;
 
   const tbodyRows = rows.map((r, i) => {
     const p = r.p, ms = r.ms;
     const fc = ATP_COUNTRY_FLAG[p.country] || '';
     const avgColor = atpScoreColor(Math.min(100, ms.avg * 1.8));
-    const ageCell = hasAge ? `<td class="num" style="color:var(--ink-mute);font-size:12px">${ms.age != null ? ms.age + ' a' : '—'}</td>` : '';
+    const contextCell = mode === 'inn'
+      ? `<td class="num" style="color:var(--ink-mute);font-size:12px">${ms.age != null ? ms.age + ' a' : '—'}</td>`
+      : `<td class="num" style="color:var(--ink-mute);font-size:12px">${ms.innings != null ? ms.innings + ' inn' : '—'}</td>`;
     return `<tr>
       <td class="num"><span class="player-rank-cell">${i + 1}</span></td>
       <td><span class="player-table-name">${p.name}</span></td>
       <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
       <td class="num" style="color:var(--ink-mute);font-size:12px">${ms.year ?? '—'}</td>
-      ${ageCell}
+      ${contextCell}
       <td class="num"><strong style="color:${avgColor}">${ms.avg}</strong></td>
       ${isSR ? `<td class="num">${ms.sr ?? '—'}</td>` : ''}
       <td class="num">${ms.runs}</td>
       <td class="num">${ms.h50}</td>
       <td class="num">${ms.h100}</td>
-      <td class="num">${atpScoreCell(r.careerScore)}</td>
+      <td class="num">${atpScoreCell(r.score)}</td>
+      <td class="num">${atpScoreCell(r.careerBat)}</td>
+      <td class="num">${atpScoreCell(r.careerOverall)}</td>
     </tr>`;
   }).join('');
 
-  const ageNote = age > 0 ? ` · filtrando edad ${age} ±1 año` : '';
+  const countNote = mode === 'inn'
+    ? `<strong>${rows.length} jugadores</strong> ${fmtLabel} con datos en <strong>${milestone} innings</strong>`
+    : `<strong>${rows.length} jugadores</strong> ${fmtLabel} con datos a los <strong>${ageTarget} años</strong>`;
+
   container.innerHTML = `
     <p style="font-size:12px;color:var(--ink-mute);margin-bottom:10px">
-      <strong>${rows.length} jugadores</strong> con datos ${fmtLabel} en sus primeros <strong>${milestone} innings</strong>${ageNote}.
-      La columna <em>Carrera</em> muestra el score final — permite ver quién mantuvo el nivel.
+      ${countNote}.
+      <em>Score</em> = rendimiento en ese momento · <em>Bat ↗</em> y <em>Overall ↗</em> = score final de carrera.
     </p>
     <table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
     <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad ≈ año del milestone − año de nacimiento.</p>`;
