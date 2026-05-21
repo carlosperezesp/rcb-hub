@@ -8,8 +8,10 @@ const TEST_DIR = process.argv[2] || path.join(process.cwd(), 'data', 'cricsheet'
 const ODI_DIR  = process.argv[3] || path.join(process.cwd(), 'data', 'cricsheet', 'odis_male_json');
 const T20_DIR  = process.argv[4] || path.join(process.cwd(), 'data', 'cricsheet', 't20s_male_json');
 const LEGENDS  = process.argv[5] || path.join(process.cwd(), 'data', 'cricket-legends.json');
-const OUT_JS   = process.argv[6] || path.join(process.cwd(), 'data', 'all-time-players.js');
-const OUT_JSON = OUT_JS.replace(/\.js$/, '.json');
+const OUT_JS         = process.argv[6] || path.join(process.cwd(), 'data', 'all-time-players.js');
+const OUT_JSON       = OUT_JS.replace(/\.js$/, '.json');
+const OUT_JSON_SLIM  = OUT_JS.replace(/\.js$/, '-slim.json');
+const OUT_JSON_MILES = OUT_JS.replace(/\.js$/, '-milestones.json');
 
 // ─── Full-member nations (ICC Full Members) ───────────────────────────────────
 // Only these nations appear in the output / era-normalization pool.
@@ -499,8 +501,31 @@ const erasRef = {
 
 console.log(`Writing ${finalList.length} scored players...`);
 fs.mkdirSync(path.dirname(OUT_JS), { recursive: true });
-const payload = { generated: new Date().toISOString().slice(0, 10), eras: erasRef, players: finalList };
+const generated = new Date().toISOString().slice(0, 10);
+
+// Full payload (backward-compat, includes milestones)
+const payload = { generated, eras: erasRef, players: finalList };
 const jsonStr = JSON.stringify(payload);
 fs.writeFileSync(OUT_JS,   `window.ALL_TIME_PLAYERS = ${jsonStr};\n`);
 fs.writeFileSync(OUT_JSON, jsonStr + '\n');
-console.log('Done. JSON:', Math.round(fs.statSync(OUT_JSON).size / 1024) + 'KB');
+
+// Slim payload: strip batMilestones — loaded on first visit and for Rankings tab
+const slimPlayers = finalList.map(p => {
+  if (!p.batMilestones) return p;
+  const { batMilestones, ...rest } = p;
+  return rest;
+});
+const slimStr = JSON.stringify({ generated, eras: erasRef, players: slimPlayers });
+fs.writeFileSync(OUT_JSON_SLIM, slimStr + '\n');
+
+// Milestones-only payload: keyed by player key — lazy-loaded for Comparador tab
+const milestonesMap = {};
+for (const p of finalList) {
+  if (p.batMilestones) milestonesMap[p.key] = p.batMilestones;
+}
+const milesStr = JSON.stringify({ generated, milestones: milestonesMap });
+fs.writeFileSync(OUT_JSON_MILES, milesStr + '\n');
+
+console.log('Full JSON:',      Math.round(fs.statSync(OUT_JSON).size      / 1024) + 'KB');
+console.log('Slim JSON:',      Math.round(fs.statSync(OUT_JSON_SLIM).size  / 1024) + 'KB');
+console.log('Milestones JSON:', Math.round(fs.statSync(OUT_JSON_MILES).size / 1024) + 'KB');

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cricket Hub · Global Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
-<link rel="preload" href="data/all-time-players.json" as="fetch" crossorigin="anonymous">
+<link rel="preload" href="data/all-time-players-slim.json" as="fetch" crossorigin="anonymous">
 <style>
   :root {
     --green-deep: #00301a;
@@ -2344,11 +2344,56 @@
 <script src="data/ipl-player-history.js" onerror="void(0)"></script>
 <script src="data/wtc-test-data.js"></script>
 <script>
-// ATP data loader — localStorage cache (7 days) + background revalidation
+// ATP data loader — slim base JSON + lazy milestones; both cached 7 days
 (function() {
-  const ATP_KEY = 'rcb_atp_v1';
-  const ATP_TTL = 7 * 24 * 60 * 60 * 1000;
-  const ATP_URL = 'data/all-time-players.json';
+  const ATP_KEY   = 'rcb_atp_slim_v1';
+  const MILES_KEY = 'rcb_atp_miles_v1';
+  const ATP_TTL   = 7 * 24 * 60 * 60 * 1000;
+  const ATP_URL   = 'data/all-time-players-slim.json';
+  const MILES_URL = 'data/all-time-players-milestones.json';
+
+  window._atpMilesLoaded    = false;
+  window._atpMilesCallbacks = [];
+
+  function mergeMilestones(milesData) {
+    if (!window.ALL_TIME_PLAYERS?.players || !milesData?.milestones) return;
+    const map = milesData.milestones;
+    for (const p of window.ALL_TIME_PLAYERS.players) {
+      if (map[p.key]) p.batMilestones = map[p.key];
+    }
+    window._atpMilesLoaded = true;
+    const cbs = window._atpMilesCallbacks.splice(0);
+    for (const cb of cbs) { try { cb(); } catch(e) {} }
+  }
+
+  window.loadAtpMilestones = function() {
+    if (window._atpMilesLoaded) return;
+    try {
+      const raw = localStorage.getItem(MILES_KEY);
+      if (raw) {
+        const { ts, gen, data } = JSON.parse(raw);
+        if (data && Date.now() - ts < ATP_TTL) {
+          mergeMilestones(data);
+          if (Date.now() - ts > 24 * 60 * 60 * 1000 && window._atpGenerated && gen !== window._atpGenerated) {
+            fetch(MILES_URL + '?v=' + window._atpGenerated)
+              .then(r => r.json())
+              .then(fresh => {
+                try { localStorage.setItem(MILES_KEY, JSON.stringify({ ts: Date.now(), gen: fresh.generated, data: fresh })); } catch(e) {}
+                mergeMilestones(fresh);
+              }).catch(() => {});
+          }
+          return;
+        }
+      }
+    } catch(e) {}
+    const url = window._atpGenerated ? MILES_URL + '?v=' + window._atpGenerated : MILES_URL;
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        try { localStorage.setItem(MILES_KEY, JSON.stringify({ ts: Date.now(), gen: data.generated, data })); } catch(e) {}
+        mergeMilestones(data);
+      }).catch(() => {});
+  };
 
   function applyData(data) {
     window.ALL_TIME_PLAYERS = data;
@@ -2356,10 +2401,10 @@
     try { if (typeof atpInitComparadorButtons === 'function') atpInitComparadorButtons(); } catch(e) {}
     const cv = document.getElementById('atp-comparador-view');
     if (cv && cv.style.display !== 'none' && typeof renderComparadorTable === 'function') renderComparadorTable();
+    window.loadAtpMilestones();
   }
 
   function fetchFresh(onDone) {
-    // Only append known generation date as cache-buster; without it let HTTP cache work
     const url = window._atpGenerated ? ATP_URL + '?v=' + window._atpGenerated : ATP_URL;
     fetch(url)
       .then(r => r.json())
@@ -2378,7 +2423,7 @@
       if (data && Date.now() - ts < ATP_TTL) {
         window._atpGenerated = gen;
         window.ALL_TIME_PLAYERS = data;
-        // Background revalidation — if generated date changed, re-render with fresh data
+        window.loadAtpMilestones();
         if (Date.now() - ts > 24 * 60 * 60 * 1000) {
           fetchFresh(fresh => {
             if (fresh.generated !== gen) applyData(fresh);
@@ -2389,7 +2434,6 @@
     }
   } catch(e) {}
 
-  // No valid cache — fetch now (show loading until ready)
   fetchFresh(data => applyData(data));
 })();
 </script>
@@ -2519,7 +2563,7 @@ function switchTab(route, updateHash = true) {
   updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail && !next.player);
   updateIplPlayerProfile(next.player, next.tab === 'ipl' && !!next.player);
   updateTestTeamDetail(next.detail, next.tab === 'test' && !!next.detail);
-  if (next.tab === 'players') { renderAtpTable(); atpInitComparadorButtons(); }
+  if (next.tab === 'players') { renderAtpTable(); atpInitComparadorButtons(); if (typeof loadAtpMilestones === 'function') loadAtpMilestones(); }
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
   }
@@ -2604,10 +2648,10 @@ const testTeams = [
   { pos: 2, abbr: 'NZ', full: 'New Zealand', flag: 'nz', played: 3, w: 2, l: 0, d: 1, pts: 28, pct: 77.78, status: 'Final zone' },
   { pos: 3, abbr: 'RSA', full: 'South Africa', flag: 'rsa', played: 4, w: 3, l: 1, d: 0, pts: 36, pct: 75.00, status: 'Contender' },
   { pos: 4, abbr: 'SL', full: 'Sri Lanka', flag: 'sl', played: 2, w: 1, l: 0, d: 1, pts: 16, pct: 66.67, status: 'Contender' },
-  { pos: 5, abbr: 'IND', full: 'India', flag: 'ind', played: 9, w: 4, l: 4, d: 1, pts: 52, pct: 48.15, status: 'Chasing' },
-  { pos: 6, abbr: 'BAN', full: 'Bangladesh', flag: 'ban', played: 3, w: 1, l: 1, d: 1, pts: 16, pct: 44.44, status: 'Chasing' },
-  { pos: 7, abbr: 'PAK', full: 'Pakistan', flag: 'pak', played: 3, w: 1, l: 2, d: 0, pts: 12, pct: 33.33, status: 'Outside' },
-  { pos: 8, abbr: 'ENG', full: 'England', flag: 'eng', played: 10, w: 3, l: 6, d: 1, pts: 38, pct: 31.67, status: 'Outside' },
+  { pos: 5, abbr: 'BAN', full: 'Bangladesh', flag: 'ban', played: 4, w: 2, l: 1, d: 1, pts: 28, pct: 58.33, status: 'Chasing' },
+  { pos: 6, abbr: 'IND', full: 'India', flag: 'ind', played: 9, w: 4, l: 4, d: 1, pts: 52, pct: 48.15, status: 'Chasing' },
+  { pos: 7, abbr: 'ENG', full: 'England', flag: 'eng', played: 10, w: 3, l: 6, d: 1, pts: 38, pct: 31.67, status: 'Outside' },
+  { pos: 8, abbr: 'PAK', full: 'Pakistan', flag: 'pak', played: 4, w: 1, l: 3, d: 0, pts: 4, pct: 8.33, status: 'Long shot' },
   { pos: 9, abbr: 'WI', full: 'West Indies', flag: 'wi', played: 8, w: 0, l: 7, d: 1, pts: 4, pct: 4.17, status: 'Long shot' },
 ];
 
@@ -2726,16 +2770,16 @@ Object.assign(WTC_SQUAD_SEEDS, window.WTC_TEST_DATA?.squads || {});
 Object.assign(WTC_TEST_STATS, window.WTC_TEST_DATA?.stats || {});
 
 const iplFallback = [
-  { pos:1, abbr:'PBKS', full:'Punjab Kings', flag:'pbks', m:7, w:6, l:0, pts:13, nrr:+1.333 },
-  { pos:2, abbr:'RCB', full:'Royal Challengers Bengaluru', flag:'rcb', m:8, w:6, l:2, pts:12, nrr:+1.919, rcb:true },
-  { pos:3, abbr:'SRH', full:'Sunrisers Hyderabad', flag:'srh', m:8, w:5, l:3, pts:10, nrr:+0.815 },
-  { pos:4, abbr:'RR', full:'Rajasthan Royals', flag:'rr', m:8, w:5, l:3, pts:10, nrr:+0.602 },
-  { pos:5, abbr:'GT', full:'Gujarat Titans', flag:'gt', m:8, w:4, l:4, pts:8, nrr:-0.475 },
-  { pos:6, abbr:'CSK', full:'Chennai Super Kings', flag:'csk', m:8, w:3, l:5, pts:6, nrr:-0.121 },
-  { pos:7, abbr:'DC', full:'Delhi Capitals', flag:'dc', m:8, w:3, l:5, pts:6, nrr:-1.060 },
-  { pos:8, abbr:'KKR', full:'Kolkata Knight Riders', flag:'kkr', m:8, w:2, l:5, pts:5, nrr:-0.751 },
-  { pos:9, abbr:'MI', full:'Mumbai Indians', flag:'mi', m:7, w:2, l:5, pts:4, nrr:-0.736 },
-  { pos:10, abbr:'LSG', full:'Lucknow Super Giants', flag:'lsg', m:8, w:2, l:6, pts:4, nrr:-1.106 },
+  { pos:1, abbr:'RCB', full:'Royal Challengers Bengaluru', flag:'rcb', m:13, w:9, l:4, pts:18, nrr:+1.065, rcb:true },
+  { pos:2, abbr:'GT', full:'Gujarat Titans', flag:'gt', m:13, w:8, l:5, pts:16, nrr:+0.400 },
+  { pos:3, abbr:'SRH', full:'Sunrisers Hyderabad', flag:'srh', m:13, w:8, l:5, pts:16, nrr:+0.350 },
+  { pos:4, abbr:'RR', full:'Rajasthan Royals', flag:'rr', m:13, w:7, l:6, pts:14, nrr:+0.083 },
+  { pos:5, abbr:'PBKS', full:'Punjab Kings', flag:'pbks', m:13, w:6, l:6, pts:13, nrr:+0.227 },
+  { pos:6, abbr:'KKR', full:'Kolkata Knight Riders', flag:'kkr', m:13, w:6, l:6, pts:13, nrr:+0.011 },
+  { pos:7, abbr:'CSK', full:'Chennai Super Kings', flag:'csk', m:13, w:6, l:7, pts:12, nrr:-0.121 },
+  { pos:8, abbr:'DC', full:'Delhi Capitals', flag:'dc', m:13, w:6, l:7, pts:12, nrr:-1.060 },
+  { pos:9, abbr:'MI', full:'Mumbai Indians', flag:'mi', m:13, w:4, l:9, pts:8, nrr:-0.510 },
+  { pos:10, abbr:'LSG', full:'Lucknow Super Giants', flag:'lsg', m:13, w:4, l:9, pts:8, nrr:-1.106 },
 ];
 
 const iplFixtures = [
@@ -3132,13 +3176,15 @@ function combinedSkillScore(batScore, bowlScore, role = '') {
   const bat = numericScore(batScore);
   const bowl = numericScore(bowlScore);
   if (bat === null && bowl === null) return null;
-  if (bat === null) return bowl;
-  if (bowl === null) return bat;
+  // Single-dimension: small discount for being a pure specialist
+  if (bat === null) return Math.round(bowl * 0.94);
+  if (bowl === null) return Math.round(bat * 0.94);
   const primary = Math.max(bat, bowl);
   const secondary = Math.min(bat, bowl);
   const code = roleCode(role);
   if (code === 'ar') return Math.round(Math.min(98, primary * 0.72 + secondary * 0.38));
-  return Math.round(Math.min(98, primary * 0.9 + secondary * 0.1));
+  // Non-AR with both: secondary adds modest value; floor ensures never worse than single-dimension
+  return Math.round(Math.min(98, Math.max(primary * 0.94, primary * 0.9 + secondary * 0.1)));
 }
 
 function calcFormScore(role, stats) {
@@ -3674,7 +3720,7 @@ function mapRapidWtcStandings(data) {
 }
 
 async function fetchWtcStandings() {
-  const cached = cacheGet('wtc_standings_v1', 60 * 60 * 1000);
+  const cached = cacheGet('wtc_standings_v2', 60 * 60 * 1000);
   if (cached?.rows) {
     WTC_STANDINGS_SOURCE = cached.source || WTC_STANDINGS_SOURCE;
     return cached.rows;
@@ -3685,7 +3731,7 @@ async function fetchWtcStandings() {
     const rows = mapFullWtcStandings(data);
     if (rows?.length) {
       WTC_STANDINGS_SOURCE = 'Live Cricbuzz WTC table';
-      cacheSet('wtc_standings_v1', { rows, source: WTC_STANDINGS_SOURCE });
+      cacheSet('wtc_standings_v2', { rows, source: WTC_STANDINGS_SOURCE });
       return rows;
     }
   } catch(e) {
@@ -3697,7 +3743,7 @@ async function fetchWtcStandings() {
     const rows = mapRapidWtcStandings(data);
     if (rows?.length) {
       WTC_STANDINGS_SOURCE = 'Live Cricbuzz PCT via RapidAPI · W-L-D from fallback';
-      cacheSet('wtc_standings_v1', { rows, source: WTC_STANDINGS_SOURCE });
+      cacheSet('wtc_standings_v2', { rows, source: WTC_STANDINGS_SOURCE });
       return rows;
     }
   } catch(e) {
@@ -3955,7 +4001,7 @@ function isIplTableBehindCurrentBaseline(rows = []) {
   const rcb = rows.find(row => row.abbr?.toUpperCase() === 'RCB' || /royal challengers/i.test(row.full || ''));
   const pbks = rows.find(row => row.abbr?.toUpperCase() === 'PBKS' || /punjab kings/i.test(row.full || ''));
   const totalPoints = rows.reduce((total, row) => total + (row.pts || 0), 0);
-  return rows.length < 10 || (rcb?.pts || 0) < 12 || (pbks?.pts || 0) < 13 || totalPoints < 78;
+  return rows.length < 10 || (rcb?.pts || 0) < 18 || (pbks?.pts || 0) < 13 || totalPoints < 120;
 }
 
 function cricsheetStandingsRows() {
@@ -4359,7 +4405,7 @@ async function fetchIplStandings() {
   const cricsheetRows = cricsheetStandingsRows();
   if (cricsheetRows) return cricsheetRows;
 
-  const cached = cacheGet('global_ipl_standings_v3', 60 * 60 * 1000);
+  const cached = cacheGet('global_ipl_standings_v4', 60 * 60 * 1000);
   if (cached?.rows) {
     IPL_STANDINGS_SOURCE = cached.source || IPL_STANDINGS_SOURCE;
     return cached.rows;
@@ -4386,11 +4432,11 @@ async function fetchIplStandings() {
     const isBehind = isIplTableBehindCurrentBaseline(rows);
     const currentRows = isBehind ? iplFallback : rows;
     IPL_STANDINGS_SOURCE = isBehind ? 'Verified fallback table · Cricbuzz/Rediff baseline' : 'Live CricAPI table';
-    cacheSet('global_ipl_standings_v3', { rows: currentRows, source: IPL_STANDINGS_SOURCE });
+    cacheSet('global_ipl_standings_v4', { rows: currentRows, source: IPL_STANDINGS_SOURCE });
     return currentRows;
   } catch(e) {
     IPL_STANDINGS_SOURCE = 'Verified fallback table · Cricbuzz/Rediff baseline';
-    cacheSet('global_ipl_standings_v3', { rows: iplFallback, source: IPL_STANDINGS_SOURCE });
+    cacheSet('global_ipl_standings_v4', { rows: iplFallback, source: IPL_STANDINGS_SOURCE });
     return iplFallback;
   }
 }
@@ -6784,6 +6830,12 @@ function renderComparadorTable() {
   if (!container) { console.warn('comp-table-container not found'); return; }
   const data = window.ALL_TIME_PLAYERS;
   if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
+  if (!window._atpMilesLoaded) {
+    container.innerHTML = '<div class="loading">Cargando datos del comparador…</div>';
+    window._atpMilesCallbacks.push(() => renderComparadorTable());
+    if (typeof loadAtpMilestones === 'function') loadAtpMilestones();
+    return;
+  }
 
   try {
   const { fmt, mode, milestone, ageTarget, country, sort } = COMP_STATE;
