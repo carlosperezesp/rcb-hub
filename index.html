@@ -6934,7 +6934,7 @@ function renderComparadorTable() {
       ${countNote}.
       Stats de bateo en ese momento · <em>Bat ↗</em> / <em>Bowl ↗</em> / <em>Overall ↗</em> = scores de carrera en el formato seleccionado · <em>G.Bat ↗</em> / <em>G.Bowl ↗</em> / <em>G.Overall ↗</em> = scores globales multi-formato (misma escala que Rankings).
     </p>
-    <table class="atp-table sortable-table"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table>
+    <div style="overflow-x:auto"><table class="atp-table sortable-table" style="min-width:1100px"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table></div>
     <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad ≈ año del milestone − año de nacimiento.</p>`;
   } catch (e) {
     container.innerHTML = '<p style="padding:16px;color:var(--ink-mute)">Error al renderizar: ' + e.message + '</p>';
