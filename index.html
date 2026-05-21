@@ -2352,7 +2352,7 @@
   function applyData(data) {
     window.ALL_TIME_PLAYERS = data;
     if (typeof renderAtpTable === 'function') renderAtpTable();
-    if (typeof atpInitComparadorButtons === 'function') atpInitComparadorButtons();
+    try { if (typeof atpInitComparadorButtons === 'function') atpInitComparadorButtons(); } catch(e) {}
     const cv = document.getElementById('atp-comparador-view');
     if (cv && cv.style.display !== 'none' && typeof renderComparadorTable === 'function') renderComparadorTable();
   }
@@ -6716,7 +6716,8 @@ function atpInitComparadorButtons() {
   const idx = COMP_MILESTONES.indexOf(COMP_STATE.milestone);
   const slider = document.getElementById('comp-inn-slider');
   if (slider) slider.value = Math.max(0, idx);
-  document.getElementById('comp-inn-val').textContent = COMP_STATE.milestone;
+  const innVal = document.getElementById('comp-inn-val');
+  if (innVal) innVal.textContent = COMP_STATE.milestone;
   const ageSlider = document.getElementById('comp-age-slider');
   if (ageSlider) ageSlider.value = COMP_STATE.ageTarget;
   const ageVal = document.getElementById('comp-age-val');
