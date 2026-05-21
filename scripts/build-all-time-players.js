@@ -224,50 +224,80 @@ function qualBowl(st, fmt) {
   return st.wkts * (st.bowl_avg || 30) >= MIN[fmt].bowl.balls;
 }
 
-const BAT_W = {
-  test: { avg:0.38, rpm:0.22, cr:0.22, fpr:0.18 },
-  odi:  { avg:0.28, sr:0.27,  rpm:0.25, cr:0.20  },
-  t20i: { sr:0.35,  rpm:0.28, avg:0.20, fpr:0.17 },
-};
-const BWL_W = {
-  test: { neg_avg:0.38, wpm:0.30, fwi_r:0.20, neg_econ:0.12 },
-  odi:  { neg_avg:0.35, wpm:0.30, neg_econ:0.35 },
-  t20i: { neg_econ:0.42, wpm:0.33, neg_avg:0.25 },
+// ─── Raw benchmark scoring (same approach as WTC Player Board) ────────────────
+// scaledScore: maps value linearly from [floor, ceiling] to [0, points]
+function scaledScore(value, floor, ceiling, points) {
+  if (value === null || value === undefined || isNaN(value)) return 0;
+  const ratio = (Number(value) - floor) / (ceiling - floor);
+  return Math.max(0, Math.min(ratio, 1)) * points;
+}
+
+// Batting benchmarks: [floor, ceiling, max_points]
+// ceiling = elite all-time benchmark; floor = absolute minimum to contribute
+const BAT_BENCH = {
+  // Test: avg ceiling raised to 56 so Bradman/Tendulkar reach ~97; sr weight lower (many legends lack SR data)
+  test: { runs:[150,5000,32], avg:[18,56,46], h100:[0,12,14], sr:[35,65,6]  },
+  odi:  { runs:[500,8000,28], avg:[25,55,32], sr:[60,105,28], h100:[0,12,10] },
+  t20i: { runs:[400,3500,20], sr:[100,175,42], avg:[18,48,26], h50:[0,30,10] },
 };
 
-function batMetrics(st, fmt) {
-  const fallbackSR = fmt === 't20i' ? 110 : fmt === 'odi' ? 70 : 45;
-  return {
-    avg: st.avg || 0,
-    rpm: st.runs / Math.max(st.mat, 1),
-    cr:  st.batInns > 0 ? (st.h100 / st.batInns) * 100 : 0,
-    fpr: st.batInns > 0 ? ((st.h100 + st.h50) / st.batInns) * 100 : 0,
-    sr:  st.sr || fallbackSR,
-  };
-}
-function bowlMetrics(st) {
-  return {
-    neg_avg:  -(st.bowl_avg || 45),
-    wpm:       st.wkts / Math.max(st.mat, 1),
-    fwi_r:     st.fwi  / Math.max(st.mat, 1) * 10,
-    neg_econ: -(st.econ || 5.5),
-  };
-}
-function zScore(vals) {
-  if (vals.length < 3) return vals.map(() => 0);
-  const mean = vals.reduce((a,b)=>a+b,0) / vals.length;
-  const std  = Math.sqrt(vals.reduce((s,v)=>s+(v-mean)**2,0)/vals.length) || 1;
-  return vals.map(v => (v-mean)/std);
-}
-function zToScore(z) { return Math.max(0, Math.min(100, 50 + z * 14)); }
+// Bowling benchmarks (base = floor score every qualifier gets for turning up)
+const BWL_BENCH = {
+  test: { base:18, wkts:[10,220,34], neg_avg:[0,34,38], fwi:[0,12,8]          },
+  odi:  { base:15, wkts:[50,300,35], neg_avg:[0,25,28], neg_econ:[0,3.5,20]   },
+  t20i: { base:10, wkts:[40,150,25], neg_econ:[0,3.5,42], neg_avg:[0,15,21]  },
+};
 
-// Career maturity damping: players near the minimum threshold get a partial score.
-// At exactly min threshold → 82% of score; ramps linearly to 100% at 2× threshold.
-// Players above 2× minimum are unaffected.
-function maturityFactor(careerLen, threshold) {
-  if (careerLen >= threshold * 2) return 1;
-  const t = Math.max(0, (careerLen - threshold) / threshold); // 0 at min, 1 at 2×
-  return 0.82 + 0.18 * t;
+function rawBatScore(st, fmt) {
+  const b = BAT_BENCH[fmt];
+  const sr = st.sr || (fmt === 't20i' ? 115 : fmt === 'odi' ? 72 : 47);
+  let s;
+  if (fmt === 'test') {
+    s = scaledScore(st.runs,     ...b.runs)  +
+        scaledScore(st.avg,      ...b.avg)   +
+        scaledScore(st.h100||0,  ...b.h100)  +
+        scaledScore(sr,          ...b.sr);
+  } else if (fmt === 'odi') {
+    s = scaledScore(st.runs,     ...b.runs)  +
+        scaledScore(st.avg,      ...b.avg)   +
+        scaledScore(sr,          ...b.sr)    +
+        scaledScore(st.h100||0,  ...b.h100);
+  } else {
+    s = scaledScore(st.runs,     ...b.runs)  +
+        scaledScore(sr,          ...b.sr)    +
+        scaledScore(st.avg,      ...b.avg)   +
+        scaledScore(st.h50||0,   ...b.h50);
+  }
+  return round(Math.min(98, s), 1);
+}
+
+function rawBowlScore(st, fmt) {
+  const b  = BWL_BENCH[fmt];
+  const ba = st.bowl_avg || (fmt === 'test' ? 45 : fmt === 'odi' ? 40 : 35);
+  const ec = st.econ     || (fmt === 'test' ? 3.5 : fmt === 'odi' ? 5.5 : 8.5);
+  let s    = b.base;
+  if (fmt === 'test') {
+    s += scaledScore(st.wkts,    ...b.wkts)     +
+         scaledScore(55 - ba,    ...b.neg_avg)   +
+         scaledScore(st.fwi||0,  ...b.fwi);
+  } else if (fmt === 'odi') {
+    s += scaledScore(st.wkts,    ...b.wkts)     +
+         scaledScore(45 - ba,    ...b.neg_avg)   +
+         scaledScore(7.5 - ec,   ...b.neg_econ);
+  } else {
+    s += scaledScore(st.wkts,    ...b.wkts)     +
+         scaledScore(9.5 - ec,   ...b.neg_econ)  +
+         scaledScore(35 - ba,    ...b.neg_avg);
+  }
+  return round(Math.min(98, s), 1);
+}
+
+function computeScores(playerArr, fmt) {
+  for (const p of playerArr) {
+    if (!p[fmt] || !FULL_MEMBERS.has(p.country)) continue;
+    if (qualBat(p[fmt], fmt))  p[fmt].bat_score  = rawBatScore(p[fmt], fmt);
+    if (qualBowl(p[fmt], fmt)) p[fmt].bowl_score = rawBowlScore(p[fmt], fmt);
+  }
 }
 
 // Batting milestone snapshots at key innings counts (for Comparador tab).
@@ -297,43 +327,6 @@ function computeBatMilestones(innArr, bornYear) {
     }
   }
   return Object.keys(result).length > 0 ? result : null;
-}
-
-function computeScores(playerArr, fmt) {
-  const byEra = new Map();
-  for (const p of playerArr) {
-    if (!FULL_MEMBERS.has(p.country) || !p._era?.[fmt]) continue;
-    if (!byEra.has(p._era[fmt])) byEra.set(p._era[fmt], []);
-    byEra.get(p._era[fmt]).push(p);
-  }
-  for (const group of byEra.values()) {
-    // Batting
-    const bG = group.filter(p => qualBat(p[fmt], fmt));
-    if (bG.length >= 3) {
-      const ms = bG.map(p => batMetrics(p[fmt], fmt));
-      for (const k of Object.keys(BAT_W[fmt])) {
-        const zs = zScore(ms.map(m => m[k] || 0));
-        bG.forEach((p, i) => { p[fmt]._batZ = (p[fmt]._batZ || 0) + BAT_W[fmt][k] * zs[i]; });
-      }
-      bG.forEach(p => {
-        const mf = maturityFactor(p[fmt].batInns, MIN[fmt].bat.inn);
-        p[fmt].bat_score = round(zToScore(p[fmt]._batZ) * mf, 1);
-      });
-    }
-    // Bowling
-    const wG = group.filter(p => qualBowl(p[fmt], fmt));
-    if (wG.length >= 3) {
-      const ms = wG.map(p => bowlMetrics(p[fmt]));
-      for (const k of Object.keys(BWL_W[fmt])) {
-        const zs = zScore(ms.map(m => m[k] || 0));
-        wG.forEach((p, i) => { p[fmt]._bowlZ = (p[fmt]._bowlZ || 0) + BWL_W[fmt][k] * zs[i]; });
-      }
-      wG.forEach(p => {
-        const mf = maturityFactor(p[fmt].wkts, MIN[fmt].bowl.wkts);
-        p[fmt].bowl_score = round(zToScore(p[fmt]._bowlZ) * mf, 1);
-      });
-    }
-  }
 }
 
 function inferRole(p) {
@@ -444,7 +437,7 @@ for (const p of players.values()) {
 }
 
 // ─── Compute scores ───────────────────────────────────────────────────────────
-console.log('Computing era-normalised scores...');
+console.log('Computing raw benchmark scores...');
 const playerArr = [...players.values()];
 computeScores(playerArr, 'test');
 computeScores(playerArr, 'odi');
