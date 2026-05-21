@@ -6732,6 +6732,36 @@ function atpInitComparadorButtons() {
   }
 }
 
+function compBuildWtcSquadLookup() {
+  const map = new Map();
+  Object.entries(WTC_SQUAD_SEEDS).forEach(([slug, team]) => {
+    (team.rows || []).forEach(row => {
+      if (!row[0]) return;
+      map.set(row[0].toLowerCase(), { teamSlug: slug, country: row[1], role: row[2], isCaptain: row[3] === 'C', teamName: team.name });
+    });
+  });
+  return map;
+}
+
+function compFindWtcEntry(playerName, playerCountry) {
+  const map = compBuildWtcSquadLookup();
+  const nameLower = playerName.toLowerCase();
+  if (map.has(nameLower)) return map.get(nameLower);
+  // Fuzzy: match by country slug + last name + first initial (handles "V Kohli" ↔ "Virat Kohli")
+  const countrySlug = ATP_COUNTRY_FLAG[playerCountry];
+  if (!countrySlug) return null;
+  const atpParts = playerName.trim().split(/\s+/);
+  const atpLastName = atpParts[atpParts.length - 1].toLowerCase();
+  const atpFirstInitial = atpParts[0][0].toUpperCase();
+  for (const [wtcLower, info] of map) {
+    if (info.teamSlug !== countrySlug) continue;
+    const wtcParts = wtcLower.trim().split(/\s+/);
+    if (wtcParts[wtcParts.length - 1] !== atpLastName) continue;
+    if (wtcParts[0][0].toUpperCase() === atpFirstInitial) return info;
+  }
+  return null;
+}
+
 function compGetMilestoneByAge(player, fmt, targetAge) {
   const ms = player.batMilestones?.[fmt];
   if (!ms) return null;
@@ -6783,7 +6813,8 @@ function renderComparadorTable() {
         const globalBat  = p.global_bat  ?? null;
         const globalBowl = p.global_bowl ?? null;
         const globalOverall = p.global_overall ?? null;
-        return { p, ms, careerBat, careerBowl, careerOverall, globalBat, globalBowl, globalOverall };
+        const wtcEntry = compFindWtcEntry(p.name, p.country);
+        return { p, ms, careerBat, careerBowl, careerOverall, globalBat, globalBowl, globalOverall, wtcEntry };
       });
   } else {
     rows = data.players
@@ -6797,7 +6828,8 @@ function renderComparadorTable() {
         const globalBat  = p.global_bat  ?? null;
         const globalBowl = p.global_bowl ?? null;
         const globalOverall = p.global_overall ?? null;
-        return { p, ms, careerBat, careerBowl, careerOverall, globalBat, globalBowl, globalOverall };
+        const wtcEntry = compFindWtcEntry(p.name, p.country);
+        return { p, ms, careerBat, careerBowl, careerOverall, globalBat, globalBowl, globalOverall, wtcEntry };
       })
       .filter(r => r !== null);
   }
@@ -6822,6 +6854,7 @@ function renderComparadorTable() {
     else if (sort.key === 'gbat')    { av = a.globalBat ?? -1; bv = b.globalBat ?? -1; }
     else if (sort.key === 'gbowl')   { av = a.globalBowl ?? -1; bv = b.globalBowl ?? -1; }
     else if (sort.key === 'goverall'){ av = a.globalOverall ?? -1; bv = b.globalOverall ?? -1; }
+    else if (sort.key === 'wtc')    { av = a.wtcEntry ? 1 : 0; bv = b.wtcEntry ? 1 : 0; }
     else { av = a.careerOverall ?? -1; bv = b.careerOverall ?? -1; }
     return dir * (bv - av);
   });
@@ -6848,6 +6881,7 @@ function renderComparadorTable() {
     <th class="num">#</th>
     ${compSortTh('Jugador', 'name')}
     ${compSortTh('Nación', 'country')}
+    ${compSortTh('WTC', 'wtc')}
     ${compSortTh('Año', 'year', 'num')}
     ${contextCol}
     ${compSortTh('Avg', 'avg', 'num')}
@@ -6874,6 +6908,7 @@ function renderComparadorTable() {
       <td class="num"><span class="player-rank-cell">${i + 1}</span></td>
       <td><span class="player-table-name">${p.name}</span></td>
       <td><span class="atp-flag-abbr"><span class="flag f-${fc}">${fc.toUpperCase()}</span>${p.country}</span></td>
+      <td style="text-align:center">${r.wtcEntry ? `<span title="${r.wtcEntry.teamName}${r.wtcEntry.isCaptain ? ' · Capitán' : ''}" style="display:inline-block;background:var(--green-deep);color:#fff;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.07em;padding:2px 5px">${r.wtcEntry.country}</span>` : ''}</td>
       <td class="num" style="color:var(--ink-mute);font-size:12px">${ms.year ?? '—'}</td>
       ${contextCell}
       <td class="num"><strong style="color:${avgColor}">${ms.avg}</strong></td>
