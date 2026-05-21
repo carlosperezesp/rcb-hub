@@ -6892,12 +6892,12 @@ function renderComparadorTable() {
     ${compSortTh('Runs', 'runs', 'num')}
     ${compSortTh('50s', 'h50', 'num')}
     ${compSortTh('100s', 'h100', 'num')}
-    ${compSortTh('Bat ↗', 'cbat', 'num')}
-    ${compSortTh('Bowl ↗', 'cbowl', 'num')}
-    ${compSortTh('Overall ↗', 'cover', 'num')}
-    ${compSortTh('G.Bat ↗', 'gbat', 'num')}
-    ${compSortTh('G.Bowl ↗', 'gbowl', 'num')}
-    ${compSortTh('G.Overall ↗', 'goverall', 'num')}
+    ${compSortTh('Bat final', 'cbat', 'num')}
+    ${compSortTh('Bowl final', 'cbowl', 'num')}
+    ${compSortTh('Overall final', 'cover', 'num')}
+    ${compSortTh('G.Bat final', 'gbat', 'num')}
+    ${compSortTh('G.Bowl final', 'gbowl', 'num')}
+    ${compSortTh('G.Overall final', 'goverall', 'num')}
   </tr>`;
 
   const tbodyRows = rows.map((r, i) => {
@@ -6935,7 +6935,7 @@ function renderComparadorTable() {
   container.innerHTML = `
     <p style="font-size:12px;color:var(--ink-mute);margin-bottom:10px">
       ${countNote}.
-      Stats de bateo en ese momento · <em>Bat ↗</em> / <em>Bowl ↗</em> / <em>Overall ↗</em> = scores de carrera en el formato seleccionado · <em>G.Bat ↗</em> / <em>G.Bowl ↗</em> / <em>G.Overall ↗</em> = scores globales multi-formato (misma escala que Rankings).
+      Avg / SR / Runs / 50s / 100s = stats acumulados <strong>en ese momento</strong> de la carrera · <em>Bat/Bowl/Overall final</em> = score de <strong>carrera completa</strong> en el formato seleccionado · <em>G.* final</em> = score final multi-formato global (misma escala que Rankings).
     </p>
     <div style="overflow-x:auto"><table class="atp-table sortable-table" style="min-width:1100px"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table></div>
     <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad ≈ año del milestone − año de nacimiento.</p>`;
