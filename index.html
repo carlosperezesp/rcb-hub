@@ -2354,6 +2354,7 @@
 
   window._atpMilesLoaded    = false;
   window._atpMilesCallbacks = [];
+  window._atpReadyCallbacks = [];
 
   function mergeMilestones(milesData) {
     if (!window.ALL_TIME_PLAYERS?.players || !milesData?.milestones) return;
@@ -2397,6 +2398,8 @@
 
   function applyData(data) {
     window.ALL_TIME_PLAYERS = data;
+    const cbs = window._atpReadyCallbacks.splice(0);
+    for (const cb of cbs) { try { cb(); } catch(e) {} }
     if (typeof renderAtpTable === 'function') renderAtpTable();
     try { if (typeof atpInitComparadorButtons === 'function') atpInitComparadorButtons(); } catch(e) {}
     const cv = document.getElementById('atp-comparador-view');
@@ -6829,7 +6832,12 @@ function renderComparadorTable() {
   const container = document.getElementById('comp-table-container');
   if (!container) { console.warn('comp-table-container not found'); return; }
   const data = window.ALL_TIME_PLAYERS;
-  if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
+  if (!data) {
+    container.innerHTML = '<div class="loading">Cargando datos…</div>';
+    window._atpReadyCallbacks = window._atpReadyCallbacks || [];
+    window._atpReadyCallbacks.push(() => renderComparadorTable());
+    return;
+  }
   if (!window._atpMilesLoaded) {
     container.innerHTML = '<div class="loading">Cargando datos del comparador…</div>';
     window._atpMilesCallbacks.push(() => renderComparadorTable());
@@ -7049,7 +7057,12 @@ function renderAtpTable() {
   const container = document.getElementById('atp-table-container');
   if (!container) return;
   const data = window.ALL_TIME_PLAYERS;
-  if (!data) { container.innerHTML = '<div class="loading">Player data not loaded.</div>'; return; }
+  if (!data) {
+    container.innerHTML = '<div class="loading">Cargando datos…</div>';
+    window._atpReadyCallbacks = window._atpReadyCallbacks || [];
+    window._atpReadyCallbacks.push(() => { if (typeof renderAtpTable === 'function') renderAtpTable(); });
+    return;
+  }
 
   const { format: fmtKey, cat, country, era, sort, shown } = ATP_STATE;
 
