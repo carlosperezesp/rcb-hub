@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cricket Hub · Global Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="data/all-time-players.json" as="fetch" crossorigin="anonymous">
 <style>
   :root {
     --green-deep: #00301a;
@@ -2358,7 +2359,9 @@
   }
 
   function fetchFresh(onDone) {
-    fetch(ATP_URL + '?v=' + (window._atpGenerated || Date.now()))
+    // Only append known generation date as cache-buster; without it let HTTP cache work
+    const url = window._atpGenerated ? ATP_URL + '?v=' + window._atpGenerated : ATP_URL;
+    fetch(url)
       .then(r => r.json())
       .then(data => {
         window._atpGenerated = data.generated;
