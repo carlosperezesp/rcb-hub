@@ -2410,7 +2410,6 @@
     try { if (typeof atpInitComparadorButtons === 'function') atpInitComparadorButtons(); } catch(e) {}
     const cv = document.getElementById('atp-comparador-view');
     if (cv && cv.style.display !== 'none' && typeof renderComparadorTable === 'function') renderComparadorTable();
-    window.loadAtpMilestones();
   }
 
   function fetchFresh(onDone) {
@@ -2432,7 +2431,6 @@
       if (data && Date.now() - ts < ATP_TTL) {
         window._atpGenerated = gen;
         window.ALL_TIME_PLAYERS = data;
-        window.loadAtpMilestones();
         if (Date.now() - ts > 24 * 60 * 60 * 1000) {
           fetchFresh(fresh => {
             if (fresh.generated !== gen) applyData(fresh);
@@ -2572,7 +2570,12 @@ function switchTab(route, updateHash = true) {
   updateIplTeamDetail(next.detail, next.tab === 'ipl' && !!next.detail && !next.player);
   updateIplPlayerProfile(next.player, next.tab === 'ipl' && !!next.player);
   updateTestTeamDetail(next.detail, next.tab === 'test' && !!next.detail);
-  if (next.tab === 'players') { renderAtpTable(); atpInitComparadorButtons(); if (typeof loadAtpMilestones === 'function') loadAtpMilestones(); }
+  if (next.tab === 'players') {
+    renderAtpTable();
+    atpInitComparadorButtons();
+    const cv = document.getElementById('atp-comparador-view');
+    if (cv && cv.style.display !== 'none') renderComparadorTable();
+  }
   if (updateHash && window.location.hash !== next.hash) {
     history.pushState(null, '', next.hash);
   }
@@ -6399,13 +6402,6 @@ async function refreshIplCalendar() {
   renderFixtures('ipl-results', formatRecentResults());
 }
 
-initStaticViews();
-initWtc();
-setInterval(initWtc, 60 * 60 * 1000);
-initIpl();
-setInterval(refreshIplCalendar, 5 * 60 * 1000);
-switchTab(window.location.hash, false);
-
 // ── Worm chart ────────────────────────────────────────────────────────────────
 
 const TEAM_WORM_COLORS = {
@@ -6673,6 +6669,7 @@ let ATP_STATE = { format: 'global', cat: 'overall', country: 'all', era: 'all', 
 let ATP_RENDERED = false;
 const COMP_MILESTONES = [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200];
 let COMP_STATE = { fmt: 't20i', mode: 'inn', milestone: 45, ageTarget: 25, country: 'all', sort: { key: 'cover', dir: 'desc' } };
+let COMP_WTC_SQUAD_LOOKUP = null;
 
 function atpSetView(v) {
   document.getElementById('atp-rankings-view').style.display = v === 'rankings' ? '' : 'none';
@@ -6797,6 +6794,7 @@ function atpInitComparadorButtons() {
 }
 
 function compBuildWtcSquadLookup() {
+  if (COMP_WTC_SQUAD_LOOKUP) return COMP_WTC_SQUAD_LOOKUP;
   const map = new Map();
   Object.entries(WTC_SQUAD_SEEDS).forEach(([slug, team]) => {
     (team.rows || []).forEach(row => {
@@ -6804,6 +6802,7 @@ function compBuildWtcSquadLookup() {
       map.set(row[0].toLowerCase(), { teamSlug: slug, country: row[1], role: row[2], isCaptain: row[3] === 'C', teamName: team.name });
     });
   });
+  COMP_WTC_SQUAD_LOOKUP = map;
   return map;
 }
 
@@ -7279,6 +7278,13 @@ function renderAtpTable() {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
+
+initStaticViews();
+initWtc();
+setInterval(initWtc, 60 * 60 * 1000);
+initIpl();
+setInterval(refreshIplCalendar, 5 * 60 * 1000);
+switchTab(window.location.hash, false);
 
 document.getElementById('worm-close-btn').addEventListener('click', () => {
   document.getElementById('worm-modal-backdrop').classList.add('hidden');
