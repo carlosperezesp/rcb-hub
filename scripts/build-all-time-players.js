@@ -331,6 +331,34 @@ function computeBatMilestones(innArr, bornYear) {
   return Object.keys(result).length > 0 ? result : null;
 }
 
+// Estimated batting milestones for curated legends without ball-by-ball innings.
+// These keep the Comparador complete while preserving real Cricsheet snapshots
+// whenever they exist.
+function computeEstimatedBatMilestones(st, bornYear, firstYear, lastYear) {
+  if (!st || !st.batInns || st.batInns < 10 || !st.runs) return null;
+  const milestones = MILESTONE_INN.filter(m => m <= st.batInns);
+  if (!milestones.length) return null;
+  const fy = firstYear || (bornYear ? bornYear + 18 : null);
+  const ly = lastYear  || (bornYear ? bornYear + 38 : null);
+  const span = fy && ly ? Math.max(1, ly - fy) : null;
+  const result = {};
+  for (const inn of milestones) {
+    const progress = inn / st.batInns;
+    const year = fy && span ? Math.round(fy + span * progress) : null;
+    result[inn] = {
+      year,
+      age:  (bornYear && year) ? (year - bornYear) : null,
+      runs: Math.round(st.runs * progress),
+      avg:  st.avg != null ? round(st.avg, 1) : null,
+      sr:   st.sr != null ? round(st.sr, 1) : null,
+      h100: Math.round((st.h100 || 0) * progress),
+      h50:  Math.round((st.h50  || 0) * progress),
+      estimated: true,
+    };
+  }
+  return result;
+}
+
 function inferRole(p) {
   let runs = 0, wkts = 0;
   for (const f of ['test','odi','t20i']) {
@@ -449,6 +477,13 @@ for (const p of playerArr) {
   p.role = inferRole(p);
   for (const fmt of ['test','odi','t20i']) {
     if (p[fmt]) p[fmt].overall = overallScore(p[fmt]);
+    if (p[fmt] && !p.batMilestones?.[fmt]) {
+      const estimated = computeEstimatedBatMilestones(p[fmt], p.born, p[fmt]._fy, p[fmt]._ly);
+      if (estimated) {
+        p.batMilestones = p.batMilestones || {};
+        p.batMilestones[fmt] = estimated;
+      }
+    }
   }
 }
 

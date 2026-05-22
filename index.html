@@ -2352,8 +2352,8 @@
 <script>
 // ATP data loader — slim base JSON + lazy milestones; both cached 7 days
 (function() {
-  const ATP_KEY   = 'rcb_atp_slim_v2';
-  const MILES_KEY = 'rcb_atp_miles_v2';
+  const ATP_KEY   = 'rcb_atp_slim_v3';
+  const MILES_KEY = 'rcb_atp_miles_v3';
   const ATP_TTL   = 7 * 24 * 60 * 60 * 1000;
   const ATP_URL   = 'data/all-time-players-slim.json';
   const MILES_URL = 'data/all-time-players-milestones.json';
@@ -7009,7 +7009,7 @@ function renderComparadorTable() {
       Avg / SR / Runs / 50s / 100s = stats acumulados <strong>en ese momento</strong> de la carrera · <em>Bat/Bowl/Overall final</em> = score de <strong>carrera completa</strong> en el formato seleccionado · <em>G.* final</em> = score final multi-formato global (misma escala que Rankings).
     </p>
     <div style="overflow-x:auto"><table class="atp-table sortable-table" style="min-width:1100px"><thead>${thead}</thead><tbody>${tbodyRows}</tbody></table></div>
-    <p class="atp-comp-note" style="margin-top:8px">Solo jugadores con datos Cricsheet (Tests: 2001+, ODIs: 2002+, T20Is: 2005+). Edad ≈ año del milestone − año de nacimiento.</p>`;
+    <p class="atp-comp-note" style="margin-top:8px">Snapshots reales para jugadores con datos Cricsheet; para leyendas curadas sin ball-by-ball, los milestones son estimados desde sus totales de carrera. Edad ≈ año del milestone − año de nacimiento.</p>`;
   } catch (e) {
     container.innerHTML = '<p style="padding:16px;color:var(--ink-mute)">Error al renderizar: ' + e.message + '</p>';
     console.error('renderComparadorTable error:', e);
