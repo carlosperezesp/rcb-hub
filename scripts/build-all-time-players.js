@@ -476,7 +476,10 @@ for (const p of playerArr) {
 
 // ─── Clean up & output ───────────────────────────────────────────────────────
 const finalList = playerArr
-  .filter(p => FULL_MEMBERS.has(p.country) && p.global_overall != null)
+  .filter(p => FULL_MEMBERS.has(p.country) && (
+    p.global_overall != null ||
+    (p.test && (p.test._ly || 0) >= 2000)
+  ))
   .map(p => {
     delete p._era;
     // Compute global career span from per-format first/last years
@@ -499,7 +502,7 @@ const erasRef = {
   t20i: Object.fromEntries(T20_ERAS.map(e=>[e.key,{label:e.label,years:e.years}])),
 };
 
-console.log(`Writing ${finalList.length} scored players...`);
+console.log(`Writing ${finalList.length} ranked/scoutable players...`);
 fs.mkdirSync(path.dirname(OUT_JS), { recursive: true });
 const generated = new Date().toISOString().slice(0, 10);
 
